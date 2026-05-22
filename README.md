@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <a href="https://learnai.app"><img src="https://img.shields.io/badge/Try_LearnAI-→_learnai.app-2e5bff?style=for-the-badge" alt="Try LearnAI"/></a>
+  <a href="https://learnskillsai.com"><img src="https://img.shields.io/badge/Try_LearnAI-→_learnskillsai.com-2e5bff?style=for-the-badge" alt="Try LearnAI"/></a>
   &nbsp;
   <a href="https://github.com/sponsors/ruslanmv"><img src="https://img.shields.io/badge/💖_Become_a_sponsor-ec4899?style=for-the-badge" alt="Become a sponsor"/></a>
 </p>
@@ -26,7 +26,7 @@
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-Enabled-6366F1" alt="MCP Enabled"/></a>
 </p>
 
-> 👉 **The product lives at [learnai.app](https://learnai.app).** This repository is the source — open for transparency, audit, and contribution. Learners don't have to install anything; they just open the link.
+> 👉 **The product lives at [learnskillsai.com](https://learnskillsai.com).** This repository is the source — open for transparency, audit, and contribution. Learners don't have to install anything; they just open the link.
 
 ---
 
