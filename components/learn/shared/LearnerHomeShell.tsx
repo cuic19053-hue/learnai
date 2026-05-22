@@ -110,6 +110,14 @@ export default function LearnerHomeShell({
             ⚡ {xp.toLocaleString()} XP
           </span>
           <Link
+            href="/settings"
+            className="hidden h-9 items-center gap-1.5 rounded-full bg-white px-3 text-[12px] font-bold text-ink-soft hover:text-ink sm:inline-flex"
+            style={{ boxShadow: "0 0 0 1px var(--line)" }}
+            aria-label="Your settings — tutor, voice, accessibility"
+          >
+            ⚙ Settings
+          </Link>
+          <Link
             href="/login"
             className="grid h-9 w-9 place-items-center rounded-full font-extrabold text-white"
             style={{ background: "var(--brand-grad)" }}

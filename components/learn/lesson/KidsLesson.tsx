@@ -1,39 +1,15 @@
-import Link from "next/link";
-import CountingTask from "@/components/learn/kids/CountingTask";
-import { stageToPath } from "@/lib/learn/stages";
 import type { Journey } from "@/lib/learn/journeys";
+import KidsLessonPlayer from "@/components/learn/kids/KidsLessonPlayer";
 
 /**
- * Kids lesson surface — single big task, no chrome, no scrolling.
- * Wraps the existing CountingTask in a calm gradient backdrop tinted by
- * the Little Learner journey color.
+ * Kids lesson surface — mobile-first, touch-friendly, voice-enabled.
+ * The full player lives in components/learn/kids/KidsLessonPlayer so
+ * /learn/lesson/kids and any future deep-link route share the same
+ * implementation.
+ *
+ * Journey is accepted for API symmetry with the other stage lessons
+ * but the kids player picks its own theme palette from the catalogue.
  */
-export default function KidsLesson({ journey }: { journey: Journey }) {
-  return (
-    <main
-      id="main"
-      className="mx-auto min-h-screen max-w-[480px] px-4 pb-20 pt-5"
-      style={{ background: `linear-gradient(180deg, ${journey.soft}, #fff 60%)` }}
-    >
-      <div className="flex items-center justify-between">
-        <Link
-          href={stageToPath(journey.stage)}
-          className="text-[26px] text-ink-mute"
-          aria-label="Back home"
-        >
-          ←
-        </Link>
-        <span className="la-pill" style={{ background: journey.bg, color: journey.color }}>
-          {journey.emoji} Counting
-        </span>
-        <Link href="/parent" className="text-[22px] text-ink-mute" aria-label="Parent area">
-          👨‍👩‍👧
-        </Link>
-      </div>
-
-      <div className="mt-4">
-        <CountingTask />
-      </div>
-    </main>
-  );
+export default function KidsLesson({ journey: _journey }: { journey: Journey }) {
+  return <KidsLessonPlayer />;
 }
