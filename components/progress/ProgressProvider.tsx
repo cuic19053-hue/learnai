@@ -1,5 +1,6 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import {
   createContext,
   useCallback,
@@ -42,10 +43,21 @@ type ProgressApi = {
 const ProgressContext = createContext<ProgressApi | null>(null);
 
 export default function ProgressProvider({ children }: { children: ReactNode }) {
+  const { data: session, status } = useSession();
+  const userId = session?.user?.id ?? null;
+
   const [state, dispatch] = useReducer(progressReducer, DEFAULT_PROGRESS);
   const hydratedRef = useRef(false);
   const channelRef = useRef<BroadcastChannel | null>(null);
   const skipNextWriteRef = useRef(false);
+  // Debounce timer for the PUT /api/me/progress sync — we don't want
+  // to fire a network call on every reducer tick (addXp + ping happen
+  // dozens of times in a single lesson).
+  const syncTimerRef = useRef<number | null>(null);
+  // True once we've pulled the server-side blob; until then we suppress
+  // sync writes so the initial cookie state doesn't clobber a richer
+  // server state with a thinner local one.
+  const serverHydratedRef = useRef(false);
 
   // Hydrate from cookie + open the cross-tab channel on first mount.
   useEffect(() => {
@@ -88,7 +100,74 @@ export default function ProgressProvider({ children }: { children: ReactNode }) 
     } catch {
       /* channel closed — fine */
     }
-  }, [state]);
+
+    // Debounced server sync — only after the server-side blob has been
+    // merged in, so we don't overwrite a fresh-device server state with
+    // an empty cookie-only state on the very first render.
+    if (userId && serverHydratedRef.current) {
+      if (syncTimerRef.current !== null) {
+        window.clearTimeout(syncTimerRef.current);
+      }
+      syncTimerRef.current = window.setTimeout(() => {
+        void fetch("/api/me/progress", {
+          method: "PUT",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(state),
+          keepalive: true, // survive a tab close mid-flight
+        }).catch(() => {
+          // Network blip — cookie copy is the source of truth until next change.
+        });
+      }, 1500);
+    }
+  }, [state, userId]);
+
+  // Pull the server blob once when the session arrives. Merges with the
+  // local cookie state so existing local XP / streak isn't lost when a
+  // user signs in for the first time.
+  useEffect(() => {
+    if (status !== "authenticated" || !userId) {
+      serverHydratedRef.current = false;
+      return;
+    }
+    let cancelled = false;
+    void (async () => {
+      try {
+        const r = await fetch("/api/me/progress", { cache: "no-store" });
+        if (!r.ok) return;
+        const body = (await r.json()) as { progress?: ProgressState };
+        if (cancelled || !body.progress) return;
+        const server = body.progress;
+        const local = readProgressClient();
+        const merged: ProgressState = {
+          v: server.v,
+          xp: Math.max(server.xp, local.xp),
+          streak: {
+            current: Math.max(server.streak.current, local.streak.current),
+            longest: Math.max(server.streak.longest, local.streak.longest),
+            lastActive: !server.streak.lastActive
+              ? local.streak.lastActive
+              : !local.streak.lastActive
+                ? server.streak.lastActive
+                : server.streak.lastActive > local.streak.lastActive
+                  ? server.streak.lastActive
+                  : local.streak.lastActive,
+          },
+          worlds: { ...local.worlds, ...server.worlds },
+          achievements: Array.from(new Set([...server.achievements, ...local.achievements])),
+          updatedAt: new Date().toISOString(),
+        };
+        skipNextWriteRef.current = true;
+        dispatch({ type: "hydrate", state: merged });
+        serverHydratedRef.current = true;
+      } catch {
+        // Network blip — leave the local-cookie state alone. We'll
+        // retry on the next sign-in.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [status, userId]);
 
   // Auto-ping once per session so just opening the app counts toward the
   // streak. Subsequent pings from quizzes / drills are no-ops for today.

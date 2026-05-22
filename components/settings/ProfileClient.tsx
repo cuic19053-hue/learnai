@@ -25,6 +25,7 @@ export default function ProfileClient({ profile }: { profile: Profile }) {
   const [error, setError] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState("");
   const [deleting, setDeleting] = useState(false);
+  const [signingOutAll, setSigningOutAll] = useState(false);
 
   const trimmedName = name.trim();
   const dirty = trimmedName !== (profile.name ?? "").trim() && trimmedName.length > 0;
@@ -54,6 +55,31 @@ export default function ProfileClient({ profile }: { profile: Profile }) {
       setError(err instanceof Error ? err.message : "Save failed.");
     } finally {
       setSaving(false);
+    }
+  }
+
+  async function signOutEverywhere() {
+    const ok = window.confirm(
+      "Sign out of every device, including this browser? You'll need to sign in again afterwards."
+    );
+    if (!ok) return;
+    setError(null);
+    setSavedNote(null);
+    setSigningOutAll(true);
+    try {
+      const r = await fetch("/api/me/sessions", { method: "DELETE" });
+      if (!r.ok) {
+        const body = (await r.json().catch(() => null)) as { error?: string } | null;
+        throw new Error(body?.error ?? `Failed (${r.status})`);
+      }
+      // Invalidate the local cookie + bounce to /. The tokenVersion
+      // bump on the server will already have killed every other device
+      // — they'll see /login on their next request.
+      await signOut({ callbackUrl: "/", redirect: false });
+      window.location.href = "/";
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Sign-out failed.");
+      setSigningOutAll(false);
     }
   }
 
@@ -237,6 +263,59 @@ export default function ProfileClient({ profile }: { profile: Profile }) {
             ) : null}
           </div>
         </form>
+
+        {/* Privacy — export everything we hold for this user */}
+        <section
+          className="mt-6 rounded-2xl p-5"
+          style={{
+            background: "#fff",
+            border: "1px solid var(--line-soft)",
+            boxShadow: "var(--shadow-1)",
+          }}
+        >
+          <h2 className="text-[16px] font-extrabold text-ink">Your data</h2>
+          <p className="mt-1 text-[12.5px] leading-relaxed text-ink-soft">
+            Download every row LearnAI holds for your account in a single JSON file — profile,
+            preferences, progress, projects, linked providers. We never include passwords or
+            authentication tokens.
+          </p>
+          <a
+            href="/api/me/export"
+            className="la-btn ghost mt-3 inline-flex"
+            style={{ padding: "10px 14px", fontSize: 13 }}
+            // download is hinted by the API's Content-Disposition header,
+            // this attribute is belt-and-braces for older browsers.
+            download
+          >
+            ⬇ Export my data
+          </a>
+        </section>
+
+        {/* Sessions — sign out every device at once */}
+        <section
+          className="mt-6 rounded-2xl p-5"
+          style={{
+            background: "#fff",
+            border: "1px solid var(--line-soft)",
+            boxShadow: "var(--shadow-1)",
+          }}
+        >
+          <h2 className="text-[16px] font-extrabold text-ink">Sessions</h2>
+          <p className="mt-1 text-[12.5px] leading-relaxed text-ink-soft">
+            Signed in via {providerLabel}. If you think someone else has access to your account,
+            signing out everywhere will revoke every device — including this one — and require you
+            to sign in again.
+          </p>
+          <button
+            type="button"
+            onClick={signOutEverywhere}
+            disabled={signingOutAll}
+            className="la-btn ghost mt-3"
+            style={{ padding: "10px 14px", fontSize: 13, opacity: signingOutAll ? 0.5 : 1 }}
+          >
+            {signingOutAll ? "Signing out…" : "Sign out everywhere"}
+          </button>
+        </section>
 
         {/* Danger zone — full account deletion */}
         <section
