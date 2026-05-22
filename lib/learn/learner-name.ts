@@ -32,3 +32,17 @@ export async function getLearnerFirstName(): Promise<string | null> {
 export async function getLearnerDisplayName(): Promise<string> {
   return (await getLearnerFirstName()) ?? "Guest";
 }
+
+/**
+ * True when the visitor has a valid NextAuth session. Used by world
+ * home pages to hide curated "Continue practicing" placeholders for
+ * signed-in users so their dashboards only show their real activity.
+ */
+export async function isAuthenticated(): Promise<boolean> {
+  try {
+    const session = await getServerSession(authOptions);
+    return !!session?.user?.id;
+  } catch {
+    return false;
+  }
+}

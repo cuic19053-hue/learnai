@@ -48,6 +48,59 @@ model User {
 
   teacherTransactions Transaction[] @relation("TeacherTransactions")
   studentTransactions Transaction[] @relation("StudentTransactions")
+
+  // Per-user learning data — every row cascades on user delete so
+  // "delete my account" leaves nothing orphaned in the database.
+  projects        Project[]
+  preferences     UserPreferences?
+  progress        UserProgress?
+}
+
+// ─── Per-user learning state ────────────────────────────────────────────
+// Three small tables that together replace the process-local in-memory
+// stores. Everything is scoped by userId and cascades on user delete.
+
+model Project {
+  id            String   @id @default(cuid())
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId        String
+  worldSlug     String
+  topic         String
+  outcome       String   @default("")
+  sources       String[]
+  daysPerWeek   Int
+  minutesPerDay Int
+  deadline      String?
+  prefs         String[]
+  status        String   @default("idea")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([userId, worldSlug])
+  @@index([userId, createdAt])
+}
+
+model UserPreferences {
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String   @id
+  teacherId   String?  @default("nova")
+  ttsEngine   String?  @default("web-speech")
+  voiceLabel  String?
+  /// Free-form JSON for any future preference key that doesn't merit its own column.
+  extra       Json     @default("{}")
+  updatedAt   DateTime @updatedAt
+}
+
+model UserProgress {
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String   @id
+  xp          Int      @default(0)
+  streak      Int      @default(0)
+  lastSeen    DateTime?
+  /// Per-world XP / streak / lastSeen breakdown. JSON because the world
+  /// list grows over time and we don't want one column per world.
+  worldStats  Json     @default("{}")
+  updatedAt   DateTime @updatedAt
 }
 
 model TeacherProfile {
