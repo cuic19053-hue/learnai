@@ -52,6 +52,14 @@ export const authOptions: NextAuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
 
+  // Force `__Secure-` cookie prefix + Secure flag in production
+  // regardless of how NextAuth detects the protocol. Required by Chrome
+  // for cross-site OAuth callbacks (the Google → us redirect) since
+  // 2024 — without it Chrome silently drops the state cookie and the
+  // callback fails with ?error=Callback even when everything else is
+  // configured correctly.
+  useSecureCookies: process.env.NODE_ENV === "production",
+
   // Custom authentication pages
   pages: {
     signIn: "/login",
