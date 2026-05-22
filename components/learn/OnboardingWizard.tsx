@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Mark from "@/components/design/Mark";
 import PersonaAvatar from "@/components/design/PersonaAvatar";
 import { Arrow, Check } from "@/components/design/icons";
-import { stageToPath, type LearnerStage } from "@/lib/learn/stages";
+import type { LearnerStage } from "@/lib/learn/stages";
 import { JOURNEYS, journeyForStage, type Journey } from "@/lib/learn/journeys";
 import { UNIVERSAL_TEACHERS, SPECIALIST_TEACHERS, type Teacher } from "@/lib/learn/teachers";
 import { worldSlugForStage } from "@/lib/learn/worlds";
@@ -85,9 +85,11 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
     setError(null);
 
     // Save the profile first — this is what makes the rest of the app
-    // know which world to render. Failure here is a hard error.
+    // know which world to render. Failure here is recoverable: we still
+    // land the learner in their world's lesson even if the profile
+    // cookie didn't get written (they can finish onboarding later).
     try {
-      const profileRes = await fetch("/api/learn/profile", {
+      await fetch("/api/learn/profile", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
@@ -97,49 +99,16 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
           interests: goalId ? [goalId] : [],
         }),
       });
-      if (!profileRes.ok) throw new Error("Could not save your profile.");
-    } catch (e: any) {
-      setError(e?.message ?? "Couldn't save your profile.");
-      setSubmitting(false);
-      return;
+    } catch {
+      // Non-fatal — the lesson route doesn't require the profile cookie.
     }
 
-    // Now create a first-lesson project from the stage's example topic +
-    // the selected goal as the outcome. This lands the learner in the
-    // working AI workspace at /learn/projects/[id] — the same surface
-    // we use for the 5 demo projects, so the "first 5-minute lesson"
-    // promise actually delivers a real lesson.
-    const j = journey ?? journeyForStage(stage);
-    const goalLabel = GOAL_OPTIONS.find((g) => g.id === goalId)?.label ?? "";
-    try {
-      const projRes = await fetch("/api/projects", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          worldSlug: worldSlugForStage(stage),
-          topic: j.example,
-          outcome: goalLabel ? `${goalLabel} — first 5-minute lesson.` : "",
-          sources: [],
-          daysPerWeek: 5,
-          minutesPerDay: 5,
-          prefs: ["practice", "worked"],
-        }),
-      });
-      const payload = (await projRes.json().catch(() => null)) as
-        | { ok: true; project: { id: string } }
-        | { ok: false; error: string }
-        | null;
-      if (projRes.ok && payload && payload.ok && payload.project?.id) {
-        router.push(`/learn/projects/${payload.project.id}`);
-        return;
-      }
-      // Soft fallback if project creation fails (rate limit, parse error,
-      // etc.) — at least take the learner to their world home so they're
-      // not stuck on the onboarding screen.
-      router.push(stageToPath(stage));
-    } catch {
-      router.push(stageToPath(stage));
-    }
+    // Send the learner straight into their world's lesson. We used to
+    // create a project draft and push to /learn/projects/[id], but that
+    // store is process-local — on serverless the POST creates the draft
+    // in instance A while the GET hits instance B and 404s. The lesson
+    // route below is fully static and always renders the right surface.
+    router.push(`/learn/lesson/${worldSlugForStage(stage)}`);
   }
 
   const canContinueFrom: Record<number, boolean> = {

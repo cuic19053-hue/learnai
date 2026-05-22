@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { speakInLanguage, stopLanguageSpeech } from "@/lib/tts/by-language";
 import type { Language, VocabCard } from "@/lib/languages/types";
 
 type Outcome = "unseen" | "known" | "review";
@@ -18,12 +19,28 @@ export default function VocabDrill({
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [outcomes, setOutcomes] = useState<Outcome[]>(() => cards.map(() => "unseen"));
+  // Tracks which line is currently playing so the speaker icon can pulse.
+  // null when nothing is speaking; "term" or "example" while audio plays.
+  const [speaking, setSpeaking] = useState<null | "term" | "example">(null);
 
   const total = cards.length;
   const known = useMemo(() => outcomes.filter((o) => o === "known").length, [outcomes]);
   const review = useMemo(() => outcomes.filter((o) => o === "review").length, [outcomes]);
-  const seen = total - outcomes.filter((o) => o === "unseen").length;
   const card = cards[idx];
+
+  // Stop any in-flight audio when the card changes or the component
+  // unmounts — otherwise a slow Piper synth could play over the next
+  // card's audio after the learner taps Next.
+  useEffect(() => {
+    return () => {
+      stopLanguageSpeech();
+    };
+  }, []);
+
+  useEffect(() => {
+    stopLanguageSpeech();
+    setSpeaking(null);
+  }, [idx]);
 
   if (!card) {
     return (
@@ -69,6 +86,22 @@ export default function VocabDrill({
     setFlipped(false);
   }
 
+  function playLine(which: "term" | "example", text: string) {
+    if (!text.trim()) return;
+    // Tapping the same speaker mid-playback acts as stop.
+    if (speaking === which) {
+      stopLanguageSpeech();
+      setSpeaking(null);
+      return;
+    }
+    stopLanguageSpeech();
+    setSpeaking(which);
+    void speakInLanguage(text, language.code, {
+      onEnd: () => setSpeaking((s) => (s === which ? null : s)),
+      onError: () => setSpeaking((s) => (s === which ? null : s)),
+    });
+  }
+
   const accent = language.accent;
   const completed = known + review;
   const allKnown = known === total && total > 0;
@@ -97,12 +130,21 @@ export default function VocabDrill({
         />
       </div>
 
-      {/* Flashcard */}
-      <button
-        type="button"
+      {/* Flashcard — the outer div is a button for tap-to-flip, but the
+          embedded speaker controls stopPropagation so listening doesn't
+          flip the card. */}
+      <div
+        role="button"
+        tabIndex={0}
         onClick={() => setFlipped((v) => !v)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setFlipped((v) => !v);
+          }
+        }}
         aria-pressed={flipped}
-        className="la-card relative w-full p-8 text-center transition"
+        className="la-card relative w-full cursor-pointer p-8 text-center transition"
         style={{
           minHeight: 240,
           borderRadius: 24,
@@ -125,21 +167,44 @@ export default function VocabDrill({
           <div>
             <p className="text-2xl font-bold leading-snug text-ink md:text-3xl">{card.meaning}</p>
             {card.example ? (
-              <p className="mt-3 text-[14px] italic text-ink-soft">{card.example}</p>
+              <div className="mt-3 flex items-center justify-center gap-2" dir={language.dir}>
+                <p className="text-[14px] italic text-ink-soft">{card.example}</p>
+                <SpeakerButton
+                  active={speaking === "example"}
+                  accent={accent}
+                  label={`Listen to the example in ${language.name}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    playLine("example", card.example ?? "");
+                  }}
+                />
+              </div>
             ) : null}
           </div>
         ) : (
           <div dir={language.dir}>
-            <p
-              className="text-3xl font-extrabold leading-tight tracking-[-0.01em] text-ink md:text-5xl"
-              style={{ direction: language.dir }}
-            >
-              {card.term}
-            </p>
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <p
+                className="text-3xl font-extrabold leading-tight tracking-[-0.01em] text-ink md:text-5xl"
+                style={{ direction: language.dir }}
+              >
+                {card.term}
+              </p>
+              <SpeakerButton
+                active={speaking === "term"}
+                accent={accent}
+                size="lg"
+                label={`Listen to ${card.term} in ${language.name}`}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  playLine("term", card.term);
+                }}
+              />
+            </div>
             {card.hint ? <p className="mt-3 text-[14px] text-ink-soft">{card.hint}</p> : null}
           </div>
         )}
-      </button>
+      </div>
 
       {/* Self-rate row — visible only after reveal */}
       <div className="flex flex-wrap items-center justify-between gap-3">
@@ -218,5 +283,42 @@ export default function VocabDrill({
         </div>
       ) : null}
     </div>
+  );
+}
+
+function SpeakerButton({
+  active,
+  accent,
+  label,
+  onClick,
+  size = "md",
+}: {
+  active: boolean;
+  accent: string;
+  label: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  size?: "md" | "lg";
+}) {
+  const dim = size === "lg" ? 44 : 32;
+  const fontSize = size === "lg" ? 20 : 15;
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      title={label}
+      className="grid place-items-center rounded-full transition"
+      style={{
+        width: dim,
+        height: dim,
+        background: active ? accent : "#fff",
+        color: active ? "#fff" : accent,
+        boxShadow: `0 0 0 1.5px ${accent}`,
+        fontSize,
+        lineHeight: 1,
+      }}
+    >
+      <span aria-hidden>{active ? "■" : "🔊"}</span>
+    </button>
   );
 }

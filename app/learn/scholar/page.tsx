@@ -3,6 +3,7 @@ import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, WikiTestPromoCard } from "@/components/learn/SecondaryCards";
 import WhyThisButton from "@/components/learn/WhyThisButton";
+import { getLearnerDisplayName } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -10,7 +11,8 @@ export const metadata: Metadata = {
   description: "Exam preparation, weak-area focus, and study plans for ages 16–18.",
 };
 
-export default function ScholarPage() {
+export default async function ScholarPage() {
+  const learnerName = await getLearnerDisplayName();
   const world = WORLDS.scholar;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -35,7 +37,7 @@ export default function ScholarPage() {
     >
       <div className="text-[13px] text-ink-mute">{today}</div>
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        Welcome back, Jess 👋
+        Welcome back, {learnerName} 👋
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         Trigonometry is your weakest area. 25-minute focused session today moves you up a band.{" "}
@@ -64,8 +66,18 @@ export default function ScholarPage() {
         <ContinueCard
           journey={journey}
           items={[
-            { title: "Algebra: quadratic equations", subtitle: "Math · 68% mastery", progress: 68 },
-            { title: "Probability fundamentals", subtitle: "Math · 75% mastery", progress: 75 },
+            {
+              title: "Algebra: quadratic equations",
+              subtitle: "Math · 68% mastery",
+              progress: 68,
+              href: "/learn/lesson/scholar",
+            },
+            {
+              title: "Probability fundamentals",
+              subtitle: "Math · 75% mastery",
+              progress: 75,
+              href: "/learn/lesson/scholar",
+            },
           ]}
         />
         <WikiTestPromoCard worldLabel="Scholar" teacherName="Mentor Max" />

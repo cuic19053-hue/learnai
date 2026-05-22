@@ -7,6 +7,8 @@ export type ContinueItem = {
   subtitle: string;
   /** Progress 0-100. */
   progress: number;
+  /** Where the row links to — usually the world's lesson route. */
+  href: string;
 };
 
 export function ContinueCard({ items, journey }: { items: ContinueItem[]; journey: Journey }) {
@@ -16,9 +18,10 @@ export function ContinueCard({ items, journey }: { items: ContinueItem[]; journe
         Continue practicing
       </div>
       {items.map((c, idx) => (
-        <div
+        <Link
           key={c.title}
-          className="mt-2 flex items-center gap-3 py-3"
+          href={c.href}
+          className="mt-2 flex items-center gap-3 py-3 transition hover:opacity-90"
           style={{
             borderTop: idx === 0 ? "1px solid var(--line-soft)" : "1px solid var(--line-soft)",
           }}
@@ -40,7 +43,7 @@ export function ContinueCard({ items, journey }: { items: ContinueItem[]; journe
           <div aria-hidden className="text-lg text-ink-mute">
             →
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );

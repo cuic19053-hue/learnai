@@ -106,14 +106,27 @@ export default async function MissionsPage({
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
         {missions.map((m, i) => (
-          <MissionRow key={i} mission={m} accent={world.journey.color} />
+          <MissionRow
+            key={i}
+            mission={m}
+            accent={world.journey.color}
+            lessonHref={`/learn/lesson/${world.slug}`}
+          />
         ))}
       </div>
     </LearnerHomeShell>
   );
 }
 
-function MissionRow({ mission, accent }: { mission: Mission; accent: string }) {
+function MissionRow({
+  mission,
+  accent,
+  lessonHref,
+}: {
+  mission: Mission;
+  accent: string;
+  lessonHref: string;
+}) {
   const isLocked = mission.status === "locked";
   const isDone = mission.status === "completed";
   const badge = isDone ? "Completed" : isLocked ? "Locked" : `${mission.progressPct}%`;
@@ -154,7 +167,7 @@ function MissionRow({ mission, accent }: { mission: Mission; accent: string }) {
       </div>
       {!isLocked ? (
         <Link
-          href="/learn/lesson/builder"
+          href={lessonHref}
           className="rounded-xl px-3 py-2 text-[13px] font-bold text-white"
           style={{ background: accent }}
         >
