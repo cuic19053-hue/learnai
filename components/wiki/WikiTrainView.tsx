@@ -43,7 +43,7 @@ export default function WikiTrainView({ test, sections, worldSlug }: Props) {
         const qs = questionsBySection.get(s.heading.toLowerCase()) ?? [];
         return qs.length > 0;
       }),
-    [sections, questionsBySection],
+    [sections, questionsBySection]
   );
 
   const [stepIdx, setStepIdx] = useState(0);
@@ -53,13 +53,10 @@ export default function WikiTrainView({ test, sections, worldSlug }: Props) {
     return (
       <div className="la-card p-5" style={{ borderRadius: 18 }}>
         <p className="text-[14px] text-ink-soft">
-          This article doesn&apos;t have enough cited sections to train on.
-          Jump straight to the test.
+          This article doesn&apos;t have enough cited sections to train on. Jump straight to the
+          test.
         </p>
-        <Link
-          href={`/learn/wiki/${test.id}/quiz`}
-          className="la-btn mt-4"
-        >
+        <Link href={`/learn/wiki/${test.id}/quiz`} className="la-btn mt-4">
           Take the test →
         </Link>
       </div>
@@ -80,9 +77,7 @@ export default function WikiTrainView({ test, sections, worldSlug }: Props) {
             <span className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
               Step {stepIdx + 1} of {ribbon.length}
             </span>
-            <span className="font-mono text-[11px] text-ink-mute">
-              {sectionPct}%
-            </span>
+            <span className="font-mono text-[11px] text-ink-mute">{sectionPct}%</span>
           </div>
           <div className="wt-meter mt-2">
             <div className="fill" style={{ width: `${sectionPct}%` }} />
@@ -162,7 +157,7 @@ export default function WikiTrainView({ test, sections, worldSlug }: Props) {
                   className={`flex w-full items-center gap-2 rounded-lg px-2 py-2 text-left text-[13px] transition ${
                     isCurrent
                       ? "bg-brand-1/10 font-bold text-ink"
-                      : "text-ink-soft hover:bg-bg-2 hover:text-ink"
+                      : "hover:bg-bg-2 text-ink-soft hover:text-ink"
                   }`}
                 >
                   <span
@@ -242,10 +237,7 @@ function CheckInCard({
     } else if (q.expectedAnswer && shortText.trim()) {
       // Loose match for short_answer — case-insensitive substring is good
       // enough for a check-in (the timed test does proper grading).
-      if (
-        shortText.toLowerCase().includes(q.expectedAnswer.toLowerCase()) &&
-        !awarded
-      ) {
+      if (shortText.toLowerCase().includes(q.expectedAnswer.toLowerCase()) && !awarded) {
         onCorrect();
         setAwarded(true);
       }
@@ -253,19 +245,14 @@ function CheckInCard({
   }
 
   return (
-    <div
-      className="la-card p-5"
-      style={{ borderRadius: 18, background: "var(--surface-soft)" }}
-    >
+    <div className="la-card p-5" style={{ borderRadius: 18, background: "var(--surface-soft)" }}>
       <div className="flex items-baseline justify-between">
         <span className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
           Check-in {index} / {total}
         </span>
         <span className="la-pill text-[11px]">+{XP_PER_CORRECT} XP</span>
       </div>
-      <p className="mt-2 text-[15px] font-bold leading-relaxed text-ink">
-        {q.prompt}
-      </p>
+      <p className="mt-2 text-[15px] font-bold leading-relaxed text-ink">{q.prompt}</p>
 
       {hasChoices ? (
         <ul className="mt-4 space-y-2">
@@ -323,8 +310,7 @@ function CheckInCard({
           </button>
         ) : (
           <span className="text-[12px] font-bold text-ink-soft">
-            Cited from:{" "}
-            <span className="text-ink">{q.sourceSection}</span>
+            Cited from: <span className="text-ink">{q.sourceSection}</span>
           </span>
         )}
       </div>
@@ -334,7 +320,7 @@ function CheckInCard({
           className="mt-3 rounded-xl border border-line-soft px-4 py-3 text-[13px] leading-relaxed text-ink-soft"
           style={{ background: "var(--bg-2)" }}
         >
-          <span className="font-extrabold uppercase tracking-wider text-[11px] text-ink-mute">
+          <span className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
             Why
           </span>
           <p className="mt-1">{q.explanation}</p>

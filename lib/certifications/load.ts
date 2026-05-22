@@ -13,11 +13,7 @@ import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 import { inferCertificationMeta } from "./catalog";
-import type {
-  CertificationMeta,
-  CertificationMetaSidecar,
-  RawQuestion,
-} from "./types";
+import type { CertificationMeta, CertificationMetaSidecar, RawQuestion } from "./types";
 
 const QUESTIONS_DIR = path.join(process.cwd(), "certifications", "questions");
 
@@ -50,10 +46,7 @@ function letterFromCorrect(correct: string, options: string[]): string {
 
 async function readSidecar(slug: string): Promise<CertificationMetaSidecar | null> {
   try {
-    const raw = await fs.readFile(
-      path.join(QUESTIONS_DIR, `${slug}.meta.json`),
-      "utf8",
-    );
+    const raw = await fs.readFile(path.join(QUESTIONS_DIR, `${slug}.meta.json`), "utf8");
     const parsed = JSON.parse(raw);
     return parsed && typeof parsed === "object" ? (parsed as CertificationMetaSidecar) : null;
   } catch {
@@ -114,9 +107,7 @@ export async function discoverCertifications(): Promise<CertificationMeta[]> {
   return metas;
 }
 
-export async function findCertification(
-  slug: string,
-): Promise<CertificationMeta | null> {
+export async function findCertification(slug: string): Promise<CertificationMeta | null> {
   if (!/^[A-Za-z0-9._-]+$/.test(slug)) return null;
   const list = await discoverCertifications();
   return list.find((c) => c.slug === slug) ?? null;
@@ -162,7 +153,7 @@ export async function countCertification(slug: string): Promise<number> {
 export async function loadCertificationPage(
   slug: string,
   offset = 0,
-  limit = 20,
+  limit = 20
 ): Promise<{ total: number; items: LoadedQuestion[] }> {
   const all = await loadCertification(slug);
   const safeOffset = Math.max(0, Math.min(all.length, offset));
@@ -173,10 +164,7 @@ export async function loadCertificationPage(
   };
 }
 
-export async function sampleCertification(
-  slug: string,
-  size: number,
-): Promise<LoadedQuestion[]> {
+export async function sampleCertification(slug: string, size: number): Promise<LoadedQuestion[]> {
   const all = await loadCertification(slug);
   if (size >= all.length) return shuffle([...all]);
   return shuffle([...all]).slice(0, size);

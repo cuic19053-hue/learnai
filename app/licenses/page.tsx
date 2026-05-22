@@ -28,10 +28,8 @@ const LICENSE_BLURB: Record<string, string> = {
     "Permissive open-source license with explicit patent grant. Free for any use, commercial or otherwise.",
   Unsplash:
     "Free to use for any purpose, including commercial, without attribution (attribution is appreciated).",
-  Pexels:
-    "Free to use for any purpose, including commercial, without attribution.",
-  Pixabay:
-    "Free to use for any purpose, including commercial, without attribution.",
+  Pexels: "Free to use for any purpose, including commercial, without attribution.",
+  Pixabay: "Free to use for any purpose, including commercial, without attribution.",
 };
 
 export default function LicensesPage() {
@@ -52,34 +50,29 @@ export default function LicensesPage() {
       </header>
 
       <section className="mx-auto max-w-[960px] px-6 py-12 md:px-10">
-        <p className="la-mono text-xs font-bold tracking-wider text-brand-1">
-          ASSET LICENSES
-        </p>
+        <p className="la-mono text-xs font-bold tracking-wider text-brand-1">ASSET LICENSES</p>
         <h1 className="mt-2 text-4xl font-extrabold tracking-[-0.02em] text-ink md:text-5xl">
           Every image we ship — and where it&apos;s from.
         </h1>
         <p className="mt-4 max-w-[680px] text-base leading-relaxed text-ink-soft">
-          LearnAI&apos;s visuals are 100&nbsp;% open-source. Everything below is
-          either authored in-house under CC0, bundled from an open-source font
-          project, or sourced from a license that permits commercial use and
-          redistribution. This page is auto-generated from{" "}
+          LearnAI&apos;s visuals are 100&nbsp;% open-source. Everything below is either authored
+          in-house under CC0, bundled from an open-source font project, or sourced from a license
+          that permits commercial use and redistribution. This page is auto-generated from{" "}
           <code className="rounded bg-line-soft px-1.5 py-0.5 text-[13px]">
             lib/img/manifest.ts
           </code>
           .
         </p>
         <p className="mt-3 text-sm text-ink-mute">
-          {totalAssets} asset{totalAssets === 1 ? "" : "s"} ·{" "}
-          {groups.length} license{groups.length === 1 ? "" : "s"}.
+          {totalAssets} asset{totalAssets === 1 ? "" : "s"} · {groups.length} license
+          {groups.length === 1 ? "" : "s"}.
         </p>
 
         <div className="mt-10 space-y-10">
           {groups.map(({ license, assets }) => (
             <section key={license}>
               <div className="flex items-baseline justify-between gap-3 border-b border-line-soft pb-2">
-                <h2 className="text-xl font-extrabold tracking-tight text-ink">
-                  {license}
-                </h2>
+                <h2 className="text-xl font-extrabold tracking-tight text-ink">{license}</h2>
                 {LICENSE_LINKS[license] ? (
                   <a
                     href={LICENSE_LINKS[license]}
@@ -98,21 +91,12 @@ export default function LicensesPage() {
               ) : null}
               <ul className="mt-4 grid gap-2.5">
                 {assets.map((a) => (
-                  <li
-                    key={a.id}
-                    className="rounded-xl border border-line-soft p-4"
-                  >
+                  <li key={a.id} className="rounded-xl border border-line-soft p-4">
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <code className="rounded bg-line-soft px-1.5 py-0.5 text-[13px]">
-                        {a.id}
-                      </code>
-                      <span className="text-[12px] text-ink-mute">
-                        {a.author}
-                      </span>
+                      <code className="rounded bg-line-soft px-1.5 py-0.5 text-[13px]">{a.id}</code>
+                      <span className="text-[12px] text-ink-mute">{a.author}</span>
                     </div>
-                    <p className="mt-1.5 text-[14px] leading-relaxed text-ink">
-                      {a.description}
-                    </p>
+                    <p className="mt-1.5 text-[14px] leading-relaxed text-ink">{a.description}</p>
                     {a.source ? (
                       <a
                         href={a.source}

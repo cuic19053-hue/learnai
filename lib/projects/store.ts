@@ -121,8 +121,7 @@ export const DEMO_PROJECTS: Array<
     prefs: ["practice", "video"],
     status: "idea",
     createdAt: "2026-05-21T09:00:00.000Z",
-    blurb:
-      "Real circuit diagrams, the Bloch sphere visualiser, and a Dirac-notation cheat sheet.",
+    blurb: "Real circuit diagrams, the Bloch sphere visualiser, and a Dirac-notation cheat sheet.",
   },
   {
     id: "demo-mixture-of-experts",

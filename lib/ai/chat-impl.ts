@@ -46,7 +46,7 @@ export class AiProviderError extends Error {
 export async function chatViaProvider(
   config: ProviderConfig,
   messages: ChatMessage[],
-  options: ChatOptions = {},
+  options: ChatOptions = {}
 ): Promise<string> {
   const entry = PROVIDER_CATALOGUE[config.id];
   if (!entry) {
@@ -62,7 +62,7 @@ export async function chatViaProvider(
 async function chatOpenAICompat(
   config: ProviderConfig,
   messages: ChatMessage[],
-  options: ChatOptions,
+  options: ChatOptions
 ): Promise<string> {
   const base = config.baseUrl.replace(/\/$/, "");
   // Tolerate "https://host" and "https://host/v1" alike — auto-append
@@ -93,7 +93,7 @@ async function chatOpenAICompat(
       const text = await res.text().catch(() => "");
       throw new AiProviderError(
         `${config.id} responded ${res.status}: ${text.slice(0, 200)}`,
-        res.status >= 500 ? 502 : res.status,
+        res.status >= 500 ? 502 : res.status
       );
     }
     const data = (await res.json()) as {
@@ -103,7 +103,7 @@ async function chatOpenAICompat(
     if (!content) {
       throw new AiProviderError(
         `${config.id} returned empty content (model: ${config.model}).`,
-        502,
+        502
       );
     }
     return content;
@@ -112,10 +112,7 @@ async function chatOpenAICompat(
     if ((err as Error).name === "AbortError") {
       throw new AiProviderError(`${config.id} timed out`, 504);
     }
-    throw new AiProviderError(
-      `${config.id} failure: ${(err as Error).message}`,
-      502,
-    );
+    throw new AiProviderError(`${config.id} failure: ${(err as Error).message}`, 502);
   } finally {
     clearTimeout(timeout);
   }
@@ -125,7 +122,7 @@ async function chatOpenAICompat(
 async function chatAnthropic(
   config: ProviderConfig,
   messages: ChatMessage[],
-  options: ChatOptions,
+  options: ChatOptions
 ): Promise<string> {
   const base = config.baseUrl.replace(/\/$/, "");
   const url = `${base}/v1/messages`;
@@ -167,14 +164,14 @@ async function chatAnthropic(
       const text = await res.text().catch(() => "");
       throw new AiProviderError(
         `anthropic responded ${res.status}: ${text.slice(0, 200)}`,
-        res.status >= 500 ? 502 : res.status,
+        res.status >= 500 ? 502 : res.status
       );
     }
     const data = (await res.json()) as {
       content?: Array<{ type: string; text?: string }>;
     };
     const text = data.content
-      ?.map((c) => (c.type === "text" ? c.text ?? "" : ""))
+      ?.map((c) => (c.type === "text" ? (c.text ?? "") : ""))
       .join("")
       .trim();
     if (!text) {
@@ -186,10 +183,7 @@ async function chatAnthropic(
     if ((err as Error).name === "AbortError") {
       throw new AiProviderError("anthropic timed out", 504);
     }
-    throw new AiProviderError(
-      `anthropic failure: ${(err as Error).message}`,
-      502,
-    );
+    throw new AiProviderError(`anthropic failure: ${(err as Error).message}`, 502);
   } finally {
     clearTimeout(timeout);
   }
@@ -197,7 +191,7 @@ async function chatAnthropic(
 
 /** Probe a provider with a tiny ping prompt. Used by the admin UI. */
 export async function probeProvider(
-  config: ProviderConfig,
+  config: ProviderConfig
 ): Promise<{ ok: true; latencyMs: number; sample: string } | { ok: false; message: string }> {
   const start = Date.now();
   try {
@@ -207,7 +201,7 @@ export async function probeProvider(
         { role: "system", content: "You are a connection probe. Reply with the single word: pong" },
         { role: "user", content: "ping" },
       ],
-      { maxTokens: 8, temperature: 0, timeoutMs: 12_000 },
+      { maxTokens: 8, temperature: 0, timeoutMs: 12_000 }
     );
     return { ok: true, latencyMs: Date.now() - start, sample: sample.slice(0, 80) };
   } catch (err) {

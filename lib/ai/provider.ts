@@ -12,12 +12,7 @@
 
 import "server-only";
 import { env } from "@/lib/env";
-import {
-  AiProviderError,
-  chatViaProvider,
-  type ChatMessage,
-  type ChatOptions,
-} from "./chat-impl";
+import { AiProviderError, chatViaProvider, type ChatMessage, type ChatOptions } from "./chat-impl";
 import { activeProviders } from "./config-store";
 
 export type { ChatMessage, ChatOptions };
@@ -28,15 +23,12 @@ export { AiProviderError };
  * transport errors. Throws AiProviderError only if *every* provider
  * in the chain fails.
  */
-export async function chat(
-  messages: ChatMessage[],
-  options: ChatOptions = {},
-): Promise<string> {
+export async function chat(messages: ChatMessage[], options: ChatOptions = {}): Promise<string> {
   const chain = activeProviders();
   if (chain.length === 0) {
     throw new AiProviderError(
       "No AI providers are configured. The admin must enable at least one provider.",
-      503,
+      503
     );
   }
 
@@ -63,7 +55,7 @@ export async function chat(
   };
   throw new AiProviderError(
     `All ${errors.length} AI providers failed. Last (${last.provider}): ${last.message}`,
-    last.status,
+    last.status
   );
 }
 
@@ -82,7 +74,7 @@ function stripCodeFence(text: string): string {
  */
 export async function jsonChat<T = unknown>(
   messages: ChatMessage[],
-  options: ChatOptions = {},
+  options: ChatOptions = {}
 ): Promise<T> {
   const raw = await chat(messages, { temperature: 0.2, ...options });
   const stripped = stripCodeFence(raw);
@@ -98,10 +90,7 @@ export async function jsonChat<T = unknown>(
         /* fall through */
       }
     }
-    throw new AiProviderError(
-      `AI returned non-JSON output (got: ${stripped.slice(0, 120)}…)`,
-      502,
-    );
+    throw new AiProviderError(`AI returned non-JSON output (got: ${stripped.slice(0, 120)}…)`, 502);
   }
 }
 

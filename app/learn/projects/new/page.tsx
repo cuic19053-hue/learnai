@@ -32,9 +32,7 @@ export default async function NewProjectPage({
   const learnerName = LEARNER_NAMES[world.slug];
 
   // Optional demo prefill — when a learner picks a ready-to-use card.
-  const demo = params.prefill
-    ? DEMO_PROJECTS.find((d) => d.id === params.prefill)
-    : undefined;
+  const demo = params.prefill ? DEMO_PROJECTS.find((d) => d.id === params.prefill) : undefined;
   const prefill = demo
     ? {
         topic: demo.topic,

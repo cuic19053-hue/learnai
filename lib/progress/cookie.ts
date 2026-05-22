@@ -28,14 +28,8 @@ export function readProgressClient(): ProgressState {
 export function writeProgressClient(state: ProgressState): void {
   if (typeof document === "undefined") return;
   const value = encodeURIComponent(JSON.stringify(state));
-  const secure =
-    typeof window !== "undefined" && window.location?.protocol === "https:";
-  const attrs = [
-    `${PROGRESS_COOKIE}=${value}`,
-    "Path=/",
-    `Max-Age=${MAX_AGE_SEC}`,
-    "SameSite=Lax",
-  ];
+  const secure = typeof window !== "undefined" && window.location?.protocol === "https:";
+  const attrs = [`${PROGRESS_COOKIE}=${value}`, "Path=/", `Max-Age=${MAX_AGE_SEC}`, "SameSite=Lax"];
   if (secure) attrs.push("Secure");
   document.cookie = attrs.join("; ");
 }

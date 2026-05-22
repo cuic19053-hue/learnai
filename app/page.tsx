@@ -85,7 +85,11 @@ export default function HomePage() {
         <div className="mb-8 max-w-[720px]">
           <span
             className="la-pill"
-            style={{ background: "#fff", boxShadow: "0 0 0 1px var(--line)", color: "var(--ink-soft)" }}
+            style={{
+              background: "#fff",
+              boxShadow: "0 0 0 1px var(--line)",
+              color: "var(--ink-soft)",
+            }}
           >
             Choose your learning journey
           </span>
@@ -109,7 +113,11 @@ export default function HomePage() {
         <div className="mb-7 max-w-[720px]">
           <span
             className="la-pill"
-            style={{ background: "#fff", boxShadow: "0 0 0 1px var(--line)", color: "var(--ink-soft)" }}
+            style={{
+              background: "#fff",
+              boxShadow: "0 0 0 1px var(--line)",
+              color: "var(--ink-soft)",
+            }}
           >
             Learning Worlds
           </span>
@@ -129,9 +137,7 @@ export default function HomePage() {
                 gap: 0,
                 overflow: "hidden",
                 border: w.recommended ? "1.5px solid var(--brand-1)" : "1px solid var(--line-soft)",
-                boxShadow: w.recommended
-                  ? "0 0 0 4px rgba(46,91,255,.08)"
-                  : "var(--shadow-1)",
+                boxShadow: w.recommended ? "0 0 0 4px rgba(46,91,255,.08)" : "var(--shadow-1)",
               }}
               aria-label={`${w.title}: ${w.desc}. Best for ${w.best}.`}
             >
@@ -144,7 +150,11 @@ export default function HomePage() {
                 {w.recommended ? (
                   <span
                     className="la-pill absolute left-3 top-3"
-                    style={{ background: "var(--brand-grad)", color: "#fff", boxShadow: "var(--shadow-1)" }}
+                    style={{
+                      background: "var(--brand-grad)",
+                      color: "#fff",
+                      boxShadow: "var(--shadow-1)",
+                    }}
                   >
                     ★ Recommended
                   </span>
@@ -178,7 +188,10 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-[1200px] px-6 md:px-12">
           <div className="mb-10 text-center">
-            <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
+            <span
+              className="la-pill"
+              style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}
+            >
               How it works
             </span>
             <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
@@ -214,16 +227,12 @@ export default function HomePage() {
             <div className="grid grid-cols-2 gap-3 md:grid-cols-6">
               {LOOP.map((l, i) => (
                 <div key={l.n} className="relative text-center">
-                  <div className="la-mono mb-2 text-[11px] font-bold text-ink-mute">
-                    0{l.n}
-                  </div>
+                  <div className="la-mono mb-2 text-[11px] font-bold text-ink-mute">0{l.n}</div>
                   <div className="la-loop-ring mx-auto" style={{ color: l.color }}>
                     <span aria-hidden>{l.icon}</span>
                   </div>
                   <div className="mt-3 text-base font-bold text-ink">{l.label}</div>
-                  <div className="mt-1 px-1.5 text-xs leading-snug text-ink-soft">
-                    {l.blurb}
-                  </div>
+                  <div className="mt-1 px-1.5 text-xs leading-snug text-ink-soft">{l.blurb}</div>
                   {i < LOOP.length - 1 ? (
                     <div
                       className="absolute hidden text-ink-faint md:block"
@@ -262,7 +271,9 @@ export default function HomePage() {
         <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-ink-soft md:flex-row md:px-12">
           <div className="flex items-center gap-3">
             <Mark size={28} fontSize={16} />
-            <span className="text-xs text-ink-mute">© LearnAI · Education for every stage of life</span>
+            <span className="text-xs text-ink-mute">
+              © LearnAI · Education for every stage of life
+            </span>
           </div>
           <div className="flex flex-wrap gap-5">
             <Link href="/onboarding" className="hover:text-ink">

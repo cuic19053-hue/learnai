@@ -7,11 +7,7 @@ import PersonaAvatar from "@/components/design/PersonaAvatar";
 import { Arrow, Check } from "@/components/design/icons";
 import { stageToPath, type LearnerStage } from "@/lib/learn/stages";
 import { JOURNEYS, journeyForStage, type Journey } from "@/lib/learn/journeys";
-import {
-  UNIVERSAL_TEACHERS,
-  SPECIALIST_TEACHERS,
-  type Teacher,
-} from "@/lib/learn/teachers";
+import { UNIVERSAL_TEACHERS, SPECIALIST_TEACHERS, type Teacher } from "@/lib/learn/teachers";
 import { worldSlugForStage } from "@/lib/learn/worlds";
 
 const STEP_LABELS = [
@@ -41,11 +37,7 @@ const GOAL_OPTIONS: { id: string; label: string; stages: LearnerStage[] }[] = [
   { id: "use-tech-safely", label: "Use technology safely", stages: ["SENIOR"] },
 ];
 
-export default function OnboardingWizard({
-  initialStage,
-}: {
-  initialStage?: LearnerStage;
-}) {
+export default function OnboardingWizard({ initialStage }: { initialStage?: LearnerStage }) {
   const router = useRouter();
   const [step, setStep] = useState(initialStage ? 2 : 0);
 
@@ -59,10 +51,7 @@ export default function OnboardingWizard({
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const journey: Journey | null = useMemo(
-    () => (stage ? journeyForStage(stage) : null),
-    [stage],
-  );
+  const journey: Journey | null = useMemo(() => (stage ? journeyForStage(stage) : null), [stage]);
 
   const availableTeachers: Teacher[] = useMemo(() => {
     if (!stage) return UNIVERSAL_TEACHERS;
@@ -72,12 +61,12 @@ export default function OnboardingWizard({
 
   const teacher: Teacher | null = useMemo(
     () => availableTeachers.find((t) => t.id === teacherId) ?? null,
-    [availableTeachers, teacherId],
+    [availableTeachers, teacherId]
   );
 
   const availableGoals = useMemo(
     () => (stage ? GOAL_OPTIONS.filter((g) => g.stages.includes(stage)) : []),
-    [stage],
+    [stage]
   );
 
   // Default the goal if none chosen yet for the picked stage.
@@ -180,12 +169,7 @@ export default function OnboardingWizard({
           </h1>
 
           {step === 0 ? (
-            <StepWho
-              audience={audience}
-              setAudience={setAudience}
-              name={name}
-              setName={setName}
-            />
+            <StepWho audience={audience} setAudience={setAudience} name={name} setName={setName} />
           ) : null}
 
           {step === 1 ? <StepJourney stage={stage} setStage={setStage} /> : null}
@@ -275,11 +259,7 @@ function TopBar({ step }: { step: number }) {
               <div
                 className="grid h-6 w-6 place-items-center rounded-full text-[11px] font-extrabold"
                 style={{
-                  background: done
-                    ? "var(--brand-1)"
-                    : active
-                      ? "var(--brand-grad)"
-                      : "#fff",
+                  background: done ? "var(--brand-1)" : active ? "var(--brand-grad)" : "#fff",
                   color: done || active ? "#fff" : "var(--ink-mute)",
                   border: `1.5px solid ${done || active ? "transparent" : "var(--line)"}`,
                 }}
@@ -392,8 +372,8 @@ function Sidebar({
       >
         <strong className="text-ink">Why a teacher?</strong>
         <br />
-        Your AI teacher sets the tone, pace, and voice for every lesson — and
-        remembers what helps you learn.
+        Your AI teacher sets the tone, pace, and voice for every lesson — and remembers what helps
+        you learn.
       </div>
     </aside>
   );
@@ -486,8 +466,8 @@ function StepJourney({
   return (
     <div>
       <p className="mt-2 max-w-[640px] text-[15px] text-ink-soft">
-        Pick the stage that fits the learner. Each one has its own world — playful,
-        mission, exam, professional, or calm.
+        Pick the stage that fits the learner. Each one has its own world — playful, mission, exam,
+        professional, or calm.
       </p>
 
       <div className="mt-7 grid max-w-[1100px] grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -501,9 +481,7 @@ function StepJourney({
               className="la-jcard"
               style={{
                 border: `2px solid ${active ? j.color : "transparent"}`,
-                boxShadow: active
-                  ? `0 0 0 4px ${j.color}1f, var(--shadow-2)`
-                  : "var(--shadow-1)",
+                boxShadow: active ? `0 0 0 4px ${j.color}1f, var(--shadow-2)` : "var(--shadow-1)",
               }}
               aria-pressed={active}
             >
@@ -549,7 +527,8 @@ function StepTeacher({
   return (
     <div>
       <p className="mt-2 max-w-[640px] text-[15px] text-ink-soft">
-        Each teacher covers the same curriculum — but with a different style. You can switch any time.
+        Each teacher covers the same curriculum — but with a different style. You can switch any
+        time.
       </p>
 
       <div className="mt-7 grid max-w-[880px] grid-cols-1 gap-3.5 sm:grid-cols-2">
@@ -564,9 +543,7 @@ function StepTeacher({
               style={{
                 borderRadius: 18,
                 border: `2px solid ${active ? accent : "transparent"}`,
-                boxShadow: active
-                  ? `0 0 0 4px ${accent}1a, var(--shadow-2)`
-                  : "var(--shadow-1)",
+                boxShadow: active ? `0 0 0 4px ${accent}1a, var(--shadow-2)` : "var(--shadow-1)",
               }}
               aria-pressed={active}
             >
@@ -575,10 +552,7 @@ function StepTeacher({
                 <div className="flex items-center justify-between">
                   <div className="text-lg font-extrabold text-ink">{t.name}</div>
                   {active ? (
-                    <span
-                      className="la-pill"
-                      style={{ background: accentBg, color: accent }}
-                    >
+                    <span className="la-pill" style={{ background: accentBg, color: accent }}>
                       <Check size={10} color={accent} /> Selected
                     </span>
                   ) : t.universal ? (
@@ -588,9 +562,7 @@ function StepTeacher({
                 <div className="mt-0.5 text-xs font-bold" style={{ color: accent }}>
                   {t.tag}
                 </div>
-                <div className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">
-                  {t.style}
-                </div>
+                <div className="mt-1.5 text-[13px] leading-relaxed text-ink-soft">{t.style}</div>
                 <div className="mt-2.5 flex flex-wrap gap-1.5">
                   <span className="la-pill text-[11px]">{t.tone}</span>
                   <span className="la-pill text-[11px]">🔊 {t.voice}</span>
@@ -686,10 +658,7 @@ function StepGoal({
               >
                 <div className="font-semibold text-ink">{g.label}</div>
                 {active ? (
-                  <span
-                    className="la-pill mt-2"
-                    style={{ background: accentBg, color: accent }}
-                  >
+                  <span className="la-pill mt-2" style={{ background: accentBg, color: accent }}>
                     <Check size={10} color={accent} /> Selected
                   </span>
                 ) : null}

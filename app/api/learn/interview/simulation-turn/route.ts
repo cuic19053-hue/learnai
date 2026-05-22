@@ -28,7 +28,7 @@ const TurnSchema = z.object({
           confidence: z.number(),
           relevance: z.number(),
         }),
-      }),
+      })
     )
     .max(50)
     .default([]),
@@ -105,8 +105,7 @@ export const POST = handler(async (req: Request) => {
 });
 
 function normaliseTurn(raw: RawTurnResult, body: z.infer<typeof TurnSchema>) {
-  const clamp = (n: unknown) =>
-    Math.max(0, Math.min(10, Math.round(Number(n ?? 0))));
+  const clamp = (n: unknown) => Math.max(0, Math.min(10, Math.round(Number(n ?? 0))));
   const score = clamp(raw.score0to10);
   return {
     index: body.history.length,
@@ -138,9 +137,7 @@ function degradedTurn(body: z.infer<typeof TurnSchema>) {
     answer: body.userAnswer,
     score0to10: 5,
     signal: "average" as const,
-    feedbackBullets: [
-      "AI provider temporarily unavailable — answer recorded, no live scoring.",
-    ],
+    feedbackBullets: ["AI provider temporarily unavailable — answer recorded, no live scoring."],
     strengths: [],
     weaknesses: [],
     improvedAnswer: "",

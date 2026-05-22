@@ -3,10 +3,7 @@ import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { Arrow } from "@/components/design/icons";
 import { VENDOR_META, groupByVendor } from "@/lib/certifications/catalog";
-import {
-  countCertification,
-  discoverCertifications,
-} from "@/lib/certifications/load";
+import { countCertification, discoverCertifications } from "@/lib/certifications/load";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -20,9 +17,7 @@ export default async function CertificationsHub() {
   const catalog = await discoverCertifications();
   const byVendor = groupByVendor(catalog);
   const counts = new Map<string, number>();
-  await Promise.all(
-    catalog.map(async (c) => counts.set(c.slug, await countCertification(c.slug))),
-  );
+  await Promise.all(catalog.map(async (c) => counts.set(c.slug, await countCertification(c.slug))));
 
   return (
     <LearnerHomeShell
@@ -33,19 +28,15 @@ export default async function CertificationsHub() {
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "library" })}
     >
-      <Link
-        href={world.homePath}
-        className="text-[13px] font-bold text-ink-soft hover:text-ink"
-      >
+      <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
         ← Back to {world.journey.name} home
       </Link>
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[34px]">
         Certifications
       </h1>
       <p className="mt-1 text-[15px] text-ink-soft">
-        Train with real exam-style questions for AWS, Azure, Google Cloud, and
-        IBM. Drill mode picks a random sample; review mode walks every question
-        with the explanation.
+        Train with real exam-style questions for AWS, Azure, Google Cloud, and IBM. Drill mode picks
+        a random sample; review mode walks every question with the explanation.
       </p>
 
       <div className="mt-8 space-y-10">
@@ -83,9 +74,7 @@ export default async function CertificationsHub() {
                         {counts.get(c.slug) ?? 0} questions
                       </span>
                     </div>
-                    <h3 className="mt-2 text-[15px] font-bold leading-snug text-ink">
-                      {c.title}
-                    </h3>
+                    <h3 className="mt-2 text-[15px] font-bold leading-snug text-ink">{c.title}</h3>
                     <p className="mt-1 flex-1 text-[12px] leading-relaxed text-ink-soft">
                       {c.blurb}
                     </p>

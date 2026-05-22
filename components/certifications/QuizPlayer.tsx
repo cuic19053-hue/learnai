@@ -26,7 +26,7 @@ export default function QuizPlayer({
 }) {
   const [idx, setIdx] = useState(0);
   const [outcomes, setOutcomes] = useState<Outcome[]>(
-    Array.from({ length: questions.length }, () => ({ picked: "", correct: null })),
+    Array.from({ length: questions.length }, () => ({ picked: "", correct: null }))
   );
   const [revealed, setRevealed] = useState(false);
   // Per-mount memory of which question ids have already paid out, so
@@ -41,8 +41,14 @@ export default function QuizPlayer({
   const outcome = outcomes[idx];
 
   const completed = useMemo(() => outcomes.filter((o) => o.picked).length, [outcomes]);
-  const knownCount = useMemo(() => outcomes.filter((o) => o.selfRated === "known").length, [outcomes]);
-  const reviewCount = useMemo(() => outcomes.filter((o) => o.selfRated === "review").length, [outcomes]);
+  const knownCount = useMemo(
+    () => outcomes.filter((o) => o.selfRated === "known").length,
+    [outcomes]
+  );
+  const reviewCount = useMemo(
+    () => outcomes.filter((o) => o.selfRated === "review").length,
+    [outcomes]
+  );
   const correctCount = useMemo(() => outcomes.filter((o) => o.correct === true).length, [outcomes]);
 
   if (!current) {
@@ -116,10 +122,7 @@ export default function QuizPlayer({
       </div>
 
       {/* ── Progress strip ── */}
-      <div
-        className="h-2 overflow-hidden rounded-full"
-        style={{ background: "var(--line-soft)" }}
-      >
+      <div className="h-2 overflow-hidden rounded-full" style={{ background: "var(--line-soft)" }}>
         <div
           className="h-full transition-all"
           style={{
@@ -255,8 +258,7 @@ export default function QuizPlayer({
                 className="la-pill text-[11px]"
                 style={{
                   background: outcome.selfRated === "known" ? "var(--j-little-bg)" : "#fff",
-                  color:
-                    outcome.selfRated === "known" ? "var(--j-little)" : "var(--ink-soft)",
+                  color: outcome.selfRated === "known" ? "var(--j-little)" : "var(--ink-soft)",
                   boxShadow: "0 0 0 1px var(--line)",
                   cursor: "pointer",
                 }}
@@ -324,8 +326,8 @@ export default function QuizPlayer({
         >
           <h2 className="text-2xl font-extrabold text-ink">Session complete</h2>
           <p className="mt-1 text-[14px] text-ink-soft">
-            {correctCount} of {total} auto-graded correct ·{" "}
-            {knownCount} marked known · {reviewCount} marked review
+            {correctCount} of {total} auto-graded correct · {knownCount} marked known ·{" "}
+            {reviewCount} marked review
           </p>
         </div>
       ) : null}
@@ -333,20 +335,10 @@ export default function QuizPlayer({
   );
 }
 
-function Stat({
-  label,
-  value,
-  color,
-}: {
-  label: string;
-  value: string | number;
-  color: string;
-}) {
+function Stat({ label, value, color }: { label: string; value: string | number; color: string }) {
   return (
     <div>
-      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">
-        {label}
-      </div>
+      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">{label}</div>
       <div className="text-lg font-bold" style={{ color }}>
         {value}
       </div>

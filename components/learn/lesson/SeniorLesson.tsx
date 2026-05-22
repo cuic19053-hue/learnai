@@ -81,10 +81,7 @@ export default function SeniorLesson({ journey }: SeniorLessonProps) {
         >
           Is this message a <span style={{ color: journey.color }}>scam</span>?
         </h1>
-        <p
-          className="mb-5 leading-[1.5] text-ink-soft"
-          style={{ fontSize: bigText ? 19 : 17 }}
-        >
+        <p className="mb-5 leading-[1.5] text-ink-soft" style={{ fontSize: bigText ? 19 : 17 }}>
           Take your time. Read it carefully, then tell me what you think.
         </p>
 
@@ -103,25 +100,17 @@ export default function SeniorLesson({ journey }: SeniorLessonProps) {
             </div>
             <div>
               <div className="text-sm font-bold text-ink">Your-Bank Security</div>
-              <div className="text-[12px] text-ink-mute">
-                support@your-bank.security-help.co
-              </div>
+              <div className="text-[12px] text-ink-mute">support@your-bank.security-help.co</div>
             </div>
           </header>
-          <p
-            className="leading-[1.55] text-ink"
-            style={{ fontSize: bigText ? 18 : 16 }}
-          >
-            <strong>Urgent:</strong> we have detected suspicious activity on your
-            account. Click{" "}
-            <span className="text-brand-1 underline">this link</span> within 24
-            hours to verify your identity, or your account will be suspended.
+          <p className="leading-[1.55] text-ink" style={{ fontSize: bigText ? 18 : 16 }}>
+            <strong>Urgent:</strong> we have detected suspicious activity on your account. Click{" "}
+            <span className="text-brand-1 underline">this link</span> within 24 hours to verify your
+            identity, or your account will be suspended.
           </p>
         </article>
 
-        <div className="mb-2.5 text-center text-sm font-bold text-ink-mute">
-          What do you think?
-        </div>
+        <div className="mb-2.5 text-center text-sm font-bold text-ink-mute">What do you think?</div>
 
         <div className="flex flex-col gap-2.5">
           <button
@@ -170,10 +159,7 @@ export default function SeniorLesson({ journey }: SeniorLessonProps) {
             >
               Sage
             </div>
-            <div
-              className="mt-0.5 leading-[1.5] text-ink"
-              style={{ fontSize: bigText ? 17 : 15 }}
-            >
+            <div className="mt-0.5 leading-[1.5] text-ink" style={{ fontSize: bigText ? 17 : 15 }}>
               {picked === null
                 ? "Take all the time you need. If you'd like, I can read it aloud."
                 : correct

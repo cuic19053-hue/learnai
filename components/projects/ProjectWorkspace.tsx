@@ -71,7 +71,7 @@ export default function ProjectWorkspace({ project, journey }: Props) {
       setLatencyMs(data.latencyMs ?? null);
       // eslint-disable-next-line no-console
       console.log(
-        `[lesson] loaded id=${project.id} source=${data.source} ms=${data.latencyMs ?? "-"}`,
+        `[lesson] loaded id=${project.id} source=${data.source} ms=${data.latencyMs ?? "-"}`
       );
     } catch (e) {
       setError((e as Error).message);
@@ -260,9 +260,7 @@ export default function ProjectWorkspace({ project, journey }: Props) {
             total={lesson.exercises.length}
             projectId={project.id}
             attempt={attempts[ex.id]}
-            setAttempt={(next) =>
-              setAttempts((prev) => ({ ...prev, [ex.id]: next }))
-            }
+            setAttempt={(next) => setAttempts((prev) => ({ ...prev, [ex.id]: next }))}
             journey={journey}
             onCorrectAward={() => addXp(XP_PER_CORRECT, project.worldSlug)}
           />
@@ -358,7 +356,9 @@ function ExerciseCard({
         awarded: awardedRef.current,
         grade: {
           ok,
-          feedback: ok ? "Correct — that matches the concept above." : "Not quite — review the concept and try again.",
+          feedback: ok
+            ? "Correct — that matches the concept above."
+            : "Not quite — review the concept and try again.",
         },
       });
       return;
@@ -438,10 +438,7 @@ function ExerciseCard({
               {ex.method}
             </span>
           ) : null}
-          <span
-            className="la-pill text-[10px]"
-            style={{ background: "var(--bg-2)" }}
-          >
+          <span className="la-pill text-[10px]" style={{ background: "var(--bg-2)" }}>
             +{XP_PER_CORRECT} XP
           </span>
         </div>
@@ -505,10 +502,7 @@ function ExerciseCard({
             <button
               type="button"
               onClick={reveal}
-              disabled={
-                a.pending ||
-                (hasChoices ? !a.response : !a.response.trim())
-              }
+              disabled={a.pending || (hasChoices ? !a.response : !a.response.trim())}
               className="la-btn"
               style={{
                 padding: "10px 16px",
@@ -572,7 +566,11 @@ function ExerciseCard({
           }}
         >
           <div className="font-extrabold">
-            {a.grade.ok ? "✓ Correct" : a.grade.verdict === "partial" ? "~ Partially correct" : "✕ Not quite"}
+            {a.grade.ok
+              ? "✓ Correct"
+              : a.grade.verdict === "partial"
+                ? "~ Partially correct"
+                : "✕ Not quite"}
           </div>
           <p className="mt-1">{a.grade.feedback}</p>
           {ex.expectedAnswer && !a.grade.ok ? (
@@ -580,7 +578,7 @@ function ExerciseCard({
               <b>Expected:</b> {ex.expectedAnswer}
             </div>
           ) : null}
-          <div className="mt-2 border-t border-current/20 pt-2 text-[12px] opacity-90">
+          <div className="border-current/20 mt-2 border-t pt-2 text-[12px] opacity-90">
             <b>Why:</b> {ex.explanation}
           </div>
         </div>

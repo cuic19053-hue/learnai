@@ -28,7 +28,14 @@ import type {
 type FocusItem = { area: string; label: string; score: number };
 
 const ORDER: WizardStep[] = [
-  "goal", "job", "profile", "analysis", "training", "presentation", "simulation", "report",
+  "goal",
+  "job",
+  "profile",
+  "analysis",
+  "training",
+  "presentation",
+  "simulation",
+  "report",
 ];
 
 const STEP_TITLES: Record<WizardStep, string> = {
@@ -106,7 +113,7 @@ export default function InterviewWizardClient() {
       const safe = {
         ...state,
         simulationHistory: state.simulationHistory.map((t) =>
-          t.recording ? { ...t, recording: undefined } : t,
+          t.recording ? { ...t, recording: undefined } : t
         ),
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(safe));
@@ -124,8 +131,8 @@ export default function InterviewWizardClient() {
       case "job":
         return Boolean(
           state.job.companyName?.trim() &&
-            state.job.roleTitle?.trim() &&
-            (state.job.jobDescription ?? "").trim().length >= 50,
+          state.job.roleTitle?.trim() &&
+          (state.job.jobDescription ?? "").trim().length >= 50
         );
       case "profile":
         return true; // optional
@@ -283,17 +290,11 @@ export default function InterviewWizardClient() {
           </h1>
 
           {state.step === "goal" && (
-            <GoalStep
-              value={state.goal}
-              onChange={(g) => setState((s) => ({ ...s, goal: g }))}
-            />
+            <GoalStep value={state.goal} onChange={(g) => setState((s) => ({ ...s, goal: g }))} />
           )}
 
           {state.step === "job" && (
-            <JobStep
-              value={state.job}
-              onChange={(j) => setState((s) => ({ ...s, job: j }))}
-            />
+            <JobStep value={state.job} onChange={(j) => setState((s) => ({ ...s, job: j }))} />
           )}
 
           {state.step === "profile" && (

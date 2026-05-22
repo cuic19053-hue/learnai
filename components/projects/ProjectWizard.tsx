@@ -43,14 +43,7 @@ export default function ProjectWizard({ config, journey, closeHref, learnerName,
     );
   }
   if (config.variant === "calm") {
-    return (
-      <CalmWizard
-        config={config}
-        journey={journey}
-        closeHref={closeHref}
-        prefill={prefill}
-      />
-    );
+    return <CalmWizard config={config} journey={journey} closeHref={closeHref} prefill={prefill} />;
   }
   return (
     <StandardWizard
@@ -75,7 +68,9 @@ function StandardWizard({ config, journey, closeHref, learnerName, prefill }: Pr
   const [sources, setSources] = useState<string[]>(prefill?.sources ?? []);
   const [sourceDraft, setSourceDraft] = useState("");
   const [daysPerWeek, setDaysPerWeek] = useState(prefill?.daysPerWeek ?? config.defaultDaysPerWeek);
-  const [minutesPerDay, setMinutesPerDay] = useState(prefill?.minutesPerDay ?? config.defaultMinutesPerDay);
+  const [minutesPerDay, setMinutesPerDay] = useState(
+    prefill?.minutesPerDay ?? config.defaultMinutesPerDay
+  );
   const [prefs, setPrefs] = useState<string[]>(prefill?.prefs ?? config.defaultPrefs);
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -120,11 +115,7 @@ function StandardWizard({ config, journey, closeHref, learnerName, prefill }: Pr
   const footer: ReactNode = (
     <>
       {step > 1 ? (
-        <button
-          type="button"
-          className="la-btn ghost"
-          onClick={() => setStep((s) => s - 1)}
-        >
+        <button type="button" className="la-btn ghost" onClick={() => setStep((s) => s - 1)}>
           ← Back
         </button>
       ) : null}
@@ -140,7 +131,12 @@ function StandardWizard({ config, journey, closeHref, learnerName, prefill }: Pr
         </button>
       ) : (
         <>
-          <button type="button" className="la-btn ghost" onClick={() => setStep(1)} disabled={pending}>
+          <button
+            type="button"
+            className="la-btn ghost"
+            onClick={() => setStep(1)}
+            disabled={pending}
+          >
             ✨ Re-roll
           </button>
           <button
@@ -168,16 +164,22 @@ function StandardWizard({ config, journey, closeHref, learnerName, prefill }: Pr
       accentBg={accent.bg}
       kicker={kicker}
       title={
-        step === 1 ? headline :
-        step === 2 ? "Got a textbook or syllabus? Drop it in." :
-        step === 3 ? "How fast can we go?" :
-        "Here's the plan. Looks right?"
+        step === 1
+          ? headline
+          : step === 2
+            ? "Got a textbook or syllabus? Drop it in."
+            : step === 3
+              ? "How fast can we go?"
+              : "Here's the plan. Looks right?"
       }
       subhead={
-        step === 1 ? config.subhead :
-        step === 2 ? "Optional — generating from scratch works, but anchoring to real sources makes the test feel like your class." :
-        step === 3 ? "Honest input → realistic plan. We'll flag you if the deadline doesn't fit the minutes." :
-        "Drafted from your topic, sources, deadline, and the methods that fit this audience."
+        step === 1
+          ? config.subhead
+          : step === 2
+            ? "Optional — generating from scratch works, but anchoring to real sources makes the test feel like your class."
+            : step === 3
+              ? "Honest input → realistic plan. We'll flag you if the deadline doesn't fit the minutes."
+              : "Drafted from your topic, sources, deadline, and the methods that fit this audience."
       }
       closeHref={closeHref}
       icon={journey.emoji}
@@ -284,9 +286,11 @@ function CalmWizard({ config, journey, closeHref, prefill }: Omit<Props, "learne
       accentColor={accent.color}
       accentSoft={accent.soft}
       accentBg={accent.bg}
-      kicker={`STEP ${step} OF 2 · WITH ${(journey.name).toUpperCase()}`}
+      kicker={`STEP ${step} OF 2 · WITH ${journey.name.toUpperCase()}`}
       title={step === 1 ? config.question : "How would you like to learn?"}
-      subhead={step === 1 ? config.subhead : "Pick what's comfortable. You can change anything later."}
+      subhead={
+        step === 1 ? config.subhead : "Pick what's comfortable. You can change anything later."
+      }
       closeHref={closeHref}
       icon={journey.emoji}
       footer={
@@ -336,12 +340,7 @@ function CalmWizard({ config, journey, closeHref, prefill }: Omit<Props, "learne
       footerNote={error ?? "Take your time. There's no rush."}
     >
       {step === 1 ? (
-        <CalmStep1
-          config={config}
-          topic={topic}
-          setTopic={setTopic}
-          accent={accent}
-        />
+        <CalmStep1 config={config} topic={topic} setTopic={setTopic} accent={accent} />
       ) : (
         <CalmStep2
           config={config}
@@ -439,7 +438,9 @@ function ParentWizard({ config, journey, closeHref, learnerName, prefill }: Prop
           </button>
         </>
       }
-      footerNote={error ?? `🔒 ${childName} never sees ads, links, or content outside the allowed subjects.`}
+      footerNote={
+        error ?? `🔒 ${childName} never sees ads, links, or content outside the allowed subjects.`
+      }
     >
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[1.3fr_1fr]">
         <div>
@@ -459,14 +460,18 @@ function ParentWizard({ config, journey, closeHref, learnerName, prefill }: Prop
                   }}
                   aria-pressed={on}
                 >
-                  <div className="text-[22px]" aria-hidden>{s.split(" ")[0]}</div>
+                  <div className="text-[22px]" aria-hidden>
+                    {s.split(" ")[0]}
+                  </div>
                   <div className="mt-1 text-[13px] font-extrabold text-ink">{s}</div>
                 </button>
               );
             })}
           </div>
 
-          <SectionLabel n={2} className="mt-5">SESSION LENGTH</SectionLabel>
+          <SectionLabel n={2} className="mt-5">
+            SESSION LENGTH
+          </SectionLabel>
           <div className="mt-2 flex flex-wrap gap-2">
             {config.outcomeOptions.map((o) => {
               const on = o === length;
@@ -475,7 +480,7 @@ function ParentWizard({ config, journey, closeHref, learnerName, prefill }: Prop
                   key={o}
                   type="button"
                   onClick={() => setLength(o)}
-                  className="flex-1 min-w-[80px] rounded-xl py-2.5 text-[13px] font-extrabold transition"
+                  className="min-w-[80px] flex-1 rounded-xl py-2.5 text-[13px] font-extrabold transition"
                   style={{
                     background: on ? accent.color : "#fff",
                     color: on ? "#fff" : "var(--ink)",
@@ -489,20 +494,27 @@ function ParentWizard({ config, journey, closeHref, learnerName, prefill }: Prop
             })}
           </div>
 
-          <SectionLabel n={3} className="mt-5">HOW THEY INTERACT</SectionLabel>
+          <SectionLabel n={3} className="mt-5">
+            HOW THEY INTERACT
+          </SectionLabel>
           <div className="mt-2 space-y-1.5">
             <ToggleRow label="🎤 Voice answers" on={voice} setOn={setVoice} />
             <ToggleRow label="✏️ Tap & drag" on={tap} setOn={setTap} />
             <ToggleRow label="📖 Read aloud" on={readAloud} setOn={setReadAloud} />
           </div>
 
-          <SectionLabel n={4} className="mt-5">SAFETY & SCHEDULE</SectionLabel>
+          <SectionLabel n={4} className="mt-5">
+            SAFETY & SCHEDULE
+          </SectionLabel>
           <div
             className="mt-2 rounded-xl border border-line-soft p-3.5 text-[12px]"
             style={{ background: "var(--surface-soft)" }}
           >
             <SafetyRow label="Content safety" value="Strict · ages 3–6" />
-            <SafetyRow label="Allowed subjects" value="Numbers · Letters · Animals · Feelings · Colors" />
+            <SafetyRow
+              label="Allowed subjects"
+              value="Numbers · Letters · Animals · Feelings · Colors"
+            />
             <SafetyRow label="Language" value="English (US)" />
             <SafetyRow label="Voice" value="Friendly · slow" />
           </div>
@@ -549,7 +561,9 @@ function ParentWizard({ config, journey, closeHref, learnerName, prefill }: Prop
             className="mt-3 rounded-xl p-3.5"
             style={{ background: accent.soft, border: `1px solid ${accent.color}33` }}
           >
-            <div className="text-[12px] font-extrabold text-ink">For parents — pedagogical context</div>
+            <div className="text-[12px] font-extrabold text-ink">
+              For parents — pedagogical context
+            </div>
             <p className="mt-1.5 text-[12px] leading-relaxed text-ink-soft">
               {config.tutorWhisper}
             </p>
@@ -557,16 +571,16 @@ function ParentWizard({ config, journey, closeHref, learnerName, prefill }: Prop
               <div className="la-mono text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
                 Method
               </div>
-              <div className="text-[12px] font-extrabold text-ink">Active recall + Kumon ladder</div>
+              <div className="text-[12px] font-extrabold text-ink">
+                Active recall + Kumon ladder
+              </div>
               <div className="text-[11px] text-ink-soft">
                 Repeats numbers until owned — no new number until the prior is solid.
               </div>
             </div>
           </div>
 
-          <div
-            className="mt-3 rounded-xl border border-dashed border-line p-3 text-[11px] leading-relaxed text-ink-soft"
-          >
+          <div className="mt-3 rounded-xl border border-dashed border-line p-3 text-[11px] leading-relaxed text-ink-soft">
             <div className="la-mono text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
               You'll receive
             </div>
@@ -632,7 +646,9 @@ function Step1Topic({
           ))}
         </div>
 
-        <FieldLabel className="mt-4">{config.outcomeLabel.toUpperCase()} · WHAT DOES "DONE" LOOK LIKE?</FieldLabel>
+        <FieldLabel className="mt-4">
+          {config.outcomeLabel.toUpperCase()} · WHAT DOES "DONE" LOOK LIKE?
+        </FieldLabel>
         <textarea
           value={outcome}
           onChange={(e) => setOutcome(e.target.value)}
@@ -683,7 +699,9 @@ function Step2Sources({
           className="rounded-2xl border border-dashed p-5 text-center"
           style={{ borderColor: accent.color, background: accent.soft }}
         >
-          <div className="text-[26px]" aria-hidden>📄</div>
+          <div className="text-[26px]" aria-hidden>
+            📄
+          </div>
           <div className="mt-1 text-[14px] font-extrabold text-ink">
             Drop a PDF, image, or paste a link
           </div>
@@ -691,10 +709,20 @@ function Step2Sources({
             up to 50 MB · PDF · DOCX · PPTX · JPG · YouTube · Wikipedia URL
           </div>
           <div className="mt-3 flex flex-wrap justify-center gap-2">
-            <button type="button" className="la-btn ghost" disabled style={{ padding: "8px 12px", fontSize: 12 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              disabled
+              style={{ padding: "8px 12px", fontSize: 12 }}
+            >
               📎 Browse files (soon)
             </button>
-            <button type="button" className="la-btn ghost" disabled style={{ padding: "8px 12px", fontSize: 12 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              disabled
+              style={{ padding: "8px 12px", fontSize: 12 }}
+            >
               📸 Snap a worksheet (soon)
             </button>
           </div>
@@ -716,12 +744,19 @@ function Step2Sources({
             placeholder="Paste a URL (Wikipedia, YouTube, doc link)…"
             className="flex-1 rounded-xl border border-line bg-white px-3 py-2.5 text-[13px] outline-none focus:border-brand-1"
           />
-          <button type="submit" className="la-btn" disabled={!draft.trim()} style={{ padding: "10px 14px", fontSize: 13 }}>
+          <button
+            type="submit"
+            className="la-btn"
+            disabled={!draft.trim()}
+            style={{ padding: "10px 14px", fontSize: 13 }}
+          >
             Add link
           </button>
         </form>
 
-        <FieldLabel className="mt-4">ADDED · {sources.length} SOURCE{sources.length === 1 ? "" : "S"}</FieldLabel>
+        <FieldLabel className="mt-4">
+          ADDED · {sources.length} SOURCE{sources.length === 1 ? "" : "S"}
+        </FieldLabel>
         <div className="mt-2 space-y-1.5">
           {sources.length === 0 ? (
             <div className="rounded-xl border border-dashed border-line bg-surface-soft px-3 py-2 text-[12px] text-ink-mute">
@@ -843,7 +878,9 @@ function Step3Pace({
                 }}
                 aria-pressed={on}
               >
-                <span className="text-[16px]" aria-hidden>{p.icon}</span>
+                <span className="text-[16px]" aria-hidden>
+                  {p.icon}
+                </span>
                 <span className="flex-1 text-left">{p.label}</span>
                 {on ? <span aria-hidden>✓</span> : null}
               </button>
@@ -878,12 +915,19 @@ function Step4Plan({ config, accent }: { config: WizardConfig; accent: Accent })
           style={{ background: accent.soft, borderColor: accent.color, borderWidth: 1.5 }}
         >
           <div className="flex flex-wrap items-center gap-2">
-            <span className="la-pill text-[11px]" style={{ background: accent.color, color: "#fff" }}>
+            <span
+              className="la-pill text-[11px]"
+              style={{ background: accent.color, color: "#fff" }}
+            >
               {config.slug.toUpperCase()} PROJECT
             </span>
             <span
               className="la-pill text-[11px]"
-              style={{ background: "#fff", boxShadow: `0 0 0 1px ${accent.color}55`, color: accent.color }}
+              style={{
+                background: "#fff",
+                boxShadow: `0 0 0 1px ${accent.color}55`,
+                color: accent.color,
+              }}
             >
               Idea → ready
             </span>
@@ -918,7 +962,9 @@ function Step4Plan({ config, accent }: { config: WizardConfig; accent: Accent })
             {plan.methods.map((m, i) => (
               <div key={m.title} className="flex items-center gap-2.5 text-[12.5px]">
                 <span className="la-mono w-4 text-[10px] text-ink-mute">{i + 1}</span>
-                <span className="text-[15px]" aria-hidden>{m.icon}</span>
+                <span className="text-[15px]" aria-hidden>
+                  {m.icon}
+                </span>
                 <span className="flex-1 font-extrabold text-ink">{m.title}</span>
                 <span className="la-mono text-[10px] text-ink-mute">{m.reason}</span>
               </div>
@@ -933,7 +979,10 @@ function Step4Plan({ config, accent }: { config: WizardConfig; accent: Accent })
           >
             <FieldLabel>PROJECTED · ON-PLAN</FieldLabel>
             <div className="mt-1 flex items-baseline gap-2">
-              <span className="text-[34px] font-extrabold" style={{ color: accent.color, fontFamily: "var(--font-serif), Georgia, serif" }}>
+              <span
+                className="text-[34px] font-extrabold"
+                style={{ color: accent.color, fontFamily: "var(--font-serif), Georgia, serif" }}
+              >
                 {plan.projection.value}
               </span>
               <span className="la-mono text-[12px] text-ink-mute">{plan.projection.unit}</span>
@@ -949,10 +998,20 @@ function Step4Plan({ config, accent }: { config: WizardConfig; accent: Accent })
             Sharing (soon)
           </div>
           <div className="mt-1.5 flex flex-wrap gap-1.5">
-            <button type="button" className="la-btn ghost" disabled style={{ padding: "6px 10px", fontSize: 11 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              disabled
+              style={{ padding: "6px 10px", fontSize: 11 }}
+            >
               👨‍🏫 Share with teacher
             </button>
-            <button type="button" className="la-btn ghost" disabled style={{ padding: "6px 10px", fontSize: 11 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              disabled
+              style={{ padding: "6px 10px", fontSize: 11 }}
+            >
               👪 Notify a parent
             </button>
           </div>
@@ -994,11 +1053,17 @@ function CalmStep1({
               }}
               aria-pressed={on}
             >
-              <span className="text-[28px]" aria-hidden>{s.split(" ")[0]}</span>
+              <span className="text-[28px]" aria-hidden>
+                {s.split(" ")[0]}
+              </span>
               <div className="flex-1">
                 <div className="text-[17px] font-extrabold text-ink">{s}</div>
               </div>
-              {on ? <span style={{ color: accent.color, fontSize: 22 }} aria-hidden>✓</span> : null}
+              {on ? (
+                <span style={{ color: accent.color, fontSize: 22 }} aria-hidden>
+                  ✓
+                </span>
+              ) : null}
             </button>
           );
         })}
@@ -1034,9 +1099,7 @@ function CalmStep2({
 }) {
   function toggle(id: string) {
     setAccessibility(
-      accessibility.includes(id)
-        ? accessibility.filter((x) => x !== id)
-        : [...accessibility, id],
+      accessibility.includes(id) ? accessibility.filter((x) => x !== id) : [...accessibility, id]
     );
   }
   const options = [
@@ -1117,7 +1180,7 @@ function useAccent(journey: Journey): Accent {
       bg: journey.bg,
       gradient: `linear-gradient(135deg, ${journey.color}, var(--brand-2))`,
     }),
-    [journey],
+    [journey]
   );
 }
 
@@ -1147,7 +1210,7 @@ function PaceCounter({
         <button
           type="button"
           onClick={() => onChange(Math.max(min, value - step))}
-          className="grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg hover:bg-bg-2"
+          className="hover:bg-bg-2 grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg"
           aria-label={`Decrease ${label.toLowerCase()}`}
         >
           −
@@ -1161,7 +1224,7 @@ function PaceCounter({
         <button
           type="button"
           onClick={() => onChange(Math.min(max, value + step))}
-          className="grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg hover:bg-bg-2"
+          className="hover:bg-bg-2 grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg"
           aria-label={`Increase ${label.toLowerCase()}`}
         >
           +
@@ -1213,7 +1276,20 @@ function TutorPanel({
   );
 }
 
-function WeekRow({ week, accent }: { week: { label: string; date: string; title: string; methods: string; highlight?: boolean; dim?: boolean }; accent: Accent }) {
+function WeekRow({
+  week,
+  accent,
+}: {
+  week: {
+    label: string;
+    date: string;
+    title: string;
+    methods: string;
+    highlight?: boolean;
+    dim?: boolean;
+  };
+  accent: Accent;
+}) {
   return (
     <div
       className="grid items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[13px]"
@@ -1239,7 +1315,10 @@ function WeekRow({ week, accent }: { week: { label: string; date: string; title:
           </span>
         ) : null}
       </span>
-      <span className="la-mono text-[10px] font-extrabold text-right" style={{ color: accent.color }}>
+      <span
+        className="la-mono text-right text-[10px] font-extrabold"
+        style={{ color: accent.color }}
+      >
         {week.methods}
       </span>
     </div>
@@ -1280,7 +1359,7 @@ function SafetyRow({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between border-t border-line-soft py-1.5 first:border-t-0 first:pt-0">
       <span className="text-[12px] text-ink-mute">{label}</span>
-      <span className="la-mono text-[11px] font-extrabold text-ink text-right">{value}</span>
+      <span className="la-mono text-right text-[11px] font-extrabold text-ink">{value}</span>
     </div>
   );
 }
@@ -1305,7 +1384,9 @@ function SectionLabel({
   className?: string;
 }) {
   return (
-    <div className={`la-mono text-[11px] font-extrabold uppercase tracking-[0.08em] text-ink-mute ${className ?? ""}`}>
+    <div
+      className={`la-mono text-[11px] font-extrabold uppercase tracking-[0.08em] text-ink-mute ${className ?? ""}`}
+    >
       {n != null ? `${n} · ` : ""}
       {children}
     </div>

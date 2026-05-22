@@ -8,13 +8,7 @@ import type { Journey } from "./journeys";
 import { JOURNEYS, journeyForStage } from "./journeys";
 import type { LearnerStage } from "./stages";
 
-export type WorldSlug =
-  | "kids"
-  | "explorer"
-  | "builder"
-  | "scholar"
-  | "adult"
-  | "senior";
+export type WorldSlug = "kids" | "explorer" | "builder" | "scholar" | "adult" | "senior";
 
 export type World = {
   slug: WorldSlug;
@@ -146,10 +140,7 @@ export type NavItem = {
 const WIKITEST_WORLDS: ReadonlySet<WorldSlug> = new Set(["scholar", "adult"]);
 
 /** Build the standard left-rail nav for a world with one tab marked active. */
-export function buildLearnerNav(opts: {
-  world: World;
-  active: NavTab;
-}): NavItem[] {
+export function buildLearnerNav(opts: { world: World; active: NavTab }): NavItem[] {
   const slug = opts.world.slug;
   const showWikiTest = WIKITEST_WORLDS.has(slug);
 
@@ -163,7 +154,12 @@ export function buildLearnerNav(opts: {
   push({ id: "missions", icon: "🎯", label: "My missions", href: `/learn/missions?world=${slug}` });
   push({ id: "projects", icon: "🛠️", label: "Projects", href: `/learn/projects?world=${slug}` });
   push({ id: "library", icon: "📚", label: "Library", href: `/learn/library?world=${slug}` });
-  push({ id: "achievements", icon: "🏅", label: "Achievements", href: `/learn/achievements?world=${slug}` });
+  push({
+    id: "achievements",
+    icon: "🏅",
+    label: "Achievements",
+    href: `/learn/achievements?world=${slug}`,
+  });
 
   if (showWikiTest) {
     push({

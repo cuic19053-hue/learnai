@@ -27,15 +27,9 @@ const MODEL = process.env.LLM_MODEL || "llama3:8b";
  * System prompt for the "Professor Nova" interviewer agent.
  */
 function systemPrompt(jobDescription: string, extra?: Record<string, unknown>) {
-  const focus = extra?.focusAreas
-    ? `Focus areas: ${JSON.stringify(extra.focusAreas)}`
-    : "";
-  const seniority = extra?.seniority
-    ? `Seniority: ${String(extra.seniority)}`
-    : "";
-  const language = extra?.language
-    ? `Language: ${String(extra.language)}`
-    : "Language: English";
+  const focus = extra?.focusAreas ? `Focus areas: ${JSON.stringify(extra.focusAreas)}` : "";
+  const seniority = extra?.seniority ? `Seniority: ${String(extra.seniority)}` : "";
+  const language = extra?.language ? `Language: ${String(extra.language)}` : "Language: English";
 
   return `
 You are "Professor Nova", an expert technical interviewer and coach.
@@ -68,9 +62,7 @@ ${language}
 }
 
 /** Call LLM and require JSON response */
-async function callJson(
-  messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[]
-) {
+async function callJson(messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[]) {
   const resp = await llm.chat.completions.create({
     model: MODEL,
     temperature: 0.3,
@@ -132,8 +124,7 @@ Keep text concise.
       messages: [
         {
           role: "system",
-          content:
-            "You are an expert interview designer. Return ONLY JSON.",
+          content: "You are an expert interview designer. Return ONLY JSON.",
         },
         {
           role: "user",
@@ -212,8 +203,7 @@ server.tool(
       { role: "user", content: `USER ANSWER: ${args.userAnswer}` },
       {
         role: "user",
-        content:
-          "Give feedback + score + next_question in the required JSON format.",
+        content: "Give feedback + score + next_question in the required JSON format.",
       },
     ]);
 
@@ -259,8 +249,7 @@ Keep concise.
       messages: [
         {
           role: "system",
-          content:
-            "You are a strict JSON-only summarizer for interview coaching.",
+          content: "You are a strict JSON-only summarizer for interview coaching.",
         },
         {
           role: "user",

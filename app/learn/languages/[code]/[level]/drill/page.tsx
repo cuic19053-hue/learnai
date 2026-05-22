@@ -15,9 +15,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { code, level } = await params;
   const lang = findLanguage(code);
-  return lang
-    ? { title: `${lang.name} · ${level} drill` }
-    : { title: "Drill" };
+  return lang ? { title: `${lang.name} · ${level} drill` } : { title: "Drill" };
 }
 
 export default async function LanguageDrillPage({

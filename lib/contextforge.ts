@@ -79,9 +79,7 @@ export async function listTeacherAgents(): Promise<ContextForgeA2AAgent[]> {
         })
         .filter(Boolean) as ContextForgeA2AAgent[];
 
-      const teachers = parsed.filter((a) =>
-        (a.tags || []).includes(TEACHER_TAG),
-      );
+      const teachers = parsed.filter((a) => (a.tags || []).includes(TEACHER_TAG));
 
       return teachers.filter((a) => a.enabled !== false);
     } catch {
@@ -115,17 +113,14 @@ export async function invokeTeacherAgent({
     throw new Error("CONTEXTFORGE_URL is not set");
   }
 
-  const res = await fetch(
-    `${CF_BASE}/a2a/${encodeURIComponent(agentName)}/invoke`,
-    {
-      method: "POST",
-      headers: cfHeaders(),
-      body: JSON.stringify({
-        parameters,
-        interaction_type: interactionType || "query",
-      }),
-    },
-  );
+  const res = await fetch(`${CF_BASE}/a2a/${encodeURIComponent(agentName)}/invoke`, {
+    method: "POST",
+    headers: cfHeaders(),
+    body: JSON.stringify({
+      parameters,
+      interaction_type: interactionType || "query",
+    }),
+  });
 
   const text = await res.text();
   if (!res.ok) {

@@ -23,17 +23,10 @@ export default function KidsLesson({ journey }: { journey: Journey }) {
         >
           ←
         </Link>
-        <span
-          className="la-pill"
-          style={{ background: journey.bg, color: journey.color }}
-        >
+        <span className="la-pill" style={{ background: journey.bg, color: journey.color }}>
           {journey.emoji} Counting
         </span>
-        <Link
-          href="/parent"
-          className="text-[22px] text-ink-mute"
-          aria-label="Parent area"
-        >
+        <Link href="/parent" className="text-[22px] text-ink-mute" aria-label="Parent area">
           👨‍👩‍👧
         </Link>
       </div>

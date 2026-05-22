@@ -19,11 +19,7 @@ export default function LearningStageCard({
   href,
 }: Pick<Journey, "emoji" | "name" | "age" | "desc" | "example" | "color" | "bg" | "href">) {
   return (
-    <Link
-      href={href}
-      className="la-jcard"
-      aria-label={`Start the ${name} journey, ${age}`}
-    >
+    <Link href={href} className="la-jcard" aria-label={`Start the ${name} journey, ${age}`}>
       <div className="flex items-start justify-between">
         <PersonaAvatar emoji={emoji} color={color} bg={bg} size={48} />
         <span className="la-pill" style={{ background: bg, color }}>

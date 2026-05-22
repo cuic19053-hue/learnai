@@ -18,16 +18,10 @@ export function AppLayout({ children }: { children: ReactNode }) {
               <Link href="/" className="text-gray-600 transition-colors hover:text-primary">
                 Home
               </Link>
-              <Link
-                href="/explore"
-                className="text-gray-600 transition-colors hover:text-primary"
-              >
+              <Link href="/explore" className="text-gray-600 transition-colors hover:text-primary">
                 Professors
               </Link>
-              <Link
-                href="/pricing"
-                className="text-gray-600 transition-colors hover:text-primary"
-              >
+              <Link href="/pricing" className="text-gray-600 transition-colors hover:text-primary">
                 Pricing
               </Link>
               <Link href="/about" className="text-gray-600 transition-colors hover:text-primary">

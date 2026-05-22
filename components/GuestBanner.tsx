@@ -50,7 +50,8 @@ export function GuestBanner() {
             <div className="flex-1">
               <p className="text-sm font-semibold">You&apos;re browsing as a Guest</p>
               <p className="text-xs opacity-90">
-                Explore all features freely. Sign up when you&apos;re ready to book sessions and save your progress.
+                Explore all features freely. Sign up when you&apos;re ready to book sessions and
+                save your progress.
               </p>
             </div>
           </div>

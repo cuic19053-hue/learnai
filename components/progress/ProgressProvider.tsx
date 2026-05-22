@@ -10,14 +10,8 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import {
-  progressReducer,
-  selectWorld,
-} from "@/lib/progress/engine";
-import {
-  readProgressClient,
-  writeProgressClient,
-} from "@/lib/progress/cookie";
+import { progressReducer, selectWorld } from "@/lib/progress/engine";
+import { readProgressClient, writeProgressClient } from "@/lib/progress/cookie";
 import {
   DEFAULT_PROGRESS,
   type ProgressAction,
@@ -107,21 +101,15 @@ export default function ProgressProvider({ children }: { children: ReactNode }) 
   const ping = useCallback((slug?: string) => dispatch({ type: "ping", slug }), []);
   const addXp = useCallback(
     (amount: number, slug?: string) => dispatch({ type: "addXp", amount, slug }),
-    [],
+    []
   );
   const lessonCompleted = useCallback(
     (slug: string) => dispatch({ type: "lessonCompleted", slug }),
-    [],
+    []
   );
-  const unlockAchievement = useCallback(
-    (id: string) => dispatch({ type: "achievement", id }),
-    [],
-  );
+  const unlockAchievement = useCallback((id: string) => dispatch({ type: "achievement", id }), []);
   const reset = useCallback(() => dispatch({ type: "reset" }), []);
-  const worldOf = useCallback(
-    (slug: string) => selectWorld(state, slug),
-    [state],
-  );
+  const worldOf = useCallback((slug: string) => selectWorld(state, slug), [state]);
 
   const value = useMemo<ProgressApi>(
     () => ({
@@ -134,12 +122,10 @@ export default function ProgressProvider({ children }: { children: ReactNode }) 
       worldOf,
       hydrated: hydratedRef.current,
     }),
-    [state, ping, addXp, lessonCompleted, unlockAchievement, reset, worldOf],
+    [state, ping, addXp, lessonCompleted, unlockAchievement, reset, worldOf]
   );
 
-  return (
-    <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>
-  );
+  return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;
 }
 
 /**

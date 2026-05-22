@@ -12,11 +12,7 @@ export function ok<T>(data: T, init?: ResponseInit): NextResponse {
  * Standard JSON error envelope. Hides internal details from the client
  * but logs them server-side.
  */
-export function fail(
-  status: number,
-  message: string,
-  details?: unknown,
-): NextResponse {
+export function fail(status: number, message: string, details?: unknown): NextResponse {
   return NextResponse.json({ ok: false, error: message, details }, { status });
 }
 
@@ -24,9 +20,7 @@ export function fail(
  * Wrap a route handler so all uncaught errors return a typed JSON envelope
  * instead of a 500 HTML page. Validation errors (Zod) get 400.
  */
-export function handler<T extends (req: Request, ctx?: any) => Promise<Response>>(
-  fn: T,
-): T {
+export function handler<T extends (req: Request, ctx?: any) => Promise<Response>>(fn: T): T {
   return (async (req: Request, ctx?: any) => {
     try {
       return await fn(req, ctx);
@@ -49,11 +43,7 @@ export function handler<T extends (req: Request, ctx?: any) => Promise<Response>
 export function clientIp(req: Request): string {
   const xff = req.headers.get("x-forwarded-for");
   if (xff) return xff.split(",")[0]!.trim();
-  return (
-    req.headers.get("x-real-ip") ??
-    req.headers.get("cf-connecting-ip") ??
-    "anonymous"
-  );
+  return req.headers.get("x-real-ip") ?? req.headers.get("cf-connecting-ip") ?? "anonymous";
 }
 
 type Bucket = { count: number; resetAt: number };
@@ -66,7 +56,7 @@ const buckets = new Map<string, Bucket>();
  */
 export function rateLimit(
   key: string,
-  options: { limit: number; windowMs: number },
+  options: { limit: number; windowMs: number }
 ): { allowed: boolean; remaining: number; resetAt: number } {
   const now = Date.now();
   const existing = buckets.get(key);

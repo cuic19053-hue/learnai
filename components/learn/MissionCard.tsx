@@ -37,8 +37,7 @@ export default function MissionCard({
 }: MissionCardProps) {
   const safeStep = Math.max(0, Math.min(totalSteps, currentStep));
   const pct = Math.round((safeStep / totalSteps) * 100);
-  const ctaClasses =
-    "flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold";
+  const ctaClasses = "flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold";
   const ctaStyle = { color: journey.color } as const;
 
   return (
@@ -54,9 +53,7 @@ export default function MissionCard({
             {kicker} · {safeStep}/{totalSteps} STEPS
           </div>
           <h2 className="mt-2 text-[28px] font-extrabold tracking-[-0.01em]">{title}</h2>
-          <p className="mt-2 max-w-[460px] text-[14px] leading-relaxed opacity-85">
-            {description}
-          </p>
+          <p className="mt-2 max-w-[460px] text-[14px] leading-relaxed opacity-85">{description}</p>
           <div className="mt-4 flex items-center gap-3">
             {ctaHref ? (
               <Link href={ctaHref} className={ctaClasses} style={ctaStyle}>
@@ -108,9 +105,7 @@ export default function MissionCard({
               style={{
                 padding: "10px 12px",
                 background: done ? "rgba(255,255,255,.18)" : "rgba(255,255,255,.06)",
-                border: upNext
-                  ? "1.5px solid #fff"
-                  : "1px solid rgba(255,255,255,.1)",
+                border: upNext ? "1.5px solid #fff" : "1px solid rgba(255,255,255,.1)",
               }}
             >
               <div className="text-lg" aria-hidden>

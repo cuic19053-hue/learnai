@@ -9,12 +9,7 @@
 
 export type RecorderState = "idle" | "recording" | "stopped" | "denied" | "unsupported";
 
-const AUDIO_MIME_CANDIDATES = [
-  "audio/webm;codecs=opus",
-  "audio/webm",
-  "audio/mp4",
-  "audio/ogg",
-];
+const AUDIO_MIME_CANDIDATES = ["audio/webm;codecs=opus", "audio/webm", "audio/mp4", "audio/ogg"];
 
 export function isRecordingSupported(): boolean {
   if (typeof window === "undefined") return false;
@@ -79,10 +74,7 @@ export class AudioRecorder {
   start(): void {
     if (!this.stream) throw new Error("Permission not yet granted.");
     this.chunks = [];
-    this.recorder = new MediaRecorder(
-      this.stream,
-      this.mime ? { mimeType: this.mime } : undefined,
-    );
+    this.recorder = new MediaRecorder(this.stream, this.mime ? { mimeType: this.mime } : undefined);
     this.recorder.ondataavailable = (e) => {
       if (e.data && e.data.size > 0) this.chunks.push(e.data);
     };

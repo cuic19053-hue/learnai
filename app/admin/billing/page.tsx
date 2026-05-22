@@ -12,12 +12,36 @@ const INVOICES = [
 ];
 
 const BREAKDOWN = [
-  { label: "OllaBridge · HF Space", value: "$0.00", pct: 0, c: "var(--brand-2)", detail: "bundled · free" },
+  {
+    label: "OllaBridge · HF Space",
+    value: "$0.00",
+    pct: 0,
+    c: "var(--brand-2)",
+    detail: "bundled · free",
+  },
   { label: "OpenAI", value: "$24.40", pct: 34, c: "#10a37f", detail: "3,180 reqs" },
-  { label: "xAI · Grok", value: "$11.20", pct: 16, c: "#0f1430", detail: "free credits · $13.80 left" },
+  {
+    label: "xAI · Grok",
+    value: "$11.20",
+    pct: 16,
+    c: "#0f1430",
+    detail: "free credits · $13.80 left",
+  },
   { label: "Anthropic", value: "$0.00", pct: 0, c: "#d97706", detail: "not enabled" },
-  { label: "Hosting · Vercel Pro", value: "$20.00", pct: 28, c: "var(--ink)", detail: "frontend + edge" },
-  { label: "Database · Neon", value: "$15.80", pct: 22, c: "#2dbb6c", detail: "Postgres + branching" },
+  {
+    label: "Hosting · Vercel Pro",
+    value: "$20.00",
+    pct: 28,
+    c: "var(--ink)",
+    detail: "frontend + edge",
+  },
+  {
+    label: "Database · Neon",
+    value: "$15.80",
+    pct: 22,
+    c: "#2dbb6c",
+    detail: "Postgres + branching",
+  },
 ];
 
 export default function AdminBilling() {
@@ -38,10 +62,18 @@ export default function AdminBilling() {
           subtitle="LearnAI itself is open-source and free. Costs come from AI providers, hosting, and database. Most learners cost $0 — they run on OllaBridge."
           right={
             <>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
                 Download invoice
               </button>
-              <button type="button" className="la-btn" style={{ padding: "9px 14px", fontSize: 13 }}>
+              <button
+                type="button"
+                className="la-btn"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
                 Update payment
               </button>
             </>
@@ -201,7 +233,10 @@ function BreakdownRow({
         <span className="text-[12.5px] font-extrabold text-ink">{label}</span>
         <span className="la-mono text-[12px] font-extrabold">{value}</span>
       </div>
-      <div className="mt-1 h-1.5 overflow-hidden rounded-full" style={{ background: "rgba(255,255,255,.6)" }}>
+      <div
+        className="mt-1 h-1.5 overflow-hidden rounded-full"
+        style={{ background: "rgba(255,255,255,.6)" }}
+      >
         <div style={{ width: `${pct}%`, height: "100%", background: c }} />
       </div>
       <div className="la-mono mt-1 text-[10px] text-ink-mute">{detail}</div>

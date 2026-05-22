@@ -21,7 +21,10 @@ const BASE_CLASS = "block h-full w-full";
 /*  Playful World — Little Learner (pink + amber)                         */
 /* ────────────────────────────────────────────────────────────────────── */
 
-export function PlayfulWorld({ className = "", title = "Playful World — bright stars and a happy sun" }: Props) {
+export function PlayfulWorld({
+  className = "",
+  title = "Playful World — bright stars and a happy sun",
+}: Props) {
   return (
     <svg
       viewBox="0 0 320 140"
@@ -69,12 +72,18 @@ export function PlayfulWorld({ className = "", title = "Playful World — bright
         [128, 88, 5],
       ].map(([cx, cy, r], i) => (
         <g key={i} transform={`translate(${cx} ${cy})`} fill="#ec4899">
-          <polygon points={`0,-${r} ${r * 0.3},-${r * 0.3} ${r},0 ${r * 0.3},${r * 0.3} 0,${r} -${r * 0.3},${r * 0.3} -${r},0 -${r * 0.3},-${r * 0.3}`} />
+          <polygon
+            points={`0,-${r} ${r * 0.3},-${r * 0.3} ${r},0 ${r * 0.3},${r * 0.3} 0,${r} -${r * 0.3},${r * 0.3} -${r},0 -${r * 0.3},-${r * 0.3}`}
+          />
         </g>
       ))}
 
       {/* Soft hill */}
-      <path d="M0 120 Q 80 100 160 115 T 320 110 L 320 140 L 0 140 Z" fill="#fbcfe8" opacity="0.7" />
+      <path
+        d="M0 120 Q 80 100 160 115 T 320 110 L 320 140 L 0 140 Z"
+        fill="#fbcfe8"
+        opacity="0.7"
+      />
     </svg>
   );
 }
@@ -83,7 +92,10 @@ export function PlayfulWorld({ className = "", title = "Playful World — bright
 /*  Mission World — Builder (violet + blue)                                */
 /* ────────────────────────────────────────────────────────────────────── */
 
-export function MissionWorld({ className = "", title = "Mission World — a rocket arcing across geometric peaks" }: Props) {
+export function MissionWorld({
+  className = "",
+  title = "Mission World — a rocket arcing across geometric peaks",
+}: Props) {
   return (
     <svg
       viewBox="0 0 320 140"
@@ -107,11 +119,26 @@ export function MissionWorld({ className = "", title = "Mission World — a rock
       <rect width="320" height="140" fill="url(#mission-bg)" />
 
       {/* Mountains */}
-      <polygon points="0,140 60,80 100,110 150,60 200,100 260,70 320,110 320,140" fill="#c4b5fd" opacity="0.85" />
-      <polygon points="0,140 40,100 100,130 160,90 220,120 280,95 320,125 320,140" fill="#a78bfa" opacity="0.5" />
+      <polygon
+        points="0,140 60,80 100,110 150,60 200,100 260,70 320,110 320,140"
+        fill="#c4b5fd"
+        opacity="0.85"
+      />
+      <polygon
+        points="0,140 40,100 100,130 160,90 220,120 280,95 320,125 320,140"
+        fill="#a78bfa"
+        opacity="0.5"
+      />
 
       {/* Rocket trail (arc) */}
-      <path d="M40 110 Q 160 -20 280 50" fill="none" stroke="url(#mission-trail)" strokeWidth="3" strokeDasharray="2 4" strokeLinecap="round" />
+      <path
+        d="M40 110 Q 160 -20 280 50"
+        fill="none"
+        stroke="url(#mission-trail)"
+        strokeWidth="3"
+        strokeDasharray="2 4"
+        strokeLinecap="round"
+      />
 
       {/* Rocket */}
       <g transform="translate(258 56) rotate(40)">
@@ -138,7 +165,10 @@ export function MissionWorld({ className = "", title = "Mission World — a rock
 /*  Career World — Professional (teal + blue)                              */
 /* ────────────────────────────────────────────────────────────────────── */
 
-export function CareerWorld({ className = "", title = "Career World — rising chart over a city skyline" }: Props) {
+export function CareerWorld({
+  className = "",
+  title = "Career World — rising chart over a city skyline",
+}: Props) {
   return (
     <svg
       viewBox="0 0 320 140"
@@ -181,7 +211,7 @@ export function CareerWorld({ className = "", title = "Career World — rising c
                 fill="#fff"
                 opacity="0.7"
               />
-            )),
+            ))
           )}
         </g>
       ))}
@@ -215,7 +245,10 @@ export function CareerWorld({ className = "", title = "Career World — rising c
 /*  Calm World — Senior Learner (green)                                    */
 /* ────────────────────────────────────────────────────────────────────── */
 
-export function CalmWorld({ className = "", title = "Calm World — gentle waves and a leaf at sunrise" }: Props) {
+export function CalmWorld({
+  className = "",
+  title = "Calm World — gentle waves and a leaf at sunrise",
+}: Props) {
   return (
     <svg
       viewBox="0 0 320 140"
@@ -242,15 +275,44 @@ export function CalmWorld({ className = "", title = "Calm World — gentle waves
       <circle cx="240" cy="46" r="22" fill="url(#calm-sun)" />
 
       {/* Three calm waves */}
-      <path d="M0 78 Q 80 64 160 78 T 320 78" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
-      <path d="M0 98 Q 80 84 160 98 T 320 98" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" opacity="0.7" />
-      <path d="M0 118 Q 80 104 160 118 T 320 118" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
+      <path
+        d="M0 78 Q 80 64 160 78 T 320 78"
+        fill="none"
+        stroke="#22c55e"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity="0.5"
+      />
+      <path
+        d="M0 98 Q 80 84 160 98 T 320 98"
+        fill="none"
+        stroke="#22c55e"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity="0.7"
+      />
+      <path
+        d="M0 118 Q 80 104 160 118 T 320 118"
+        fill="none"
+        stroke="#22c55e"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
 
       {/* Leaf */}
       <g transform="translate(72 58) rotate(-25)">
         <path d="M0 0 Q 16 -22 36 0 Q 16 22 0 0 Z" fill="#22c55e" opacity="0.85" />
         <path d="M0 0 Q 18 -2 36 0" fill="none" stroke="#15803d" strokeWidth="1.3" />
-        <line x1="0" y1="0" x2="-8" y2="6" stroke="#15803d" strokeWidth="1.5" strokeLinecap="round" />
+        <line
+          x1="0"
+          y1="0"
+          x2="-8"
+          y2="6"
+          stroke="#15803d"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+        />
       </g>
     </svg>
   );

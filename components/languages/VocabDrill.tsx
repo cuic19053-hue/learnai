@@ -17,9 +17,7 @@ export default function VocabDrill({
 }) {
   const [idx, setIdx] = useState(0);
   const [flipped, setFlipped] = useState(false);
-  const [outcomes, setOutcomes] = useState<Outcome[]>(
-    () => cards.map(() => "unseen"),
-  );
+  const [outcomes, setOutcomes] = useState<Outcome[]>(() => cards.map(() => "unseen"));
 
   const total = cards.length;
   const known = useMemo(() => outcomes.filter((o) => o === "known").length, [outcomes]);
@@ -125,9 +123,7 @@ export default function VocabDrill({
 
         {flipped ? (
           <div>
-            <p className="text-2xl font-bold leading-snug text-ink md:text-3xl">
-              {card.meaning}
-            </p>
+            <p className="text-2xl font-bold leading-snug text-ink md:text-3xl">{card.meaning}</p>
             {card.example ? (
               <p className="mt-3 text-[14px] italic text-ink-soft">{card.example}</p>
             ) : null}
@@ -140,9 +136,7 @@ export default function VocabDrill({
             >
               {card.term}
             </p>
-            {card.hint ? (
-              <p className="mt-3 text-[14px] text-ink-soft">{card.hint}</p>
-            ) : null}
+            {card.hint ? <p className="mt-3 text-[14px] text-ink-soft">{card.hint}</p> : null}
           </div>
         )}
       </button>

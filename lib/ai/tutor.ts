@@ -31,24 +31,37 @@ export type TutorRequestContext = {
 
 const WORLD_SAFETY: Record<string, string> = {
   kids: "Audience: children ages 3-6. Use short sentences (≤ 8 words). No abstract jargon. No mention of anything outside numbers, letters, colors, animals, feelings, shapes, stories, or simple music. Always invite a small action.",
-  explorer: "Audience: children ages 7-11. Frame answers as discovery. Use one concrete example per concept. No internet links.",
-  builder: "Audience: pre-teens 12-15. Encourage shipping. One example, one twin problem, one stretch goal.",
-  scholar: "Audience: high-schoolers 16-18 prepping for exams. Be concrete, cite reasoning, and tag the named teaching method (Active recall · Worked example · Feynman · Spaced repetition · Interleaving).",
-  adult: "Audience: working professional. Be precise and respectful of their time. Lead with the answer, then the reasoning, then a citation if you have one.",
-  senior: "Audience: senior learner. Be calm and patient. Short sentences. Avoid technical jargon. Offer to repeat any step.",
+  explorer:
+    "Audience: children ages 7-11. Frame answers as discovery. Use one concrete example per concept. No internet links.",
+  builder:
+    "Audience: pre-teens 12-15. Encourage shipping. One example, one twin problem, one stretch goal.",
+  scholar:
+    "Audience: high-schoolers 16-18 prepping for exams. Be concrete, cite reasoning, and tag the named teaching method (Active recall · Worked example · Feynman · Spaced repetition · Interleaving).",
+  adult:
+    "Audience: working professional. Be precise and respectful of their time. Lead with the answer, then the reasoning, then a citation if you have one.",
+  senior:
+    "Audience: senior learner. Be calm and patient. Short sentences. Avoid technical jargon. Offer to repeat any step.",
 };
 
 const PAGE_HINT: Record<PageContextKind, string> = {
-  "world-home": "The learner is on their world's home screen. Suggest the highest-leverage next step based on the named methods, not a generic 'keep learning' line.",
-  lesson: "The learner is inside the lesson player. Help them through the current step — explain a concept, walk a worked example, or quiz them with one short question.",
-  "wiki-hub": "The learner is on the WikiTest hub about to paste a Wikipedia URL. Help them pick or refine a topic.",
-  "wiki-detail": "The learner is on a WikiTest detail page. Help them decide whether to train first or take the test.",
-  "wiki-train": "The learner is training on a Wikipedia article section. Cite the section heading when you answer.",
+  "world-home":
+    "The learner is on their world's home screen. Suggest the highest-leverage next step based on the named methods, not a generic 'keep learning' line.",
+  lesson:
+    "The learner is inside the lesson player. Help them through the current step — explain a concept, walk a worked example, or quiz them with one short question.",
+  "wiki-hub":
+    "The learner is on the WikiTest hub about to paste a Wikipedia URL. Help them pick or refine a topic.",
+  "wiki-detail":
+    "The learner is on a WikiTest detail page. Help them decide whether to train first or take the test.",
+  "wiki-train":
+    "The learner is training on a Wikipedia article section. Cite the section heading when you answer.",
   "wiki-quiz": "The learner is mid-test. Stay quiet unless they ask for pacing help.",
-  "wiki-report": "The learner just finished a WikiTest. Help them schedule spaced reviews or pick a related article.",
+  "wiki-report":
+    "The learner just finished a WikiTest. Help them schedule spaced reviews or pick a related article.",
   library: "The learner is on the library. Help them find a topic or pick a lesson due for review.",
-  missions: "The learner is on their missions screen. Help them pick the highest-leverage open mission.",
-  achievements: "The learner is on the achievements screen. Tell them the badge closest to unlocking.",
+  missions:
+    "The learner is on their missions screen. Help them pick the highest-leverage open mission.",
+  achievements:
+    "The learner is on the achievements screen. Tell them the badge closest to unlocking.",
   languages: "The learner is on their language track. Offer recall or spaced-rep drills.",
   certifications: "The learner is in cert prep. Quiz them across their weakest domain.",
 };
@@ -89,14 +102,22 @@ export type TutorReply = {
 };
 
 const FALLBACK_REPLIES: Partial<Record<PageContextKind, string>> = {
-  "world-home": "Want a 5-minute warm-up before the next mission? I can pull two retrieval questions from yesterday's session.",
-  lesson: "Pause for a second — explain this step in your own words. I'll point out the gap. That's the Feynman move.",
-  "wiki-hub": "Paste a Wikipedia URL or pick a sample. I'll cite every claim back to a section heading.",
-  "wiki-detail": "Train first if you're under 60% confident; take the test cold if you want a baseline. Your call.",
-  "wiki-train": "If you can re-state the section heading without scrolling up, you're ready for the next one. If not, re-read the first paragraph.",
-  "wiki-quiz": "Quiet mode while you test — but ping me if you want pacing help on the last few questions.",
-  "wiki-report": "Schedule the ones you missed on a spaced-repetition queue. The forgetting curve is steepest in the next 24 h.",
-  missions: "Pick the one whose weak area scored lowest in your last drill. That's the highest-leverage 25 minutes.",
+  "world-home":
+    "Want a 5-minute warm-up before the next mission? I can pull two retrieval questions from yesterday's session.",
+  lesson:
+    "Pause for a second — explain this step in your own words. I'll point out the gap. That's the Feynman move.",
+  "wiki-hub":
+    "Paste a Wikipedia URL or pick a sample. I'll cite every claim back to a section heading.",
+  "wiki-detail":
+    "Train first if you're under 60% confident; take the test cold if you want a baseline. Your call.",
+  "wiki-train":
+    "If you can re-state the section heading without scrolling up, you're ready for the next one. If not, re-read the first paragraph.",
+  "wiki-quiz":
+    "Quiet mode while you test — but ping me if you want pacing help on the last few questions.",
+  "wiki-report":
+    "Schedule the ones you missed on a spaced-repetition queue. The forgetting curve is steepest in the next 24 h.",
+  missions:
+    "Pick the one whose weak area scored lowest in your last drill. That's the highest-leverage 25 minutes.",
 };
 
 /**
@@ -106,7 +127,7 @@ const FALLBACK_REPLIES: Partial<Record<PageContextKind, string>> = {
  */
 export async function tutorReply(
   history: TutorTurn[],
-  ctx: TutorRequestContext,
+  ctx: TutorRequestContext
 ): Promise<TutorReply> {
   if (history.length === 0) {
     return {

@@ -1,9 +1,6 @@
 import { handler, ok } from "@/lib/api";
 import { groupByVendor } from "@/lib/certifications/catalog";
-import {
-  countCertification,
-  discoverCertifications,
-} from "@/lib/certifications/load";
+import { countCertification, discoverCertifications } from "@/lib/certifications/load";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +17,7 @@ export const GET = handler(async () => {
     catalog.map(async (c) => ({
       ...c,
       questionCount: await countCertification(c.slug),
-    })),
+    }))
   );
 
   return ok({

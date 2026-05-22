@@ -71,9 +71,8 @@ export default async function ExplorePage() {
         subject:
           Array.isArray(p?.subjects) && p.subjects.length > 0
             ? p.subjects.slice(0, 2).join(" & ")
-            : p?.title ?? "Expert Professor",
-        rating:
-          typeof p?.rating === "number" ? p.rating : 4.6 + (i % 4) * 0.1,
+            : (p?.title ?? "Expert Professor"),
+        rating: typeof p?.rating === "number" ? p.rating : 4.6 + (i % 4) * 0.1,
         price: p?.hourlyRate ? Number(p.hourlyRate) : 35 + (i % 5) * 5,
         image: u.image || `https://picsum.photos/800/600?random=${20 + i}`,
       };
@@ -130,10 +129,7 @@ export default async function ExplorePage() {
           </Link>
 
           <div className="flex items-center gap-3">
-            <Link
-              href="/"
-              className="rounded-lg border px-4 py-2 text-sm hover:bg-gray-50"
-            >
+            <Link href="/" className="rounded-lg border px-4 py-2 text-sm hover:bg-gray-50">
               Home
             </Link>
             <Link
@@ -173,11 +169,7 @@ export default async function ExplorePage() {
               className="overflow-hidden rounded-xl bg-white shadow-md"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={p.image}
-                alt={p.name}
-                className="h-48 w-full object-cover"
-              />
+              <img src={p.image} alt={p.name} className="h-48 w-full object-cover" />
               <div className="p-6">
                 <div className="mb-2 flex items-start justify-between gap-3">
                   <div>
@@ -198,9 +190,7 @@ export default async function ExplorePage() {
 
                     <div className="flex items-center gap-1 text-yellow-400">
                       <span>★</span>
-                      <span className="text-gray-700">
-                        {p.rating.toFixed(1)}
-                      </span>
+                      <span className="text-gray-700">{p.rating.toFixed(1)}</span>
                     </div>
                   </div>
                 </div>
@@ -228,7 +218,7 @@ export default async function ExplorePage() {
                 </div>
 
                 {p.kind === "AI" && p.tags?.length ? (
-                  <p className="mt-3 text-xs text-gray-500 line-clamp-2">
+                  <p className="mt-3 line-clamp-2 text-xs text-gray-500">
                     Tags: {p.tags.slice(0, 6).join(", ")}
                   </p>
                 ) : (

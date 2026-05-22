@@ -63,8 +63,6 @@ export function warnAboutMissingEnv(): void {
   if (!flags.googleConfigured) missing.push("GOOGLE_CLIENT_ID/SECRET (Google sign-in disabled)");
   if (missing.length > 0) {
     // eslint-disable-next-line no-console
-    console.warn(
-      "[learnai] Running with reduced configuration:\n  - " + missing.join("\n  - "),
-    );
+    console.warn("[learnai] Running with reduced configuration:\n  - " + missing.join("\n  - "));
   }
 }

@@ -2,12 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import QuestionTrainingCard from "@/components/interview/QuestionTrainingCard";
-import type {
-  AnswerScore,
-  CandidateProfile,
-  JobBrief,
-  TrainingBank,
-} from "@/lib/interview/types";
+import type { AnswerScore, CandidateProfile, JobBrief, TrainingBank } from "@/lib/interview/types";
 
 export type TrainingAttempt = {
   question: string;
@@ -54,7 +49,7 @@ export default function TrainingStep({
 
   const activeBank = useMemo(
     () => banks.find((b) => b.id === activeBankId) ?? null,
-    [banks, activeBankId],
+    [banks, activeBankId]
   );
 
   // Mastery per bank — average score across attempts in that bank, /10.
@@ -76,11 +71,7 @@ export default function TrainingStep({
     return (
       <div className="mt-7 max-w-[820px] space-y-3">
         {[0, 1, 2, 3, 4, 5].map((i) => (
-          <div
-            key={i}
-            className="la-card animate-pulse p-5"
-            style={{ borderRadius: 16 }}
-          >
+          <div key={i} className="la-card animate-pulse p-5" style={{ borderRadius: 16 }}>
             <div className="h-4 w-1/3 rounded bg-line-soft" />
             <div className="mt-2 h-3 w-2/3 rounded bg-line-soft" />
           </div>
@@ -153,8 +144,8 @@ export default function TrainingStep({
   return (
     <div className="mt-7 max-w-[1000px]">
       <p className="text-[15px] text-ink-soft">
-        Train each bank before the simulation. Six banks, 3-8 questions each,
-        scored individually with strengths, weaknesses and an improved model answer.
+        Train each bank before the simulation. Six banks, 3-8 questions each, scored individually
+        with strengths, weaknesses and an improved model answer.
       </p>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -182,7 +173,11 @@ export default function TrainingStep({
                 </div>
                 <span
                   className="la-pill text-[10px]"
-                  style={{ background: "#fff", color: masteryColor, boxShadow: `0 0 0 1px ${masteryColor}40` }}
+                  style={{
+                    background: "#fff",
+                    color: masteryColor,
+                    boxShadow: `0 0 0 1px ${masteryColor}40`,
+                  }}
                 >
                   {m.count === 0
                     ? "Not started"
@@ -190,9 +185,7 @@ export default function TrainingStep({
                 </span>
               </div>
               <h3 className="mt-2 text-[16px] font-bold text-ink">{b.title}</h3>
-              <p className="mt-1 text-[13px] leading-snug text-ink-soft">
-                {b.description}
-              </p>
+              <p className="mt-1 text-[13px] leading-snug text-ink-soft">{b.description}</p>
               <div className="mt-3 text-[11px] text-ink-mute">
                 {b.questions.length} question{b.questions.length === 1 ? "" : "s"}
               </div>

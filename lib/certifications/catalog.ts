@@ -8,11 +8,7 @@
  * in load.ts and is marked server-only.
  */
 
-import type {
-  CertificationLevel,
-  CertificationMeta,
-  CertificationVendor,
-} from "./types";
+import type { CertificationLevel, CertificationMeta, CertificationVendor } from "./types";
 
 export const VENDORS: CertificationVendor[] = ["AWS", "Azure", "GCP", "IBM", "Other"];
 
@@ -46,8 +42,9 @@ export function inferVendorFromSlug(slug: string): CertificationVendor {
  */
 export function inferLevelFromSlug(slug: string): CertificationLevel {
   const up = slug.toUpperCase();
-  if (/SAP|SOA|PAS|DOP|DEA|ANS|DAS|DBS/.test(up) || /PROFESSIONAL/i.test(slug))
+  if (/SAP|SOA|PAS|DOP|DEA|ANS|DAS|DBS/.test(up) || /PROFESSIONAL/i.test(slug)) {
     return "Professional";
+  }
   if (/FUNDAMENTALS|CLF|AI-900|AZ-900/i.test(up)) return "Fundamentals";
   if (/SPECIALTY|MLS|SCS/i.test(up)) return "Specialty";
   return "Associate";
@@ -69,9 +66,7 @@ export function inferCertificationMeta(slug: string): CertificationMeta {
   };
 }
 
-export function groupByVendor(
-  list: CertificationMeta[],
-): Record<string, CertificationMeta[]> {
+export function groupByVendor(list: CertificationMeta[]): Record<string, CertificationMeta[]> {
   return list.reduce<Record<string, CertificationMeta[]>>((acc, c) => {
     (acc[c.vendor] ||= []).push(c);
     return acc;

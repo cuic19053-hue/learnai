@@ -1,11 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type {
-  CandidateProfile,
-  JobBrief,
-  PresentationFeedback,
-} from "@/lib/interview/types";
+import type { CandidateProfile, JobBrief, PresentationFeedback } from "@/lib/interview/types";
 
 type Milestone = { at: number; label: string };
 const MILESTONES: Milestone[] = [
@@ -50,7 +46,7 @@ export default function SelfPresentationTrainer({
     () => () => {
       if (tickRef.current) clearInterval(tickRef.current);
     },
-    [],
+    []
   );
 
   function start() {
@@ -119,7 +115,9 @@ export default function SelfPresentationTrainer({
 
   // Live: word count + filler-word ratio (light heuristic).
   const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
-  const fillerMatches = text.match(/\b(uh|um|like|you know|kind of|sort of|basically|literally|actually)\b/gi);
+  const fillerMatches = text.match(
+    /\b(uh|um|like|you know|kind of|sort of|basically|literally|actually)\b/gi
+  );
   const fillerRatio = wordCount ? (fillerMatches?.length ?? 0) / wordCount : 0;
   const overTime = elapsedSec > TARGET_SEC;
   const progressPct = Math.min(100, (elapsedSec / TARGET_SEC) * 100);
@@ -127,9 +125,8 @@ export default function SelfPresentationTrainer({
   return (
     <div className="mt-7 max-w-[920px]">
       <p className="text-[15px] text-ink-soft">
-        Draft your 5-minute introduction. Speak it out loud while you write — the
-        timer mirrors a real interviewer&apos;s pacing. Hit milestones, then have
-        the AI score it.
+        Draft your 5-minute introduction. Speak it out loud while you write — the timer mirrors a
+        real interviewer&apos;s pacing. Hit milestones, then have the AI score it.
       </p>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_320px]">
@@ -139,9 +136,7 @@ export default function SelfPresentationTrainer({
             <div className="la-mono text-[12px] font-bold tracking-wider text-ink-mute">
               YOUR DRAFT
             </div>
-            <div className="text-[11px] text-ink-mute">
-              {wordCount} words · target ≈ 650–750
-            </div>
+            <div className="text-[11px] text-ink-mute">{wordCount} words · target ≈ 650–750</div>
           </div>
           <textarea
             rows={16}
@@ -163,11 +158,17 @@ export default function SelfPresentationTrainer({
           <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px]">
             <Coach
               ok={wordCount >= 200 && wordCount <= 900}
-              label={wordCount < 200 ? "Bulk it up" : wordCount > 900 ? "Trim it" : "Length on track"}
+              label={
+                wordCount < 200 ? "Bulk it up" : wordCount > 900 ? "Trim it" : "Length on track"
+              }
             />
             <Coach
               ok={fillerRatio < 0.04}
-              label={fillerRatio < 0.04 ? "Low filler" : `Filler ratio ${(fillerRatio * 100).toFixed(1)}%`}
+              label={
+                fillerRatio < 0.04
+                  ? "Low filler"
+                  : `Filler ratio ${(fillerRatio * 100).toFixed(1)}%`
+              }
             />
             <Coach
               ok={/\d/.test(text)}
@@ -186,9 +187,7 @@ export default function SelfPresentationTrainer({
 
         {/* Timer + milestones */}
         <div className="la-card p-5" style={{ borderRadius: 16 }}>
-          <div className="la-mono text-[12px] font-bold tracking-wider text-ink-mute">
-            TIMER
-          </div>
+          <div className="la-mono text-[12px] font-bold tracking-wider text-ink-mute">TIMER</div>
           <div
             className="mt-1 text-5xl font-extrabold tracking-tighter"
             style={{ color: overTime ? "#b45309" : "var(--ink)" }}
@@ -204,9 +203,7 @@ export default function SelfPresentationTrainer({
               }}
             />
           </div>
-          <div className="mt-2 text-[11px] text-ink-mute">
-            Target: {fmt(TARGET_SEC)}
-          </div>
+          <div className="mt-2 text-[11px] text-ink-mute">Target: {fmt(TARGET_SEC)}</div>
 
           <div className="mt-4 flex flex-wrap gap-2">
             {!running ? (
@@ -238,7 +235,7 @@ export default function SelfPresentationTrainer({
             </button>
           </div>
 
-          <div className="mt-5 la-mono text-[11px] font-bold tracking-wider text-ink-mute">
+          <div className="la-mono mt-5 text-[11px] font-bold tracking-wider text-ink-mute">
             MILESTONES
           </div>
           <ul className="mt-2 space-y-1.5 text-[12px]">
@@ -281,9 +278,7 @@ export default function SelfPresentationTrainer({
         </div>
       </div>
 
-      {feedback ? (
-        <FeedbackBlock feedback={feedback} degraded={degraded} />
-      ) : null}
+      {feedback ? <FeedbackBlock feedback={feedback} degraded={degraded} /> : null}
     </div>
   );
 }
@@ -311,7 +306,7 @@ function FeedbackBlock({
   degraded: boolean;
 }) {
   return (
-    <div className="mt-6 la-card p-5" style={{ borderRadius: 16 }}>
+    <div className="la-card mt-6 p-5" style={{ borderRadius: 16 }}>
       {degraded ? (
         <div className="mb-2 text-[11px]" style={{ color: "#b45309" }}>
           AI provider degraded — feedback is generic.
@@ -370,9 +365,7 @@ function Score({ label, v }: { label: string; v: number }) {
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="rounded-lg border border-line-soft p-3">
-      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">
-        {title}
-      </div>
+      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">{title}</div>
       <div className="mt-1">{children}</div>
     </div>
   );
@@ -383,7 +376,9 @@ function List({ items, accent }: { items: string[]; accent: string }) {
     <ul className="space-y-1 text-[12px]">
       {items.map((s, i) => (
         <li key={i} className="flex gap-2 leading-snug">
-          <span style={{ color: accent }} aria-hidden>•</span>
+          <span style={{ color: accent }} aria-hidden>
+            •
+          </span>
           <span>{s}</span>
         </li>
       ))}

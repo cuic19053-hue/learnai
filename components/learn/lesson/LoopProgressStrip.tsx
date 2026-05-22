@@ -26,9 +26,7 @@ export default function LoopProgressStrip({ step }: LoopProgressStripProps) {
             className="flex items-center gap-2 px-2.5 py-2"
             style={{
               borderRadius: 10,
-              border: `1.5px solid ${
-                active ? l.color : done ? `${l.color}55` : "var(--line)"
-              }`,
+              border: `1.5px solid ${active ? l.color : done ? `${l.color}55` : "var(--line)"}`,
               background: active ? `${l.color}12` : done ? "#fff" : "transparent",
             }}
           >
@@ -44,9 +42,7 @@ export default function LoopProgressStrip({ step }: LoopProgressStripProps) {
               {done ? <Check size={11} color="#fff" /> : l.icon}
             </div>
             <div>
-              <div className="la-mono text-[9px] font-bold text-ink-mute">
-                0{l.n}
-              </div>
+              <div className="la-mono text-[9px] font-bold text-ink-mute">0{l.n}</div>
               <div
                 className="text-[12px] font-bold"
                 style={{ color: active ? l.color : "var(--ink-soft)" }}

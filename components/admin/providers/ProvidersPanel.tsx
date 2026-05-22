@@ -80,12 +80,14 @@ export default function ProvidersPanel({ initialProviders }: Props) {
           role="note"
           className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-[12.5px] leading-relaxed text-amber-900"
         >
-          <span aria-hidden className="mt-0.5 text-[16px]">⚠️</span>
+          <span aria-hidden className="mt-0.5 text-[16px]">
+            ⚠️
+          </span>
           <div className="flex-1">
             <div className="font-extrabold">Saves persist for this server process only.</div>
             <p className="mt-0.5">
-              On Vercel and other serverless hosts the in-memory store resets on
-              every cold start. For production, set keys via env vars (
+              On Vercel and other serverless hosts the in-memory store resets on every cold start.
+              For production, set keys via env vars (
               <code className="rounded bg-white px-1 py-[1px] text-[11px]">OPENAI_API_KEY</code>,{" "}
               <code className="rounded bg-white px-1 py-[1px] text-[11px]">ANTHROPIC_API_KEY</code>,{" "}
               <code className="rounded bg-white px-1 py-[1px] text-[11px]">XAI_API_KEY</code>,{" "}
@@ -97,10 +99,7 @@ export default function ProvidersPanel({ initialProviders }: Props) {
 
         {/* Status strip */}
         <div className="mt-5 flex flex-wrap items-center gap-2 text-[12px]">
-          <span
-            className="la-pill"
-            style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}
-          >
+          <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
             ⚡ {providers.filter((p) => p.enabled).length} enabled
           </span>
           <span
@@ -109,10 +108,7 @@ export default function ProvidersPanel({ initialProviders }: Props) {
           >
             🧩 {providers.length} configured · {available.length} available
           </span>
-          <span
-            className="la-pill"
-            style={{ background: "#dcfce7", color: "#166534" }}
-          >
+          <span className="la-pill" style={{ background: "#dcfce7", color: "#166534" }}>
             ● {providers.filter((p) => p.lastTestStatus === "ok").length} healthy
           </span>
         </div>
@@ -174,9 +170,7 @@ export default function ProvidersPanel({ initialProviders }: Props) {
         ) : null}
 
         {/* Routing chain */}
-        <h2 className="mt-10 text-[14px] font-extrabold tracking-tight text-ink">
-          Fallback chain
-        </h2>
+        <h2 className="mt-10 text-[14px] font-extrabold tracking-tight text-ink">Fallback chain</h2>
         <p className="mt-1 text-[12px] text-ink-mute">
           When a higher-priority provider errors out (timeout, 5xx, empty content) the chat engine
           falls through to the next entry — so learners never see a billing error.
@@ -293,9 +287,7 @@ function DefaultProviderCard({
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-[20px] font-extrabold tracking-tight text-ink">
-                {meta.name}
-              </h2>
+              <h2 className="text-[20px] font-extrabold tracking-tight text-ink">{meta.name}</h2>
               <span
                 className="la-pill text-[10px] font-extrabold"
                 style={{ background: meta.color, color: "#fff" }}
@@ -372,7 +364,7 @@ function ProviderCard({
   return (
     <div className="la-card p-4" style={{ borderRadius: 18 }}>
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-start gap-3 min-w-0">
+        <div className="flex min-w-0 items-start gap-3">
           <div
             className="grid h-11 w-11 flex-none place-items-center rounded-xl text-white"
             style={{ background: meta.color, fontWeight: 800, fontSize: 18 }}
@@ -401,9 +393,7 @@ function ProviderCard({
             ) : null}
           </div>
         </div>
-        <span className="la-mono text-[10px] font-extrabold text-ink-mute">
-          #{cfg.priority}
-        </span>
+        <span className="la-mono text-[10px] font-extrabold text-ink-mute">#{cfg.priority}</span>
       </div>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
@@ -430,14 +420,14 @@ function ProviderCard({
         <button
           type="button"
           onClick={onTest}
-          className="ml-auto rounded-md px-2.5 py-1 text-[11px] font-bold text-ink-soft hover:bg-bg-2"
+          className="hover:bg-bg-2 ml-auto rounded-md px-2.5 py-1 text-[11px] font-bold text-ink-soft"
         >
           Test
         </button>
         <button
           type="button"
           onClick={onEdit}
-          className="rounded-md px-2.5 py-1 text-[11px] font-bold text-ink-soft hover:bg-bg-2"
+          className="hover:bg-bg-2 rounded-md px-2.5 py-1 text-[11px] font-bold text-ink-soft"
         >
           Configure
         </button>
@@ -490,18 +480,12 @@ function AvailableCard({ id, onClick }: { id: ProviderId; onClick: () => void })
               </span>
             ) : null}
           </div>
-          <p className="mt-1 text-[12.5px] leading-relaxed text-ink-soft">
-            {meta.description}
-          </p>
+          <p className="mt-1 text-[12.5px] leading-relaxed text-ink-soft">{meta.description}</p>
         </div>
       </div>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {meta.perks.map((p) => (
-          <span
-            key={p}
-            className="la-pill text-[10px]"
-            style={{ background: "var(--bg-2)" }}
-          >
+          <span key={p} className="la-pill text-[10px]" style={{ background: "var(--bg-2)" }}>
             {p}
           </span>
         ))}
@@ -526,15 +510,15 @@ function AddProviderModal({
   return (
     <ModalShell title="Add a provider" onClose={onClose} width={780}>
       <p className="text-[13px] leading-relaxed text-ink-soft">
-        Pick the provider you&apos;d like to add. The next step is a short config form — API key
-        if needed, base URL, default model.
+        Pick the provider you&apos;d like to add. The next step is a short config form — API key if
+        needed, base URL, default model.
       </p>
       <div className="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
         {available.map((id) => (
           <AvailableCard key={id} id={id} onClick={() => onPick(id)} />
         ))}
         {available.length === 0 ? (
-          <div className="rounded-xl border border-line-soft bg-bg-2 px-3 py-3 text-[13px] text-ink-soft">
+          <div className="bg-bg-2 rounded-xl border border-line-soft px-3 py-3 text-[13px] text-ink-soft">
             Every supported provider is already configured.
           </div>
         ) : null}
@@ -618,14 +602,15 @@ function ProviderConfigDrawer({
       ) : null}
       {id === "anthropic" ? (
         <div className="mb-4 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-[12.5px] leading-relaxed text-amber-800">
-          Anthropic uses its own <code>/v1/messages</code> endpoint and{" "}
-          <code>x-api-key</code> header — LearnAI handles the translation automatically.
+          Anthropic uses its own <code>/v1/messages</code> endpoint and <code>x-api-key</code>{" "}
+          header — LearnAI handles the translation automatically.
         </div>
       ) : null}
       {id === "ollama" ? (
-        <div className="mb-4 rounded-xl border border-line bg-bg-2 px-4 py-3 text-[12.5px] leading-relaxed text-ink-soft">
+        <div className="bg-bg-2 mb-4 rounded-xl border border-line px-4 py-3 text-[12.5px] leading-relaxed text-ink-soft">
           Ollama runs on your own machine. Start it with <code>ollama serve</code> then pull a
-          model: <code>ollama pull llama3.2</code>. LearnAI talks to it on <code>localhost:11434</code>.
+          model: <code>ollama pull llama3.2</code>. LearnAI talks to it on{" "}
+          <code>localhost:11434</code>.
         </div>
       ) : null}
 
@@ -717,7 +702,7 @@ function ProviderConfigDrawer({
             </Field>
           ) : (
             <Field label="Status">
-              <div className="rounded-xl border border-line bg-bg-2 px-3 py-2.5 text-[13px] text-ink-soft">
+              <div className="bg-bg-2 rounded-xl border border-line px-3 py-2.5 text-[13px] text-ink-soft">
                 Free — no spend cap needed
               </div>
             </Field>
@@ -725,11 +710,7 @@ function ProviderConfigDrawer({
         </div>
 
         <label className="flex items-center gap-2 rounded-xl border border-line-soft bg-surface-soft px-3 py-2.5 text-[13px] font-semibold text-ink-soft">
-          <input
-            type="checkbox"
-            checked={enabled}
-            onChange={(e) => setEnabled(e.target.checked)}
-          />
+          <input type="checkbox" checked={enabled} onChange={(e) => setEnabled(e.target.checked)} />
           Enabled in the fallback chain
         </label>
 
@@ -779,9 +760,7 @@ function PairingModal({
   const [code, setCode] = useState("");
   const [pending, startTransition] = useTransition();
   const [result, setResult] = useState<
-    | null
-    | { ok: true; latencyMs?: number; sample?: string }
-    | { ok: false; message: string }
+    null | { ok: true; latencyMs?: number; sample?: string } | { ok: false; message: string }
   >(null);
 
   const cleaned = code.toUpperCase().replace(/[^A-Z0-9-]/g, "");
@@ -827,8 +806,8 @@ function PairingModal({
         >
           ruslanmv-ollabridge.hf.space
         </a>{" "}
-        in another tab, sign in, and copy the pairing code from your dashboard.
-        Paste it below — we&apos;ll save it and immediately test the connection.
+        in another tab, sign in, and copy the pairing code from your dashboard. Paste it below —
+        we&apos;ll save it and immediately test the connection.
       </p>
 
       <label className="mt-4 block">
@@ -884,9 +863,7 @@ function PairingModal({
             <>
               <div className="font-extrabold">
                 ✓ Paired and connected
-                {"latencyMs" in result && result.latencyMs
-                  ? ` · ${result.latencyMs} ms`
-                  : ""}
+                {"latencyMs" in result && result.latencyMs ? ` · ${result.latencyMs} ms` : ""}
               </div>
               {"sample" in result && result.sample ? (
                 <div className="la-mono mt-1 text-[11px]">
@@ -905,13 +882,16 @@ function PairingModal({
 
       <ol className="mt-5 space-y-1.5 text-[12px] leading-relaxed text-ink-soft">
         <li>
-          1. Open{" "}
-          <code className="rounded bg-bg-2 px-1">ruslanmv-ollabridge.hf.space</code> in
+          1. Open <code className="bg-bg-2 rounded px-1">ruslanmv-ollabridge.hf.space</code> in
           another tab.
         </li>
         <li>2. Sign in with the account hosting your premium models.</li>
-        <li>3. Click <b>Device Pairing</b> — your dashboard shows a code.</li>
-        <li>4. Paste the code here and click <b>Pair &amp; test</b>.</li>
+        <li>
+          3. Click <b>Device Pairing</b> — your dashboard shows a code.
+        </li>
+        <li>
+          4. Paste the code here and click <b>Pair &amp; test</b>.
+        </li>
       </ol>
     </ModalShell>
   );
@@ -930,11 +910,7 @@ function ModalShell({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      className="fixed inset-0 z-[100] overflow-y-auto"
-    >
+    <div role="dialog" aria-modal="true" className="fixed inset-0 z-[100] overflow-y-auto">
       <div
         aria-hidden
         className="fixed inset-0"
@@ -986,20 +962,10 @@ function Field({
 }
 
 function HealthDot({ status }: { status: string }) {
-  const color =
-    status === "ok"
-      ? "#16a34a"
-      : status === "error"
-        ? "#dc2626"
-        : "#9ca3af";
-  const label =
-    status === "ok" ? "Healthy" : status === "error" ? "Failing" : "Untested";
+  const color = status === "ok" ? "#16a34a" : status === "error" ? "#dc2626" : "#9ca3af";
+  const label = status === "ok" ? "Healthy" : status === "error" ? "Failing" : "Untested";
   return (
-    <span
-      className="la-pill text-[10px]"
-      style={{ background: `${color}22`, color }}
-      title={label}
-    >
+    <span className="la-pill text-[10px]" style={{ background: `${color}22`, color }} title={label}>
       <span
         aria-hidden
         style={{

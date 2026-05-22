@@ -75,9 +75,7 @@ export default function WizardShell({
       aria-labelledby="wt-wiz-title"
       className="fixed inset-0 z-50 grid place-items-start overflow-y-auto bg-[rgba(15,20,48,0.45)] px-3 py-6 sm:py-10"
     >
-      <div
-        className="mx-auto w-full max-w-[960px] overflow-hidden rounded-3xl bg-white shadow-2xl"
-      >
+      <div className="mx-auto w-full max-w-[960px] overflow-hidden rounded-3xl bg-white shadow-2xl">
         <div style={{ height: 6, background: accentGradient }} aria-hidden />
 
         {/* Header */}
@@ -109,7 +107,7 @@ export default function WizardShell({
           <button
             type="button"
             onClick={() => router.push(closeHref)}
-            className="grid h-9 w-9 flex-none place-items-center rounded-lg text-ink-mute hover:bg-bg-2"
+            className="hover:bg-bg-2 grid h-9 w-9 flex-none place-items-center rounded-lg text-ink-mute"
             aria-label="Close wizard"
           >
             ✕
@@ -126,7 +124,7 @@ export default function WizardShell({
                 return (
                   <span key={s} className="contents">
                     <span
-                      className="grid place-items-center rounded-full text-[11px] font-extrabold la-mono"
+                      className="la-mono grid place-items-center rounded-full text-[11px] font-extrabold"
                       style={{
                         width: 26,
                         height: 26,

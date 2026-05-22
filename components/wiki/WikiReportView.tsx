@@ -53,10 +53,8 @@ export default function WikiReportView({ test, worldSlug }: Props) {
       ? Math.max(
           0,
           Math.round(
-            (new Date(attempt.finishedAt).getTime() -
-              new Date(attempt.startedAt).getTime()) /
-              1000,
-          ),
+            (new Date(attempt.finishedAt).getTime() - new Date(attempt.startedAt).getTime()) / 1000
+          )
         )
       : 0;
 
@@ -94,8 +92,8 @@ export default function WikiReportView({ test, worldSlug }: Props) {
       <div className="la-card p-6 text-center" style={{ borderRadius: 18 }}>
         <h2 className="text-[18px] font-extrabold text-ink">No attempt found</h2>
         <p className="mt-2 text-[13px] text-ink-soft">
-          We couldn&apos;t find a finished test on this device. Take the test
-          first — your results stay local until you finish.
+          We couldn&apos;t find a finished test on this device. Take the test first — your results
+          stay local until you finish.
         </p>
         <Link href={`/learn/wiki/${test.id}/quiz`} className="la-btn mt-4">
           Take the test →
@@ -110,10 +108,7 @@ export default function WikiReportView({ test, worldSlug }: Props) {
   return (
     <div className="space-y-6">
       {/* Headline scorecard */}
-      <section
-        className="la-card relative overflow-hidden p-7"
-        style={{ borderRadius: 24 }}
-      >
+      <section className="la-card relative overflow-hidden p-7" style={{ borderRadius: 24 }}>
         <div className="wt-dots absolute inset-0 opacity-60" aria-hidden />
         <div className="relative grid grid-cols-1 gap-6 md:grid-cols-[auto_1fr]">
           <ScoreRing pct={stats.pct} />
@@ -127,9 +122,7 @@ export default function WikiReportView({ test, worldSlug }: Props) {
             <h2 className="mt-3 text-2xl font-extrabold tracking-[-0.01em] text-ink">
               {stats.correct} of {stats.total} correct
             </h2>
-            <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">
-              {verdict.body}
-            </p>
+            <p className="mt-1 text-[14px] leading-relaxed text-ink-soft">{verdict.body}</p>
             <dl className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
               <Stat label="Correct" value={stats.correct} />
               <Stat label="Wrong" value={stats.wrong} />
@@ -138,10 +131,7 @@ export default function WikiReportView({ test, worldSlug }: Props) {
                 value={stats.ungraded}
                 hint="Short answers we couldn't auto-grade"
               />
-              <Stat
-                label="Time"
-                value={`${Math.round(stats.elapsedSec / 60)}m`}
-              />
+              <Stat label="Time" value={`${Math.round(stats.elapsedSec / 60)}m`} />
             </dl>
           </div>
         </div>
@@ -157,9 +147,7 @@ export default function WikiReportView({ test, worldSlug }: Props) {
               </div>
               <div className="text-[15px] font-bold text-ink">
                 {weakest.section}{" "}
-                <span className="text-ink-mute font-mono text-[12px]">
-                  · {weakest.pct}%
-                </span>
+                <span className="font-mono text-[12px] text-ink-mute">· {weakest.pct}%</span>
               </div>
             </div>
             <Link href={`/learn/wiki/${test.id}/train`} className="la-btn">
@@ -171,9 +159,7 @@ export default function WikiReportView({ test, worldSlug }: Props) {
 
       {/* Per-section accuracy */}
       <section className="la-card p-5" style={{ borderRadius: 20 }}>
-        <h3 className="text-[14px] font-extrabold tracking-tight text-ink">
-          Per-section accuracy
-        </h3>
+        <h3 className="text-[14px] font-extrabold tracking-tight text-ink">Per-section accuracy</h3>
         <p className="mt-1 text-[12px] text-ink-mute">
           Lowest-scoring sections first — those are where re-training pays off.
         </p>
@@ -192,11 +178,7 @@ export default function WikiReportView({ test, worldSlug }: Props) {
                   style={{
                     width: `${row.pct}%`,
                     background:
-                      row.pct >= 80
-                        ? "#16a34a"
-                        : row.pct >= 50
-                          ? "var(--brand-grad)"
-                          : "#dc2626",
+                      row.pct >= 80 ? "#16a34a" : row.pct >= 50 ? "var(--brand-grad)" : "#dc2626",
                   }}
                 />
               </div>
@@ -218,7 +200,12 @@ export default function WikiReportView({ test, worldSlug }: Props) {
             const a = attempt.answers.find((x) => x.questionId === q.id);
             return (
               <li key={q.id}>
-                <ReviewCard q={q} response={a?.response ?? ""} correct={a?.correct ?? null} index={i + 1} />
+                <ReviewCard
+                  q={q}
+                  response={a?.response ?? ""}
+                  correct={a?.correct ?? null}
+                  index={i + 1}
+                />
               </li>
             );
           })}
@@ -280,9 +267,7 @@ function ScoreRing({ pct }: { pct: number }) {
       </svg>
       <div className="absolute inset-0 grid place-items-center">
         <div className="text-center">
-          <div className="font-mono text-[28px] font-extrabold text-ink">
-            {pct}%
-          </div>
+          <div className="font-mono text-[28px] font-extrabold text-ink">{pct}%</div>
           <div className="text-[10px] font-extrabold uppercase tracking-wider text-ink-mute">
             Score
           </div>
@@ -292,20 +277,10 @@ function ScoreRing({ pct }: { pct: number }) {
   );
 }
 
-function Stat({
-  label,
-  value,
-  hint,
-}: {
-  label: string;
-  value: string | number;
-  hint?: string;
-}) {
+function Stat({ label, value, hint }: { label: string; value: string | number; hint?: string }) {
   return (
     <div>
-      <dt className="text-[10px] font-extrabold uppercase tracking-wider text-ink-mute">
-        {label}
-      </dt>
+      <dt className="text-[10px] font-extrabold uppercase tracking-wider text-ink-mute">{label}</dt>
       <dd className="font-mono text-[18px] font-extrabold text-ink" title={hint}>
         {value}
       </dd>
@@ -362,21 +337,16 @@ function ReviewCard({
         ? { bg: "#fee2e2", fg: "#991b1b", label: response ? "Wrong" : "Skipped" }
         : { bg: "var(--bg-2)", fg: "var(--ink-soft)", label: "Not graded" };
 
-  const yourAnswer =
-    q.kind === "short_answer"
-      ? response || "—"
-      : describeChoice(q, response);
+  const yourAnswer = q.kind === "short_answer" ? response || "—" : describeChoice(q, response);
   const correctAnswer =
     q.kind === "short_answer"
-      ? q.expectedAnswer ?? "—"
+      ? (q.expectedAnswer ?? "—")
       : describeChoice(q, LETTERS[q.correctIndex ?? -1] ?? "");
 
   return (
     <div className="la-card p-5" style={{ borderRadius: 16 }}>
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <span className="font-mono text-[11px] font-bold text-ink-mute">
-          Q{index}
-        </span>
+        <span className="font-mono text-[11px] font-bold text-ink-mute">Q{index}</span>
         <span
           className="la-pill text-[11px] font-extrabold"
           style={{ background: tone.bg, color: tone.fg }}
@@ -384,9 +354,7 @@ function ReviewCard({
           {tone.label}
         </span>
       </div>
-      <p className="mt-2 text-[15px] font-bold leading-relaxed text-ink">
-        {q.prompt}
-      </p>
+      <p className="mt-2 text-[15px] font-bold leading-relaxed text-ink">{q.prompt}</p>
 
       <dl className="mt-3 grid grid-cols-1 gap-2 sm:grid-cols-2">
         <div className="rounded-xl border border-line-soft bg-surface-soft p-3">

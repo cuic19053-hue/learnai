@@ -46,9 +46,7 @@ export type WikiUrlError =
   | { ok: false; code: "not_an_article"; message: string }
   | { ok: false; code: "empty_title"; message: string };
 
-export type WikiUrlResult =
-  | (ParsedWikiUrl & { ok: true })
-  | WikiUrlError;
+export type WikiUrlResult = (ParsedWikiUrl & { ok: true }) | WikiUrlError;
 
 export function parseWikipediaUrl(input: string): WikiUrlResult {
   if (typeof input !== "string" || !input.trim()) {

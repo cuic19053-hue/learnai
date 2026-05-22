@@ -28,9 +28,8 @@ const VALID: LearnerStage[] = [
 export const GET = handler(async (req: Request) => {
   const url = new URL(req.url);
   const stageParam = url.searchParams.get("stage");
-  const stage = stageParam && (VALID as string[]).includes(stageParam)
-    ? (stageParam as LearnerStage)
-    : null;
+  const stage =
+    stageParam && (VALID as string[]).includes(stageParam) ? (stageParam as LearnerStage) : null;
 
   return ok({
     methods: METHODS,

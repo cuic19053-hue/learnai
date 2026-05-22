@@ -15,20 +15,12 @@
 
 import "server-only";
 import { z } from "zod";
-import {
-  AiProviderError,
-  jsonChat,
-  type ChatMessage,
-} from "@/lib/ai/provider";
+import { AiProviderError, jsonChat, type ChatMessage } from "@/lib/ai/provider";
 import type { ProjectDraft } from "./wizard-config";
 
 /* ── Schema ────────────────────────────────────────────────────────── */
 
-export type ExerciseKind =
-  | "multiple_choice"
-  | "true_false"
-  | "short_answer"
-  | "explain_back";
+export type ExerciseKind = "multiple_choice" | "true_false" | "short_answer" | "explain_back";
 
 export type Exercise = {
   id: string;
@@ -84,7 +76,7 @@ const LessonSchema = z.object({
       z.object({
         term: z.string().min(1).max(80),
         definition: z.string().min(1).max(400),
-      }),
+      })
     )
     .max(8)
     .optional(),
@@ -94,7 +86,7 @@ const LessonSchema = z.object({
 export class ProjectLessonError extends Error {
   constructor(
     message: string,
-    public readonly status: number,
+    public readonly status: number
   ) {
     super(message);
     this.name = "ProjectLessonError";
@@ -195,10 +187,7 @@ export async function generateLesson(draft: ProjectDraft): Promise<ProjectLesson
     });
   } catch (err) {
     if (err instanceof AiProviderError) {
-      throw new ProjectLessonError(
-        `AI provider unavailable: ${err.message}`,
-        err.status,
-      );
+      throw new ProjectLessonError(`AI provider unavailable: ${err.message}`, err.status);
     }
     throw err;
   }
@@ -207,7 +196,7 @@ export async function generateLesson(draft: ProjectDraft): Promise<ProjectLesson
   if (!parsed.success) {
     throw new ProjectLessonError(
       "AI returned a malformed lesson. Try a slightly more specific topic or retry.",
-      502,
+      502
     );
   }
 
@@ -247,7 +236,7 @@ export async function generateLesson(draft: ProjectDraft): Promise<ProjectLesson
   if (valid.length < 1) {
     throw new ProjectLessonError(
       "Generated lesson had no valid exercises. Pick a more substantial topic.",
-      422,
+      422
     );
   }
 

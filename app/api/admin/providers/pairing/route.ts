@@ -34,13 +34,8 @@ export const POST = handler(async (req: Request) => {
 
   const current = listProviders().find((p) => p.id === "ollabridge");
   const base =
-    body.baseUrl?.trim() ||
-    current?.baseUrl ||
-    PROVIDER_CATALOGUE.ollabridge.defaultBaseUrl;
-  const model =
-    body.model?.trim() ||
-    current?.model ||
-    PROVIDER_CATALOGUE.ollabridge.defaultModel;
+    body.baseUrl?.trim() || current?.baseUrl || PROVIDER_CATALOGUE.ollabridge.defaultBaseUrl;
+  const model = body.model?.trim() || current?.model || PROVIDER_CATALOGUE.ollabridge.defaultModel;
 
   const patched = {
     id: "ollabridge" as const,

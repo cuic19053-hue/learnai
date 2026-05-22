@@ -4,13 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
 
-export default function LoginModal({
-  open,
-  onClose,
-}: {
-  open: boolean;
-  onClose: () => void;
-}) {
+export default function LoginModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   useEffect(() => {
     function onEsc(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -48,7 +42,7 @@ export default function LoginModal({
             onClick={() => signIn("google")}
             className="flex w-full items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-3 text-gray-700 hover:bg-gray-50"
           >
-            <span className="text-red-500 font-bold">G</span>
+            <span className="font-bold text-red-500">G</span>
             <span>Continue with Google</span>
           </button>
 

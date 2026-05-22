@@ -17,13 +17,7 @@
  * because every provider declares a spend cap.
  */
 
-export type ProviderId =
-  | "ollabridge"
-  | "openai"
-  | "anthropic"
-  | "xai"
-  | "ollama"
-  | "custom";
+export type ProviderId = "ollabridge" | "openai" | "anthropic" | "xai" | "ollama" | "custom";
 
 export type ProviderProtocol = "openai-compat" | "anthropic";
 
@@ -72,11 +66,7 @@ export const PROVIDER_CATALOGUE: Record<ProviderId, ProviderCatalogueEntry> = {
     defaultModel: "qwen2.5:1.5b",
     description:
       "LearnAI's hosted bridge to open-weight models. Zero-config default — works on every install without an API key.",
-    perks: [
-      "Free for personal use",
-      "Device pairing for premium models",
-      "OpenAI-SDK compatible",
-    ],
+    perks: ["Free for personal use", "Device pairing for premium models", "OpenAI-SDK compatible"],
     color: "#7c3aed",
     logo: "OB",
     envVar: "OLLABRIDGE_URL",
@@ -92,8 +82,7 @@ export const PROVIDER_CATALOGUE: Record<ProviderId, ProviderCatalogueEntry> = {
     protocol: "openai-compat",
     defaultBaseUrl: "https://api.openai.com/v1",
     defaultModel: "gpt-4o-mini",
-    description:
-      "GPT-class models for production-grade quality. Pay-as-you-go billing.",
+    description: "GPT-class models for production-grade quality. Pay-as-you-go billing.",
     perks: ["Strong reasoning", "Vision-capable", "$5 minimum top-up"],
     color: "#10a37f",
     logo: "○",
@@ -110,8 +99,7 @@ export const PROVIDER_CATALOGUE: Record<ProviderId, ProviderCatalogueEntry> = {
     protocol: "anthropic",
     defaultBaseUrl: "https://api.anthropic.com",
     defaultModel: "claude-sonnet-4-6",
-    description:
-      "Claude family for long-context tutoring and careful explanations.",
+    description: "Claude family for long-context tutoring and careful explanations.",
     perks: ["200K context", "Safer outputs", "Pay-as-you-go"],
     color: "#d97706",
     logo: "✱",
@@ -130,11 +118,7 @@ export const PROVIDER_CATALOGUE: Record<ProviderId, ProviderCatalogueEntry> = {
     defaultModel: "grok-4-fast",
     description:
       "Grok models. New accounts receive $25 in promotional credits on signup (30-day expiry).",
-    perks: [
-      "$25 promotional credits",
-      "OpenAI-SDK compatible",
-      "Cheap fast tier",
-    ],
+    perks: ["$25 promotional credits", "OpenAI-SDK compatible", "Cheap fast tier"],
     color: "#0f1430",
     logo: "𝕏",
     envVar: "XAI_API_KEY",
@@ -150,8 +134,7 @@ export const PROVIDER_CATALOGUE: Record<ProviderId, ProviderCatalogueEntry> = {
     protocol: "openai-compat",
     defaultBaseUrl: "http://localhost:11434/v1",
     defaultModel: "llama3.2",
-    description:
-      "Self-hosted local models on your own hardware. Private, offline-capable, free.",
+    description: "Self-hosted local models on your own hardware. Private, offline-capable, free.",
     perks: ["Fully private", "Fast on M-series / RTX", "Free, no quotas"],
     color: "#0ea5a4",
     logo: "🦙",
@@ -229,11 +212,7 @@ export function defaultProviderConfig(): ProviderConfig[] {
 export const SUGGESTED_MODELS: Record<ProviderId, string[]> = {
   ollabridge: ["qwen2.5:1.5b", "qwen2.5:7b", "qwen2.5:14b", "llava:13b"],
   openai: ["gpt-4o-mini", "gpt-4o", "gpt-4.1", "gpt-4.1-mini", "gpt-5"],
-  anthropic: [
-    "claude-haiku-4-5-20251001",
-    "claude-sonnet-4-6",
-    "claude-opus-4-7",
-  ],
+  anthropic: ["claude-haiku-4-5-20251001", "claude-sonnet-4-6", "claude-opus-4-7"],
   xai: ["grok-4-fast", "grok-4", "grok-4-vision"],
   ollama: ["llama3.2", "llama3.2:1b", "qwen2.5", "phi3", "gemma2"],
   custom: [],

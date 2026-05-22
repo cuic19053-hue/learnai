@@ -118,7 +118,7 @@ const SOCRATIC_OPENERS = [
 export function generateForMethod(
   method: LearningMethodId,
   loopStep: LoopStepId,
-  ctx: Ctx,
+  ctx: Ctx
 ): Exercise {
   switch (method) {
     case "socratic": {

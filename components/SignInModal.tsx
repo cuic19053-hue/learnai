@@ -90,9 +90,7 @@ export default function SignInModal({
             email: !!d?.providers?.email,
           });
         })
-        .catch(() =>
-          setStatus({ signInEnabled: false, google: false, email: false }),
-        );
+        .catch(() => setStatus({ signInEnabled: false, google: false, email: false }));
     }
 
     return () => {
@@ -113,7 +111,7 @@ export default function SignInModal({
     setNotice(null);
     if (!status?.signInEnabled || !status.google) {
       setNotice(
-        "Google sign-in isn't enabled on this site yet. You can still use everything as a guest below.",
+        "Google sign-in isn't enabled on this site yet. You can still use everything as a guest below."
       );
       return;
     }
@@ -137,7 +135,7 @@ export default function SignInModal({
       setNotice(
         mode === "signup"
           ? "Account creation isn't enabled here yet — but everything works as a guest, no email needed."
-          : "Sign-in isn't enabled on this site yet. Continue as a guest — your progress lives on this device.",
+          : "Sign-in isn't enabled on this site yet. Continue as a guest — your progress lives on this device."
       );
       return;
     }
@@ -148,7 +146,7 @@ export default function SignInModal({
       try {
         await signIn("email", { email: value, callbackUrl, redirect: false });
         setNotice(
-          `Check your inbox — we sent a sign-in link to ${value}. The link expires in 24 hours.`,
+          `Check your inbox — we sent a sign-in link to ${value}. The link expires in 24 hours.`
         );
       } catch {
         setError("Couldn't send the sign-in email. Try again in a moment.");
@@ -172,9 +170,7 @@ export default function SignInModal({
     });
     setSubmitting(false);
     if (res?.error) {
-      setError(
-        "That email and password didn't match. Try again, or continue as a guest.",
-      );
+      setError("That email and password didn't match. Try again, or continue as a guest.");
       return;
     }
     onClose();
@@ -263,9 +259,7 @@ export default function SignInModal({
                   >
                     {heroTitle}
                   </h2>
-                  <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">
-                    {heroSub}
-                  </p>
+                  <p className="mt-1.5 text-[14px] leading-relaxed text-ink-soft">{heroSub}</p>
 
                   {/* Google */}
                   <button
@@ -289,10 +283,7 @@ export default function SignInModal({
 
                   {/* Email form */}
                   <form onSubmit={onEmailContinue} noValidate>
-                    <label
-                      htmlFor="signin-email"
-                      className="text-[13px] font-bold text-ink-soft"
-                    >
+                    <label htmlFor="signin-email" className="text-[13px] font-bold text-ink-soft">
                       Email address
                     </label>
                     <div className="relative mt-1.5">
@@ -478,15 +469,7 @@ export default function SignInModal({
 }
 
 /* ── Perk row ──────────────────────────────────────────────────────── */
-function Perk({
-  icon,
-  title,
-  body,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  body: string;
-}) {
+function Perk({ icon, title, body }: { icon: React.ReactNode; title: string; body: string }) {
   return (
     <li className="flex gap-3.5">
       <div
@@ -507,13 +490,7 @@ function Perk({
 /* ── Icons ─────────────────────────────────────────────────────────── */
 function ShieldIcon() {
   return (
-    <svg
-      width="60"
-      height="60"
-      viewBox="0 0 60 60"
-      aria-hidden
-      style={{ color: "var(--brand-1)" }}
-    >
+    <svg width="60" height="60" viewBox="0 0 60 60" aria-hidden style={{ color: "var(--brand-1)" }}>
       <path
         d="M30 6l18 7v13c0 11.5-7.5 22-18 26-10.5-4-18-14.5-18-26V13z"
         fill="none"
@@ -535,7 +512,17 @@ function ShieldIcon() {
 
 function MonitorIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--brand-1)" }}>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ color: "var(--brand-1)" }}
+    >
       <rect x="3" y="4" width="18" height="13" rx="2" />
       <path d="M8 21h8M12 17v4" />
     </svg>
@@ -544,7 +531,17 @@ function MonitorIcon() {
 
 function LockIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--brand-1)" }}>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ color: "var(--brand-1)" }}
+    >
       <rect x="4" y="11" width="16" height="10" rx="2" />
       <path d="M8 11V8a4 4 0 0 1 8 0v3" />
     </svg>
@@ -553,7 +550,17 @@ function LockIcon() {
 
 function BoltIcon() {
   return (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: "var(--brand-1)" }}>
+    <svg
+      width="22"
+      height="22"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      style={{ color: "var(--brand-1)" }}
+    >
       <path d="M13 2L4 14h7l-1 8 9-12h-7z" />
     </svg>
   );
@@ -570,10 +577,7 @@ function GoogleGlyph() {
         d="M9 18c2.4 0 4.5-.8 6-2.2l-2.9-2.2c-.8.5-1.8.9-3.1.9-2.4 0-4.4-1.6-5.2-3.8H.9v2.3A9 9 0 0 0 9 18z"
         fill="#34A853"
       />
-      <path
-        d="M3.8 10.7a5.4 5.4 0 0 1 0-3.4V5H.9a9 9 0 0 0 0 8l2.9-2.3z"
-        fill="#FBBC05"
-      />
+      <path d="M3.8 10.7a5.4 5.4 0 0 1 0-3.4V5H.9a9 9 0 0 0 0 8l2.9-2.3z" fill="#FBBC05" />
       <path
         d="M9 3.6c1.3 0 2.5.5 3.5 1.4l2.6-2.6A9 9 0 0 0 .9 5l2.9 2.3C4.6 5.2 6.6 3.6 9 3.6z"
         fill="#EA4335"

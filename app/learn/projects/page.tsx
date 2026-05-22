@@ -2,11 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
-import {
-  DEMO_PROJECTS,
-  listDrafts,
-  SUBJECT_ACCENT,
-} from "@/lib/projects/store";
+import { DEMO_PROJECTS, listDrafts, SUBJECT_ACCENT } from "@/lib/projects/store";
 import { configFor } from "@/lib/projects/wizard-config";
 
 export const metadata: Metadata = {
@@ -23,30 +19,100 @@ type Project = {
 
 const SAMPLE: Record<string, Project[]> = {
   kids: [
-    { title: "Paint a jungle scene", brief: "Pick colours and animals to paint your jungle.", status: "in_progress", tags: ["colours", "animals"] },
-    { title: "Tell a 3-word story", brief: "Make a tiny story with only three words.", status: "idea", tags: ["stories"] },
+    {
+      title: "Paint a jungle scene",
+      brief: "Pick colours and animals to paint your jungle.",
+      status: "in_progress",
+      tags: ["colours", "animals"],
+    },
+    {
+      title: "Tell a 3-word story",
+      brief: "Make a tiny story with only three words.",
+      status: "idea",
+      tags: ["stories"],
+    },
   ],
   explorer: [
-    { title: "Volcano lab notebook", brief: "Record your three volcano experiments.", status: "in_progress", tags: ["science", "notebook"] },
-    { title: "Mini weather diary", brief: "Track temperature and clouds for one week.", status: "idea", tags: ["science"] },
+    {
+      title: "Volcano lab notebook",
+      brief: "Record your three volcano experiments.",
+      status: "in_progress",
+      tags: ["science", "notebook"],
+    },
+    {
+      title: "Mini weather diary",
+      brief: "Track temperature and clouds for one week.",
+      status: "idea",
+      tags: ["science"],
+    },
   ],
   builder: [
-    { title: "Python calculator", brief: "Build add, subtract, divide-by-zero handling.", status: "in_progress", tags: ["python", "logic"] },
-    { title: "Number-guessing game", brief: "Random number, 5 attempts, helpful hints.", status: "completed", tags: ["python", "loops"] },
-    { title: "Tic-tac-toe in HTML", brief: "Two-player game, no framework.", status: "idea", tags: ["html", "js"] },
+    {
+      title: "Python calculator",
+      brief: "Build add, subtract, divide-by-zero handling.",
+      status: "in_progress",
+      tags: ["python", "logic"],
+    },
+    {
+      title: "Number-guessing game",
+      brief: "Random number, 5 attempts, helpful hints.",
+      status: "completed",
+      tags: ["python", "loops"],
+    },
+    {
+      title: "Tic-tac-toe in HTML",
+      brief: "Two-player game, no framework.",
+      status: "idea",
+      tags: ["html", "js"],
+    },
   ],
   scholar: [
-    { title: "Trigonometry study notes", brief: "One-page reference signal for sine/cosine.", status: "in_progress", tags: ["math", "exam"] },
-    { title: "Probability flashcard set", brief: "Build 25 spaced-repetition cards.", status: "idea", tags: ["math"] },
+    {
+      title: "Trigonometry study notes",
+      brief: "One-page reference signal for sine/cosine.",
+      status: "in_progress",
+      tags: ["math", "exam"],
+    },
+    {
+      title: "Probability flashcard set",
+      brief: "Build 25 spaced-repetition cards.",
+      status: "idea",
+      tags: ["math"],
+    },
   ],
   adult: [
-    { title: "VPC reference diagram", brief: "Hand-drawn map of subnets, route tables, NAT.", status: "in_progress", tags: ["aws", "networking"] },
-    { title: "IAM policy library", brief: "10 production-ready least-privilege policies.", status: "idea", tags: ["aws", "security"] },
-    { title: "Cost-bounded chatbot", brief: "Add token budgeting to an LLM endpoint.", status: "completed", tags: ["ai", "cost"] },
+    {
+      title: "VPC reference diagram",
+      brief: "Hand-drawn map of subnets, route tables, NAT.",
+      status: "in_progress",
+      tags: ["aws", "networking"],
+    },
+    {
+      title: "IAM policy library",
+      brief: "10 production-ready least-privilege policies.",
+      status: "idea",
+      tags: ["aws", "security"],
+    },
+    {
+      title: "Cost-bounded chatbot",
+      brief: "Add token budgeting to an LLM endpoint.",
+      status: "completed",
+      tags: ["ai", "cost"],
+    },
   ],
   senior: [
-    { title: "My contacts cheat-sheet", brief: "A simple list of who to call for what.", status: "in_progress", tags: ["practical"] },
-    { title: "Password notebook", brief: "Write down logins safely, on paper.", status: "idea", tags: ["safety"] },
+    {
+      title: "My contacts cheat-sheet",
+      brief: "A simple list of who to call for what.",
+      status: "in_progress",
+      tags: ["practical"],
+    },
+    {
+      title: "Password notebook",
+      brief: "Write down logins safely, on paper.",
+      status: "idea",
+      tags: ["safety"],
+    },
   ],
 };
 
@@ -81,10 +147,7 @@ export default async function ProjectsPage({
       navItems={buildLearnerNav({ world, active: "projects" })}
       pageContext={{ kind: "missions", worldLabel: world.journey.name }}
     >
-      <Link
-        href={world.homePath}
-        className="text-[13px] font-bold text-ink-soft hover:text-ink"
-      >
+      <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
         ← Back to {world.journey.name} home
       </Link>
 
@@ -103,7 +166,8 @@ export default async function ProjectsPage({
             Projects
           </h1>
           <p className="mt-1 text-[15px] text-ink-soft">
-            Build something real. {projects.length} project{projects.length === 1 ? "" : "s"} in the {world.journey.name} world.
+            Build something real. {projects.length} project{projects.length === 1 ? "" : "s"} in the{" "}
+            {world.journey.name} world.
           </p>
         </div>
         <Link
@@ -144,12 +208,13 @@ export default async function ProjectsPage({
         </div>
         <div className="min-w-0 flex-1">
           <h3 className="text-[17px] font-extrabold tracking-tight text-ink">
-            Stuck for an idea? {world.teacherName} can build one with you in {config.variant === "calm" ? "2" : config.variant === "parent" ? "1" : "4"} step
+            Stuck for an idea? {world.teacherName} can build one with you in{" "}
+            {config.variant === "calm" ? "2" : config.variant === "parent" ? "1" : "4"} step
             {config.variant === "standard" ? "s" : ""}.
           </h3>
           <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
-            Tell us the topic and the goal — we'll generate a {config.defaultPaceCopy} plan grounded in
-            your weak areas and your real sources.
+            Tell us the topic and the goal — we'll generate a {config.defaultPaceCopy} plan grounded
+            in your weak areas and your real sources.
           </p>
         </div>
         <Link
@@ -164,9 +229,7 @@ export default async function ProjectsPage({
       {/* Ready-to-use demo gallery — uniform rendering for every topic */}
       <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3">
         <div>
-          <h2 className="text-lg font-extrabold tracking-tight text-ink">
-            Ready-to-use examples
-          </h2>
+          <h2 className="text-lg font-extrabold tracking-tight text-ink">Ready-to-use examples</h2>
           <p className="mt-1 text-[13px] text-ink-mute">
             Five real projects built with this wizard. Each one is one tap away from running.
           </p>
@@ -200,10 +263,10 @@ export default async function ProjectsPage({
                   {d.audience}
                 </span>
               </div>
-              <h3 className="mt-2 text-[16px] font-extrabold tracking-tight text-ink line-clamp-2">
+              <h3 className="mt-2 line-clamp-2 text-[16px] font-extrabold tracking-tight text-ink">
                 {d.topic}
               </h3>
-              <p className="mt-1 flex-1 text-[12.5px] leading-relaxed text-ink-soft line-clamp-3">
+              <p className="mt-1 line-clamp-3 flex-1 text-[12.5px] leading-relaxed text-ink-soft">
                 {d.blurb}
               </p>
               <div className="mt-3 flex items-center justify-between text-[11px] text-ink-mute">

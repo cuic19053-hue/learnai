@@ -11,15 +11,8 @@ export const dynamic = "force-dynamic";
 const BodySchema = z.object({
   url: z.string().min(8).max(2_000),
   difficulty: z.enum(["undergrad", "intermediate", "advanced"]).default("intermediate"),
-  format: z
-    .enum(["mixed", "multiple_choice", "short_answer", "true_false"])
-    .default("mixed"),
-  count: z
-    .number()
-    .int()
-    .min(5)
-    .max(40)
-    .default(10),
+  format: z.enum(["mixed", "multiple_choice", "short_answer", "true_false"]).default("mixed"),
+  count: z.number().int().min(5).max(40).default(10),
   language: z.string().min(2).max(8).optional(),
 });
 
@@ -55,7 +48,7 @@ export const POST = handler(async (req: Request) => {
     if (sections.length === 0) {
       return fail(
         422,
-        "Couldn't extract enough teaching content from this article. Try a more substantial topic.",
+        "Couldn't extract enough teaching content from this article. Try a more substantial topic."
       );
     }
     article = {
@@ -70,11 +63,15 @@ export const POST = handler(async (req: Request) => {
   } catch (err) {
     if (err instanceof WikiClientError) {
       const status =
-        err.code === "rate_limited" ? 429 :
-        err.code === "timeout" ? 504 :
-        err.code === "disambiguation" ? 400 :
-        err.code === "not_found" ? 404 :
-        502;
+        err.code === "rate_limited"
+          ? 429
+          : err.code === "timeout"
+            ? 504
+            : err.code === "disambiguation"
+              ? 400
+              : err.code === "not_found"
+                ? 404
+                : 502;
       return fail(status, err.message);
     }
     throw err;

@@ -1,9 +1,5 @@
 import type { LearnerStage } from "./stages";
-import {
-  type LearningMethodId,
-  type LoopStepId,
-  planForStage,
-} from "./methods";
+import { type LearningMethodId, type LoopStepId, planForStage } from "./methods";
 import { type Exercise, generateForMethod } from "./quizzes";
 
 export type LessonTask = {
@@ -92,15 +88,18 @@ function tasksFor(stage: LearnerStage, goal: string, count: number): LessonTask[
       base.push(
         { prompt: `What is one fact you know about ${goal.toLowerCase()}?` },
         { prompt: "Pick the best answer in the mini quiz." },
-        { prompt: "Tell me one new thing you learned." },
+        { prompt: "Tell me one new thing you learned." }
       );
       break;
     case "BUILDER":
       base.push(
         { prompt: `Plan the steps to solve: ${goal}.` },
-        { prompt: "Write a first attempt. Use a hint if stuck.", hint: "Start with the smallest working piece." },
+        {
+          prompt: "Write a first attempt. Use a hint if stuck.",
+          hint: "Start with the smallest working piece.",
+        },
         { prompt: "Find one bug and fix it." },
-        { prompt: "Explain in one sentence what you changed." },
+        { prompt: "Explain in one sentence what you changed." }
       );
       break;
     case "SCHOLAR":
@@ -109,7 +108,7 @@ function tasksFor(stage: LearnerStage, goal: string, count: number): LessonTask[
         { prompt: "Solve a typical exam-style question." },
         { prompt: "Identify the trap most students fall into." },
         { prompt: "Redo the question you got wrong, with feedback applied." },
-        { prompt: "Summarise the rule you will remember tomorrow." },
+        { prompt: "Summarise the rule you will remember tomorrow." }
       );
       break;
     case "UNIVERSITY":
@@ -120,27 +119,20 @@ function tasksFor(stage: LearnerStage, goal: string, count: number): LessonTask[
         { prompt: "Walk through a real-world scenario." },
         { prompt: "Answer two exam-grade questions." },
         { prompt: "Review one mistake and write a correction note." },
-        { prompt: "Plan the next session topic." },
+        { prompt: "Plan the next session topic." }
       );
       break;
     case "SENIOR":
       base.push(
         { prompt: `Try the first step for ${goal.toLowerCase()}. Take your time.` },
-        { prompt: "Repeat it once on your own. I will watch and help." },
+        { prompt: "Repeat it once on your own. I will watch and help." }
       );
       break;
   }
   return base.slice(0, count);
 }
 
-const LOOP_STEPS: LoopStepId[] = [
-  "hook",
-  "explain",
-  "practice",
-  "feedback",
-  "reflect",
-  "evolve",
-];
+const LOOP_STEPS: LoopStepId[] = ["hook", "explain", "practice", "feedback", "reflect", "evolve"];
 
 export function generateLesson(input: {
   stage: LearnerStage;
@@ -155,7 +147,7 @@ export function generateLesson(input: {
 
   const methodPlan = planForStage(stage);
   const exercises: Exercise[] = LOOP_STEPS.map((step) =>
-    generateForMethod(methodPlan[step], step, { topic: goal, stage }),
+    generateForMethod(methodPlan[step], step, { topic: goal, stage })
   );
 
   return {

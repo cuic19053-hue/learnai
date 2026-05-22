@@ -32,9 +32,7 @@ export default function FitAnalysisStep({
             ))}
           </div>
         </div>
-        <p className="mt-4 text-sm text-ink-mute">
-          Reading the job description and your profile…
-        </p>
+        <p className="mt-4 text-sm text-ink-mute">Reading the job description and your profile…</p>
       </div>
     );
   }
@@ -64,8 +62,8 @@ export default function FitAnalysisStep({
     <div className="mt-7 max-w-[920px] space-y-4">
       {degraded ? (
         <div className="la-card p-3 text-xs" style={{ borderRadius: 12, background: "#fffbeb" }}>
-          <strong>Heads-up:</strong> the AI provider was unreachable, so this is a
-          quick deterministic skeleton. You can continue — or{" "}
+          <strong>Heads-up:</strong> the AI provider was unreachable, so this is a quick
+          deterministic skeleton. You can continue — or{" "}
           <button onClick={onRetry} className="text-brand-1 underline">
             re-run the analysis
           </button>{" "}
@@ -93,7 +91,11 @@ export default function FitAnalysisStep({
           accent="#dc2626"
         />
         <ListBlock title="Risk areas" items={analysis.riskAreas} accent="#b45309" />
-        <ListBlock title="Recommended path" items={analysis.recommendedPath} accent="var(--brand-1)" />
+        <ListBlock
+          title="Recommended path"
+          items={analysis.recommendedPath}
+          accent="var(--brand-1)"
+        />
       </div>
 
       {focusAreas.length ? (
@@ -119,9 +121,7 @@ export default function FitAnalysisStep({
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="la-card p-4" style={{ borderRadius: 16 }}>
-      <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
-        {title}
-      </div>
+      <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">{title}</div>
       <div className="mt-2 text-sm">{children}</div>
     </div>
   );

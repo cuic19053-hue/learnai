@@ -40,7 +40,11 @@ const PATTERNS: Match[] = [
   { area: "frontend", pattern: /\b(react|next\.?js|frontend|front-end)\b/i, weight: 2 },
   { area: "system_design", pattern: /\bsystem design\b|scalab(le|ility)|architect/i, weight: 4 },
   { area: "sql", pattern: /\bsql\b|postgres|mysql|window function/i, weight: 4 },
-  { area: "distributed", pattern: /\bdistributed (systems?|services?)\b|microservice|eventual consistency/i, weight: 3 },
+  {
+    area: "distributed",
+    pattern: /\bdistributed (systems?|services?)\b|microservice|eventual consistency/i,
+    weight: 3,
+  },
   { area: "incidents", pattern: /\bincident|on[- ]call|production (issues?|debug)/i, weight: 4 },
   { area: "leadership", pattern: /\blead(er|ership|ing)\b|manag(e|ing) (a|the) team/i, weight: 5 },
   { area: "hiring", pattern: /\bhir(e|ing)\b|recruit/i, weight: 3 },
@@ -75,7 +79,7 @@ const LABELS: Record<FocusArea, string> = {
  * positive score, ordered by weight desc.
  */
 export function detectFocusAreas(
-  jd: string,
+  jd: string
 ): Array<{ area: FocusArea; label: string; score: number }> {
   const scored = new Map<FocusArea, number>();
   for (const { area, pattern, weight } of PATTERNS) {

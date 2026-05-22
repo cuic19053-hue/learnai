@@ -29,7 +29,7 @@ function dayDiff(aIso: string, bIso: string): number {
 function withWorld(
   state: ProgressState,
   slug: string,
-  mutator: (w: WorldProgress) => WorldProgress,
+  mutator: (w: WorldProgress) => WorldProgress
 ): ProgressState {
   const existing: WorldProgress = state.worlds[slug] ?? {
     xp: 0,
@@ -51,7 +51,9 @@ function withStreak(state: ProgressState, now: Date): ProgressState {
   if (last) {
     const diff = dayDiff(last, today);
     if (diff === 1) current = state.streak.current + 1;
-    else if (diff <= 0) current = state.streak.current; // clock skew — defensive
+    else if (diff <= 0) {
+      current = state.streak.current;
+    } // clock skew — defensive
     else current = 1; // missed at least one day → reset to 1
   }
   return {
@@ -90,10 +92,7 @@ export function safeParseProgress(raw: unknown): ProgressState {
   };
 }
 
-export function progressReducer(
-  state: ProgressState,
-  action: ProgressAction,
-): ProgressState {
+export function progressReducer(state: ProgressState, action: ProgressAction): ProgressState {
   switch (action.type) {
     case "hydrate":
       return action.state;
@@ -150,7 +149,5 @@ export function progressReducer(
  * the slug has never been touched.
  */
 export function selectWorld(state: ProgressState, slug: string): WorldProgress {
-  return (
-    state.worlds[slug] ?? { xp: 0, lessonsCompleted: 0, lastSeen: null }
-  );
+  return state.worlds[slug] ?? { xp: 0, lessonsCompleted: 0, lastSeen: null };
 }

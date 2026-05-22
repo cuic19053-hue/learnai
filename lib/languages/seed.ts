@@ -5,12 +5,7 @@
  * out of the box. Contributors can grow per-language curricula via PR.
  */
 
-import type {
-  CefrLevel,
-  LanguageCode,
-  LanguageLevelCurriculum,
-  LevelModule,
-} from "./types";
+import type { CefrLevel, LanguageCode, LanguageLevelCurriculum, LevelModule } from "./types";
 
 /** Empty placeholder so higher levels render a "Coming soon" state. */
 const emptyLevel = (level: CefrLevel): LanguageLevelCurriculum => ({
@@ -479,8 +474,6 @@ export const SEED_CURRICULA: Record<LanguageCode, LanguageLevelCurriculum[]> = {
   ]),
 };
 
-export function curriculumFor(
-  code: LanguageCode,
-): LanguageLevelCurriculum[] {
+export function curriculumFor(code: LanguageCode): LanguageLevelCurriculum[] {
   return SEED_CURRICULA[code] ?? [];
 }

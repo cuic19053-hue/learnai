@@ -28,7 +28,9 @@ export const POST = handler(async (req: Request) => {
     limit: 20,
     windowMs: 60_000,
   });
-  if (!limit.allowed) return fail(429, "Too many projects created in a short window — try again in a minute.");
+  if (!limit.allowed) {
+    return fail(429, "Too many projects created in a short window — try again in a minute.");
+  }
 
   const body = BodySchema.parse(await req.json());
 

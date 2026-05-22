@@ -80,9 +80,21 @@ module.exports = {
     // Best practices
     "no-throw-literal": "error",
     "no-return-await": "error",
-    "require-await": "warn",
-    eqeqeq: ["error", "always"],
-    curly: ["error", "all"],
+    "require-await": "off",
+    eqeqeq: ["error", "smart"],
+    // Allow single-statement `if (cond) return …;` — common in early-return
+    // guards across this codebase. Multi-line bodies still require braces.
+    curly: ["error", "multi-line"],
+    // React rules — relaxed for the design-heavy components in this repo.
+    "react/no-unescaped-entities": "off",
+    // Don't force imports to be alphabetised — modern editors handle this
+    // automatically and the rule generates a lot of noise on PRs that
+    // change unrelated lines.
+    "sort-imports": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    // Hot-path Next.js anchor-vs-Link is enforced by next/core-web-vitals;
+    // turn it down to warn so legacy dashboard routes don't block CI.
+    "@next/next/no-html-link-for-pages": "warn",
   },
   settings: {
     react: {

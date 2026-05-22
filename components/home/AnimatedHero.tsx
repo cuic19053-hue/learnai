@@ -55,14 +55,14 @@ const SCENARIOS: Scenario[] = [
     title: "Why does a volcano erupt? 🌋",
     stepLabel: "Step 3 of 6 · Practice",
     illustrationId: "lessons/volcano-cross-section",
-    illustrationLabel:
-      "Cross-section of a volcano showing magma chamber, vent, and ash cloud",
+    illustrationLabel: "Cross-section of a volcano showing magma chamber, vent, and ash cloud",
     questionLabel: "Drag the labels to the right layer",
     options: ["Magma chamber", "Vent", "Ash cloud"],
     correctIndex: 1,
     teacherEmoji: "🦊",
     teacherName: "Nora",
-    teacherReply: "Nice catch on the magma chamber! Want to see what happens when pressure builds up?",
+    teacherReply:
+      "Nice catch on the magma chamber! Want to see what happens when pressure builds up?",
     xpLabel: "🏆 +20 XP earned",
     progressFilled: 3,
   },
@@ -138,7 +138,8 @@ const SCENARIOS: Scenario[] = [
     correctIndex: 0,
     teacherEmoji: "🌿",
     teacherName: "Sage",
-    teacherReply: "Well spotted. Real banks never ask you to verify by clicking a link in 24 hours.",
+    teacherReply:
+      "Well spotted. Real banks never ask you to verify by clicking a link in 24 hours.",
     xpLabel: "👏 Well done",
     progressFilled: 3,
   },
@@ -200,7 +201,11 @@ export default function AnimatedHero() {
         >
           <motion.span
             className="la-pill"
-            style={{ background: "#fff", boxShadow: "0 0 0 1px var(--line)", color: "var(--brand-1)" }}
+            style={{
+              background: "#fff",
+              boxShadow: "0 0 0 1px var(--line)",
+              color: "var(--brand-1)",
+            }}
             variants={{
               hidden: reduce ? { opacity: 1, x: 0 } : { opacity: 0, x: -16 },
               show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -254,8 +259,8 @@ export default function AnimatedHero() {
               show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
             }}
           >
-            LearnAI gives every learner a personal AI teacher, with lessons adapted
-            to their age, pace, and goals.
+            LearnAI gives every learner a personal AI teacher, with lessons adapted to their age,
+            pace, and goals.
           </motion.p>
 
           <motion.div
@@ -438,9 +443,7 @@ export default function AnimatedHero() {
                         scale: visible(5) && isCorrect ? [1, 1.04, 1] : 1,
                         background: selected ? scenario.badgeBg : "#fff",
                         borderColor: selected ? scenario.badgeColor : "var(--line)",
-                        boxShadow: selected
-                          ? "0 0 0 4px rgba(46,91,255,0.12)"
-                          : "none",
+                        boxShadow: selected ? "0 0 0 4px rgba(46,91,255,0.12)" : "none",
                       }}
                       transition={{
                         opacity: { duration: 0.3, delay: i * 0.08 },

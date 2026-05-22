@@ -14,8 +14,7 @@
 
 import "server-only";
 
-const DEFAULT_UA =
-  "LearnAI-WikiTest/1.0 (https://github.com/ruslanmv/learnai; ai@learnai.example)";
+const DEFAULT_UA = "LearnAI-WikiTest/1.0 (https://github.com/ruslanmv/learnai; ai@learnai.example)";
 const USER_AGENT = process.env.WIKI_USER_AGENT?.trim() || DEFAULT_UA;
 const FETCH_TIMEOUT_MS = 12_000;
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
@@ -45,7 +44,7 @@ export class WikiClientError extends Error {
       | "rate_limited"
       | "upstream_error"
       | "timeout"
-      | "network",
+      | "network"
   ) {
     super(message);
     this.name = "WikiClientError";
@@ -95,7 +94,7 @@ async function fetchWithRetry(url: string): Promise<Response> {
       throw new WikiClientError(
         `Network error reaching Wikipedia: ${(err2 as Error).message}`,
         502,
-        "network",
+        "network"
       );
     }
   }
@@ -106,10 +105,7 @@ async function fetchWithRetry(url: string): Promise<Response> {
  * with code "disambiguation" if the page is a disambiguation listing
  * (the user has to pick a more specific URL).
  */
-export async function fetchSummary(
-  lang: string,
-  title: string,
-): Promise<WikiSummary> {
+export async function fetchSummary(lang: string, title: string): Promise<WikiSummary> {
   const k = key(lang, title);
   const cached = summaryCache.get(k);
   if (cached && cached.expiresAt > Date.now()) return cached.value;
@@ -118,24 +114,20 @@ export async function fetchSummary(
   const res = await fetchWithRetry(url);
 
   if (res.status === 404) {
-    throw new WikiClientError(
-      `Article not found: ${title.replace(/_/g, " ")}.`,
-      404,
-      "not_found",
-    );
+    throw new WikiClientError(`Article not found: ${title.replace(/_/g, " ")}.`, 404, "not_found");
   }
   if (res.status === 429) {
     throw new WikiClientError(
       "Wikipedia rate-limited the request. Please retry shortly.",
       429,
-      "rate_limited",
+      "rate_limited"
     );
   }
   if (!res.ok) {
     throw new WikiClientError(
       `Wikipedia returned ${res.status} for the summary.`,
       502,
-      "upstream_error",
+      "upstream_error"
     );
   }
 
@@ -152,7 +144,7 @@ export async function fetchSummary(
     throw new WikiClientError(
       `This URL points to a disambiguation page. Open one of the listed articles and paste that URL instead.`,
       400,
-      "disambiguation",
+      "disambiguation"
     );
   }
 
@@ -176,10 +168,7 @@ export async function fetchSummary(
  * Fetch the full article HTML. Returns the raw HTML body — call
  * `extractSections` from ./extract.ts to turn this into clean sections.
  */
-export async function fetchArticleHtml(
-  lang: string,
-  title: string,
-): Promise<string> {
+export async function fetchArticleHtml(lang: string, title: string): Promise<string> {
   const k = key(lang, title);
   const cached = htmlCache.get(k);
   if (cached && cached.expiresAt > Date.now()) return cached.value;
@@ -191,17 +180,13 @@ export async function fetchArticleHtml(
     throw new WikiClientError(`Article not found: ${title}`, 404, "not_found");
   }
   if (res.status === 429) {
-    throw new WikiClientError(
-      "Wikipedia rate-limited the request.",
-      429,
-      "rate_limited",
-    );
+    throw new WikiClientError("Wikipedia rate-limited the request.", 429, "rate_limited");
   }
   if (!res.ok) {
     throw new WikiClientError(
       `Wikipedia returned ${res.status} for the article body.`,
       502,
-      "upstream_error",
+      "upstream_error"
     );
   }
 

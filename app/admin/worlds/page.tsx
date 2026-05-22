@@ -4,12 +4,96 @@ import { Crumbs, PageHeader } from "@/components/admin/shared";
 export const metadata: Metadata = { title: "Admin · Worlds" };
 
 const WORLDS = [
-  { n: "Little Learner", ic: "🦁", ages: "3–6", c: "#ec4899", bg: "#fce0ec", active: true, count: 312, teacher: "Milo the Owl", voice: "on", avatar: "on", safety: "strict", samples: ["Counting 1–10", "Animals", "Colors"], loop: 74 },
-  { n: "Explorer", ic: "🚀", ages: "7–11", c: "#4338ca", bg: "#e0e7ff", active: true, count: 488, teacher: "Luna", voice: "opt", avatar: "on", safety: "strict", samples: ["Volcanoes", "Sharks", "Slime science"], loop: 49 },
-  { n: "Builder", ic: "🛠️", ages: "12–15", c: "#7c3aed", bg: "#efe7ff", active: true, count: 402, teacher: "Ada Jr.", voice: "off", avatar: "opt", safety: "guided", samples: ["Python from scratch", "Discord bot", "Generative art"], loop: 42 },
-  { n: "Scholar", ic: "🎓", ages: "16–18", c: "#c2410c", bg: "#fff1d6", active: true, count: 580, teacher: "Mentor Max", voice: "opt", avatar: "opt", safety: "standard", samples: ["Trig sprint", "AP Bio · cells", "APUSH"], loop: 64 },
-  { n: "Professional", ic: "💼", ages: "18+", c: "#0f766e", bg: "#d6f1f0", active: true, count: 286, teacher: "Professor Turing", voice: "opt", avatar: "opt", safety: "standard", samples: ["AWS SAA", "CISSP", "System design L6"], loop: 58 },
-  { n: "Senior Learner", ic: "🌿", ages: "65+", c: "#16a34a", bg: "#d1fae5", active: false, count: 80, teacher: "Sofia", voice: "on", avatar: "off", safety: "standard", samples: ["Scam messages", "Video calls", "Memory games"], loop: 81 },
+  {
+    n: "Little Learner",
+    ic: "🦁",
+    ages: "3–6",
+    c: "#ec4899",
+    bg: "#fce0ec",
+    active: true,
+    count: 312,
+    teacher: "Milo the Owl",
+    voice: "on",
+    avatar: "on",
+    safety: "strict",
+    samples: ["Counting 1–10", "Animals", "Colors"],
+    loop: 74,
+  },
+  {
+    n: "Explorer",
+    ic: "🚀",
+    ages: "7–11",
+    c: "#4338ca",
+    bg: "#e0e7ff",
+    active: true,
+    count: 488,
+    teacher: "Luna",
+    voice: "opt",
+    avatar: "on",
+    safety: "strict",
+    samples: ["Volcanoes", "Sharks", "Slime science"],
+    loop: 49,
+  },
+  {
+    n: "Builder",
+    ic: "🛠️",
+    ages: "12–15",
+    c: "#7c3aed",
+    bg: "#efe7ff",
+    active: true,
+    count: 402,
+    teacher: "Ada Jr.",
+    voice: "off",
+    avatar: "opt",
+    safety: "guided",
+    samples: ["Python from scratch", "Discord bot", "Generative art"],
+    loop: 42,
+  },
+  {
+    n: "Scholar",
+    ic: "🎓",
+    ages: "16–18",
+    c: "#c2410c",
+    bg: "#fff1d6",
+    active: true,
+    count: 580,
+    teacher: "Mentor Max",
+    voice: "opt",
+    avatar: "opt",
+    safety: "standard",
+    samples: ["Trig sprint", "AP Bio · cells", "APUSH"],
+    loop: 64,
+  },
+  {
+    n: "Professional",
+    ic: "💼",
+    ages: "18+",
+    c: "#0f766e",
+    bg: "#d6f1f0",
+    active: true,
+    count: 286,
+    teacher: "Professor Turing",
+    voice: "opt",
+    avatar: "opt",
+    safety: "standard",
+    samples: ["AWS SAA", "CISSP", "System design L6"],
+    loop: 58,
+  },
+  {
+    n: "Senior Learner",
+    ic: "🌿",
+    ages: "65+",
+    c: "#16a34a",
+    bg: "#d1fae5",
+    active: false,
+    count: 80,
+    teacher: "Sofia",
+    voice: "on",
+    avatar: "off",
+    safety: "standard",
+    samples: ["Scam messages", "Video calls", "Memory games"],
+    loop: 81,
+  },
 ];
 
 const VOICE_LABEL: Record<string, string> = {
@@ -27,7 +111,11 @@ export default function AdminWorlds() {
           title="Worlds"
           subtitle="Six audience-tuned surfaces. Each has its own teacher, voice setting, avatar policy, safety profile, and starter topics."
           right={
-            <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "9px 14px", fontSize: 13 }}
+            >
               Translate worlds (i18n)
             </button>
           }

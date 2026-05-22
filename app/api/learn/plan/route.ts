@@ -52,7 +52,7 @@ export async function POST(req: Request) {
   } catch (err: any) {
     return NextResponse.json(
       { ok: false, error: err?.message ?? "Unknown error" },
-      { status: 400 },
+      { status: 400 }
     );
   }
 }

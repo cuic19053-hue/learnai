@@ -27,13 +27,17 @@ export default function ScholarPage() {
       teacherName={world.teacherName}
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "home" })}
-      pageContext={{ kind: "world-home", worldLabel: world.journey.name, topic: "Trigonometry: sine and cosine basics" }}
+      pageContext={{
+        kind: "world-home",
+        worldLabel: world.journey.name,
+        topic: "Trigonometry: sine and cosine basics",
+      }}
     >
       <div className="text-[13px] text-ink-mute">{today}</div>
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
         Welcome back, Jess 👋
       </h1>
-      <p className="mt-1 mb-6 text-[15px] text-ink-soft">
+      <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         Trigonometry is your weakest area. 25-minute focused session today moves you up a band.{" "}
         <WhyThisButton
           reason="You scored 42% on trigonometry across your last 3 drills — the lowest of any topic this week."

@@ -65,12 +65,14 @@ export default async function CertificationDetail({
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[34px]">
         {meta.title}
       </h1>
-      <p className="mt-2 max-w-[720px] text-[15px] leading-relaxed text-ink-soft">
-        {meta.blurb}
-      </p>
+      <p className="mt-2 max-w-[720px] text-[15px] leading-relaxed text-ink-soft">{meta.blurb}</p>
 
       <div className="mt-6 grid grid-cols-2 gap-3 md:grid-cols-4">
-        <Stat label="Questions" value={total.toLocaleString()} accent={vendor?.color ?? "var(--brand-1)"} />
+        <Stat
+          label="Questions"
+          value={total.toLocaleString()}
+          accent={vendor?.color ?? "var(--brand-1)"}
+        />
         <Stat label="Level" value={meta.level} accent={vendor?.color ?? "var(--brand-1)"} />
         <Stat label="Vendor" value={meta.vendor} accent={vendor?.color ?? "var(--brand-1)"} />
         <Stat label="Mode" value="Drill · Review" accent={vendor?.color ?? "var(--brand-1)"} />
@@ -101,9 +103,7 @@ export default async function CertificationDetail({
 function Stat({ label, value, accent }: { label: string; value: string; accent: string }) {
   return (
     <div className="la-card p-3.5" style={{ borderRadius: 14 }}>
-      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">
-        {label}
-      </div>
+      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">{label}</div>
       <div className="mt-1 text-[20px] font-extrabold tracking-tight" style={{ color: accent }}>
         {value}
       </div>

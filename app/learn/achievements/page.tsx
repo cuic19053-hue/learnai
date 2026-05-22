@@ -69,16 +69,13 @@ export default async function AchievementsPage({
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "achievements" })}
     >
-      <Link
-        href={world.homePath}
-        className="text-[13px] font-bold text-ink-soft hover:text-ink"
-      >
+      <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
         ← Back to {world.journey.name} home
       </Link>
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
         Achievements
       </h1>
-      <p className="mt-1 mb-6 text-[15px] text-ink-soft">
+      <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         {earned} of {badges.length} badges earned in the {world.journey.name} world.
       </p>
 
@@ -86,7 +83,11 @@ export default async function AchievementsPage({
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         <Stat label="Current streak" value={`${world.streakDays} days`} accent="#b15c00" />
         <Stat label="XP" value={world.xp.toLocaleString()} accent={world.journey.color} />
-        <Stat label="Badges earned" value={`${earned} / ${badges.length}`} accent="var(--brand-1)" />
+        <Stat
+          label="Badges earned"
+          value={`${earned} / ${badges.length}`}
+          accent="var(--brand-1)"
+        />
         <Stat label="Lessons completed" value="—" accent="var(--ink-mute)" />
       </div>
 

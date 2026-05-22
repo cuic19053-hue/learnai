@@ -31,7 +31,7 @@ export default function ExplorerPage() {
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
         Welcome back, Ana 👋
       </h1>
-      <p className="mt-1 mb-6 text-[15px] text-ink-soft">
+      <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         Today&apos;s quest: discover how volcanoes work — and earn a Science Explorer badge.
       </p>
 

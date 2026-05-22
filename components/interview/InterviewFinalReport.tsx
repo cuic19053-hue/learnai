@@ -85,9 +85,7 @@ export default function InterviewFinalReport({
           </div>
           <div className="mt-4 h-32 rounded bg-line-soft" />
         </div>
-        <p className="mt-3 text-sm text-ink-mute">
-          Synthesising your readiness report…
-        </p>
+        <p className="mt-3 text-sm text-ink-mute">Synthesising your readiness report…</p>
       </div>
     );
   }
@@ -114,17 +112,15 @@ export default function InterviewFinalReport({
   if (!report) return null;
 
   const overall = report.overallReadiness;
-  const verdict =
-    overall >= 8 ? "Ready" : overall >= 6 ? "Almost ready" : "Keep training";
-  const verdictColor =
-    overall >= 8 ? "var(--j-little)" : overall >= 6 ? "#b45309" : "#dc2626";
+  const verdict = overall >= 8 ? "Ready" : overall >= 6 ? "Almost ready" : "Keep training";
+  const verdictColor = overall >= 8 ? "var(--j-little)" : overall >= 6 ? "#b45309" : "#dc2626";
 
   return (
     <div className="mt-7 max-w-[960px] space-y-4">
       {degraded ? (
         <div className="la-card p-3 text-xs" style={{ borderRadius: 12, background: "#fffbeb" }}>
-          <strong>Heads-up:</strong> AI provider was unreachable. This report
-          uses deterministic averages — re-run for the full synthesis.
+          <strong>Heads-up:</strong> AI provider was unreachable. This report uses deterministic
+          averages — re-run for the full synthesis.
         </div>
       ) : null}
 
@@ -193,9 +189,7 @@ export default function InterviewFinalReport({
           <ol className="space-y-3">
             {report.bestAnswers.map((b, i) => {
               // Match the best-answer quote back to a turn by question text.
-              const matched = history.find(
-                (t) => t.question.trim() === b.question.trim(),
-              );
+              const matched = history.find((t) => t.question.trim() === b.question.trim());
               return (
                 <li key={i} className="rounded-xl border border-line-soft p-3">
                   <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
@@ -234,19 +228,13 @@ export default function InterviewFinalReport({
                       R{t.round} · Q{t.index + 1} · {t.score0to10}/10
                     </div>
                     <div className="text-[10px] text-ink-mute">
-                      {t.recording!.durationSec}s ·{" "}
-                      {(t.recording!.sizeBytes / 1024).toFixed(0)} KB
+                      {t.recording!.durationSec}s · {(t.recording!.sizeBytes / 1024).toFixed(0)} KB
                     </div>
                   </div>
                   <div className="mt-1 line-clamp-1 text-[12px] font-bold text-ink">
                     {t.question}
                   </div>
-                  <audio
-                    controls
-                    preload="none"
-                    src={t.recording!.url}
-                    className="mt-1.5 w-full"
-                  />
+                  <audio controls preload="none" src={t.recording!.url} className="mt-1.5 w-full" />
                 </li>
               ))}
           </ol>
@@ -278,9 +266,7 @@ export default function InterviewFinalReport({
 function Sub({ label, v }: { label: string; v: number }) {
   return (
     <div>
-      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">
-        {label}
-      </div>
+      <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">{label}</div>
       <div className="text-xl font-bold text-ink">{v}/10</div>
     </div>
   );
@@ -289,9 +275,7 @@ function Sub({ label, v }: { label: string; v: number }) {
 function Block({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="la-card p-4" style={{ borderRadius: 16 }}>
-      <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
-        {title}
-      </div>
+      <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">{title}</div>
       <div className="mt-2">{children}</div>
     </div>
   );
@@ -302,7 +286,9 @@ function List({ items, accent }: { items: string[]; accent: string }) {
     <ul className="space-y-1.5 text-[13px]">
       {items.map((s, i) => (
         <li key={i} className="flex gap-2 leading-snug">
-          <span style={{ color: accent }} aria-hidden>•</span>
+          <span style={{ color: accent }} aria-hidden>
+            •
+          </span>
           <span>{s}</span>
         </li>
       ))}

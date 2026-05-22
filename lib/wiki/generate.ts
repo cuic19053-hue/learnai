@@ -16,13 +16,7 @@ import { z } from "zod";
 import { AiProviderError, jsonChat } from "@/lib/ai/provider";
 import { testFromArticlePrompt } from "./prompts";
 import { getStoredTest, hashKey, putCachedTest, type StoredWikiTest } from "./cache";
-import type {
-  Difficulty,
-  Format,
-  WikiArticle,
-  WikiQuestion,
-  WikiTest,
-} from "./types";
+import type { Difficulty, Format, WikiArticle, WikiQuestion, WikiTest } from "./types";
 
 /** Minimum number of citation-valid questions to accept a generated test. */
 const MIN_ACCEPTABLE = 3;
@@ -47,7 +41,7 @@ const RawTestSchema = z.object({
 export class WikiGenerationError extends Error {
   constructor(
     message: string,
-    public readonly status: number,
+    public readonly status: number
   ) {
     super(message);
     this.name = "WikiGenerationError";
@@ -99,10 +93,7 @@ export async function generateTest(input: GenerateInput): Promise<WikiTest> {
     });
   } catch (err) {
     if (err instanceof AiProviderError) {
-      throw new WikiGenerationError(
-        `AI provider unavailable: ${err.message}`,
-        err.status,
-      );
+      throw new WikiGenerationError(`AI provider unavailable: ${err.message}`, err.status);
     }
     throw err;
   }
@@ -111,14 +102,12 @@ export async function generateTest(input: GenerateInput): Promise<WikiTest> {
   if (!parsed.success) {
     throw new WikiGenerationError(
       "AI returned malformed JSON. Try again — picking a different difficulty often helps.",
-      502,
+      502
     );
   }
 
   // 3. Citation integrity + per-kind shape checks ---------------------
-  const headings = new Set(
-    input.article.sections.map((s) => s.heading.toLowerCase()),
-  );
+  const headings = new Set(input.article.sections.map((s) => s.heading.toLowerCase()));
 
   const valid: WikiQuestion[] = [];
   for (const [i, q] of parsed.data.questions.entries()) {
@@ -149,7 +138,7 @@ export async function generateTest(input: GenerateInput): Promise<WikiTest> {
   if (valid.length < MIN_ACCEPTABLE) {
     throw new WikiGenerationError(
       `Generated test only had ${valid.length} citation-valid questions — try again or pick a different article.`,
-      422,
+      422
     );
   }
 

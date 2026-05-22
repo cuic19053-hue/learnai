@@ -29,13 +29,17 @@ export default function AdultPage() {
       teacherName={world.teacherName}
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "home" })}
-      pageContext={{ kind: "world-home", worldLabel: world.journey.name, topic: "VPC networking: subnets, route tables, NAT" }}
+      pageContext={{
+        kind: "world-home",
+        worldLabel: world.journey.name,
+        topic: "VPC networking: subnets, route tables, NAT",
+      }}
     >
       <div className="text-[13px] text-ink-mute">{today}</div>
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
         Welcome back, Ruslan 👋
       </h1>
-      <p className="mt-1 mb-6 text-[15px] text-ink-soft">
+      <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         AWS Solutions Architect track · VPC Networking is your current weak domain.{" "}
         <WhyThisButton
           reason="VPC sits at 50% mastery — the lowest of the four SAA-C03 domains in your last diagnostic."
@@ -63,8 +67,16 @@ export default function AdultPage() {
         <ContinueCard
           journey={journey}
           items={[
-            { title: "IAM policies in practice", subtitle: "Security · 12 mins left", progress: 55 },
-            { title: "S3 lifecycle and storage classes", subtitle: "Storage · 18 mins left", progress: 40 },
+            {
+              title: "IAM policies in practice",
+              subtitle: "Security · 12 mins left",
+              progress: 55,
+            },
+            {
+              title: "S3 lifecycle and storage classes",
+              subtitle: "Storage · 18 mins left",
+              progress: 40,
+            },
           ]}
         />
         <WikiTestPromoCard worldLabel="Professional" teacherName="Professor Turing" />
@@ -79,7 +91,9 @@ export default function AdultPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl" aria-hidden>🎙️</span>
+              <span className="text-2xl" aria-hidden>
+                🎙️
+              </span>
               <span
                 className="la-pill text-[11px]"
                 style={{ background: journey.bg, color: journey.color }}
@@ -91,9 +105,8 @@ export default function AdultPage() {
               Prepare for a real job interview
             </h3>
             <p className="mt-1 max-w-[640px] text-[14px] leading-relaxed text-ink-soft">
-              Paste your CV and a job description. Train the right questions,
-              rehearse a 5-minute self-presentation, run a recorded mock interview,
-              and get an AI readiness report.
+              Paste your CV and a job description. Train the right questions, rehearse a 5-minute
+              self-presentation, run a recorded mock interview, and get an AI readiness report.
             </p>
           </div>
           <span
@@ -117,7 +130,9 @@ export default function AdultPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl" aria-hidden>🌐</span>
+              <span className="text-2xl" aria-hidden>
+                🌐
+              </span>
               <span
                 className="la-pill text-[11px]"
                 style={{ background: journey.bg, color: journey.color }}
@@ -125,13 +140,10 @@ export default function AdultPage() {
                 LANGUAGES · 7 languages, A1 → B2
               </span>
             </div>
-            <h3 className="mt-2 text-xl font-extrabold text-ink">
-              Learn a new language from zero
-            </h3>
+            <h3 className="mt-2 text-xl font-extrabold text-ink">Learn a new language from zero</h3>
             <p className="mt-1 max-w-[640px] text-[14px] leading-relaxed text-ink-soft">
-              English · Spanish · German · Russian · Japanese · Chinese · Arabic.
-              CEFR-aligned flashcard drills with mock tests modelled on A1 → B2
-              can-do statements.
+              English · Spanish · German · Russian · Japanese · Chinese · Arabic. CEFR-aligned
+              flashcard drills with mock tests modelled on A1 → B2 can-do statements.
             </p>
           </div>
           <span
@@ -155,7 +167,9 @@ export default function AdultPage() {
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-2xl" aria-hidden>📜</span>
+              <span className="text-2xl" aria-hidden>
+                📜
+              </span>
               <span
                 className="la-pill text-[11px]"
                 style={{ background: journey.bg, color: journey.color }}
@@ -167,8 +181,8 @@ export default function AdultPage() {
               Drill real exam-style questions
             </h3>
             <p className="mt-1 max-w-[640px] text-[14px] leading-relaxed text-ink-soft">
-              AWS · Azure · Google Cloud · IBM. Quick drill or full review,
-              answer reveal with explanation, self-rated mastery.
+              AWS · Azure · Google Cloud · IBM. Quick drill or full review, answer reveal with
+              explanation, self-rated mastery.
             </p>
           </div>
           <span

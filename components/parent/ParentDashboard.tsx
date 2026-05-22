@@ -39,7 +39,8 @@ export default function ParentDashboard() {
 
   function update(next: ParentPrefs | ((p: ParentPrefs) => ParentPrefs)) {
     setPrefs((cur) => {
-      const updated = typeof next === "function" ? (next as (p: ParentPrefs) => ParentPrefs)(cur) : next;
+      const updated =
+        typeof next === "function" ? (next as (p: ParentPrefs) => ParentPrefs)(cur) : next;
       savePrefs(updated);
       return updated;
     });
@@ -51,9 +52,7 @@ export default function ParentDashboard() {
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
       {/* ───── Top bar ───── */}
-      <header
-        className="sticky top-0 z-30 flex items-center justify-between border-b border-line-soft bg-white/90 px-4 py-3 backdrop-blur sm:px-7"
-      >
+      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-line-soft bg-white/90 px-4 py-3 backdrop-blur sm:px-7">
         <div className="flex items-center gap-3">
           <Link href="/" aria-label="LearnAI home">
             <Mark size={28} fontSize={18} />
@@ -90,8 +89,8 @@ export default function ParentDashboard() {
               Parent dashboard
             </h1>
             <p className="mt-1 text-[14px] text-ink-soft">
-              Customize what {child.name} sees, how long, and how loud. Everything saves to
-              this device — no account needed.
+              Customize what {child.name} sees, how long, and how loud. Everything saves to this
+              device — no account needed.
             </p>
           </div>
           <Link
@@ -102,10 +101,7 @@ export default function ParentDashboard() {
           </Link>
         </div>
 
-        <nav
-          role="tablist"
-          className="mt-5 flex flex-wrap gap-1.5 border-b border-line-soft pb-0"
-        >
+        <nav role="tablist" className="mt-5 flex flex-wrap gap-1.5 border-b border-line-soft pb-0">
           {TABS.map((t) => {
             const active = tab === t.id;
             return (
@@ -135,9 +131,7 @@ export default function ParentDashboard() {
         ) : (
           <div className="mt-6">
             {tab === "today" ? <TodayPanel child={child} /> : null}
-            {tab === "children" ? (
-              <ChildrenPanel prefs={prefs} update={update} />
-            ) : null}
+            {tab === "children" ? <ChildrenPanel prefs={prefs} update={update} /> : null}
             {tab === "settings" ? (
               settingsLocked ? (
                 <PinGate onUnlock={() => setPinUnlocked(true)} />
@@ -170,7 +164,7 @@ function TodayPanel({ child }: { child: ChildProfile }) {
       paused: "Hesitated on the number 4",
       tomorrow: "Count jungle animals with Milo — gentle intro of 6 and 7",
     }),
-    [],
+    []
   );
 
   return (
@@ -218,7 +212,7 @@ function TodayPanel({ child }: { child: ChildProfile }) {
             min · {activity.sessionsToday} session
           </span>
         </div>
-        <div className="mt-3 h-2 overflow-hidden rounded-full bg-bg-2">
+        <div className="bg-bg-2 mt-3 h-2 overflow-hidden rounded-full">
           <div
             className="h-full"
             style={{
@@ -234,12 +228,12 @@ function TodayPanel({ child }: { child: ChildProfile }) {
       </Card>
 
       <Card title="Quick answers" icon="✅">
-        <Stat
-          label="Correct today"
-          value={`${activity.correct} / ${activity.total}`}
-        />
+        <Stat label="Correct today" value={`${activity.correct} / ${activity.total}`} />
         <Stat label="Age band" value={AGE_BAND_META[child.ageBand].label} />
-        <Stat label="Active subjects" value={`${child.allowedSubjects.length} of ${SUBJECTS.length}`} />
+        <Stat
+          label="Active subjects"
+          value={`${child.allowedSubjects.length} of ${SUBJECTS.length}`}
+        />
       </Card>
 
       <Card title="Helpful right now" icon="🎯" wide>
@@ -250,7 +244,9 @@ function TodayPanel({ child }: { child: ChildProfile }) {
           </li>
           <li className="flex gap-2">
             <span aria-hidden>🛡️</span>
-            <span>Approved-content-only is on — kids never see anything outside the selected subjects.</span>
+            <span>
+              Approved-content-only is on — kids never see anything outside the selected subjects.
+            </span>
           </li>
           <li className="flex gap-2">
             <span aria-hidden>🌙</span>
@@ -544,9 +540,7 @@ function SettingsPanel({
           label="Read everything aloud"
           sub="Tutor speaks each prompt at a calm pace."
           on={prefs.voice.readAloud}
-          onChange={(v) =>
-            update((p) => ({ ...p, voice: { ...p.voice, readAloud: v } }))
-          }
+          onChange={(v) => update((p) => ({ ...p, voice: { ...p.voice, readAloud: v } }))}
         />
         <div className="mt-3">
           <div className="la-mono text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
@@ -576,9 +570,7 @@ function SettingsPanel({
           label="Bigger text"
           sub="Increases label sizes on the kids screen."
           on={prefs.voice.biggerText}
-          onChange={(v) =>
-            update((p) => ({ ...p, voice: { ...p.voice, biggerText: v } }))
-          }
+          onChange={(v) => update((p) => ({ ...p, voice: { ...p.voice, biggerText: v } }))}
         />
       </SettingSection>
 
@@ -590,9 +582,7 @@ function SettingsPanel({
         <ToggleRow
           label="Enforce quiet hours"
           on={prefs.quietHours.enabled}
-          onChange={(v) =>
-            update((p) => ({ ...p, quietHours: { ...p.quietHours, enabled: v } }))
-          }
+          onChange={(v) => update((p) => ({ ...p, quietHours: { ...p.quietHours, enabled: v } }))}
         />
         <div className="mt-3 grid grid-cols-2 gap-3">
           <label className="block">
@@ -632,11 +622,7 @@ function SettingsPanel({
         </div>
       </SettingSection>
 
-      <SettingSection
-        title="Notifications"
-        subtitle="What we tell you about, and when."
-        icon="🔔"
-      >
+      <SettingSection title="Notifications" subtitle="What we tell you about, and when." icon="🔔">
         <ToggleRow
           label="End-of-session summary"
           sub="A short note when your child finishes a session."
@@ -668,9 +654,9 @@ function SettingsPanel({
         icon="🔒"
       >
         <p className="text-[13px] leading-relaxed text-ink-soft">
-          LearnAI follows a guest-first design — no account is required, no email or
-          phone number is collected from the child, and end-of-session data stays on
-          this device until you explicitly export or sign in.
+          LearnAI follows a guest-first design — no account is required, no email or phone number is
+          collected from the child, and end-of-session data stays on this device until you
+          explicitly export or sign in.
         </p>
         <div className="mt-3 flex flex-wrap gap-2">
           <button
@@ -698,7 +684,9 @@ function SettingsPanel({
             style={{ padding: "9px 14px", fontSize: 13, color: "#991b1b" }}
             onClick={() => {
               if (typeof window === "undefined") return;
-              if (!confirm("Delete all parent settings on this device? This cannot be undone.")) return;
+              if (!confirm("Delete all parent settings on this device? This cannot be undone.")) {
+                return;
+              }
               window.localStorage.removeItem("learnai_parent_prefs_v1");
               window.location.reload();
             }}
@@ -764,7 +752,7 @@ function ReportsPanel({ child }: { child: ChildProfile }) {
                 <span className="font-extrabold text-ink">{row.s}</span>
                 <span className="la-mono text-[11px] text-ink-mute">{row.pct}%</span>
               </div>
-              <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-bg-2">
+              <div className="bg-bg-2 mt-1 h-1.5 overflow-hidden rounded-full">
                 <div
                   className="h-full"
                   style={{ width: `${row.pct}%`, background: "var(--brand-grad)" }}
@@ -780,22 +768,22 @@ function ReportsPanel({ child }: { child: ChildProfile }) {
           <li className="flex gap-2">
             <span aria-hidden>🔢</span>
             <span>
-              The number <b className="text-ink">4</b> needs another pass — try
-              the &quot;count by clapping&quot; activity tomorrow.
+              The number <b className="text-ink">4</b> needs another pass — try the &quot;count by
+              clapping&quot; activity tomorrow.
             </span>
           </li>
           <li className="flex gap-2">
             <span aria-hidden>🅰️</span>
             <span>
-              Letter <b className="text-ink">F</b> is just below mastery — one more
-              5-min session usually closes the gap.
+              Letter <b className="text-ink">F</b> is just below mastery — one more 5-min session
+              usually closes the gap.
             </span>
           </li>
           <li className="flex gap-2">
             <span aria-hidden>📖</span>
             <span>
-              {child.name} engaged most with the <b className="text-ink">Brave Bunny</b>{" "}
-              story — sequel coming next week.
+              {child.name} engaged most with the <b className="text-ink">Brave Bunny</b> story —
+              sequel coming next week.
             </span>
           </li>
         </ul>
@@ -819,10 +807,7 @@ function Card({
   children: ReactNode;
 }) {
   return (
-    <div
-      className={`la-card p-5 ${wide ? "lg:col-span-2" : ""}`}
-      style={{ borderRadius: 18 }}
-    >
+    <div className={`la-card p-5 ${wide ? "lg:col-span-2" : ""}`} style={{ borderRadius: 18 }}>
       <div className="flex items-center gap-2 text-[14px] font-extrabold text-ink">
         {icon ? <span aria-hidden>{icon}</span> : null}
         {title}
@@ -954,7 +939,7 @@ function Stepper({
         <button
           type="button"
           onClick={() => onChange(Math.max(min, value - step))}
-          className="grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg hover:bg-bg-2"
+          className="hover:bg-bg-2 grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg"
           aria-label={`Decrease ${label.toLowerCase()}`}
         >
           −
@@ -968,7 +953,7 @@ function Stepper({
         <button
           type="button"
           onClick={() => onChange(Math.min(max, value + step))}
-          className="grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg hover:bg-bg-2"
+          className="hover:bg-bg-2 grid h-8 w-8 place-items-center rounded-md border border-line bg-white text-lg"
           aria-label={`Increase ${label.toLowerCase()}`}
         >
           +
@@ -990,8 +975,8 @@ function PinGate({ onUnlock }: { onUnlock: () => void }) {
       </div>
       <h3 className="mt-2 text-[16px] font-extrabold text-ink">Settings are locked</h3>
       <p className="mt-1 text-[12.5px] text-ink-soft">
-        Enter your PIN to change settings. PIN verification ships in a
-        follow-up — for the preview you can continue without it.
+        Enter your PIN to change settings. PIN verification ships in a follow-up — for the preview
+        you can continue without it.
       </p>
       <button
         type="button"
