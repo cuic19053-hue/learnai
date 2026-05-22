@@ -16,7 +16,7 @@
 <p align="center">
   <a href="https://learnai.app"><img src="https://img.shields.io/badge/Try_LearnAI-→_learnai.app-2e5bff?style=for-the-badge" alt="Try LearnAI"/></a>
   &nbsp;
-  <a href="https://github.com/sponsors/ruslanmv"><img src="https://img.shields.io/badge/Become_a_sponsor-💖-ec4899?style=for-the-badge" alt="Sponsor LearnAI"/></a>
+  <a href="https://github.com/sponsors/ruslanmv"><img src="https://img.shields.io/badge/💖_Become_a_sponsor-ec4899?style=for-the-badge" alt="Become a sponsor"/></a>
 </p>
 
 <p align="center">
@@ -106,38 +106,9 @@ Onboarding routes the learner to the right world. They never see the others.
 
 ---
 
-## Support the project · become a sponsor
+## Support the project
 
-LearnAI is **free for learners forever**. The codebase is donated, but the people who maintain it, the bandwidth, the cloud bills, and the AI compute are not.
-
-> **Our 1-year commitment.** For at least the first year, LearnAI runs entirely on free-tier cloud services — Vercel, Neon, Hugging Face, the bundled OllaBridge model. We use this year to make the product stable, polished, and genuinely useful. No premium tier. No paywall. No "pro plan" trick. Just sponsorship-funded growth.
->
-> When we eventually add optional services — voice models, longer-context tutors, classroom dashboards — **the core stays free**. Sponsors who funded year one will be credited; the open-source promise will be in writing.
-
-### How to support
-
-- 💖 **[GitHub Sponsors](https://github.com/sponsors/ruslanmv)** — monthly or one-off donation. Cancel anytime.
-- 🏢 **Corporate sponsorship & partnerships** — schools, edtech companies, foundations, labs: <ai@learnai.example>
-- 🪙 **One-time donation** — buy a year of compute, a domain, a translation. Every line item is small; together they keep the lights on.
-- ⭐ **Star the repo** — costs nothing, helps every potential sponsor find the project.
-- 🗣️ **Tell one parent, one teacher, one student.** The fastest growth is word of mouth from someone who used it and it worked.
-
-### Sponsor recognition
-
-| Tier | Monthly | What you get |
-|---|---|---|
-| 🌱 **Supporter** | $5 | Name in `SPONSORS.md` |
-| 🌳 **Champion** | $25 | Logo in `SPONSORS.md` + thank-you post from the project |
-| 🏛️ **Patron** | $100 | Logo on the README + the homepage footer |
-| 🚀 **Partner** | $500+ | Logo + a dedicated section in `docs/PARTNERS.md` and prioritised input on the roadmap |
-
-> Sponsorship is **never** tied to closed features or paywalled content. The product stays open. The recognition is the recognition; the codebase is the codebase.
-
-### Where the money goes
-
-Every $25/month sponsor pays for roughly **1,000 learner-sessions** at our current per-session cost. Every $500/month sponsor pays for a translation, an accessibility audit, or a month of professional design work. Most ed-tech is venture-funded and ends up extractive — ads, lock-in, learner data sold to the highest bidder. LearnAI's bet is that a coalition of small-and-medium sponsors funds the infrastructure instead of a single investor who needs an exit.
-
-**[Become a sponsor →](https://github.com/sponsors/ruslanmv)**
+LearnAI is free for learners forever, funded by sponsors during its first year on free-tier cloud. If it's useful to you, [sponsor on GitHub](https://github.com/sponsors/ruslanmv) or star the repo — both help.
 
 ---
 
