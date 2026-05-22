@@ -43,8 +43,10 @@ lerna-debug.log*
 # Typescript
 *.tsbuildinfo
 
-# Lock files (keep only one)
-package-lock.json
+# Lock files
+# package-lock.json IS committed — required by `npm ci` in CI workflows.
+# Only the secondary lock files (yarn / pnpm) stay ignored to avoid
+# multiple lockfiles drifting against the canonical npm one.
 yarn.lock
 pnpm-lock.yaml
 

@@ -32,12 +32,20 @@ interface ExtendedUser extends User {
  *
  * @see https://next-auth.js.org/configuration/options
  */
-export const authOptions: NextAuthOptions = {
-  // Use Prisma adapter for database sessions and accounts
-  adapter: PrismaAdapter(prisma),
+const HAS_DATABASE = !!process.env.DATABASE_URL;
+const HAS_GOOGLE =
+  !!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET;
 
-  // Required secret for JWT encryption and session cookies
-  secret: process.env.NEXTAUTH_SECRET,
+export const authOptions: NextAuthOptions = {
+  // Use Prisma adapter only when a database is configured.
+  // Without it the app still runs in YouTube-style guest mode.
+  ...(HAS_DATABASE ? { adapter: PrismaAdapter(prisma) } : {}),
+
+  // Secret is required by NextAuth in production. We fall back to a
+  // placeholder so the module never throws at construction time;
+  // the [...nextauth] route additionally degrades to guest responses
+  // when the real secret is missing.
+  secret: process.env.NEXTAUTH_SECRET ?? "learnai-guest-mode-fallback",
 
   // Use JWT strategy for stateless sessions (better for serverless)
   session: {
@@ -51,25 +59,24 @@ export const authOptions: NextAuthOptions = {
     error: "/login", // Redirect to login on error
   },
 
-  // Authentication providers
+  // Authentication providers — only registered when the matching
+  // environment variables are present.
   providers: [
-    /**
-     * Google OAuth Provider
-     * Allows users to sign in with their Google account
-     *
-     * Setup: https://console.cloud.google.com/apis/credentials
-     */
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID ?? "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
-      },
-    }),
+    ...(HAS_GOOGLE
+      ? [
+          GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            authorization: {
+              params: {
+                prompt: "consent",
+                access_type: "offline",
+                response_type: "code",
+              },
+            },
+          }),
+        ]
+      : []),
 
     /**
      * Credentials Provider
@@ -98,6 +105,11 @@ export const authOptions: NextAuthOptions = {
         // Validate input
         if (!credentials?.email || !credentials.password) {
           throw new Error("Email and password are required");
+        }
+        if (!HAS_DATABASE) {
+          throw new Error(
+            "Sign-in is unavailable in this environment. Continue as a guest.",
+          );
         }
 
         try {
@@ -164,7 +176,7 @@ export const authOptions: NextAuthOptions = {
       }
 
       // Subsequent requests - fetch fresh role from database
-      if (token.email) {
+      if (token.email && HAS_DATABASE) {
         try {
           const dbUser = await prisma.user.findUnique({
             where: { email: token.email },

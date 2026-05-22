@@ -1,727 +1,195 @@
 <p align="center">
-  <img src="public/logo.svg" alt="LearnAI Logo" width="120" height="120" />
+  <img src="public/logo.svg" alt="LearnAI" width="120" height="120" />
 </p>
 
 <h1 align="center">LearnAI</h1>
 
 <p align="center">
-  <strong>AI-Powered Tutoring Marketplace</strong><br/>
-  Connecting students with expert professors — and AI interview coaches.
+  <strong>An open-source AI teacher for every human, at every stage of life.</strong>
+</p>
+
+<p align="center">
+  One pedagogical engine. Six learning worlds. Ten time-tested teaching methods. <br/>
+  Free to use. No card. No app to install.
+</p>
+
+<p align="center">
+  <a href="https://learnai.app"><img src="https://img.shields.io/badge/Try_LearnAI-→_learnai.app-2e5bff?style=for-the-badge" alt="Try LearnAI"/></a>
+  &nbsp;
+  <a href="https://github.com/sponsors/ruslanmv"><img src="https://img.shields.io/badge/Become_a_sponsor-💖-ec4899?style=for-the-badge" alt="Sponsor LearnAI"/></a>
 </p>
 
 <p align="center">
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License: Apache 2.0"/></a>
   <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-15-black" alt="Next.js 15"/></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.7-3178C6" alt="TypeScript"/></a>
-  <a href="https://vercel.com"><img src="https://img.shields.io/badge/Deploy-Vercel-black" alt="Vercel"/></a>
   <a href="https://modelcontextprotocol.io"><img src="https://img.shields.io/badge/MCP-Enabled-6366F1" alt="MCP Enabled"/></a>
-  <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"/></a>
 </p>
 
----
-
-## About
-
-**LearnAI** is a production-ready educational platform that leverages artificial intelligence to create perfect student-teacher matches. The platform handles everything from AI-powered recommendations to secure payments, video conferencing, collaborative whiteboards — and now, **AI professor agents** powered by the [Model Context Protocol (MCP)](https://modelcontextprotocol.io) and [MCP Context Forge](https://github.com/ruslanmv/mcp-context-forge).
-
-### Why LearnAI?
-
-- **AI-Powered Matching** — OpenAI GPT-4o-mini analyzes student needs and recommends the best professors
-- **AI Interview Coaches** — MCP-based professor agents conduct structured technical interviews with real-time feedback
-- **Seamless Payments** — Integrated PayPal with automatic 90/10 revenue split
-- **Video Integration** — Microsoft Teams for face-to-face learning
-- **Interactive Whiteboard** — Real-time collaboration with tldraw
-- **Analytics Dashboard** — Track top performers for recruitment
-- **Enterprise Security** — NextAuth with Google OAuth and credentials authentication
+> 👉 **The product lives at [learnai.app](https://learnai.app).** This repository is the source — open for transparency, audit, and contribution. Learners don't have to install anything; they just open the link.
 
 ---
 
-## Table of Contents
+## Why this matters
 
-- [About](#about)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Tech Stack](#tech-stack)
-- [Quick Start](#quick-start)
-- [Installation](#installation)
-- [Configuration](#configuration)
-- [MCP & A2A Integration](#mcp--a2a-integration)
-- [Development](#development)
-- [Deployment](#deployment)
-- [API Documentation](#api-documentation)
-- [Project Structure](#project-structure)
-- [Scripts](#scripts)
-- [Contributing](#contributing)
-- [License](#license)
-- [Author](#author)
+For 2,500 years, humanity has known what great teaching looks like. Socrates asked questions. Vygotsky pushed learners just past where they were comfortable. Ebbinghaus mapped the forgetting curve. Feynman invented "explain it back to me." Sweller proved that watching a worked example before trying one yourself isn't laziness — it's how humans actually learn.
 
----
+The problem was never the method. **The problem was always scale.** A great teacher could reach 30 children. A great tutor could reach one.
 
-## Features
+For the first time in history, that constraint is gone. A language model can sit beside every learner on Earth — patient, available at 3 a.m., never tired, never short with the kid who needs the same concept explained four times. The question stopped being *"is AI smart enough to teach?"* and started being *"what kind of teacher should it be?"*
 
-### For Students
+LearnAI is the answer we want to live with.
 
-- AI-powered professor recommendations based on learning objectives
-- Browse and filter professors by subject, rating, and price
-- Book and manage 1-on-1 sessions
-- **Start instant AI interview sessions** with MCP professor agents
-- Secure payments with PayPal
-- Interactive whiteboard and video sessions
-- Track learning progress
+- **Not a chatbot bolted onto a textbook.** A complete pedagogical loop — Hook → Explain → Practice → Feedback → Reflect → Evolve — that runs the same way for a 4-year-old learning to count and a PhD student rehearsing a thesis defense.
+- **Not one-size-fits-all.** Six age-aware worlds, each with its own UI, tutor persona, and pace. A 4-year-old never sees the SAT prep screen. A senior never gets a Discord-bot tutorial.
+- **Not a black box.** Every adaptive choice is explainable. Every recommendation cites the data behind it. Every generated test cites the source paragraph. *Why this? Why now?* — answered inline, on every screen.
+- **Not extractive.** No ads. No upsell pop-ups. No child's data sold. Works completely as a guest. Sign in only to sync across devices.
+- **Not locked in.** Apache 2.0 source means we can never silently turn this into a paywalled product. The hosted service is the product; the open source is the guarantee that it stays honest.
 
-### For Professors
-
-- Easy registration and profile setup
-- Set hourly rates and availability
-- Receive 90% of session payments
-- Manage bookings and students
-- Build reputation through ratings
-
-### For Administrators
-
-- Dashboard with analytics
-- User management
-- Transaction monitoring
-- Top performers leaderboard
+> **Our bet:** the next billion learners won't come online through a textbook or a YouTube channel. They'll come online through a personal AI teacher. That teacher should be open-source, pedagogically literate, and culturally portable. If that's not us, it'll be someone whose incentives are very different.
 
 ---
 
-## Architecture
+## The Loop
 
-LearnAI combines a traditional Next.js marketplace with an MCP-powered agent layer:
+Every lesson — for every age — runs the same six steps:
 
-```
-                    +------------------+
-                    |   Next.js App    |
-                    |  (App Router)    |
-                    +--------+---------+
-                             |
-              +--------------+--------------+
-              |                             |
-    +---------v----------+       +----------v-----------+
-    |  Human Teachers    |       |  AI Teacher Agents   |
-    |  (Prisma/Postgres) |       |  (MCP / A2A)         |
-    +--------------------+       +----------+-----------+
-                                            |
-                              +-------------+-------------+
-                              |                           |
-                    +---------v--------+       +----------v----------+
-                    | MCP Professor    |       | MCP Context Forge   |
-                    | Interview Server |       | (Agent Registry)    |
-                    | (TypeScript)     |       | (Python Gateway)    |
-                    +------------------+       +---------------------+
-```
+> 🧲 **Hook** → 💡 **Explain** → ✏️ **Practice** → 💬 **Feedback** → 🪞 **Reflect** → 🌱 **Evolve**
 
-The **Explore** page merges human teachers from PostgreSQL with AI teacher agents from the ContextForge A2A catalog into a single unified grid.
+The surface adapts. The pedagogy doesn't.
 
 ---
 
-## Tech Stack
+## Pedagogy — 10 historical methods, one engine
 
-| Category | Technologies |
-|----------|-------------|
-| **Framework** | Next.js 15 (App Router), React 18 |
-| **Language** | TypeScript 5.7 |
-| **Database** | PostgreSQL with Prisma ORM |
-| **Authentication** | NextAuth.js (Google OAuth + Credentials) |
-| **AI** | OpenAI GPT-4o-mini |
-| **MCP Server** | `@modelcontextprotocol/sdk` (TypeScript), FastMCP (Python) |
-| **Agent Registry** | MCP Context Forge (A2A protocol) |
-| **Payments** | PayPal Checkout SDK |
-| **Styling** | Tailwind CSS 3.4 |
-| **Video** | Microsoft Teams Integration |
-| **Whiteboard** | tldraw 2.6 |
-| **Deployment** | Vercel |
+LearnAI implements **ten learning methods drawn from 2,500 years of education history**, picked for being both *simple* and *evidence-backed*:
 
----
+| # | Method | Tradition | Year | Loop step |
+|---|---|---|---|---|
+| 1 | ❓ Socratic dialogue | Ancient Greece | 5th c. BCE | Hook |
+| 2 | 🏛️ Method of Loci (memory palace) | Ancient Greece | ~500 BCE | Explain · Evolve |
+| 3 | 🔁 Spaced repetition | Germany (Ebbinghaus) | 1885 | Evolve |
+| 4 | 🎯 Active recall (testing effect) | Cognitive science | 2006 | Practice · Feedback |
+| 5 | 🧮 Worked example → twin | Sweller, cognitive load theory | 1985 | Explain · Practice |
+| 6 | 🎲 Interleaving | Bjork lab | 1990s | Practice |
+| 7 | 🗣️ Feynman technique | USA (Feynman) | 1960s | Feedback · Reflect |
+| 8 | 🪜 Kumon mastery ladder | Japan (Toru Kumon) | 1958 | Practice |
+| 9 | 📈 Zone of Proximal Development | Soviet Union (Vygotsky) | 1934 | Practice |
+| 10 | 🗺️ Shatalov reference signal | Soviet Union (Shatalov) | 1970s | Reflect |
 
-## Quick Start
-
-Get started in under 5 minutes:
-
-```bash
-# Clone the repository
-git clone https://github.com/ruslanmv/learnai.git
-cd learnai
-
-# Install dependencies and setup
-make setup
-
-# Configure environment variables
-# Edit .env.local with your credentials
-
-# Setup database
-make prisma-push
-
-# Start development server
-make dev
-```
-
-Visit [http://localhost:3000](http://localhost:3000)
+Each lesson assembles a method plan — one method per Loop step, tuned to the learner's stage. **Pedagogy as code, not as marketing language.**
 
 ---
 
-## Installation
+## Six learning worlds
 
-### Prerequisites
+| World | Ages | Surface | Example lesson |
+|---|---|---|---|
+| 🦁 **Little Learner** | 3–6 | Stories, voice, color | Count jungle animals with Milo |
+| 🚀 **Explorer** | 7–11 | Quests, badges, curiosity | Why does a volcano erupt? |
+| 🛠️ **Builder** | 12–15 | Projects, code, missions | Build a calculator in Python |
+| 🎓 **Scholar** | 16–18 | Exam prep, weak-area focus | Trigonometry mastery sprint |
+| 💼 **Professional** | 18+ | Paths, certifications | AWS networking review |
+| 🌿 **Senior Learner** | 65+ | Calm, large text, voice | How to spot a scam message |
 
-- **Node.js** >= 18.17.0
-- **npm** >= 9.0.0
-- **Python** >= 3.10 (for MCP servers)
-- **PostgreSQL** database (local or hosted)
-- **OpenAI API Key** (for AI features)
-- **PayPal Developer Account** (for payments)
-- **Google Cloud Console** (for OAuth — optional but recommended)
-
-### Step 1: Clone Repository
-
-```bash
-git clone https://github.com/ruslanmv/learnai.git
-cd learnai
-```
-
-### Step 2: Install Dependencies
-
-Using the Makefile (recommended — installs Node + MCP servers):
-
-```bash
-make install
-```
-
-Or Node.js only:
-
-```bash
-npm install
-```
-
-### Step 3: Install MCP Servers
-
-```bash
-make install-mcp
-```
-
-This creates a `.venv-mcp` Python virtual environment and installs:
-- `mcp-server` — Python FastMCP server wrapping LearnAI REST API
-- `mcp-context-forge` — Agent registry gateway
-- `services/mcp-professor` — TypeScript interview agent (npm)
-
-### Step 4: Environment Setup
-
-```bash
-cp .env.example .env.local
-# or
-make setup-env
-```
+Onboarding routes the learner to the right world. They never see the others.
 
 ---
 
-## Configuration
+## What makes this different
 
-### Required Environment Variables
-
-Edit `.env.local` with your credentials:
-
-```bash
-# Database
-DATABASE_URL="postgresql://user:password@host:5432/learnai"
-
-# NextAuth
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="your-strong-random-secret"
-
-# Google OAuth
-GOOGLE_CLIENT_ID="your-google-client-id"
-GOOGLE_CLIENT_SECRET="your-google-client-secret"
-
-# OpenAI
-OPENAI_API_KEY="sk-your-openai-api-key"
-
-# PayPal
-PAYPAL_CLIENT_ID="your-paypal-client-id"
-PAYPAL_CLIENT_SECRET="your-paypal-client-secret"
-PAYPAL_ENVIRONMENT="sandbox"
-
-# MCP Context Forge (optional — for AI teacher agents)
-CONTEXTFORGE_URL="http://localhost:4444"
-CONTEXTFORGE_TOKEN=""
-CONTEXTFORGE_TEACHER_TAG="teacher"
-
-# Professor MCP Server LLM (optional — for interview agent)
-LLM_BASE_URL="http://localhost:11434/v1"
-LLM_API_KEY="ollama"
-LLM_MODEL="llama3:8b"
-```
-
-### Database Setup
-
-#### Local PostgreSQL
-
-```bash
-# macOS
-brew install postgresql && brew services start postgresql
-
-# Ubuntu/Debian
-sudo apt-get install postgresql && sudo service postgresql start
-```
-
-#### Hosted Database (Recommended for Production)
-
-| Provider | Free Tier | Best For |
-|----------|-----------|----------|
-| [Supabase](https://supabase.com) | 500 MB | Full-stack apps |
-| [Neon](https://neon.tech) | 1 GB | Serverless, auto-scaling |
-| [Vercel Postgres](https://vercel.com/storage/postgres) | 256 MB | Vercel integration |
-| [Railway](https://railway.app) | 512 MB | Easy deployment |
-
-### Google OAuth Setup
-
-1. Go to [Google Cloud Console](https://console.cloud.google.com)
-2. Create a new project
-3. Enable Google+ API
-4. Create OAuth 2.0 credentials
-5. Add authorized redirect URIs:
-   - Development: `http://localhost:3000/api/auth/callback/google`
-   - Production: `https://yourdomain.com/api/auth/callback/google`
-
-### PayPal Setup
-
-1. Visit [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/)
-2. Create a Sandbox app for testing
-3. Copy Client ID and Secret
-
-### OpenAI Setup
-
-1. Visit [OpenAI Platform](https://platform.openai.com)
-2. Generate an API key at [API Keys page](https://platform.openai.com/api-keys)
+- **Pedagogy as code, not as marketing.** Ten methods catalogued in code, assembled into per-stage plans, surfaced in the UI with their citations. Other products mention "Socratic method" in a launch tweet. We tag the prompt chip with the method name and a tooltip.
+- **Open-source, provider-agnostic AI.** Swap the model freely. Your lessons don't change. Your data stays put.
+- **Guest-first, by architecture.** Most AI products require sign-up before the first useful action. LearnAI runs from the first click — no email, no card, no waiting.
+- **Citations, not vibes.** Every WikiTest question lists the source heading. Every adaptive recommendation cites the data that produced it.
+- **Accessibility built in.** The Senior world isn't bolted on — it's a first-class variant with bigger type, calmer copy, and surfaced accessibility controls in the project wizard itself.
 
 ---
 
-## MCP & A2A Integration
+## Support the project · become a sponsor
 
-LearnAI integrates with [MCP Context Forge](https://github.com/ruslanmv/mcp-context-forge) to expose AI teacher agents alongside human professors.
+LearnAI is **free for learners forever**. The codebase is donated, but the people who maintain it, the bandwidth, the cloud bills, and the AI compute are not.
 
-### How It Works
+> **Our 1-year commitment.** For at least the first year, LearnAI runs entirely on free-tier cloud services — Vercel, Neon, Hugging Face, the bundled OllaBridge model. We use this year to make the product stable, polished, and genuinely useful. No premium tier. No paywall. No "pro plan" trick. Just sponsorship-funded growth.
+>
+> When we eventually add optional services — voice models, longer-context tutors, classroom dashboards — **the core stays free**. Sponsors who funded year one will be credited; the open-source promise will be in writing.
 
-1. **MCP Server** (`mcp-server/`) — A Python FastMCP server that wraps LearnAI's REST API as MCP tools: `search_professors`, `recommend_professors`, `create_booking`, `get_booking_status`, `list_subjects`.
+### How to support
 
-2. **Professor Interview Server** (`services/mcp-professor/`) — A TypeScript MCP server using `@modelcontextprotocol/sdk` with 4 tools for running structured technical interviews: `create_interview_plan`, `start_interview`, `next_turn`, `wrap_up`.
+- 💖 **[GitHub Sponsors](https://github.com/sponsors/ruslanmv)** — monthly or one-off donation. Cancel anytime.
+- 🏢 **Corporate sponsorship & partnerships** — schools, edtech companies, foundations, labs: <ai@learnai.example>
+- 🪙 **One-time donation** — buy a year of compute, a domain, a translation. Every line item is small; together they keep the lights on.
+- ⭐ **Star the repo** — costs nothing, helps every potential sponsor find the project.
+- 🗣️ **Tell one parent, one teacher, one student.** The fastest growth is word of mouth from someone who used it and it worked.
 
-3. **ContextForge A2A Catalog** (`mcp-catalog.yml`) — YAML catalog for bulk-registering MCP servers with the ContextForge gateway.
+### Sponsor recognition
 
-4. **Next.js Integration** (`lib/contextforge.ts`) — A client that queries ContextForge's `/a2a` endpoint to list AI teacher agents, which are then merged with human teachers on the Explore page.
+| Tier | Monthly | What you get |
+|---|---|---|
+| 🌱 **Supporter** | $5 | Name in `SPONSORS.md` |
+| 🌳 **Champion** | $25 | Logo in `SPONSORS.md` + thank-you post from the project |
+| 🏛️ **Patron** | $100 | Logo on the README + the homepage footer |
+| 🚀 **Partner** | $500+ | Logo + a dedicated section in `docs/PARTNERS.md` and prioritised input on the roadmap |
 
-### Running the MCP Stack
+> Sponsorship is **never** tied to closed features or paywalled content. The product stays open. The recognition is the recognition; the codebase is the codebase.
 
-```bash
-# Start the Python MCP server (port 9100)
-make mcp-dev
+### Where the money goes
 
-# Start the ContextForge gateway (port 4444)
-make contextforge-dev
+Every $25/month sponsor pays for roughly **1,000 learner-sessions** at our current per-session cost. Every $500/month sponsor pays for a translation, an accessibility audit, or a month of professional design work. Most ed-tech is venture-funded and ends up extractive — ads, lock-in, learner data sold to the highest bidder. LearnAI's bet is that a coalition of small-and-medium sponsors funds the infrastructure instead of a single investor who needs an exit.
 
-# Start the Next.js app (port 3000)
-make dev
-```
-
-### Registering Agents
-
-```bash
-# Register MCP servers from catalog
-curl -X POST http://localhost:4444/catalog/load \
-  -H "Content-Type: application/json" \
-  -d '{"path": "mcp-catalog.yml"}'
-
-# Register an A2A agent
-curl -X POST http://localhost:4444/a2a \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "professor-nova",
-    "url": "http://localhost:9100/a2a",
-    "description": "AI technical interview coach",
-    "tags": ["teacher", "interview"],
-    "visibility": "public"
-  }'
-```
-
----
-
-## Development
-
-### Start Development Server
-
-```bash
-npm run dev
-# or
-make dev
-```
-
-Access the application at [http://localhost:3000](http://localhost:3000)
-
-### Database Operations
-
-```bash
-make prisma-generate      # Generate Prisma Client
-make prisma-push          # Push schema to database (development)
-make prisma-migrate       # Create migration (production)
-make prisma-studio        # Open Prisma Studio (database GUI)
-make prisma-reset         # Reset database (deletes all data)
-```
-
-### Code Quality
-
-```bash
-make lint                 # Run linter
-make lint-fix             # Fix linting issues
-make format               # Format code
-make type-check           # TypeScript checking
-make validate             # Run all checks
-```
-
-### Testing
-
-```bash
-make test                 # Run all MCP health tests (pytest)
-```
-
-The test suite validates:
-- MCP server tool definitions and Pydantic models
-- A2A agent health endpoint, agent card, and JSON-RPC methods
-- ContextForge catalog YAML structure and agent config
-
-### Build for Production
-
-```bash
-npm run build
-# or
-make build
-```
-
----
-
-## Deployment
-
-### One-Click Deploy to Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fruslanmv%2Flearnai&env=DATABASE_URL,NEXTAUTH_URL,NEXTAUTH_SECRET,GOOGLE_CLIENT_ID,GOOGLE_CLIENT_SECRET,OPENAI_API_KEY,PAYPAL_CLIENT_ID,PAYPAL_CLIENT_SECRET,PAYPAL_ENVIRONMENT&envDescription=Required%20environment%20variables%20for%20LearnAI&envLink=https%3A%2F%2Fgithub.com%2Fruslanmv%2Flearnai%2Fblob%2Fmain%2F.env.example&project-name=learnai&repository-name=learnai)
-
-### Production Deployment Guide
-
-For comprehensive deployment instructions, see:
-
-- [Complete Deployment Guide](./DEPLOYMENT.md)
-- [Vercel-Specific Guide](./VERCEL_DEPLOYMENT.md)
-- [Production Checklist](./PRODUCTION_CHECKLIST.md)
-
-### Quick Deploy Options
-
-#### Git Integration (Recommended for Teams)
-
-```bash
-git push origin main
-# Import to Vercel at https://vercel.com/new
-# Configure environment variables and deploy
-```
-
-#### Vercel CLI
-
-```bash
-npm install -g vercel
-vercel login
-vercel --prod
-```
-
-#### Using Makefile
-
-```bash
-make deploy-vercel          # Deploy to production
-make deploy-vercel-preview  # Deploy preview
-```
-
-### Required Environment Variables
-
-Add these in **Vercel Dashboard > Settings > Environment Variables**:
-
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `DATABASE_URL` | Yes | PostgreSQL connection string |
-| `NEXTAUTH_URL` | Yes | Production domain URL |
-| `NEXTAUTH_SECRET` | Yes | Random secret (32+ chars) |
-| `GOOGLE_CLIENT_ID` | Yes | Google OAuth Client ID |
-| `GOOGLE_CLIENT_SECRET` | Yes | Google OAuth Secret |
-| `OPENAI_API_KEY` | Yes | OpenAI API Key |
-| `PAYPAL_CLIENT_ID` | Yes | PayPal Client ID (Live) |
-| `PAYPAL_CLIENT_SECRET` | Yes | PayPal Secret (Live) |
-| `PAYPAL_ENVIRONMENT` | Yes | `live` for production |
-
-### Health Check
-
-```bash
-curl https://your-domain.com/api/health
-# {"status":"healthy","timestamp":"...","checks":{...}}
-```
-
----
-
-## API Documentation
-
-### Authentication
-
-#### POST `/api/auth/register`
-
-Register a new user.
-
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "SecurePassword123"
-}
-```
-
-### AI Endpoints
-
-#### POST `/api/ai/recommend-professors`
-
-Get AI-powered professor recommendations.
-
-```json
-{
-  "query": "I need help with calculus and differential equations"
-}
-```
-
-### Interview Endpoints
-
-#### POST `/api/learn/plan`
-
-Generate an interview plan via an A2A teacher agent.
-
-```json
-{
-  "agentName": "professor-nova",
-  "jobDescription": "Senior ML Engineer at ...",
-  "seniority": "senior",
-  "focusAreas": ["system design", "ML ops"],
-  "language": "en"
-}
-```
-
-#### POST `/api/learn/session`
-
-Run an interview turn with feedback scoring.
-
-```json
-{
-  "agentName": "professor-nova",
-  "jobDescription": "Senior ML Engineer at ...",
-  "history": [{"q": "...", "a": "...", "score": 7}],
-  "userAnswer": "I would approach this by..."
-}
-```
-
-### Booking Endpoints
-
-#### POST `/api/bookings`
-
-Create a new booking.
-
-```json
-{
-  "teacherId": "teacher_id",
-  "subject": "Mathematics",
-  "topic": "Calculus",
-  "scheduledFor": "2025-01-15T10:00:00Z",
-  "durationMinutes": 60,
-  "priceTotal": 45.00
-}
-```
-
-### Payment Endpoints
-
-#### POST `/api/payments/create-order`
-
-Create a PayPal payment order.
-
----
-
-## Project Structure
-
-```
-learnai/
-├── app/                          # Next.js App Router
-│   ├── api/                      # API Routes
-│   │   ├── auth/                 # Authentication endpoints
-│   │   ├── ai/                   # AI recommendation endpoints
-│   │   ├── bookings/             # Booking management
-│   │   ├── learn/                # Interview plan & session (A2A)
-│   │   └── payments/             # Payment processing
-│   ├── dashboard/                # Dashboard page
-│   ├── classroom/                # Classroom pages
-│   ├── explore/                  # Unified teacher grid (Human + AI)
-│   ├── login/                    # Login page
-│   ├── register/                 # Registration page
-│   ├── layout.tsx                # Root layout
-│   └── page.tsx                  # Home page
-├── components/                   # React components
-├── lib/                          # Utility libraries
-│   ├── prisma.ts                 # Prisma client
-│   ├── auth.ts                   # NextAuth configuration
-│   ├── ai.ts                     # OpenAI integration
-│   ├── contextforge.ts           # ContextForge A2A client
-│   ├── paypal.ts                 # PayPal integration
-│   └── teams.ts                  # Microsoft Teams integration
-├── mcp-server/                   # Python FastMCP server
-│   └── src/learnai_mcp/
-│       ├── server.py             # MCP tools (search, recommend, book)
-│       └── a2a/agent.py          # A2A agent endpoint
-├── services/
-│   └── mcp-professor/            # TypeScript MCP interview server
-│       └── src/index.ts          # Interview tools (plan, start, turn, wrap_up)
-├── mcp-catalog.yml               # MCP Context Forge catalog
-├── a2a-agent-config.yaml         # A2A agent registration config
-├── tests/                        # Python health check tests
-├── prisma/                       # Database schema
-├── public/                       # Static assets (incl. logo.svg)
-├── Makefile                      # Build automation
-├── next.config.mjs               # Next.js configuration
-├── package.json                  # Node.js dependencies
-├── tsconfig.json                 # TypeScript configuration
-└── vercel.json                   # Vercel deployment config
-```
-
----
-
-## Scripts
-
-All scripts are available via npm or Makefile:
-
-| Command | npm | Makefile | Description |
-|---------|-----|----------|-------------|
-| Development | `npm run dev` | `make dev` | Start dev server |
-| Build | `npm run build` | `make build` | Build for production |
-| Start | `npm start` | `make start` | Start production server |
-| Lint | `npm run lint` | `make lint` | Run ESLint |
-| Format | `npm run format` | `make format` | Format with Prettier |
-| Type Check | `npm run type-check` | `make type-check` | Run TypeScript check |
-| Validate | `npm run validate` | `make validate` | Run all checks |
-| Test (MCP) | — | `make test` | Run MCP health tests |
-| Install MCP | — | `make install-mcp` | Install all MCP servers |
-| MCP Dev | — | `make mcp-dev` | Start MCP server (port 9100) |
-| ContextForge | — | `make contextforge-dev` | Start gateway (port 4444) |
-| Clean MCP | — | `make clean-mcp` | Remove MCP venv and cache |
-
-View all Makefile commands:
-
-```bash
-make help
-```
-
----
-
-## Contributing
-
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Commit changes: `git commit -m 'Add amazing feature'`
-4. Push to branch: `git push origin feature/amazing-feature`
-5. Open a Pull Request
-
-### Code Standards
-
-- Follow TypeScript and ESLint rules
-- Write meaningful commit messages
-- Test your changes locally
-- Update documentation as needed
-
----
-
-## Security
-
-For security concerns, please review [SECURITY.md](SECURITY.md).
-
-**Important:**
-- Never commit `.env.local` or any files containing secrets
-- Use strong random secrets for `NEXTAUTH_SECRET`
-- Keep dependencies updated
-- Use HTTPS in production
-- Enable rate limiting for API routes
-
----
-
-## License
-
-This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.
-
-```
-Copyright 2025 ruslanmv.com
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-```
-
----
-
-## Author
-
-**Ruslan Magana**
-
-- Website: [ruslanmv.com](https://ruslanmv.com)
-- GitHub: [@ruslanmv](https://github.com/ruslanmv)
-- LinkedIn: [Ruslan Magana](https://linkedin.com/in/ruslanmv)
-
----
-
-## Acknowledgments
-
-- [Next.js](https://nextjs.org/) — React framework
-- [OpenAI](https://openai.com/) — AI capabilities
-- [Model Context Protocol](https://modelcontextprotocol.io/) — AI tool interoperability
-- [MCP Context Forge](https://github.com/ruslanmv/mcp-context-forge) — Agent registry gateway
-- [Prisma](https://www.prisma.io/) — Database ORM
-- [NextAuth.js](https://next-auth.js.org/) — Authentication
-- [Vercel](https://vercel.com/) — Deployment platform
-- [tldraw](https://tldraw.com/) — Collaborative whiteboard
-
----
-
-## Support
-
-- Issues: [GitHub Issues](https://github.com/ruslanmv/learnai/issues)
-- Documentation: [Wiki](https://github.com/ruslanmv/learnai/wiki)
+**[Become a sponsor →](https://github.com/sponsors/ruslanmv)**
 
 ---
 
 ## Roadmap
 
-### Version 1.1
-- [ ] Email notifications
-- [ ] Advanced search filters
-- [ ] Professor availability calendar
-- [ ] Student reviews and ratings
+**Shipped**
 
-### Version 1.2
-- [ ] Mobile apps (iOS/Android)
-- [ ] Group sessions
-- [ ] Course packages
-- [ ] Subscription plans
+- [x] Six age-adaptive learning worlds
+- [x] 5-step onboarding (Who → Journey → Teacher → Goal → Ready)
+- [x] Lesson player with the Loop and adaptive tuning
+- [x] Guest-first auth — no sign-in required to learn
+- [x] Progress engine — XP, streaks, cross-tab sync
+- [x] Admin console — Overview / Learners / Loops / Worlds / AI Providers / Personas / Safety / Billing / Audit
+- [x] **WikiTest** — paste-a-Wikipedia-URL-to-a-graded-test with cited explanations
+- [x] **Project creation wizard** — six audiences, three variants (4-step / parent-led / calm), 5 ready-to-use demos
+- [x] **Project workspace** — AI-generated lesson + interactive grading with inline tutor feedback
+- [x] **Persistent AI tutor rail** — context-aware, technique-labelled, with "Why this?" on every adaptive choice
+- [x] **Parent dashboard** — YouTube-Kids-style multi-child profiles, subject allow-list, quiet hours, accessibility, data export
+- [x] Certifications module (AWS · Azure · GCP · IBM)
+- [x] Languages module (7 languages, CEFR A1 → B2)
 
-### Version 2.0
-- [ ] Multi-language support
-- [ ] Advanced analytics
-- [ ] API for third-party integrations
-- [ ] Webhooks for automated workflows
-- [ ] Expanded MCP agent catalog
+**In flight**
+
+- [ ] MaterialTest — same pipeline for PDF + YouTube transcript + photo of a worksheet
+- [ ] Voice-mode Feynman exercise (mic → Whisper → AI critique)
+- [ ] Spaced-repetition queue in the progress engine
+- [ ] Offline-first PWA shell
+- [ ] i18n for the top 10 languages
+- [ ] Defense Mode (Socratic chains + Feynman explain-back for graduate prep)
+- [ ] Lesson marketplace — publish a lesson, fork someone else's
+
+See [`docs/ROADMAP.md`](./docs/ROADMAP.md) for the full plan.
+
+---
+
+## Contributing
+
+Pull requests welcome on bugs, design, lessons, translations, and pedagogical critiques. See [`CONTRIBUTING.md`](./CONTRIBUTING.md) for the guide, [`docs/DEVELOPMENT.md`](./docs/DEVELOPMENT.md) for architecture and the local-dev setup, and [`SECURITY.md`](./SECURITY.md) for responsible disclosure.
+
+---
+
+## License
+
+Apache 2.0 — see [`LICENSE`](./LICENSE).
+
+Wikipedia-sourced content (WikiTest article text) is reused under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) with attribution preserved on every page that displays it.
 
 ---
 
 <p align="center">
   <img src="public/logo.svg" alt="LearnAI" width="40" height="40" /><br/>
-  <strong>Made with care by <a href="https://ruslanmv.com">Ruslan Magana</a></strong>
+  <strong>Built by <a href="https://ruslanmv.com">Ruslan Magana</a> and contributors.</strong><br/>
+  <em>Education is a right. Let's make a great teacher available to every learner on Earth.</em><br/><br/>
+  <a href="https://github.com/sponsors/ruslanmv"><strong>💖 Support LearnAI</strong></a>
 </p>

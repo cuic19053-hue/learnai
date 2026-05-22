@@ -1,222 +1,282 @@
 import Link from "next/link";
-import MarketingHeader from "@/components/MarketingHeader";
-import PricingSection from "@/components/PricingSection";
-import { getTopProfessors } from "@/lib/topProfessors";
+import LearningStageCard from "@/components/learn/LearningStageCard";
+import Mark from "@/components/design/Mark";
+import Illustration from "@/components/design/Illustration";
+import { Arrow } from "@/components/design/icons";
+import StickyHeader from "@/components/home/StickyHeader";
+import AnimatedHero from "@/components/home/AnimatedHero";
+import { JOURNEYS } from "@/lib/learn/journeys";
+import { LOOP } from "@/lib/learn/loop";
 
-export const dynamic = "force-dynamic";
+const HOW_IT_WORKS = [
+  {
+    n: 1,
+    title: "Tell us who is learning",
+    desc: "A 5-step setup picks the right age, goal, and AI teacher.",
+  },
+  {
+    n: 2,
+    title: "Land in your learning world",
+    desc: "Each stage has its own interface — playful, mission, exam, professional, or calm.",
+  },
+  {
+    n: 3,
+    title: "Practice with feedback",
+    desc: "Every session uses the same loop: hook, explain, practice, feedback, reflect, evolve.",
+  },
+];
 
-export default async function HomePage() {
-  const topProfessors = await getTopProfessors();
+const WORLDS: Array<{
+  id: string;
+  title: string;
+  desc: string;
+  best: string;
+  /** Stage home this World card lands the learner in. */
+  href: string;
+  tint: string;
+  recommended?: boolean;
+}> = [
+  {
+    id: "playful",
+    title: "Playful World",
+    desc: "Fun stories, games, and colorful lessons.",
+    best: "Little Learner",
+    href: "/learn/kids",
+    tint: "linear-gradient(135deg,#fce0ec,#fff1d6)",
+  },
+  {
+    id: "mission",
+    title: "Mission World",
+    desc: "Quests, challenges, and problem-solving.",
+    best: "Builder",
+    href: "/learn/builder",
+    tint: "linear-gradient(135deg,#efe7ff,#e6ecff)",
+    recommended: true,
+  },
+  {
+    id: "career",
+    title: "Career World",
+    desc: "Real-world examples and practical skills.",
+    best: "Professional",
+    href: "/learn/adult",
+    tint: "linear-gradient(135deg,#d6f1f0,#e6ecff)",
+  },
+  {
+    id: "calm",
+    title: "Calm World",
+    desc: "Clear steps, gentle pace, and larger text.",
+    best: "Senior Learner",
+    href: "/learn/senior",
+    tint: "linear-gradient(135deg,#e7f8ee,#f3fbf5)",
+  },
+];
 
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
-      <MarketingHeader />
+    <main id="main">
+      {/* ────────── Top nav ────────── */}
+      <StickyHeader />
 
-      <main>
-        {/* Hero */}
-        <section className="bg-gradient-to-br from-primary to-secondary py-20 text-white">
-          <div className="mx-auto max-w-6xl px-4 text-center">
-            <h1 className="mb-6 text-4xl font-bold md:text-6xl">
-              Learn Smarter with AI-Powered Tutoring
-            </h1>
-            <p className="mb-8 text-xl opacity-90 md:text-2xl">
-              Connect with expert professors, schedule 1-on-1 sessions, and learn with interactive whiteboards.
+      {/* ────────── Hero (animated) ────────── */}
+      <AnimatedHero />
+
+      {/* ────────── Journey grid ────────── */}
+      <section id="journeys" className="mx-auto max-w-[1200px] px-6 py-16 md:px-12">
+        <div className="mb-8 max-w-[720px]">
+          <span
+            className="la-pill"
+            style={{ background: "#fff", boxShadow: "0 0 0 1px var(--line)", color: "var(--ink-soft)" }}
+          >
+            Choose your learning journey
+          </span>
+          <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
+            Pick the stage that fits the learner
+          </h2>
+          <p className="mt-2 text-base text-ink-soft">
+            We tune the language, length, and tone of every lesson to match.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {JOURNEYS.map((j) => (
+            <LearningStageCard key={j.id} {...j} />
+          ))}
+        </div>
+      </section>
+
+      {/* ────────── Learning Worlds ────────── */}
+      <section className="mx-auto max-w-[1200px] px-6 pb-16 md:px-12">
+        <div className="mb-7 max-w-[720px]">
+          <span
+            className="la-pill"
+            style={{ background: "#fff", boxShadow: "0 0 0 1px var(--line)", color: "var(--ink-soft)" }}
+          >
+            Learning Worlds
+          </span>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-ink md:text-4xl">
+            Four worlds. One that fits you.
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {WORLDS.map((w) => (
+            <Link
+              key={w.id}
+              href={w.href}
+              className="la-jcard group block"
+              style={{
+                padding: 0,
+                gap: 0,
+                overflow: "hidden",
+                border: w.recommended ? "1.5px solid var(--brand-1)" : "1px solid var(--line-soft)",
+                boxShadow: w.recommended
+                  ? "0 0 0 4px rgba(46,91,255,.08)"
+                  : "var(--shadow-1)",
+              }}
+              aria-label={`${w.title}: ${w.desc}. Best for ${w.best}.`}
+            >
+              <div className="relative overflow-hidden" style={{ height: 140 }}>
+                <Illustration
+                  id={`worlds/${w.id}`}
+                  label={`${w.title} — ${w.desc}`}
+                  fallbackHeight={140}
+                />
+                {w.recommended ? (
+                  <span
+                    className="la-pill absolute left-3 top-3"
+                    style={{ background: "var(--brand-grad)", color: "#fff", boxShadow: "var(--shadow-1)" }}
+                  >
+                    ★ Recommended
+                  </span>
+                ) : null}
+              </div>
+              <div style={{ padding: 18 }}>
+                <h3 className="m-0 text-lg font-bold tracking-[-0.01em] text-ink">{w.title}</h3>
+                <p className="mt-1.5 text-sm text-ink-soft">{w.desc}</p>
+                <div className="mt-3 flex items-center justify-between text-xs text-ink-mute">
+                  <span>
+                    Best for: <strong className="text-ink-soft">{w.best}</strong>
+                  </span>
+                  <span
+                    className="inline-flex items-center gap-1 font-bold transition-transform group-hover:translate-x-0.5"
+                    style={{ color: "var(--brand-1)" }}
+                  >
+                    Open <Arrow color="var(--brand-1)" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* ────────── How it works (Loop) ────────── */}
+      <section
+        id="how"
+        className="border-y border-line-soft bg-white"
+        style={{ padding: "64px 0" }}
+      >
+        <div className="mx-auto max-w-[1200px] px-6 md:px-12">
+          <div className="mb-10 text-center">
+            <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
+              How it works
+            </span>
+            <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
+              One loop. Endless lessons.
+            </h2>
+            <p className="mt-2 text-base text-ink-soft">
+              Every session — for every age — runs the same six steps.
             </p>
-
-            <div className="mb-12 flex flex-col justify-center gap-4 md:flex-row">
-              <Link
-                href="/explore"
-                className="rounded-lg bg-white px-8 py-4 font-semibold text-primary hover:bg-gray-100"
-              >
-                Start Learning Today
-              </Link>
-              <a
-                href="#features"
-                className="rounded-lg border-2 border-white px-8 py-4 font-semibold text-white hover:bg-white hover:text-primary"
-              >
-                How It Works
-              </a>
-            </div>
-
-            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-8 md:grid-cols-3">
-              <div className="rounded-lg bg-white/10 p-6 backdrop-blur-sm">
-                <div className="text-3xl mb-4">🤖</div>
-                <h3 className="mb-2 text-xl font-semibold">AI Professor Matching</h3>
-                <p className="opacity-90">
-                  Our AI finds the perfect professor based on your learning needs and preferences.
-                </p>
-              </div>
-
-              <div className="rounded-lg bg-white/10 p-6 backdrop-blur-sm">
-                <div className="text-3xl mb-4">🧑‍🏫</div>
-                <h3 className="mb-2 text-xl font-semibold">Interactive Whiteboard</h3>
-                <p className="opacity-90">
-                  Real-time collaboration with an interactive whiteboard and meeting tools.
-                </p>
-              </div>
-
-              <div className="rounded-lg bg-white/10 p-6 backdrop-blur-sm">
-                <div className="text-3xl mb-4">💳</div>
-                <h3 className="mb-2 text-xl font-semibold">Secure Payments</h3>
-                <p className="opacity-90">
-                  Pay per session with secure checkout and a transparent platform fee.
-                </p>
-              </div>
-            </div>
           </div>
-        </section>
 
-        {/* Features */}
-        <section id="features" className="bg-white py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold text-dark md:text-4xl">
-              Why Choose LearnAI?
-            </h2>
-
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {[
-                { title: "AI-Powered Matching", icon: "🧠", color: "bg-primary", desc: "Our system matches you with the perfect professor for your goals and schedule." },
-                { title: "1-on-1 Sessions", icon: "🎥", color: "bg-secondary", desc: "Personalized sessions designed around you — not a generic course." },
-                { title: "Simple Payments", icon: "💸", color: "bg-accent", desc: "Pay per session. Professors keep 90%. Platform fee is only 10%." },
-                { title: "Performance Dashboard", icon: "📈", color: "bg-primary", desc: "Track progress, bookings, and outcomes once you decide to login." },
-                { title: "Multi-language Support", icon: "🌍", color: "bg-secondary", desc: "Teach and learn in your preferred language." },
-                { title: "Teacher Registration", icon: "🧑‍💼", color: "bg-accent", desc: "Professors can register by topic and start earning quickly." },
-              ].map((f) => (
-                <div key={f.title} className="rounded-xl border border-gray-200 bg-gray-50 p-6">
-                  <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${f.color} text-white`}>
-                    <span className="text-lg">{f.icon}</span>
-                  </div>
-                  <h3 className="mb-3 text-xl font-semibold">{f.title}</h3>
-                  <p className="text-gray-600">{f.desc}</p>
+          <div className="mx-auto mb-12 grid max-w-[1100px] grid-cols-1 gap-4 md:grid-cols-3">
+            {HOW_IT_WORKS.map((s) => (
+              <div key={s.n} style={{ padding: 22 }}>
+                <div className="la-mono text-[13px] font-bold text-brand-1">
+                  STEP {String(s.n).padStart(2, "0")}
                 </div>
-              ))}
-            </div>
+                <h3 className="mt-2 text-[22px] font-bold tracking-[-0.01em] text-ink">
+                  {s.title}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-ink-soft">{s.desc}</p>
+              </div>
+            ))}
           </div>
-        </section>
 
-        {/* Top Professors */}
-        <section className="bg-gray-50 py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold text-dark md:text-4xl">
-              Top Rated Professors
-            </h2>
-
-            <div className="mb-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {topProfessors.map((p) => (
-                <div key={p.id} className="overflow-hidden rounded-xl bg-white shadow-md">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={p.image} alt={p.name} className="h-48 w-full object-cover" loading="lazy" />
-                  <div className="p-6">
-                    <div className="mb-3 flex items-center justify-between">
-                      <h3 className="text-xl font-semibold">{p.name}</h3>
-                      <div className="flex items-center gap-1 text-yellow-400">
-                        <span>★</span>
-                        <span className="text-gray-700">{p.rating.toFixed(1)}</span>
-                      </div>
+          {/* The Loop */}
+          <div
+            className="mx-auto max-w-[1100px] rounded-[28px] p-9"
+            style={{
+              background: "linear-gradient(135deg, var(--bg-2), #f7f4ff)",
+              border: "1px solid var(--line-soft)",
+            }}
+          >
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-6">
+              {LOOP.map((l, i) => (
+                <div key={l.n} className="relative text-center">
+                  <div className="la-mono mb-2 text-[11px] font-bold text-ink-mute">
+                    0{l.n}
+                  </div>
+                  <div className="la-loop-ring mx-auto" style={{ color: l.color }}>
+                    <span aria-hidden>{l.icon}</span>
+                  </div>
+                  <div className="mt-3 text-base font-bold text-ink">{l.label}</div>
+                  <div className="mt-1 px-1.5 text-xs leading-snug text-ink-soft">
+                    {l.blurb}
+                  </div>
+                  {i < LOOP.length - 1 ? (
+                    <div
+                      className="absolute hidden text-ink-faint md:block"
+                      style={{ top: 36, right: -18 }}
+                      aria-hidden
+                    >
+                      →
                     </div>
-
-                    <p className="mb-4 text-gray-600">{p.subject}</p>
-
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-primary">€{p.price}/session</span>
-                      <Link
-                        href={`/bookings/new?professorId=${p.id}`}
-                        className="rounded-lg bg-primary px-4 py-2 text-sm text-white hover:bg-secondary transition-colors"
-                      >
-                        Book Session
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/explore"
-                className="rounded-lg bg-primary px-8 py-4 font-semibold text-white hover:bg-secondary transition-colors inline-flex"
-              >
-                View All Professors
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        {/* How It Works */}
-        <section className="bg-white py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="mb-12 text-center text-3xl font-bold text-dark md:text-4xl">
-              How LearnAI Works
-            </h2>
-
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-              {[
-                { n: "1", title: "Explore Freely", desc: "Browse professors without creating an account.", color: "bg-primary" },
-                { n: "2", title: "AI Matching", desc: "Our AI suggests the best professors for your objectives.", color: "bg-secondary" },
-                { n: "3", title: "Schedule & Pay", desc: "Book sessions and pay securely when you're ready.", color: "bg-accent" },
-                { n: "4", title: "Learn & Grow", desc: "Track progress on your dashboard after login (optional).", color: "bg-primary" },
-              ].map((s) => (
-                <div key={s.title} className="text-center">
-                  <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${s.color} text-white`}>
-                    <span className="text-xl font-bold">{s.n}</span>
-                  </div>
-                  <h3 className="mb-2 text-lg font-semibold">{s.title}</h3>
-                  <p className="text-gray-600">{s.desc}</p>
+                  ) : null}
                 </div>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Pricing Section */}
-        <PricingSection />
+      {/* ────────── CTA ────────── */}
+      <section className="px-6 py-16 text-center md:px-12 md:py-20">
+        <h2 className="m-0 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
+          Start the right journey today.
+        </h2>
+        <p className="mt-3 text-base text-ink-soft">
+          Free to try. No card. No ads. Made for every age.
+        </p>
+        <Link
+          href="/onboarding"
+          className="la-btn mt-6 inline-flex"
+          style={{ padding: "16px 28px", fontSize: 16 }}
+        >
+          Choose your journey <Arrow />
+        </Link>
+      </section>
 
-        {/* Footer */}
-        <footer id="about" className="bg-dark py-12 text-white">
-          <div className="mx-auto max-w-6xl px-4">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-              <div>
-                <h3 className="mb-4 text-lg font-semibold">LearnAI</h3>
-                <p className="text-gray-400">
-                  Connecting students with expert professors through AI-powered matching and interactive learning tools.
-                </p>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-lg font-semibold">For Students</h3>
-                <ul className="space-y-2 text-gray-400">
-                  <li><Link href="/explore" className="hover:text-white">Find Professors</Link></li>
-                  <li><Link href="/bookings" className="hover:text-white">Book Sessions</Link></li>
-                  <li><Link href="/dashboard" className="hover:text-white">Learning Dashboard</Link></li>
-                  <li><a href="#pricing" className="hover:text-white">Payment Options</a></li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-lg font-semibold">For Professors</h3>
-                <ul className="space-y-2 text-gray-400">
-                  <li><Link href="/register" className="hover:text-white">Register to Teach</Link></li>
-                  <li><Link href="/profile" className="hover:text-white">Profile Management</Link></li>
-                  <li><Link href="/classroom" className="hover:text-white">Teaching Tools</Link></li>
-                  <li><a href="#pricing" className="hover:text-white">Payment Setup</a></li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="mb-4 text-lg font-semibold">Contact</h3>
-                <ul className="space-y-2 text-gray-400">
-                  <li>support@learnai.com</li>
-                  <li>+1 (555) 123-4567</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="mt-8 border-t border-gray-700 pt-8 text-center text-gray-400">
-              <p>© {new Date().getFullYear()} LearnAI. All rights reserved. Platform fee: 10%</p>
-            </div>
+      {/* ────────── Footer ────────── */}
+      <footer className="border-t border-line-soft bg-surface-soft">
+        <div className="mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-4 px-6 py-8 text-sm text-ink-soft md:flex-row md:px-12">
+          <div className="flex items-center gap-3">
+            <Mark size={28} fontSize={16} />
+            <span className="text-xs text-ink-mute">© LearnAI · Education for every stage of life</span>
           </div>
-        </footer>
-      </main>
-    </div>
+          <div className="flex flex-wrap gap-5">
+            <Link href="/onboarding" className="hover:text-ink">
+              Get started
+            </Link>
+            <Link href="/teachers" className="hover:text-ink">
+              Teachers
+            </Link>
+            <Link href="/parent" className="hover:text-ink">
+              Parents
+            </Link>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }

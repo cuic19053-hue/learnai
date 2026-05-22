@@ -39,15 +39,20 @@ export default withAuth(
     const token = req.nextauth.token;
     const pathname = req.nextUrl.pathname;
 
+    // When auth is not configured (preview / guest-only deployments) we
+    // don't enforce role checks — without a working NextAuth there is no
+    // token to inspect anyway, and this lets the admin design demo render.
+    const authConfigured = !!process.env.NEXTAUTH_SECRET;
+
     // Check if user is accessing admin routes
-    if (adminRoutes.some((route) => pathname.startsWith(route))) {
+    if (authConfigured && adminRoutes.some((route) => pathname.startsWith(route))) {
       if (token?.role !== "ADMIN") {
         return NextResponse.redirect(new URL("/unauthorized", req.url));
       }
     }
 
     // Check if user is accessing teacher routes
-    if (teacherRoutes.some((route) => pathname.startsWith(route))) {
+    if (authConfigured && teacherRoutes.some((route) => pathname.startsWith(route))) {
       if (token?.role !== "TEACHER" && token?.role !== "ADMIN") {
         return NextResponse.redirect(new URL("/unauthorized", req.url));
       }
@@ -80,23 +85,28 @@ export default withAuth(
 );
 
 /**
- * Configure which routes the middleware should run on
+ * Configure which routes the middleware should run on.
+ *
+ * We deliberately list ONLY the protected surfaces. Everything else (the
+ * homepage, /learn/*, /onboarding, /teachers, /parent, /progress, the
+ * marketing pages) bypasses middleware entirely.
+ *
+ * Reason: `withAuth` from next-auth/middleware requires NEXTAUTH_SECRET
+ * to decrypt session tokens. When the secret isn't configured (the public
+ * guest-mode deployment), withAuth fails before our `authorized` callback
+ * runs and 302-redirects everything to /login?error=Configuration. By
+ * narrowing the matcher we keep middleware off the YouTube-style public
+ * paths entirely.
  *
  * @see https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
  */
 export const config = {
   matcher: [
-    /*
-     * Match all request paths except:
-     * - / (homepage - public)
-     * - /explore (public professor browsing)
-     * - /login, /register (auth pages)
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * - public folder
-     * - API routes (handled separately)
-     */
-    "/((?!api|_next/static|_next/image|favicon.ico|public|login|register|explore|$).*)",
+    "/classroom/:path*",
+    "/bookings/:path*",
+    "/profile/:path*",
+    "/admin/:path*",
+    "/teacher/:path*",
+    "/dashboard/:path*",
   ],
 };

@@ -1,0 +1,114 @@
+# LearnAI — Production deploy
+#
+# Runs on every push to `main`. Two jobs:
+#
+#   1. db-migrate — applies Prisma migrations to the real Neon database
+#                   using the production DATABASE_URL secret. Runs first.
+#   2. build-check — builds the app with real env so production-only
+#                    issues fail here, not on Vercel.
+#
+# Vercel handles the actual deploy via its Git integration. This
+# workflow is the safety net before that deploy runs.
+#
+# Required secrets in GitHub repo → Settings → Secrets and variables → Actions:
+#
+#   DATABASE_URL          full Neon Postgres connection string (pooled)
+#   NEXTAUTH_SECRET       `openssl rand -base64 32`
+#   NEXTAUTH_URL          the public production URL, e.g. https://learnai.vercel.app
+#   GOOGLE_CLIENT_ID      from console.cloud.google.com → OAuth client
+#   GOOGLE_CLIENT_SECRET  same OAuth client
+#
+# That's it — five secrets. Everything else is optional and either has a
+# safe default in code (OllaBridge) or is gracefully skipped at runtime
+# (xAI, OpenAI, Anthropic, ContextForge, Resend, PayPal).
+
+name: Deploy to production
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-run the workflow from the GitHub UI without an empty commit.
+  workflow_dispatch:
+
+# Cancel an in-flight deploy when a newer commit lands on main.
+concurrency:
+  group: production
+  cancel-in-progress: false
+
+jobs:
+  db-migrate:
+    name: Apply Neon migrations
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Apply migrations to Neon
+        run: npx prisma migrate deploy
+
+  build-check:
+    name: Production build verify
+    runs-on: ubuntu-latest
+    needs: [db-migrate]
+    timeout-minutes: 15
+
+    # Real production env — same set the live app receives on Vercel.
+    # Only the five required secrets + the public OllaBridge defaults.
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      # Public OllaBridge defaults — bundled AI, no key needed
+      OLLABRIDGE_URL: https://ruslanmv-ollabridge.hf.space
+      OLLABRIDGE_MODEL: qwen2.5:1.5b
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Type check
+        run: npm run type-check
+
+      - name: Build
+        run: npm run build
+
+      - name: Summary
+        if: success()
+        run: |
+          {
+            echo "## ✓ Production build green"
+            echo ""
+            echo "- Migrations applied to Neon"
+            echo "- Build succeeded with production env"
+            echo "- Vercel will pick up this commit and deploy"
+            echo ""
+            echo "Verify the live deploy at: \`${NEXTAUTH_URL}/api/ai/ping\`"
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,27 +1,32 @@
-import { listTeacherAgents } from "@/lib/contextforge";
-import LearnClient from "./LearnClient";
+import { redirect } from "next/navigation";
+import { LearnerStage, stageToPath } from "@/lib/learn/stages";
+import { readProfile } from "@/lib/learn/profile";
 
-export const dynamic = "force-dynamic";
+const VALID: LearnerStage[] = [
+  "LITTLE_LEARNER",
+  "EXPLORER",
+  "BUILDER",
+  "SCHOLAR",
+  "UNIVERSITY",
+  "PROFESSIONAL",
+  "SENIOR",
+];
 
 export default async function LearnPage({
   searchParams,
 }: {
-  searchParams?: Promise<{ agent?: string }>;
+  searchParams?: Promise<{ stage?: string }>;
 }) {
-  const params = await (searchParams ?? Promise.resolve({} as { agent?: string }));
-  const agents = await listTeacherAgents();
-  const options = agents.map((a) => ({
-    name: a.name,
-    label: a.name
-      .replace(/[-_]+/g, " ")
-      .replace(/\b\w/g, (c) => c.toUpperCase()),
-    description: a.description,
-  }));
+  const params = await (searchParams ?? Promise.resolve({} as { stage?: string }));
+  const queryStage = (VALID as string[]).includes(params.stage ?? "")
+    ? (params.stage as LearnerStage)
+    : undefined;
+  if (queryStage) redirect(stageToPath(queryStage));
 
-  return (
-    <LearnClient
-      agents={options.length ? options : [{ name: "", label: "No AI teachers configured" }]}
-      defaultAgent={params?.agent}
-    />
-  );
+  const profile = await readProfile();
+  if (profile?.stage && (VALID as string[]).includes(profile.stage)) {
+    redirect(stageToPath(profile.stage as LearnerStage));
+  }
+
+  redirect("/onboarding");
 }
