@@ -34,6 +34,13 @@ const nextConfig = {
     const vercelConnect =
       "https://vercel.live https://va.vercel-scripts.com https://*.pusher.com wss://*.pusher.com";
     const evalDirective = process.env.NODE_ENV !== 'production' ? " 'unsafe-eval'" : '';
+    // Piper TTS loads its ESM bundle from jsdelivr and downloads ONNX voice
+    // models from Hugging Face on first use (cached in OPFS thereafter).
+    // 'wasm-unsafe-eval' lets the Piper WASM runtime execute; the worker
+    // and blob: media entries cover the audio worker + decoded PCM playback.
+    const piperScripts = "https://cdn.jsdelivr.net 'wasm-unsafe-eval'";
+    const piperConnect =
+      "https://cdn.jsdelivr.net https://huggingface.co https://*.huggingface.co https://cdn-lfs.huggingface.co https://cdn-lfs.hf.co";
 
     const csp = [
       "default-src 'self'",
@@ -47,12 +54,15 @@ const nextConfig = {
       "style-src-elem 'self' 'unsafe-inline' https://vercel.live",
       // 'unsafe-inline' is required by Next.js for hydration scripts;
       // 'unsafe-eval' only enabled in development.
-      `script-src 'self' 'unsafe-inline'${evalDirective} ${vercelScripts}`,
-      `script-src-elem 'self' 'unsafe-inline' ${vercelScripts}`,
-      `connect-src 'self' https://accounts.google.com ${vercelConnect}`,
+      `script-src 'self' 'unsafe-inline'${evalDirective} ${vercelScripts} ${piperScripts}`,
+      `script-src-elem 'self' 'unsafe-inline' ${vercelScripts} https://cdn.jsdelivr.net`,
+      `connect-src 'self' https://accounts.google.com ${vercelConnect} ${piperConnect}`,
+      // Piper runs synthesis in a Web Worker spawned from a blob: URL.
+      "worker-src 'self' blob:",
       "frame-src 'self' https://vercel.live",
       // blob: allows playback of in-memory MediaRecorder output (Interview
-      // Trainer audio captures stay client-side, never uploaded).
+      // Trainer audio captures stay client-side, never uploaded) and the
+      // PCM blobs Piper returns from predict().
       "media-src 'self' blob:",
       "manifest-src 'self'",
     ].join('; ');
