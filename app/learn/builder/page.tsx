@@ -31,7 +31,7 @@ export default function BuilderPage() {
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
         Welcome back, Sam 👋
       </h1>
-      <p className="mt-1 mb-6 text-[15px] text-ink-soft">
+      <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         You&apos;re 30 minutes from finishing your Python calculator project.
       </p>
 

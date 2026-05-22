@@ -63,12 +63,8 @@ export const POST = handler(async (req: Request) => {
   }
 });
 
-function normalise(
-  f: PresentationFeedback,
-  durationSec: number,
-): PresentationFeedback {
-  const c0to10 = (n: unknown) =>
-    Math.max(0, Math.min(10, Math.round(Number(n ?? 0))));
+function normalise(f: PresentationFeedback, durationSec: number): PresentationFeedback {
+  const c0to10 = (n: unknown) => Math.max(0, Math.min(10, Math.round(Number(n ?? 0))));
   return {
     durationSec,
     score0to10: c0to10(f?.score0to10),

@@ -32,11 +32,7 @@ const KIND_LABEL: Record<string, string> = {
   short_answer: "Short answer",
 };
 
-export default async function WikiTestDetail({
-  params,
-}: {
-  params: Promise<{ testId: string }>;
-}) {
+export default async function WikiTestDetail({ params }: { params: Promise<{ testId: string }> }) {
   const { testId } = await params;
   const test = getStoredTest(testId);
   if (!test) notFound();
@@ -64,12 +60,13 @@ export default async function WikiTestDetail({
       teacherName={world.teacherName}
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "wikitest" })}
-      pageContext={{ kind: "wiki-detail", topic: test.article.title, worldLabel: world.journey.name }}
+      pageContext={{
+        kind: "wiki-detail",
+        topic: test.article.title,
+        worldLabel: world.journey.name,
+      }}
     >
-      <Link
-        href="/learn/wiki"
-        className="text-[13px] font-bold text-ink-soft hover:text-ink"
-      >
+      <Link href="/learn/wiki" className="text-[13px] font-bold text-ink-soft hover:text-ink">
         ← Back to WikiTest
       </Link>
 
@@ -98,16 +95,15 @@ export default async function WikiTestDetail({
           style={{ borderRadius: 20, background: "var(--brand-grad-soft)" }}
         >
           <div className="flex items-center gap-2">
-            <span className="text-2xl" aria-hidden>🎯</span>
-            <h3 className="text-[18px] font-extrabold tracking-tight text-ink">
-              Train first
-            </h3>
+            <span className="text-2xl" aria-hidden>
+              🎯
+            </span>
+            <h3 className="text-[18px] font-extrabold tracking-tight text-ink">Train first</h3>
             <span className="la-pill text-[11px]">Recommended</span>
           </div>
           <p className="text-[13px] leading-relaxed text-ink-soft">
-            Walk the article with your tutor. We pause at each section for a
-            quick check-in — wrong answers reveal the exact paragraph the
-            answer came from.
+            Walk the article with your tutor. We pause at each section for a quick check-in — wrong
+            answers reveal the exact paragraph the answer came from.
           </p>
           <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-bold text-brand-1">
             Start training →
@@ -119,14 +115,14 @@ export default async function WikiTestDetail({
           style={{ borderRadius: 20 }}
         >
           <div className="flex items-center gap-2">
-            <span className="text-2xl" aria-hidden>📝</span>
-            <h3 className="text-[18px] font-extrabold tracking-tight text-ink">
-              Take the test
-            </h3>
+            <span className="text-2xl" aria-hidden>
+              📝
+            </span>
+            <h3 className="text-[18px] font-extrabold tracking-tight text-ink">Take the test</h3>
           </div>
           <p className="text-[13px] leading-relaxed text-ink-soft">
-            Timed, graded, no peeking. You&apos;ll get a readiness scorecard
-            with per-section breakdown when you finish.
+            Timed, graded, no peeking. You&apos;ll get a readiness scorecard with per-section
+            breakdown when you finish.
           </p>
           <span className="mt-auto inline-flex items-center gap-1 text-[13px] font-bold text-ink-soft">
             Begin exam →
@@ -137,12 +133,9 @@ export default async function WikiTestDetail({
       {/* Breakdown */}
       <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
         <section className="la-card p-5" style={{ borderRadius: 18 }}>
-          <h2 className="text-[14px] font-extrabold tracking-tight text-ink">
-            Section coverage
-          </h2>
+          <h2 className="text-[14px] font-extrabold tracking-tight text-ink">Section coverage</h2>
           <p className="mt-1 text-[12px] text-ink-mute">
-            What the test draws from. Each question is cited back to one of
-            these headings.
+            What the test draws from. Each question is cited back to one of these headings.
           </p>
           <ul className="mt-3 space-y-2">
             {sectionRows.map(([section, n]) => {
@@ -165,9 +158,7 @@ export default async function WikiTestDetail({
         </section>
 
         <section className="la-card p-5" style={{ borderRadius: 18 }}>
-          <h2 className="text-[14px] font-extrabold tracking-tight text-ink">
-            Question mix
-          </h2>
+          <h2 className="text-[14px] font-extrabold tracking-tight text-ink">Question mix</h2>
           <p className="mt-1 text-[12px] text-ink-mute">
             Variety keeps it honest — recall, reasoning, and free recall.
           </p>

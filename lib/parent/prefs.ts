@@ -124,7 +124,13 @@ export function loadPrefs(): ParentPrefs {
     if (!raw) return DEFAULT_PREFS;
     const parsed = JSON.parse(raw) as ParentPrefs;
     if (parsed.v !== 1) return DEFAULT_PREFS;
-    return { ...DEFAULT_PREFS, ...parsed, voice: { ...DEFAULT_PREFS.voice, ...parsed.voice }, quietHours: { ...DEFAULT_PREFS.quietHours, ...parsed.quietHours }, notifications: { ...DEFAULT_PREFS.notifications, ...parsed.notifications } };
+    return {
+      ...DEFAULT_PREFS,
+      ...parsed,
+      voice: { ...DEFAULT_PREFS.voice, ...parsed.voice },
+      quietHours: { ...DEFAULT_PREFS.quietHours, ...parsed.quietHours },
+      notifications: { ...DEFAULT_PREFS.notifications, ...parsed.notifications },
+    };
   } catch {
     return DEFAULT_PREFS;
   }
@@ -135,7 +141,7 @@ export function savePrefs(prefs: ParentPrefs): void {
   try {
     window.localStorage.setItem(
       KEY,
-      JSON.stringify({ ...prefs, updatedAt: new Date().toISOString() }),
+      JSON.stringify({ ...prefs, updatedAt: new Date().toISOString() })
     );
   } catch {
     // localStorage full / private mode — silently drop. The UI shows
@@ -145,9 +151,7 @@ export function savePrefs(prefs: ParentPrefs): void {
 
 export function activeChild(prefs: ParentPrefs): ChildProfile {
   return (
-    prefs.children.find((c) => c.id === prefs.activeChildId) ??
-    prefs.children[0] ??
-    DEFAULT_CHILD
+    prefs.children.find((c) => c.id === prefs.activeChildId) ?? prefs.children[0] ?? DEFAULT_CHILD
   );
 }
 

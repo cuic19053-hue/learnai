@@ -7,7 +7,9 @@ import { PROVIDER_IDS } from "@/lib/ai/providers";
 export const dynamic = "force-dynamic";
 
 const TestSchema = z.object({
-  id: z.enum(PROVIDER_IDS as [typeof PROVIDER_IDS[number], ...Array<typeof PROVIDER_IDS[number]>]),
+  id: z.enum(
+    PROVIDER_IDS as [(typeof PROVIDER_IDS)[number], ...Array<(typeof PROVIDER_IDS)[number]>]
+  ),
 });
 
 /**

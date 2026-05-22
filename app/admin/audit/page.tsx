@@ -14,20 +14,132 @@ const AUDIT: Array<{
   ip: string;
   sev: Severity;
 }> = [
-  { t: "14:42:17", actor: "admin@learnai", ic: "🤖", action: "provider.add", target: "xAI · Grok", ip: "88.143.x.x", sev: "info" },
-  { t: "14:38:02", actor: "admin@learnai", ic: "🔑", action: "apikey.create", target: "xai-prod-key-1", ip: "88.143.x.x", sev: "high" },
-  { t: "14:21:55", actor: "system", ic: "🛡️", action: "safety.block", target: "Builder · profanity · Maya", ip: "—", sev: "med" },
-  { t: "14:11:30", actor: "system", ic: "✨", action: "wikitest.generate", target: "Linear algebra · jess", ip: "—", sev: "info" },
-  { t: "13:58:09", actor: "mariac@gmail", ic: "👪", action: "parent.update_settings", target: "Sofia · session_length=15m", ip: "92.30.x.x", sev: "info" },
-  { t: "13:47:23", actor: "system", ic: "💳", action: "billing.alert", target: "OpenAI · 49% of $50 cap", ip: "—", sev: "info" },
-  { t: "13:30:18", actor: "admin@learnai", ic: "🎭", action: "persona.edit", target: "mentor-max.hpersona · v4", ip: "88.143.x.x", sev: "info" },
-  { t: "12:55:00", actor: "admin@learnai", ic: "🌍", action: "world.toggle", target: "Senior Learner · disabled", ip: "88.143.x.x", sev: "med" },
-  { t: "12:18:44", actor: "system", ic: "🛡️", action: "safety.block.high", target: "Scholar · self-harm · auto-resolved", ip: "—", sev: "high" },
-  { t: "11:42:01", actor: "anna@learnai", ic: "🛡️", action: "incident.resolve", target: "inc-2087 · 4m to resolve", ip: "37.18.x.x", sev: "info" },
-  { t: "11:30:55", actor: "jess@school", ic: "✨", action: "wikitest.create", target: "Trig sprint · 24-day plan", ip: "—", sev: "info" },
-  { t: "10:14:22", actor: "admin@learnai", ic: "⚙", action: "routing.update", target: "Scholar · grok-4-fast primary", ip: "88.143.x.x", sev: "info" },
-  { t: "09:08:11", actor: "system", ic: "🔁", action: "failover.trigger", target: "OllaBridge timeout → OpenAI", ip: "—", sev: "med" },
-  { t: "08:00:00", actor: "system", ic: "📜", action: "audit.snapshot", target: "daily digest · 14,230 events", ip: "—", sev: "info" },
+  {
+    t: "14:42:17",
+    actor: "admin@learnai",
+    ic: "🤖",
+    action: "provider.add",
+    target: "xAI · Grok",
+    ip: "88.143.x.x",
+    sev: "info",
+  },
+  {
+    t: "14:38:02",
+    actor: "admin@learnai",
+    ic: "🔑",
+    action: "apikey.create",
+    target: "xai-prod-key-1",
+    ip: "88.143.x.x",
+    sev: "high",
+  },
+  {
+    t: "14:21:55",
+    actor: "system",
+    ic: "🛡️",
+    action: "safety.block",
+    target: "Builder · profanity · Maya",
+    ip: "—",
+    sev: "med",
+  },
+  {
+    t: "14:11:30",
+    actor: "system",
+    ic: "✨",
+    action: "wikitest.generate",
+    target: "Linear algebra · jess",
+    ip: "—",
+    sev: "info",
+  },
+  {
+    t: "13:58:09",
+    actor: "mariac@gmail",
+    ic: "👪",
+    action: "parent.update_settings",
+    target: "Sofia · session_length=15m",
+    ip: "92.30.x.x",
+    sev: "info",
+  },
+  {
+    t: "13:47:23",
+    actor: "system",
+    ic: "💳",
+    action: "billing.alert",
+    target: "OpenAI · 49% of $50 cap",
+    ip: "—",
+    sev: "info",
+  },
+  {
+    t: "13:30:18",
+    actor: "admin@learnai",
+    ic: "🎭",
+    action: "persona.edit",
+    target: "mentor-max.hpersona · v4",
+    ip: "88.143.x.x",
+    sev: "info",
+  },
+  {
+    t: "12:55:00",
+    actor: "admin@learnai",
+    ic: "🌍",
+    action: "world.toggle",
+    target: "Senior Learner · disabled",
+    ip: "88.143.x.x",
+    sev: "med",
+  },
+  {
+    t: "12:18:44",
+    actor: "system",
+    ic: "🛡️",
+    action: "safety.block.high",
+    target: "Scholar · self-harm · auto-resolved",
+    ip: "—",
+    sev: "high",
+  },
+  {
+    t: "11:42:01",
+    actor: "anna@learnai",
+    ic: "🛡️",
+    action: "incident.resolve",
+    target: "inc-2087 · 4m to resolve",
+    ip: "37.18.x.x",
+    sev: "info",
+  },
+  {
+    t: "11:30:55",
+    actor: "jess@school",
+    ic: "✨",
+    action: "wikitest.create",
+    target: "Trig sprint · 24-day plan",
+    ip: "—",
+    sev: "info",
+  },
+  {
+    t: "10:14:22",
+    actor: "admin@learnai",
+    ic: "⚙",
+    action: "routing.update",
+    target: "Scholar · grok-4-fast primary",
+    ip: "88.143.x.x",
+    sev: "info",
+  },
+  {
+    t: "09:08:11",
+    actor: "system",
+    ic: "🔁",
+    action: "failover.trigger",
+    target: "OllaBridge timeout → OpenAI",
+    ip: "—",
+    sev: "med",
+  },
+  {
+    t: "08:00:00",
+    actor: "system",
+    ic: "📜",
+    action: "audit.snapshot",
+    target: "daily digest · 14,230 events",
+    ip: "—",
+    sev: "info",
+  },
 ];
 
 const COLS = "90px 24px 1.2fr 1.6fr 1.4fr 110px 70px";
@@ -56,10 +168,18 @@ export default function AdminAudit() {
           subtitle="Every privileged action, safety event, and learner-impacting change. Append-only, signed hourly."
           right={
             <>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
                 📥 Export CSV
               </button>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
                 🔍 Search by actor
               </button>
             </>
@@ -74,7 +194,10 @@ export default function AdminAudit() {
           <Chip>💳 Billing · 8</Chip>
           <Chip>🎭 Personas · 6</Chip>
           <Chip>👪 Parent actions · 84</Chip>
-          <span aria-hidden style={{ width: 1, height: 20, background: "var(--line)", margin: "0 4px" }} />
+          <span
+            aria-hidden
+            style={{ width: 1, height: 20, background: "var(--line)", margin: "0 4px" }}
+          />
           <Chip>HIGH only · 4</Chip>
           <div className="ml-auto flex gap-2">
             <input
@@ -82,7 +205,11 @@ export default function AdminAudit() {
               className="rounded-lg border border-line bg-white px-3 py-2 text-[13px] outline-none focus:border-brand-1"
               style={{ width: 240 }}
             />
-            <button type="button" className="la-btn ghost" style={{ padding: "8px 12px", fontSize: 12 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "8px 12px", fontSize: 12 }}
+            >
               Last 24 h ▾
             </button>
           </div>
@@ -114,7 +241,9 @@ export default function AdminAudit() {
                 }}
               >
                 <span className="la-mono text-[11px] text-ink-mute">{e.t}</span>
-                <span aria-hidden className="text-[14px]">{e.ic}</span>
+                <span aria-hidden className="text-[14px]">
+                  {e.ic}
+                </span>
                 <span className="text-[12px] font-semibold text-ink">{e.actor}</span>
                 <span
                   className="la-mono text-[12px] font-extrabold"
@@ -143,10 +272,18 @@ export default function AdminAudit() {
         <div className="mt-4 flex items-center justify-between text-[12px] text-ink-mute">
           <span className="la-mono">showing 14 of 14,230 · today</span>
           <div className="flex gap-2">
-            <button type="button" className="la-btn ghost" style={{ padding: "6px 12px", fontSize: 12 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "6px 12px", fontSize: 12 }}
+            >
               ← Older
             </button>
-            <button type="button" className="la-btn ghost" style={{ padding: "6px 12px", fontSize: 12 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "6px 12px", fontSize: 12 }}
+            >
               Newer →
             </button>
           </div>

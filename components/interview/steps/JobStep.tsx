@@ -3,7 +3,15 @@
 import type { JobBrief, Seniority } from "@/lib/interview/types";
 
 const SENIORITIES: Seniority[] = [
-  "intern", "junior", "mid", "senior", "staff", "lead", "manager", "director", "executive",
+  "intern",
+  "junior",
+  "mid",
+  "senior",
+  "staff",
+  "lead",
+  "manager",
+  "director",
+  "executive",
 ];
 
 export default function JobStep({
@@ -51,7 +59,9 @@ export default function JobStep({
           >
             <option value="">Unspecified</option>
             {SENIORITIES.map((s) => (
-              <option key={s} value={s}>{cap(s)}</option>
+              <option key={s} value={s}>
+                {cap(s)}
+              </option>
             ))}
           </select>
         </Field>

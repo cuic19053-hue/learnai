@@ -23,7 +23,14 @@ export default function WizardSidebar({
   goal?: string;
 }) {
   const steps: WizardStep[] = [
-    "goal", "job", "profile", "analysis", "training", "presentation", "simulation", "report",
+    "goal",
+    "job",
+    "profile",
+    "analysis",
+    "training",
+    "presentation",
+    "simulation",
+    "report",
   ];
   const currentIdx = steps.indexOf(step);
 
@@ -53,11 +60,7 @@ export default function WizardSidebar({
               <div
                 className="grid h-5 w-5 place-items-center rounded-full text-[10px] font-extrabold"
                 style={{
-                  background: done
-                    ? "var(--brand-1)"
-                    : active
-                      ? "var(--brand-grad)"
-                      : "#fff",
+                  background: done ? "var(--brand-1)" : active ? "var(--brand-grad)" : "#fff",
                   color: done || active ? "#fff" : "var(--ink-mute)",
                   border: `1.5px solid ${done || active ? "transparent" : "var(--line)"}`,
                 }}
@@ -92,9 +95,7 @@ export default function WizardSidebar({
           <>
             <strong>{profile.fullName ?? "Anonymous"}</strong>
             {profile.yearsExperience != null ? (
-              <span className="block text-xs text-ink-mute">
-                {profile.yearsExperience}+ years
-              </span>
+              <span className="block text-xs text-ink-mute">{profile.yearsExperience}+ years</span>
             ) : null}
             {profile.mainTech?.length ? (
               <span className="block text-xs text-ink-mute">
@@ -111,9 +112,8 @@ export default function WizardSidebar({
         className="mt-5 rounded-xl p-3 text-xs leading-relaxed text-ink-soft"
         style={{ background: "var(--bg-2)" }}
       >
-        <strong className="text-ink">Privacy:</strong> your CV and answers stay on
-        your device unless you sign in to save progress. We never train models on
-        your data.
+        <strong className="text-ink">Privacy:</strong> your CV and answers stay on your device
+        unless you sign in to save progress. We never train models on your data.
       </div>
     </aside>
   );

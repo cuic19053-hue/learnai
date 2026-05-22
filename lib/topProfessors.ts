@@ -52,7 +52,7 @@ export async function getTopProfessors(): Promise<TopProfessor[]> {
         subject:
           Array.isArray(p?.subjects) && p.subjects.length > 0
             ? p.subjects.slice(0, 2).join(" & ")
-            : p?.title ?? "Expert Professor",
+            : (p?.title ?? "Expert Professor"),
         price: p?.hourlyRate ? Number(p.hourlyRate) : 45,
         image: u.image || "https://picsum.photos/800/600?random=" + u.id.slice(0, 3),
       };

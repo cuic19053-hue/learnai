@@ -67,7 +67,7 @@ export default function LessonPlayer({
   });
   const [picked, setPicked] = useState<Token | null>(null);
   const [feedback, setFeedback] = useState<string | null>(
-    "Nice — that vent is right! Magma comes up through the vent. Now: where does the magma start?",
+    "Nice — that vent is right! Magma comes up through the vent. Now: where does the magma start?"
   );
   const [hintsRevealed, setHintsRevealed] = useState(2);
 
@@ -77,7 +77,7 @@ export default function LessonPlayer({
         // A token disappears from the tray once it has been correctly placed.
         return !Object.entries(placed).some(([targetId, val]) => val === t.id && targetId === t.id);
       }),
-    [placed],
+    [placed]
   );
 
   const placedCount = Object.values(placed).filter((v) => v !== null).length;
@@ -91,7 +91,7 @@ export default function LessonPlayer({
       setFeedback(`Yes — ${labelFor(tokenId)} is right where it goes.`);
     } else {
       setFeedback(
-        `Not quite. Try a different spot for "${labelFor(tokenId)}". You can keep going.`,
+        `Not quite. Try a different spot for "${labelFor(tokenId)}". You can keep going.`
       );
     }
   }
@@ -188,9 +188,7 @@ export default function LessonPlayer({
                     if (tokenId) tryPlace(t.id, tokenId);
                   }}
                   aria-label={
-                    correctTokenId
-                      ? `Correctly placed: ${t.label}`
-                      : `Drop target for ${t.label}`
+                    correctTokenId ? `Correctly placed: ${t.label}` : `Drop target for ${t.label}`
                   }
                   className="absolute -translate-x-1/2 -translate-y-1/2"
                   style={{
@@ -261,12 +259,7 @@ export default function LessonPlayer({
           style={{ background: "#fbfbff" }}
         >
           <div className="flex items-center gap-2.5">
-            <PersonaAvatar
-              emoji={teacherEmoji}
-              color={journey.color}
-              bg={journey.bg}
-              size={40}
-            />
+            <PersonaAvatar emoji={teacherEmoji} color={journey.color} bg={journey.bg} size={40} />
             <div>
               <div className="text-sm font-bold text-ink">{teacherName}</div>
               <div className="text-[11px] text-ink-soft">Your AI teacher</div>
@@ -296,9 +289,7 @@ export default function LessonPlayer({
             {feedback ?? "Pick a label, then tap the diagram to drop it."}
           </div>
 
-          <div className="la-mono text-[11px] font-bold tracking-[0.06em] text-ink-mute">
-            HINTS
-          </div>
+          <div className="la-mono text-[11px] font-bold tracking-[0.06em] text-ink-mute">HINTS</div>
           <div className="flex flex-col gap-2">
             {HINT_LADDER.map((h, i) => {
               const unlocked = i < hintsRevealed;
@@ -309,9 +300,7 @@ export default function LessonPlayer({
                   style={{
                     borderRadius: 10,
                     background: unlocked ? "#fff" : "transparent",
-                    border: unlocked
-                      ? "1px solid var(--line-soft)"
-                      : "1px dashed var(--line)",
+                    border: unlocked ? "1px solid var(--line-soft)" : "1px dashed var(--line)",
                     color: unlocked ? "var(--ink)" : "var(--ink-mute)",
                   }}
                 >
@@ -341,7 +330,11 @@ export default function LessonPlayer({
         style={{ height: 64 }}
       >
         <div className="flex flex-wrap gap-2">
-          <button type="button" className="la-btn ghost" style={{ padding: "10px 14px", fontSize: 13 }}>
+          <button
+            type="button"
+            className="la-btn ghost"
+            style={{ padding: "10px 14px", fontSize: 13 }}
+          >
             Pause
           </button>
           <button
@@ -388,11 +381,7 @@ function AdaptiveTuning() {
         ADAPTIVE TUNING
       </div>
       <div className="mt-1.5 flex flex-wrap gap-1.5">
-        {[
-          "📖 Reading: grade 4",
-          "⏱ Pace: medium",
-          "🎯 Goal: curiosity",
-        ].map((p) => (
+        {["📖 Reading: grade 4", "⏱ Pace: medium", "🎯 Goal: curiosity"].map((p) => (
           <span
             key={p}
             className="la-pill text-[11px]"

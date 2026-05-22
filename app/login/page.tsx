@@ -32,9 +32,7 @@ export default function LoginPage() {
     });
     setLoading(false);
     if (res?.error) {
-      setError(
-        "Sign-in is not available right now. You can keep learning as a guest below.",
-      );
+      setError("Sign-in is not available right now. You can keep learning as a guest below.");
       return;
     }
     router.push(GUEST_HOME);
@@ -52,8 +50,8 @@ export default function LoginPage() {
         <div>
           <h1 className="text-2xl font-bold text-dark">Sign in to save your progress</h1>
           <p className="mt-2 text-sm text-gray-600">
-            Signing in is optional. Use LearnAI freely as a guest — sign in only when you want
-            your progress synced across devices.
+            Signing in is optional. Use LearnAI freely as a guest — sign in only when you want your
+            progress synced across devices.
           </p>
         </div>
 
@@ -122,11 +120,7 @@ export default function LoginPage() {
             Create an account
           </Link>{" "}
           — or just{" "}
-          <Link
-            href={GUEST_HOME}
-            onClick={markGuest}
-            className="text-primary hover:underline"
-          >
+          <Link href={GUEST_HOME} onClick={markGuest} className="text-primary hover:underline">
             keep going as a guest
           </Link>
           .

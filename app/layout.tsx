@@ -41,8 +41,7 @@ export const metadata: Metadata = {
   authors: [{ name: "LearnAI" }],
   openGraph: {
     title: "LearnAI — One teacher. Every learner.",
-    description:
-      "Adaptive AI teaching for every age. Same six-step loop, six different worlds.",
+    description: "Adaptive AI teaching for every age. Same six-step loop, six different worlds.",
     type: "website",
     siteName: "LearnAI",
   },

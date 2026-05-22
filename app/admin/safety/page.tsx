@@ -20,10 +20,30 @@ const INCIDENTS: Array<{
   sub: string;
   when: string;
 }> = [
-  { sev: "low", t: "Profanity · Builder", sub: "Maya R. · auto-blocked · friendly redirect", when: "6m" },
-  { sev: "med", t: "Off-topic · Little Learner", sub: "Sofia C. · 'tell me about phones' · redirected", when: "42m" },
-  { sev: "low", t: "External link · Explorer", sub: "link to YouTube · stripped · learner notified", when: "2h" },
-  { sev: "high", t: "Self-harm reference · Scholar", sub: "auto-blocked · safety team paged · resolved by Anna in 4m", when: "yest." },
+  {
+    sev: "low",
+    t: "Profanity · Builder",
+    sub: "Maya R. · auto-blocked · friendly redirect",
+    when: "6m",
+  },
+  {
+    sev: "med",
+    t: "Off-topic · Little Learner",
+    sub: "Sofia C. · 'tell me about phones' · redirected",
+    when: "42m",
+  },
+  {
+    sev: "low",
+    t: "External link · Explorer",
+    sub: "link to YouTube · stripped · learner notified",
+    when: "2h",
+  },
+  {
+    sev: "high",
+    t: "Self-harm reference · Scholar",
+    sub: "auto-blocked · safety team paged · resolved by Anna in 4m",
+    when: "yest.",
+  },
 ];
 
 export default function AdminSafety() {
@@ -51,16 +71,32 @@ export default function AdminSafety() {
 
         <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
           <KpiBig label="Blocks today" value="48" delta="0.34% of requests" color="#f59e0b" />
-          <KpiBig label="Incidents · open" value="3" delta="all under-12 auto-resolved" color="#dc2626" />
-          <KpiBig label="False positives" value="0.8%" delta="acceptable · target ≤ 1%" color="#16a34a" />
-          <KpiBig label="Classifier P50" value="82 ms" delta="in-line · before LLM" color="var(--brand-1)" />
+          <KpiBig
+            label="Incidents · open"
+            value="3"
+            delta="all under-12 auto-resolved"
+            color="#dc2626"
+          />
+          <KpiBig
+            label="False positives"
+            value="0.8%"
+            delta="acceptable · target ≤ 1%"
+            color="#16a34a"
+          />
+          <KpiBig
+            label="Classifier P50"
+            value="82 ms"
+            delta="in-line · before LLM"
+            color="var(--brand-1)"
+          />
         </div>
 
         <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-[1.4fr_1fr]">
           <section className="la-card p-5" style={{ borderRadius: 18 }}>
             <h3 className="text-[16px] font-extrabold text-ink">Policy matrix · by world</h3>
             <p className="mt-1 text-[12.5px] text-ink-soft">
-              Six categories × six worlds. ✓ = allowed in-line, ⚠ = allowed with warning, ✕ = blocked.
+              Six categories × six worlds. ✓ = allowed in-line, ⚠ = allowed with warning, ✕ =
+              blocked.
             </p>
 
             <div
@@ -69,7 +105,9 @@ export default function AdminSafety() {
             >
               <span />
               {["🦁", "🚀", "🛠️", "🎓", "💼", "🌿"].map((e, i) => (
-                <span key={i} className="text-center text-[14px]">{e}</span>
+                <span key={i} className="text-center text-[14px]">
+                  {e}
+                </span>
               ))}
             </div>
             <div className="mt-1 divide-y divide-line-soft">
@@ -125,12 +163,32 @@ export default function AdminSafety() {
             <section className="la-card p-5" style={{ borderRadius: 18 }}>
               <h3 className="text-[16px] font-extrabold text-ink">Global toggles</h3>
               <div className="mt-1">
-                <Toggle2 label="Force LlamaGuard-7B in-line" sub="every prompt · every response" on />
-                <Toggle2 label="Block external links for under-13" sub="learner sees friendly note" on />
-                <Toggle2 label="Pseudonymise PII before LLM" sub="emails, full names, addresses" on />
-                <Toggle2 label="Vision moderator on uploads" sub="image safety · scanned before LLM" on />
+                <Toggle2
+                  label="Force LlamaGuard-7B in-line"
+                  sub="every prompt · every response"
+                  on
+                />
+                <Toggle2
+                  label="Block external links for under-13"
+                  sub="learner sees friendly note"
+                  on
+                />
+                <Toggle2
+                  label="Pseudonymise PII before LLM"
+                  sub="emails, full names, addresses"
+                  on
+                />
+                <Toggle2
+                  label="Vision moderator on uploads"
+                  sub="image safety · scanned before LLM"
+                  on
+                />
                 <Toggle2 label="Page on-call for HIGH severity" sub="≤ 5 min · 24/7" on />
-                <Toggle2 label="COPPA mode (US under-13)" sub="parental consent flow + extra audit" on />
+                <Toggle2
+                  label="COPPA mode (US under-13)"
+                  sub="parental consent flow + extra audit"
+                  on
+                />
               </div>
             </section>
           </div>

@@ -18,9 +18,7 @@ export function HeaderActions() {
 
   // If loading, show placeholder
   if (status === "loading") {
-    return (
-      <div className="h-10 w-28 animate-pulse rounded-lg bg-gray-200"></div>
-    );
+    return <div className="h-10 w-28 animate-pulse rounded-lg bg-gray-200"></div>;
   }
 
   // If authenticated user

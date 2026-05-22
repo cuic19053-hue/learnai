@@ -14,11 +14,7 @@ export type RawQuestion = {
 
 export type CertificationVendor = "AWS" | "Azure" | "GCP" | "IBM" | "Other";
 
-export type CertificationLevel =
-  | "Fundamentals"
-  | "Associate"
-  | "Professional"
-  | "Specialty";
+export type CertificationLevel = "Fundamentals" | "Associate" | "Professional" | "Specialty";
 
 /**
  * Shape of an optional `<slug>.meta.json` sidecar next to the question

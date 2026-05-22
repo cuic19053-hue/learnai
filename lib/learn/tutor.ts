@@ -75,10 +75,7 @@ export type SuggestedPrompt = {
   prompt: string;
 };
 
-export const METHOD_META: Record<
-  Method,
-  { icon: string; name: string; hint: string }
-> = {
+export const METHOD_META: Record<Method, { icon: string; name: string; hint: string }> = {
   socratic: {
     icon: "❓",
     name: "Socratic",
@@ -160,7 +157,8 @@ export function promptsForContext(ctx: PageContext): SuggestedPrompt[] {
         {
           method: "metacognition",
           label: "Pick a topic for me",
-          prompt: "Recommend a Wikipedia article that fits what I'm trying to learn and explain the choice.",
+          prompt:
+            "Recommend a Wikipedia article that fits what I'm trying to learn and explain the choice.",
         },
         {
           method: "worked-example",
@@ -199,7 +197,8 @@ export function promptsForContext(ctx: PageContext): SuggestedPrompt[] {
         {
           method: "metacognition",
           label: "How should I pace myself?",
-          prompt: "Given the time left and how many I've answered, tell me how to pace the rest of this test.",
+          prompt:
+            "Given the time left and how many I've answered, tell me how to pace the rest of this test.",
         },
       ];
     case "wiki-report":
@@ -225,7 +224,8 @@ export function promptsForContext(ctx: PageContext): SuggestedPrompt[] {
         {
           method: "interleaving",
           label: "Mix two topics",
-          prompt: "Pick two topics from my library that interleave well and build me a 20-minute session.",
+          prompt:
+            "Pick two topics from my library that interleave well and build me a 20-minute session.",
         },
       ];
     case "missions":

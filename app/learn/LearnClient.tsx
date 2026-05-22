@@ -16,7 +16,13 @@ type Plan = {
 
 type Turn = { q: string; a: string; score?: number };
 
-export default function LearnClient({ agents, defaultAgent }: { agents: AgentOption[]; defaultAgent?: string }) {
+export default function LearnClient({
+  agents,
+  defaultAgent,
+}: {
+  agents: AgentOption[];
+  defaultAgent?: string;
+}) {
   const options = useMemo(() => agents, [agents]);
   const [agentName, setAgentName] = useState(defaultAgent || options?.[0]?.name || "");
   const [jobDescription, setJobDescription] = useState("");
@@ -75,7 +81,8 @@ export default function LearnClient({ agents, defaultAgent }: { agents: AgentOpt
       if (!data.ok) throw new Error(data.error || "Turn failed");
 
       const payload = data.result?.result ?? data.result;
-      const score: number | undefined = typeof payload?.score_0_10 === "number" ? payload.score_0_10 : undefined;
+      const score: number | undefined =
+        typeof payload?.score_0_10 === "number" ? payload.score_0_10 : undefined;
       const nextQ: string = String(payload?.next_question || "Next question?");
 
       setHistory((h) => [...h, { q: currentQuestion, a: answer, score }]);

@@ -62,7 +62,10 @@ export default function WikiTestHub() {
         <div className="wt-dots absolute inset-0 opacity-60" aria-hidden />
         <div className="relative">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="la-pill" style={{ background: "var(--brand-grad-soft)", color: "var(--brand-2)" }}>
+            <span
+              className="la-pill"
+              style={{ background: "var(--brand-grad-soft)", color: "var(--brand-2)" }}
+            >
               ✨ WikiTest
             </span>
             <span className="la-pill">📚 Any topic on Wikipedia</span>
@@ -76,9 +79,9 @@ export default function WikiTestHub() {
             </span>
           </h1>
           <p className="mt-3 max-w-[640px] text-[15px] leading-relaxed text-ink-soft">
-            Any article becomes a study session. We do the reading, the question
-            writing, and the grading — every question cited back to a real
-            heading in the source. You bring the curiosity.
+            Any article becomes a study session. We do the reading, the question writing, and the
+            grading — every question cited back to a real heading in the source. You bring the
+            curiosity.
           </p>
 
           <div className="mt-6">
@@ -88,9 +91,7 @@ export default function WikiTestHub() {
       </section>
 
       {/* How it works */}
-      <h2 className="mt-10 text-lg font-extrabold tracking-tight text-ink">
-        How a session runs
-      </h2>
+      <h2 className="mt-10 text-lg font-extrabold tracking-tight text-ink">How a session runs</h2>
       <p className="mt-1 text-[13px] text-ink-mute">
         Three steps. Each one earns you XP toward your{" "}
         <span className="font-bold text-ink">{world.journey.name}</span> track.
@@ -106,13 +107,9 @@ export default function WikiTestHub() {
               >
                 {step.n}
               </span>
-              <h3 className="text-[16px] font-extrabold tracking-tight text-ink">
-                {step.title}
-              </h3>
+              <h3 className="text-[16px] font-extrabold tracking-tight text-ink">{step.title}</h3>
             </div>
-            <p className="mt-3 text-[13px] leading-relaxed text-ink-soft">
-              {step.body}
-            </p>
+            <p className="mt-3 text-[13px] leading-relaxed text-ink-soft">{step.body}</p>
           </div>
         ))}
       </div>
@@ -124,12 +121,8 @@ export default function WikiTestHub() {
       <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
         {TRUST.map((card) => (
           <div key={card.title} className="la-card p-5" style={{ borderRadius: 18 }}>
-            <h3 className="text-[14px] font-extrabold tracking-tight text-ink">
-              {card.title}
-            </h3>
-            <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">
-              {card.body}
-            </p>
+            <h3 className="text-[14px] font-extrabold tracking-tight text-ink">{card.title}</h3>
+            <p className="mt-2 text-[13px] leading-relaxed text-ink-soft">{card.body}</p>
           </div>
         ))}
       </div>
@@ -145,8 +138,8 @@ export default function WikiTestHub() {
         >
           CC BY-SA 4.0
         </a>{" "}
-        license. WikiTest generates new questions and explanations from that
-        text — those are licensed back to you under the same terms.
+        license. WikiTest generates new questions and explanations from that text — those are
+        licensed back to you under the same terms.
       </p>
     </LearnerHomeShell>
   );

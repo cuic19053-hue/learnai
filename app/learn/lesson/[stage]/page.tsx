@@ -99,11 +99,7 @@ export async function generateMetadata({
   };
 }
 
-export default async function LessonPage({
-  params,
-}: {
-  params: Promise<{ stage: string }>;
-}) {
+export default async function LessonPage({ params }: { params: Promise<{ stage: string }> }) {
   const { stage: raw } = await params;
   const stage = resolveStage(raw);
   if (!stage) notFound();

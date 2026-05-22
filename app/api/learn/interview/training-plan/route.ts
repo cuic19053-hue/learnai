@@ -83,10 +83,7 @@ const DEFAULT_BANKS: TrainingBank[] = [
     id: "salary",
     title: "Salary & motivation",
     description: "Number, range, what else matters.",
-    questions: [
-      "What's your range and why?",
-      "If we can't meet your number, what else matters?",
-    ],
+    questions: ["What's your range and why?", "If we can't meet your number, what else matters?"],
   },
 ];
 

@@ -10,9 +10,7 @@
     "correct": "D. Perplexity score; apply additional language model fine-tuning on grammatical correctness.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Perplexity score; apply additional language model fine-tuning on grammatical correctness."
     ],
@@ -30,9 +28,7 @@
     "correct": "C. Use a stop sequence based on legal clause delimiters and impose a minimum token limit of 50.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use a stop sequence based on legal clause delimiters and impose a minimum token limit of 50."
     ],
@@ -50,9 +46,7 @@
     "correct": "A. Zero-shot prompting, with the expectation that the model can summarize common concepts like AI due to pre-training.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Zero-shot prompting, with the expectation that the model can summarize common concepts like AI due to pre-training."
     ],
@@ -71,10 +65,7 @@
     "correct": "C. Apply a low top-k value (e.g., k=10) to restrict randomness | D. Use a top-p (nucleus) sampling value of 0.95 for diverse, relevant outputs",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C",
-      "D"
-    ],
+    "correct_labels": ["C", "D"],
     "correct_answers": [
       "C. Apply a low top-k value (e.g., k=10) to restrict randomness",
       "D. Use a top-p (nucleus) sampling value of 0.95 for diverse, relevant outputs"
@@ -93,12 +84,8 @@
     "correct": "B. Validation loss",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
-    "correct_answers": [
-      "B. Validation loss"
-    ],
+    "correct_labels": ["B"],
+    "correct_answers": ["B. Validation loss"],
     "source_question_no": 5,
     "source_file": "structured_content_001.json"
   },
@@ -113,9 +100,7 @@
     "correct": "C. Deploy a single multilingual model with tuned prompts for each language, using top-k sampling and leveraging a multi-GPU distributed environment to balance response time and quality.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Deploy a single multilingual model with tuned prompts for each language, using top-k sampling and leveraging a multi-GPU distributed environment to balance response time and quality."
     ],
@@ -133,12 +118,8 @@
     "correct": "C. Stop Sequence = '</end>', Max Tokens = 250",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Stop Sequence = '</end>', Max Tokens = 250"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Stop Sequence = '</end>', Max Tokens = 250"],
     "source_question_no": 7,
     "source_file": "structured_content_002.json"
   },
@@ -153,9 +134,7 @@
     "correct": "A. A higher temperature parameter introduces more randomness, leading to less predictable responses.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. A higher temperature parameter introduces more randomness, leading to less predictable responses."
     ],
@@ -173,9 +152,7 @@
     "correct": "C. The model will now consider only the top 5 most probable tokens at each step, making the output more deterministic and focused.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. The model will now consider only the top 5 most probable tokens at each step, making the output more deterministic and focused."
     ],
@@ -193,12 +170,8 @@
     "correct": "C. Set the stop sequence to \"End of Response\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Set the stop sequence to \"End of Response\""
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Set the stop sequence to \"End of Response\""],
     "source_question_no": 10,
     "source_file": "structured_content_002.json"
   },
@@ -213,9 +186,7 @@
     "correct": "B. Implement a data versioning system like DVC (Data Version Control) or MLflow, integrated with a cloud storage service, to track data changes and link specific data versions to corresponding model and prompt versions.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Implement a data versioning system like DVC (Data Version Control) or MLflow, integrated with a cloud storage service, to track data changes and link specific data versions to corresponding model and prompt versions."
     ],
@@ -233,9 +204,7 @@
     "correct": "A. The retriever finds and retrieves documents from a knowledge base that are semantically similar to the input query, often using vector embeddings to compare similarity.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. The retriever finds and retrieves documents from a knowledge base that are semantically similar to the input query, often using vector embeddings to compare similarity."
     ],
@@ -254,10 +223,7 @@
     "correct": "C. Introduce dropout regularization during fine-tuning to prevent overfitting. | D. Use early stopping based on the validation set performance.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C",
-      "D"
-    ],
+    "correct_labels": ["C", "D"],
     "correct_answers": [
       "C. Introduce dropout regularization during fine-tuning to prevent overfitting.",
       "D. Use early stopping based on the validation set performance."
@@ -276,9 +242,7 @@
     "correct": "A. Implement differential privacy to reduce the likelihood that sensitive data from user inputs is exposed in the model's responses.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Implement differential privacy to reduce the likelihood that sensitive data from user inputs is exposed in the model's responses."
     ],
@@ -296,9 +260,7 @@
     "correct": "C. Prompt variables allow for the dynamic injection of user-specific details into the response, improving personalization.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Prompt variables allow for the dynamic injection of user-specific details into the response, improving personalization."
     ],
@@ -317,10 +279,7 @@
     "correct": "B. The model offers speculative advice without indicating the associated level of uncertainty, which may mislead inexperienced investors. | D. The model generates recommendations that align with historical financial trends but fail to account for recent economic disruptions.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B",
-      "D"
-    ],
+    "correct_labels": ["B", "D"],
     "correct_answers": [
       "B. The model offers speculative advice without indicating the associated level of uncertainty, which may mislead inexperienced investors.",
       "D. The model generates recommendations that align with historical financial trends but fail to account for recent economic disruptions."
@@ -339,9 +298,7 @@
     "correct": "B. Implement real-time content moderation at the output level rather than relying on input prompts alone.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Implement real-time content moderation at the output level rather than relying on input prompts alone."
     ],
@@ -359,9 +316,7 @@
     "correct": "A. Ensure an equal distribution of positive, negative, and neutral sentiment examples",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Ensure an equal distribution of positive, negative, and neutral sentiment examples"
     ],
@@ -379,9 +334,7 @@
     "correct": "C. \"Guide the user through troubleshooting software installation issues, starting from common problems like insufficient disk space and incompatible OS.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. \"Guide the user through troubleshooting software installation issues, starting from common problems like insufficient disk space and incompatible OS.\""
     ],
@@ -399,12 +352,8 @@
     "correct": "B. Temperature = 0.7",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
-    "correct_answers": [
-      "B. Temperature = 0.7"
-    ],
+    "correct_labels": ["B"],
+    "correct_answers": ["B. Temperature = 0.7"],
     "source_question_no": 20,
     "source_file": "structured_content_005.json"
   },
@@ -419,9 +368,7 @@
     "correct": "D. \"Guide the user through scheduling a meeting by asking about their preferred date, time, and attendees.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. \"Guide the user through scheduling a meeting by asking about their preferred date, time, and attendees.\""
     ],
@@ -439,9 +386,7 @@
     "correct": "A. Tuning Studio provides real-time monitoring of model performance metrics during the fine-tuning process, allowing you to adjust hyperparameters effectively.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Tuning Studio provides real-time monitoring of model performance metrics during the fine-tuning process, allowing you to adjust hyperparameters effectively."
     ],
@@ -459,9 +404,7 @@
     "correct": "D. Customize prompt templates to closely mimic the structure and format of the original training data.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Customize prompt templates to closely mimic the structure and format of the original training data."
     ],
@@ -479,9 +422,7 @@
     "correct": "B. Fine-tune the model specifically on anonymized datasets with PII removed.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Fine-tune the model specifically on anonymized datasets with PII removed."
     ],
@@ -500,10 +441,7 @@
     "correct": "D. Include domain-specific financial terms in the prompt-tuning data to help the model specialize in accurate financial advice generation. | E. Apply a low temperature setting (e.g., 0.2) during inference to ensure more deterministic and precise responses.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D",
-      "E"
-    ],
+    "correct_labels": ["D", "E"],
     "correct_answers": [
       "D. Include domain-specific financial terms in the prompt-tuning data to help the model specialize in accurate financial advice generation.",
       "E. Apply a low temperature setting (e.g., 0.2) during inference to ensure more deterministic and precise responses."
@@ -522,9 +460,7 @@
     "correct": "B. Embed privacy-sensitive heuristics in the model's prompt to guide its behavior",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Embed privacy-sensitive heuristics in the model's prompt to guide its behavior"
     ],
@@ -542,12 +478,8 @@
     "correct": "A. Decrease the max tokens parameter.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Decrease the max tokens parameter."
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Decrease the max tokens parameter."],
     "source_question_no": 27,
     "source_file": "structured_content_008.json"
   },
@@ -562,9 +494,7 @@
     "correct": "A. Use a RetrievalChain to query the external database and combine the retrieved data with a dynamic prompt template before sending it to an LLM.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Use a RetrievalChain to query the external database and combine the retrieved data with a dynamic prompt template before sending it to an LLM."
     ],
@@ -582,9 +512,7 @@
     "correct": "D. The amount of noise added to the synthetic data during the differential privacy process.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. The amount of noise added to the synthetic data during the differential privacy process."
     ],
@@ -602,12 +530,8 @@
     "correct": "B. Filter the dataset to remove irrelevant or outlier reviews",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
-    "correct_answers": [
-      "B. Filter the dataset to remove irrelevant or outlier reviews"
-    ],
+    "correct_labels": ["B"],
+    "correct_answers": ["B. Filter the dataset to remove irrelevant or outlier reviews"],
     "source_question_no": 30,
     "source_file": "structured_content_008.json"
   },
@@ -623,10 +547,7 @@
     "correct": "B. \"Generate a positive review about the product, focusing on the key strengths and avoiding any negative aspects.\" | C. \"Describe the product as if you were a very satisfied customer, and you were recommending it to a friend.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B",
-      "C"
-    ],
+    "correct_labels": ["B", "C"],
     "correct_answers": [
       "B. \"Generate a positive review about the product, focusing on the key strengths and avoiding any negative aspects.\"",
       "C. \"Describe the product as if you were a very satisfied customer, and you were recommending it to a friend.\""
@@ -645,9 +566,7 @@
     "correct": "A. It allows for the precise allocation of computational resources to manage budget constraints.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. It allows for the precise allocation of computational resources to manage budget constraints."
     ],
@@ -665,9 +584,7 @@
     "correct": "A. Use Watson Discovery to index and search documents, and then send the retrieved documents to watsonx.ai's LLM for summarization through API calls.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Use Watson Discovery to index and search documents, and then send the retrieved documents to watsonx.ai's LLM for summarization through API calls."
     ],
@@ -685,9 +602,7 @@
     "correct": "D. Use a version control system like Git to track prompt changes and synchronize the latest version with the deployment environment.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Use a version control system like Git to track prompt changes and synchronize the latest version with the deployment environment."
     ],
@@ -696,21 +611,12 @@
   },
   {
     "question": "When selecting parameters to optimize a prompt-tuned model experiment in IBM watsonx, which parameter is the most critical for controlling the model's ability to generate coherent and contextually accurate responses?",
-    "options": [
-      "A. Batch size",
-      "B. Dropout rate",
-      "C. Gradient clipping",
-      "D. Learning rate"
-    ],
+    "options": ["A. Batch size", "B. Dropout rate", "C. Gradient clipping", "D. Learning rate"],
     "correct": "D. Learning rate",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Learning rate"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Learning rate"],
     "source_question_no": 35,
     "source_file": "structured_content_009.json"
   },
@@ -725,12 +631,8 @@
     "correct": "A. Quantization-aware training (QAT)",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Quantization-aware training (QAT)"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Quantization-aware training (QAT)"],
     "source_question_no": 36,
     "source_file": "structured_content_010.json"
   },
@@ -745,9 +647,7 @@
     "correct": "D. Sparse retriever with BM25 ranking in combination with a traditional relational database.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Sparse retriever with BM25 ranking in combination with a traditional relational database."
     ],
@@ -765,12 +665,8 @@
     "correct": "C. Use a more distinct and unlikely stop sequence, such as \"<END>\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Use a more distinct and unlikely stop sequence, such as \"<END>\""
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Use a more distinct and unlikely stop sequence, such as \"<END>\""],
     "source_question_no": 38,
     "source_file": "structured_content_010.json"
   },
@@ -785,9 +681,7 @@
     "correct": "B. Soft prompts require additional computational resources during training, which can limit their scalability in real-time applications.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Soft prompts require additional computational resources during training, which can limit their scalability in real-time applications."
     ],
@@ -805,9 +699,7 @@
     "correct": "A. Implement a fairness audit, where a sample of the model's inferences is checked for disparate impact across protected groups such as gender and race.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Implement a fairness audit, where a sample of the model's inferences is checked for disparate impact across protected groups such as gender and race."
     ],
@@ -825,9 +717,7 @@
     "correct": "C. Apply a differential privacy algorithm that ensures no individual data point can be traced back to a specific user.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Apply a differential privacy algorithm that ensures no individual data point can be traced back to a specific user."
     ],
@@ -845,9 +735,7 @@
     "correct": "C. Use IBM Watsonx's HAP (Hate, Abuse, and Profanity) filter, which is designed to handle context-specific and subtle forms of harmful language.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use IBM Watsonx's HAP (Hate, Abuse, and Profanity) filter, which is designed to handle context-specific and subtle forms of harmful language."
     ],
@@ -865,9 +753,7 @@
     "correct": "B. Ensure proper tokenization of the dataset according to the model's vocabulary",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Ensure proper tokenization of the dataset according to the model's vocabulary"
     ],
@@ -885,9 +771,7 @@
     "correct": "C. A vector database like Pinecone or Weaviate that supports approximate nearest neighbor (ANN) search.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. A vector database like Pinecone or Weaviate that supports approximate nearest neighbor (ANN) search."
     ],
@@ -905,12 +789,8 @@
     "correct": "A. Identify the operational requirements and business constraints",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Identify the operational requirements and business constraints"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Identify the operational requirements and business constraints"],
     "source_question_no": 45,
     "source_file": "structured_content_011.json"
   },
@@ -925,9 +805,7 @@
     "correct": "A. Optimize the model for extractive question-answering from a predefined knowledge base.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Optimize the model for extractive question-answering from a predefined knowledge base."
     ],
@@ -945,9 +823,7 @@
     "correct": "C. Use Algorithm A (Kolmogorov-Smirnov Test) to compare the original and synthetic data distributions, checking for deviations across the entire data range.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use Algorithm A (Kolmogorov-Smirnov Test) to compare the original and synthetic data distributions, checking for deviations across the entire data range."
     ],
@@ -965,9 +841,7 @@
     "correct": "C. Implement a real-time PII filter that detects and removes sensitive data before the output is presented to the user.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Implement a real-time PII filter that detects and removes sensitive data before the output is presented to the user."
     ],
@@ -985,12 +859,8 @@
     "correct": "A. Fine-tune the prompt template to emphasize grammar",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Fine-tune the prompt template to emphasize grammar"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Fine-tune the prompt template to emphasize grammar"],
     "source_question_no": 49,
     "source_file": "structured_content_012.json"
   },
@@ -1005,9 +875,7 @@
     "correct": "A. Prompt Lab provides an environment to experiment with different prompt structures and analyze their impact on model outputs in real-time, helping optimize responses.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Prompt Lab provides an environment to experiment with different prompt structures and analyze their impact on model outputs in real-time, helping optimize responses."
     ],
@@ -1025,9 +893,7 @@
     "correct": "B. Tools to iteratively optimize the model's alignment with human preferences, such as reinforcement learning from human feedback (RLHF)",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Tools to iteratively optimize the model's alignment with human preferences, such as reinforcement learning from human feedback (RLHF)"
     ],
@@ -1045,12 +911,8 @@
     "correct": "C. Verifying model accuracy before deployment.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Verifying model accuracy before deployment."
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Verifying model accuracy before deployment."],
     "source_question_no": 52,
     "source_file": "structured_content_013.json"
   },
@@ -1065,9 +927,7 @@
     "correct": "D. It optimizes hyperparameters such as learning rate and batch size to reduce computational overhead during inference.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. It optimizes hyperparameters such as learning rate and batch size to reduce computational overhead during inference."
     ],
@@ -1085,9 +945,7 @@
     "correct": "B. Choose Algorithm A (Kolmogorov-Smirnov Test) if you want to ensure that the original and synthetic data distributions are identical across their entire range, not just at specific points.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Choose Algorithm A (Kolmogorov-Smirnov Test) if you want to ensure that the original and synthetic data distributions are identical across their entire range, not just at specific points."
     ],
@@ -1105,12 +963,8 @@
     "correct": "D. Reduce memory utilization and maintain BLEU and ROUGE-L scores",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Reduce memory utilization and maintain BLEU and ROUGE-L scores"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Reduce memory utilization and maintain BLEU and ROUGE-L scores"],
     "source_question_no": 55,
     "source_file": "structured_content_013.json"
   },
@@ -1125,9 +979,7 @@
     "correct": "B. It enables users to test different versions of prompts and receive immediate feedback on their effectiveness.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. It enables users to test different versions of prompts and receive immediate feedback on their effectiveness."
     ],
@@ -1145,9 +997,7 @@
     "correct": "B. Use simple, concise instructions that avoid ambiguity but ensure all necessary constraints are included.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Use simple, concise instructions that avoid ambiguity but ensure all necessary constraints are included."
     ],
@@ -1165,9 +1015,7 @@
     "correct": "B. Use the FAISS library to create an index -> Encode the input query using the transformer model -> Retrieve the most relevant documents -> Pass the retrieved documents to the generative model for response generation.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Use the FAISS library to create an index -> Encode the input query using the transformer model -> Retrieve the most relevant documents -> Pass the retrieved documents to the generative model for response generation."
     ],
@@ -1185,12 +1033,8 @@
     "correct": "D. Using pre-built templates to generate domain-specific synthetic data",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Using pre-built templates to generate domain-specific synthetic data"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Using pre-built templates to generate domain-specific synthetic data"],
     "source_question_no": 59,
     "source_file": "structured_content_014.json"
   },
@@ -1205,9 +1049,7 @@
     "correct": "A. \"Write a [sentiment] review of the [product name], focusing on the [specific feature]. Include reasons for the sentiment and detailed examples.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. \"Write a [sentiment] review of the [product name], focusing on the [specific feature]. Include reasons for the sentiment and detailed examples.\""
     ],
@@ -1225,9 +1067,7 @@
     "correct": "A. Focus the tuning on adjusting only the model's last few layers, which are responsible for task-specific outputs, while leaving the majority of the model unchanged.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Focus the tuning on adjusting only the model's last few layers, which are responsible for task-specific outputs, while leaving the majority of the model unchanged."
     ],
@@ -1245,12 +1085,8 @@
     "correct": "A. Post-training 8-bit integer quantization",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Post-training 8-bit integer quantization"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Post-training 8-bit integer quantization"],
     "source_question_no": 62,
     "source_file": "structured_content_015.json"
   },
@@ -1265,12 +1101,8 @@
     "correct": "C. Change the decoding strategy from beam search to greedy decoding",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Change the decoding strategy from beam search to greedy decoding"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Change the decoding strategy from beam search to greedy decoding"],
     "source_question_no": 63,
     "source_file": "structured_content_015.json"
   },
@@ -1285,9 +1117,7 @@
     "correct": "B. Leverage prompt chaining, where an initial general prompt narrows down the issue type, followed by a more specific tuned prompt for the final response.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Leverage prompt chaining, where an initial general prompt narrows down the issue type, followed by a more specific tuned prompt for the final response."
     ],
@@ -1305,9 +1135,7 @@
     "correct": "C. To return relevant documents or passages from a knowledge base by calculating semantic similarity between the query and documents.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. To return relevant documents or passages from a knowledge base by calculating semantic similarity between the query and documents."
     ],
@@ -1325,9 +1153,7 @@
     "correct": "D. Adding a plugin that provides support for k-nearest neighbors (k-NN) search",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Adding a plugin that provides support for k-nearest neighbors (k-NN) search"
     ],
@@ -1345,9 +1171,7 @@
     "correct": "B. Soft prompts introduce more complexity during the training phase, as the model must learn embeddings that are not inherently interpretable by humans.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Soft prompts introduce more complexity during the training phase, as the model must learn embeddings that are not inherently interpretable by humans."
     ],
@@ -1365,9 +1189,7 @@
     "correct": "A. It provides a hierarchical structure that helps the model understand the relationships between different medical concepts.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. It provides a hierarchical structure that helps the model understand the relationships between different medical concepts."
     ],
@@ -1385,9 +1207,7 @@
     "correct": "B. Perform document retrieval first, followed by NLP analysis to extract relevant information, and then pass the processed data to watsonx.ai for summarization.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Perform document retrieval first, followed by NLP analysis to extract relevant information, and then pass the processed data to watsonx.ai for summarization."
     ],
@@ -1406,10 +1226,7 @@
     "correct": "A. Use query type as an additional input feature to ensure the model tailors responses accordingly. | B. Normalize feedback ratings data by converting them into discrete categories (e.g., low, medium, high).",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A",
-      "B"
-    ],
+    "correct_labels": ["A", "B"],
     "correct_answers": [
       "A. Use query type as an additional input feature to ensure the model tailors responses accordingly.",
       "B. Normalize feedback ratings data by converting them into discrete categories (e.g., low, medium, high)."
@@ -1428,9 +1245,7 @@
     "correct": "A. When documents need to be retrieved based on semantic similarity to the user's query, even if the exact terms are not matched.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. When documents need to be retrieved based on semantic similarity to the user's query, even if the exact terms are not matched."
     ],
@@ -1448,12 +1263,8 @@
     "correct": "C. Multi-model serving with dynamic routing",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Multi-model serving with dynamic routing"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Multi-model serving with dynamic routing"],
     "source_question_no": 72,
     "source_file": "structured_content_017.json"
   },
@@ -1468,9 +1279,7 @@
     "correct": "C. Use Data Refinery's \"Data Quality\" feature to generate a profiling report and assess the scope of the issues.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use Data Refinery's \"Data Quality\" feature to generate a profiling report and assess the scope of the issues."
     ],
@@ -1488,9 +1297,7 @@
     "correct": "D. A prompt that influences the model by embedding learned vectors into the input, modifying the generation behavior indirectly.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. A prompt that influences the model by embedding learned vectors into the input, modifying the generation behavior indirectly."
     ],
@@ -1508,9 +1315,7 @@
     "correct": "A. Implement a bias detection framework to identify and mitigate any biases present in the model's outputs.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Implement a bias detection framework to identify and mitigate any biases present in the model's outputs."
     ],
@@ -1528,9 +1333,7 @@
     "correct": "A. Use a deployment space in IBM watsonx to version your prompts, assigning unique tags to each version and ensuring rollback capabilities.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Use a deployment space in IBM watsonx to version your prompts, assigning unique tags to each version and ensuring rollback capabilities."
     ],
@@ -1548,12 +1351,8 @@
     "correct": "D. Word2Vec",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Word2Vec"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Word2Vec"],
     "source_question_no": 77,
     "source_file": "structured_content_018.json"
   },
@@ -1568,9 +1367,7 @@
     "correct": "B. Ensuring traceability of model decisions and providing auditability for each inference",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Ensuring traceability of model decisions and providing auditability for each inference"
     ],
@@ -1589,10 +1386,7 @@
     "correct": "A. Few-shot prompting is more effective than zero-shot prompting when the task requires more nuanced, context-dependent outputs, as it allows the model to learn from examples in real-time. | E. Few-shot prompting enhances the model's generalization by providing the model with a variety of task-specific examples, allowing it to infer the pattern for unfamiliar tasks.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A",
-      "E"
-    ],
+    "correct_labels": ["A", "E"],
     "correct_answers": [
       "A. Few-shot prompting is more effective than zero-shot prompting when the task requires more nuanced, context-dependent outputs, as it allows the model to learn from examples in real-time.",
       "E. Few-shot prompting enhances the model's generalization by providing the model with a variety of task-specific examples, allowing it to infer the pattern for unfamiliar tasks."
@@ -1611,9 +1405,7 @@
     "correct": "D. When retrieval must rely on semantic similarity between a query and documents, even if the exact words in the query don't appear in the document",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. When retrieval must rely on semantic similarity between a query and documents, even if the exact words in the query don't appear in the document"
     ],
@@ -1631,9 +1423,7 @@
     "correct": "D. Tuning Studio provides detailed performance analytics that allow you to adjust hyperparameters in real-time.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Tuning Studio provides detailed performance analytics that allow you to adjust hyperparameters in real-time."
     ],
@@ -1651,9 +1441,7 @@
     "correct": "C. Matching the training data prompts as closely as possible to real-world deployment scenarios.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Matching the training data prompts as closely as possible to real-world deployment scenarios."
     ],
@@ -1671,9 +1459,7 @@
     "correct": "D. Beam search decoding with a stop sequence of \"END\" and a maximum tokens limit of 50.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Beam search decoding with a stop sequence of \"END\" and a maximum tokens limit of 50."
     ],
@@ -1691,9 +1477,7 @@
     "correct": "D. A hard prompt explicitly specifies all constraints, while a soft prompt relies on implicit learning from continuous inputs during training.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. A hard prompt explicitly specifies all constraints, while a soft prompt relies on implicit learning from continuous inputs during training."
     ],
@@ -1711,9 +1495,7 @@
     "correct": "D. Vector embeddings capture the semantic meaning of text, allowing for more accurate retrieval of contextually similar documents, even if they do not share exact keywords with the query.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Vector embeddings capture the semantic meaning of text, allowing for more accurate retrieval of contextually similar documents, even if they do not share exact keywords with the query."
     ],
@@ -1731,9 +1513,7 @@
     "correct": "B. When real-time similarity search over high-dimensional embeddings is needed for large-scale unstructured text data",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. When real-time similarity search over high-dimensional embeddings is needed for large-scale unstructured text data"
     ],
@@ -1751,9 +1531,7 @@
     "correct": "D. Stopping when the model generates special end-of-sequence tokens, such as <EOS>",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Stopping when the model generates special end-of-sequence tokens, such as <EOS>"
     ],
@@ -1771,9 +1549,7 @@
     "correct": "D. Using neutral and carefully phrased prompts to avoid triggering biased outputs",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Using neutral and carefully phrased prompts to avoid triggering biased outputs"
     ],
@@ -1791,9 +1567,7 @@
     "correct": "C. Utilize IBM watsonx's API orchestration layer to dynamically route requests to the correct system based on intent analysis.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Utilize IBM watsonx's API orchestration layer to dynamically route requests to the correct system based on intent analysis."
     ],
@@ -1811,12 +1585,8 @@
     "correct": "C. Perplexity score",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Perplexity score"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Perplexity score"],
     "source_question_no": 90,
     "source_file": "structured_content_020.json"
   },
@@ -1831,9 +1601,7 @@
     "correct": "D. Altering the tone of the prompt to make it more aligned with the brand's voice and customer expectations.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Altering the tone of the prompt to make it more aligned with the brand's voice and customer expectations."
     ],
@@ -1851,9 +1619,7 @@
     "correct": "A. Use REST API with API key-based authentication, leveraging HTTPS for encrypted communication between the legacy system and watsonx.ai.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Use REST API with API key-based authentication, leveraging HTTPS for encrypted communication between the legacy system and watsonx.ai."
     ],
@@ -1862,21 +1628,12 @@
   },
   {
     "question": "You are tasked with integrating third-party embedding models into a Retrieval-Augmented Generation (RAG) system for document retrieval. Several models offer pre-trained embeddings that can be leveraged for a variety of downstream tasks. Which of the following third-party models is designed for generating embeddings that capture semantic meaning and context, making it ideal for a RAG-based GenAI system?",
-    "options": [
-      "A. BERT",
-      "B. GPT-3 Embeddings",
-      "C. WordNet",
-      "D. Naive Bayes Classifier"
-    ],
+    "options": ["A. BERT", "B. GPT-3 Embeddings", "C. WordNet", "D. Naive Bayes Classifier"],
     "correct": "A. BERT",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. BERT"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. BERT"],
     "source_question_no": 93,
     "source_file": "structured_content_021.json"
   },
@@ -1891,9 +1648,7 @@
     "correct": "A. Fine-tune the pre-trained LLM on a domain-specific dataset of e-commerce product descriptions with an emphasis on SEO-friendly language.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Fine-tune the pre-trained LLM on a domain-specific dataset of e-commerce product descriptions with an emphasis on SEO-friendly language."
     ],
@@ -1911,9 +1666,7 @@
     "correct": "D. Use a retrieval-augmented generation (RAG) model that incorporates external financial data into the generation process.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Use a retrieval-augmented generation (RAG) model that incorporates external financial data into the generation process."
     ],
@@ -1931,32 +1684,19 @@
     "correct": "C. Temperature: 0.7, Random Seed: None",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Temperature: 0.7, Random Seed: None"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Temperature: 0.7, Random Seed: None"],
     "source_question_no": 96,
     "source_file": "structured_content_022.json"
   },
   {
     "question": "You're designing a prompt that should generate text for product descriptions using a generative AI model. You want to limit the model's word choices to ensure coherence while still allowing some flexibility for creativity. You decide to use Top-P (nucleus) sampling to achieve this. Which of the following settings for the Top-P parameter is most appropriate to strike a balance between creativity and coherence?",
-    "options": [
-      "A. Top-P = 0.9",
-      "B. Top-P = 1.0",
-      "C. Top-P = 0.3",
-      "D. Top-P = 0.1"
-    ],
+    "options": ["A. Top-P = 0.9", "B. Top-P = 1.0", "C. Top-P = 0.3", "D. Top-P = 0.1"],
     "correct": "A. Top-P = 0.9",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Top-P = 0.9"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Top-P = 0.9"],
     "source_question_no": 97,
     "source_file": "structured_content_022.json"
   },
@@ -1971,9 +1711,7 @@
     "correct": "A. Provide one or two well-structured examples that demonstrate the expected tone and format of the customer service responses within the prompt.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Provide one or two well-structured examples that demonstrate the expected tone and format of the customer service responses within the prompt."
     ],
@@ -1991,9 +1729,7 @@
     "correct": "C. When fine-tuning a pre-trained model for domain-specific tasks, allowing the system to adapt its understanding through learned embeddings.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. When fine-tuning a pre-trained model for domain-specific tasks, allowing the system to adapt its understanding through learned embeddings."
     ],
@@ -2011,9 +1747,7 @@
     "correct": "A. Include fairness metrics in the model evaluation stage to monitor for biased outputs.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Include fairness metrics in the model evaluation stage to monitor for biased outputs."
     ],
@@ -2031,9 +1765,7 @@
     "correct": "A. When the prompt is designed for a general task like summarizing a text, which the model is pre-trained on.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. When the prompt is designed for a general task like summarizing a text, which the model is pre-trained on."
     ],
@@ -2051,9 +1783,7 @@
     "correct": "A. Prompt Lab allows users to iteratively test and refine prompts in a controlled environment, improving prompt effectiveness and reducing guesswork.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Prompt Lab allows users to iteratively test and refine prompts in a controlled environment, improving prompt effectiveness and reducing guesswork."
     ],
@@ -2071,9 +1801,7 @@
     "correct": "A. Generate synthetic customer inquiries and responses based on company policy guidelines",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Generate synthetic customer inquiries and responses based on company policy guidelines"
     ],
@@ -2091,9 +1819,7 @@
     "correct": "C. Use domain-specific tokenization to better capture important keywords and phrases relevant to customer support.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use domain-specific tokenization to better capture important keywords and phrases relevant to customer support."
     ],
@@ -2111,9 +1837,7 @@
     "correct": "A. A pre-trained model that has been trained on a large, general-purpose dataset.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. A pre-trained model that has been trained on a large, general-purpose dataset."
     ],
@@ -2131,12 +1855,8 @@
     "correct": "A. Set repetition penalty to 1.5 and maintain temperature at 0.8",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Set repetition penalty to 1.5 and maintain temperature at 0.8"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Set repetition penalty to 1.5 and maintain temperature at 0.8"],
     "source_question_no": 106,
     "source_file": "structured_content_024.json"
   },
@@ -2151,9 +1871,7 @@
     "correct": "A. Set the maximum token limit to 300 and the minimum token limit to 0, allowing the model to generate a brief summary of the most relevant points while avoiding excessive verbosity.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Set the maximum token limit to 300 and the minimum token limit to 0, allowing the model to generate a brief summary of the most relevant points while avoiding excessive verbosity."
     ],
@@ -2172,10 +1890,7 @@
     "correct": "C. Increase the number of training epochs | E. Increase the model's complexity by adding more layers",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C",
-      "E"
-    ],
+    "correct_labels": ["C", "E"],
     "correct_answers": [
       "C. Increase the number of training epochs",
       "E. Increase the model's complexity by adding more layers"
@@ -2194,9 +1909,7 @@
     "correct": "B. The model is generating too many irrelevant details; focus on improving precision.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. The model is generating too many irrelevant details; focus on improving precision."
     ],
@@ -2214,9 +1927,7 @@
     "correct": "B. \"Example 1: [First Contract] Summary: [First Contract Summary] Example 2: [Second Contract] Summary: [Second Contract Summary] Generate a summary of the following contract: [New Contract].\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. \"Example 1: [First Contract] Summary: [First Contract Summary] Example 2: [Second Contract] Summary: [Second Contract Summary] Generate a summary of the following contract: [New Contract].\""
     ],
@@ -2234,9 +1945,7 @@
     "correct": "C. Repeated fine-tuning of a model using reinforcement learning, focusing on aligning its outputs with human preferences across a diverse set of tasks",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Repeated fine-tuning of a model using reinforcement learning, focusing on aligning its outputs with human preferences across a diverse set of tasks"
     ],
@@ -2254,9 +1963,7 @@
     "correct": "B. Increasing the temperature during text generation to encourage more creative outputs",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Increasing the temperature during text generation to encourage more creative outputs"
     ],
@@ -2274,9 +1981,7 @@
     "correct": "A. \"Generate a professional response to the customer's query, avoiding repetition and unnecessary details, while focusing on addressing the issue succinctly.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. \"Generate a professional response to the customer's query, avoiding repetition and unnecessary details, while focusing on addressing the issue succinctly.\""
     ],
@@ -2294,9 +1999,7 @@
     "correct": "B. Select a pre-trained model, upload the custom medical dataset, fine-tune the hyperparameters, and evaluate the model's performance.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Select a pre-trained model, upload the custom medical dataset, fine-tune the hyperparameters, and evaluate the model's performance."
     ],
@@ -2314,9 +2017,7 @@
     "correct": "D. They streamline the integration of retrievers and generators, providing out-of-the-box support for embedding models and vector databases.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. They streamline the integration of retrievers and generators, providing out-of-the-box support for embedding models and vector databases."
     ],
@@ -2334,9 +2035,7 @@
     "correct": "B. Use a diverse set of prompts covering multiple task domains with varying levels of complexity.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Use a diverse set of prompts covering multiple task domains with varying levels of complexity."
     ],
@@ -2354,12 +2053,8 @@
     "correct": "C. Set top-k to 50",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Set top-k to 50"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Set top-k to 50"],
     "source_question_no": 117,
     "source_file": "structured_content_027.json"
   },
@@ -2374,12 +2069,8 @@
     "correct": "C. Simplify the prompt by reducing the number of tokens used.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Simplify the prompt by reducing the number of tokens used."
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Simplify the prompt by reducing the number of tokens used."],
     "source_question_no": 118,
     "source_file": "structured_content_027.json"
   },
@@ -2394,9 +2085,7 @@
     "correct": "C. Deploy the model using a serverless architecture with auto-scaling to handle sudden spikes in traffic.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Deploy the model using a serverless architecture with auto-scaling to handle sudden spikes in traffic."
     ],
@@ -2414,9 +2103,7 @@
     "correct": "C. Embeddings are dense vector representations of words, phrases, or entire documents that capture semantic relationships, making it easier to find similar content in the knowledge base during retrieval.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Embeddings are dense vector representations of words, phrases, or entire documents that capture semantic relationships, making it easier to find similar content in the knowledge base during retrieval."
     ],
@@ -2434,9 +2121,7 @@
     "correct": "D. Using a source control system (e.g., Git) to track prompt changes alongside model code.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Using a source control system (e.g., Git) to track prompt changes alongside model code."
     ],
@@ -2454,9 +2139,7 @@
     "correct": "D. Example input prompts help generate responses that are more aligned with the specific context or style intended by the user.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Example input prompts help generate responses that are more aligned with the specific context or style intended by the user."
     ],
@@ -2475,10 +2158,7 @@
     "correct": "B. Monitoring and adjusting resource allocation dynamically based on usage statistics | C. Employing model quantization techniques during deployment",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B",
-      "C"
-    ],
+    "correct_labels": ["B", "C"],
     "correct_answers": [
       "B. Monitoring and adjusting resource allocation dynamically based on usage statistics",
       "C. Employing model quantization techniques during deployment"
@@ -2497,9 +2177,7 @@
     "correct": "C. The model will stop generating once it identifies a natural completion of the task description, such as reaching a final instruction or a conclusion marker (e.g., \"All done\").",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. The model will stop generating once it identifies a natural completion of the task description, such as reaching a final instruction or a conclusion marker (e.g., \"All done\")."
     ],
@@ -2518,10 +2196,7 @@
     "correct": "A. Increase the number of training samples used for tuning | E. Tune the prompt templates further by standardizing the structure",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A",
-      "E"
-    ],
+    "correct_labels": ["A", "E"],
     "correct_answers": [
       "A. Increase the number of training samples used for tuning",
       "E. Tune the prompt templates further by standardizing the structure"
@@ -2540,9 +2215,7 @@
     "correct": "B. IBM watsonx Orchestrator, which allows for the integration and management of multiple AI models and can dynamically route inputs to the appropriate model based on predefined criteria.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. IBM watsonx Orchestrator, which allows for the integration and management of multiple AI models and can dynamically route inputs to the appropriate model based on predefined criteria."
     ],
@@ -2560,9 +2233,7 @@
     "correct": "B. Approximate nearest neighbor (ANN) search using HNSW (Hierarchical Navigable Small World) graphs.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Approximate nearest neighbor (ANN) search using HNSW (Hierarchical Navigable Small World) graphs."
     ],
@@ -2580,9 +2251,7 @@
     "correct": "A. Include fairness metrics in the model evaluation stage to monitor for biased outputs.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Include fairness metrics in the model evaluation stage to monitor for biased outputs."
     ],
@@ -2601,10 +2270,7 @@
     "correct": "B. Simulate both simple and complex customer queries, including ambiguous or vague requests, in the synthetic data. | D. Leverage the user interface to create synthetic data that includes rare edge cases, such as technical support questions or multi-part inquiries.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B",
-      "D"
-    ],
+    "correct_labels": ["B", "D"],
     "correct_answers": [
       "B. Simulate both simple and complex customer queries, including ambiguous or vague requests, in the synthetic data.",
       "D. Leverage the user interface to create synthetic data that includes rare edge cases, such as technical support questions or multi-part inquiries."
@@ -2623,12 +2289,8 @@
     "correct": "D. Use domain-specific tokenization during fine-tuning",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Use domain-specific tokenization during fine-tuning"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Use domain-specific tokenization during fine-tuning"],
     "source_question_no": 130,
     "source_file": "structured_content_029.json"
   },
@@ -2643,9 +2305,7 @@
     "correct": "A. \"Create a [content type] for [audience], including key points on [subject]. Use a [tone] style and keep the length around [length].\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. \"Create a [content type] for [audience], including key points on [subject]. Use a [tone] style and keep the length around [length].\""
     ],
@@ -2663,9 +2323,7 @@
     "correct": "B. Soft prompts are embedded during the model's training and rely on learned representations, while hard prompts are explicit text-based inputs given during inference.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Soft prompts are embedded during the model's training and rely on learned representations, while hard prompts are explicit text-based inputs given during inference."
     ],
@@ -2685,9 +2343,7 @@
     "correct": "B. In zero-shot prompting, the model's response is generated purely based on pre-trained knowledge and the structure of the task, while in few-shot prompting, the examples provided offer the model additional context.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. In zero-shot prompting, the model's response is generated purely based on pre-trained knowledge and the structure of the task, while in few-shot prompting, the examples provided offer the model additional context."
     ],
@@ -2705,12 +2361,8 @@
     "correct": "C. Apply dropout during training",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Apply dropout during training"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Apply dropout during training"],
     "source_question_no": 134,
     "source_file": "structured_content_030.json"
   },
@@ -2725,9 +2377,7 @@
     "correct": "C. When fine-tuning a pre-trained model for domain-specific tasks, allowing the system to adapt its understanding through learned embeddings.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. When fine-tuning a pre-trained model for domain-specific tasks, allowing the system to adapt its understanding through learned embeddings."
     ],
@@ -2743,12 +2393,8 @@
     "correct": "A. Providing an interpretable",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Providing an interpretable"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Providing an interpretable"],
     "source_question_no": 136,
     "source_file": "structured_content_031.json"
   },
@@ -2764,10 +2410,7 @@
     "correct": "A. Include an instruction to ask clarifying questions when the issue is unclear | D. Provide explicit instructions to break the response into steps",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A",
-      "D"
-    ],
+    "correct_labels": ["A", "D"],
     "correct_answers": [
       "A. Include an instruction to ask clarifying questions when the issue is unclear",
       "D. Provide explicit instructions to break the response into steps"
@@ -2786,9 +2429,7 @@
     "correct": "A. Implement model registry tags that associate a specific prompt version with each model version during deployment.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Implement model registry tags that associate a specific prompt version with each model version during deployment."
     ],
@@ -2807,10 +2448,7 @@
     "correct": "C. Ensure that the synthetic data covers edge cases as well as common industry scenarios. | E. Use the IBM watsonx Data Refinery tool to inspect and balance the synthetic data before fine-tuning.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C",
-      "E"
-    ],
+    "correct_labels": ["C", "E"],
     "correct_answers": [
       "C. Ensure that the synthetic data covers edge cases as well as common industry scenarios.",
       "E. Use the IBM watsonx Data Refinery tool to inspect and balance the synthetic data before fine-tuning."
@@ -2829,9 +2467,7 @@
     "correct": "A. Use a dense retriever with a vector database for embedding-based retrieval, followed by using the LLM for context generation.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Use a dense retriever with a vector database for embedding-based retrieval, followed by using the LLM for context generation."
     ],
@@ -2849,9 +2485,7 @@
     "correct": "B. Incorporate specific section headers as part of the prompt to guide the model in generating the desired report format.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Incorporate specific section headers as part of the prompt to guide the model in generating the desired report format."
     ],
@@ -2869,9 +2503,7 @@
     "correct": "D. Containerize the model using Docker or an equivalent containerization tool, ensuring that all required dependencies, such as transformers, tokenizers, and necessary packages, are included.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Containerize the model using Docker or an equivalent containerization tool, ensuring that all required dependencies, such as transformers, tokenizers, and necessary packages, are included."
     ],
@@ -2889,9 +2521,7 @@
     "correct": "B. A prompt variable is a placeholder within a prompt template that can be replaced with specific input values during execution.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. A prompt variable is a placeholder within a prompt template that can be replaced with specific input values during execution."
     ],
@@ -2909,9 +2539,7 @@
     "correct": "D. Crafting prompts with very specific and detailed instructions, ensuring the model follows a strict framework for the desired response.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Crafting prompts with very specific and detailed instructions, ensuring the model follows a strict framework for the desired response."
     ],
@@ -2929,9 +2557,7 @@
     "correct": "C. Structured prompts provide a template that ensures consistent intent, which can be adjusted with dynamic variables for flexibility.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Structured prompts provide a template that ensures consistent intent, which can be adjusted with dynamic variables for flexibility."
     ],
@@ -2949,12 +2575,8 @@
     "correct": "A. Monitoring and auditing AI decisions for bias and fairness",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Monitoring and auditing AI decisions for bias and fairness"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Monitoring and auditing AI decisions for bias and fairness"],
     "source_question_no": 146,
     "source_file": "structured_content_033.json"
   },
@@ -2969,9 +2591,7 @@
     "correct": "B. Supply explicit product details and constraints in the prompt: \"List the latest features of the XYZ smartphone released in 2024, including its AI-powered camera and battery-saving mode.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Supply explicit product details and constraints in the prompt: \"List the latest features of the XYZ smartphone released in 2024, including its AI-powered camera and battery-saving mode.\""
     ],
@@ -2989,9 +2609,7 @@
     "correct": "B. It allows incremental training, saving computational resources by reusing checkpoints.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. It allows incremental training, saving computational resources by reusing checkpoints."
     ],
@@ -3009,9 +2627,7 @@
     "correct": "B. Indexing the document corpus using embeddings, retrieving relevant documents, and feeding them as context into the generative model.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Indexing the document corpus using embeddings, retrieving relevant documents, and feeding them as context into the generative model."
     ],
@@ -3029,9 +2645,7 @@
     "correct": "D. Apply a differential privacy mechanism that adds calibrated noise to both the model updates and synthetic data generation process.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Apply a differential privacy mechanism that adds calibrated noise to both the model updates and synthetic data generation process."
     ],
@@ -3049,9 +2663,7 @@
     "correct": "B. Adjusting the learning rate dynamically during training based on the model's real-time loss values.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Adjusting the learning rate dynamically during training based on the model's real-time loss values."
     ],
@@ -3069,9 +2681,7 @@
     "correct": "A. The prompt is inefficient because it asks for too much detail across all sections, leading to excessive token usage and unnecessary information in the output.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. The prompt is inefficient because it asks for too much detail across all sections, leading to excessive token usage and unnecessary information in the output."
     ],
@@ -3089,9 +2699,7 @@
     "correct": "B. Benefit: Soft prompts reduce the amount of explicit data needed for training. Drawback: Soft prompts might not generalize well across domains.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Benefit: Soft prompts reduce the amount of explicit data needed for training. Drawback: Soft prompts might not generalize well across domains."
     ],
@@ -3109,9 +2717,7 @@
     "correct": "D. Use LangChain to embed documents into a vector space and store these embeddings in SingleStore. During inference, embed the query in the same vector space and retrieve documents using vector similarity search.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Use LangChain to embed documents into a vector space and store these embeddings in SingleStore. During inference, embed the query in the same vector space and retrieve documents using vector similarity search."
     ],
@@ -3129,9 +2735,7 @@
     "correct": "C. Designing prompts that explicitly ask for balanced perspectives, such as \"Provide both pros and cons of this issue.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Designing prompts that explicitly ask for balanced perspectives, such as \"Provide both pros and cons of this issue.\""
     ],
@@ -3149,9 +2753,7 @@
     "correct": "A. Select the pre-trained model, generate synthetic data, inspect the generated data for quality, and fine-tune the model by adjusting hyperparameters and training settings.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Select the pre-trained model, generate synthetic data, inspect the generated data for quality, and fine-tune the model by adjusting hyperparameters and training settings."
     ],
@@ -3169,9 +2771,7 @@
     "correct": "C. Use IBM Watsonx's HAP (Hate, Abuse, and Profanity) filter to dynamically detect and block harmful content at inference time.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use IBM Watsonx's HAP (Hate, Abuse, and Profanity) filter to dynamically detect and block harmful content at inference time."
     ],
@@ -3189,9 +2789,7 @@
     "correct": "A. Use Watson Assistant as the primary interface and call watsonx.ai's LLM through an API for generating dynamic responses in specific intents.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Use Watson Assistant as the primary interface and call watsonx.ai's LLM through an API for generating dynamic responses in specific intents."
     ],
@@ -3209,9 +2807,7 @@
     "correct": "B. Include explicit instructions and specific constraints within the prompt to limit the scope of the model's generation.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Include explicit instructions and specific constraints within the prompt to limit the scope of the model's generation."
     ],
@@ -3229,9 +2825,7 @@
     "correct": "D. Implement a data validation pipeline to detect anomalies and potential poisoning in the training data.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Implement a data validation pipeline to detect anomalies and potential poisoning in the training data."
     ],
@@ -3249,9 +2843,7 @@
     "correct": "D. Soft prompts allow for more nuanced control of the model's behavior through learned embeddings, which can adapt to a variety of tasks without requiring explicit human intervention.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Soft prompts allow for more nuanced control of the model's behavior through learned embeddings, which can adapt to a variety of tasks without requiring explicit human intervention."
     ],
@@ -3269,9 +2861,7 @@
     "correct": "B. Update the Elasticsearch index by re-indexing documents using embeddings from the Watson ML model.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Update the Elasticsearch index by re-indexing documents using embeddings from the Watson ML model."
     ],
@@ -3289,9 +2879,7 @@
     "correct": "B. \"Provide a product description for the following items, ensuring it is factual, concise, and includes specific details such as size, color, and material.\"",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. \"Provide a product description for the following items, ensuring it is factual, concise, and includes specific details such as size, color, and material.\""
     ],
@@ -3309,9 +2897,7 @@
     "correct": "D. Top-k sampling selects the next token only from the top k most probable tokens based on their probabilities.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Top-k sampling selects the next token only from the top k most probable tokens based on their probabilities."
     ],
@@ -3329,9 +2915,7 @@
     "correct": "A. The model performs well on general datasets but fails to capture specific domain-related terminology and context.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. The model performs well on general datasets but fails to capture specific domain-related terminology and context."
     ],
@@ -3349,12 +2933,8 @@
     "correct": "C. Set top-p to 0.95",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
-    "correct_answers": [
-      "C. Set top-p to 0.95"
-    ],
+    "correct_labels": ["C"],
+    "correct_answers": ["C. Set top-p to 0.95"],
     "source_question_no": 166,
     "source_file": "structured_content_038.json"
   },
@@ -3369,9 +2949,7 @@
     "correct": "B. Implementing a system to track and log all model-generated inferences, flagging any that suggest potential bias or non-compliance with privacy regulations.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Implementing a system to track and log all model-generated inferences, flagging any that suggest potential bias or non-compliance with privacy regulations."
     ],
@@ -3389,9 +2967,7 @@
     "correct": "C. Use a private cloud with role-based access controls (RBAC) and ensure model activity is logged for auditing purposes.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Use a private cloud with role-based access controls (RBAC) and ensure model activity is logged for auditing purposes."
     ],
@@ -3409,9 +2985,7 @@
     "correct": "D. Securing the API access with proper authentication and authorization measures",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Securing the API access with proper authentication and authorization measures"
     ],
@@ -3429,9 +3003,7 @@
     "correct": "B. The RAG pattern enhances a generative model by retrieving relevant documents, which are then used as context for generating a final response.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. The RAG pattern enhances a generative model by retrieving relevant documents, which are then used as context for generating a final response."
     ],
@@ -3450,10 +3022,7 @@
     "correct": "C. Configuring auto-scaling policies based on usage patterns and resource demand | D. Implementing containerization for the model through Kubernetes",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C",
-      "D"
-    ],
+    "correct_labels": ["C", "D"],
     "correct_answers": [
       "C. Configuring auto-scaling policies based on usage patterns and resource demand",
       "D. Implementing containerization for the model through Kubernetes"
@@ -3472,9 +3041,7 @@
     "correct": "C. It enables the fine-tuning of pre-trained models on custom datasets to improve accuracy and relevance to the specific domain.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. It enables the fine-tuning of pre-trained models on custom datasets to improve accuracy and relevance to the specific domain."
     ],
@@ -3492,9 +3059,7 @@
     "correct": "A. Selecting the token with the highest probability at each step, without considering future possibilities",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Selecting the token with the highest probability at each step, without considering future possibilities"
     ],
@@ -3512,12 +3077,8 @@
     "correct": "D. Decrease the temperature",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Decrease the temperature"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Decrease the temperature"],
     "source_question_no": 174,
     "source_file": "structured_content_039.json"
   },
@@ -3532,9 +3093,7 @@
     "correct": "D. Add new labeled training data that closely resembles the use case scenarios",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Add new labeled training data that closely resembles the use case scenarios"
     ],
@@ -3553,10 +3112,7 @@
     "correct": "A. Perform prompt engineering by providing specific task instructions for summarization. | B. Add more domain-specific training data to improve the model's understanding of technical vocabulary.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A",
-      "B"
-    ],
+    "correct_labels": ["A", "B"],
     "correct_answers": [
       "A. Perform prompt engineering by providing specific task instructions for summarization.",
       "B. Add more domain-specific training data to improve the model's understanding of technical vocabulary."
@@ -3575,12 +3131,8 @@
     "correct": "D. Security Engineer",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
-    "correct_answers": [
-      "D. Security Engineer"
-    ],
+    "correct_labels": ["D"],
+    "correct_answers": ["D. Security Engineer"],
     "source_question_no": 177,
     "source_file": "structured_content_040.json"
   },
@@ -3595,9 +3147,7 @@
     "correct": "B. Prompt Lab enables side-by-side comparisons of multiple prompt variations, allowing developers to evaluate different formulations in a systematic manner.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Prompt Lab enables side-by-side comparisons of multiple prompt variations, allowing developers to evaluate different formulations in a systematic manner."
     ],
@@ -3615,9 +3165,7 @@
     "correct": "D. Zero-shot prompting does not use any examples in the input prompt, while few-shot prompting includes a few examples to guide the model.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Zero-shot prompting does not use any examples in the input prompt, while few-shot prompting includes a few examples to guide the model."
     ],
@@ -3635,9 +3183,7 @@
     "correct": "A. Prompt Lab allows users to experiment with prompt structures, such as adjusting token limits or adding contextual instructions, to improve responses.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
+    "correct_labels": ["A"],
     "correct_answers": [
       "A. Prompt Lab allows users to experiment with prompt structures, such as adjusting token limits or adding contextual instructions, to improve responses."
     ],
@@ -3655,12 +3201,8 @@
     "correct": "A. Isolated environments to manage and monitor multiple model versions",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "A"
-    ],
-    "correct_answers": [
-      "A. Isolated environments to manage and monitor multiple model versions"
-    ],
+    "correct_labels": ["A"],
+    "correct_answers": ["A. Isolated environments to manage and monitor multiple model versions"],
     "source_question_no": 181,
     "source_file": "structured_content_041.json"
   },
@@ -3675,9 +3217,7 @@
     "correct": "D. Use a minimum of 1,000 to 5,000 examples for each task, but focus on the quality and relevance of examples rather than quantity.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Use a minimum of 1,000 to 5,000 examples for each task, but focus on the quality and relevance of examples rather than quantity."
     ],
@@ -3695,9 +3235,7 @@
     "correct": "D. Improves model performance on domain-specific tasks without retraining from scratch.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Improves model performance on domain-specific tasks without retraining from scratch."
     ],
@@ -3715,9 +3253,7 @@
     "correct": "B. Raising the temperature encourages the model to consider less likely tokens, leading to more diverse and creative outputs.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Raising the temperature encourages the model to consider less likely tokens, leading to more diverse and creative outputs."
     ],
@@ -3735,9 +3271,7 @@
     "correct": "C. Fine-tune the model on domain-specific data to improve factual accuracy and relevance.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "C"
-    ],
+    "correct_labels": ["C"],
     "correct_answers": [
       "C. Fine-tune the model on domain-specific data to improve factual accuracy and relevance."
     ],
@@ -3755,9 +3289,7 @@
     "correct": "D. The prompt-tuning engine, which fine-tunes model outputs based on pre-defined instructions.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. The prompt-tuning engine, which fine-tunes model outputs based on pre-defined instructions."
     ],
@@ -3775,9 +3307,7 @@
     "correct": "B. A model pre-trained on financial and business data but with limited language capabilities.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. A model pre-trained on financial and business data but with limited language capabilities."
     ],
@@ -3795,12 +3325,8 @@
     "correct": "B. Decreasing the value of the temperature parameter to 0.2",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
-    "correct_answers": [
-      "B. Decreasing the value of the temperature parameter to 0.2"
-    ],
+    "correct_labels": ["B"],
+    "correct_answers": ["B. Decreasing the value of the temperature parameter to 0.2"],
     "source_question_no": 188,
     "source_file": "structured_content_042.json"
   },
@@ -3815,9 +3341,7 @@
     "correct": "B. Manually adjust the temperature parameter in the UI to lower values to reduce randomness and increase coherence in the generated text.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "B"
-    ],
+    "correct_labels": ["B"],
     "correct_answers": [
       "B. Manually adjust the temperature parameter in the UI to lower values to reduce randomness and increase coherence in the generated text."
     ],
@@ -3835,9 +3359,7 @@
     "correct": "D. Use prompts that closely mimic the structure and semantics of the real dataset's questions to maintain consistency.",
     "explanation": "",
     "references": "",
-    "correct_labels": [
-      "D"
-    ],
+    "correct_labels": ["D"],
     "correct_answers": [
       "D. Use prompts that closely mimic the structure and semantics of the real dataset's questions to maintain consistency."
     ],

@@ -45,7 +45,10 @@ function stripWrappers(html: string): string {
       .replace(/<style\b[\s\S]*?<\/style>/gi, "")
       .replace(/<link\b[^>]*\/?>/gi, "")
       // Infoboxes and navboxes (always tables with a known class)
-      .replace(/<table\b[^>]*class="[^"]*\b(infobox|navbox|sidebar|metadata|ambox|vertical-navbox|wikitable|hatnote)\b[^"]*"[\s\S]*?<\/table>/gi, "")
+      .replace(
+        /<table\b[^>]*class="[^"]*\b(infobox|navbox|sidebar|metadata|ambox|vertical-navbox|wikitable|hatnote)\b[^"]*"[\s\S]*?<\/table>/gi,
+        ""
+      )
       // Reference markers in superscript and the reference list block
       .replace(/<sup\b[^>]*class="[^"]*\breference\b[^"]*"[\s\S]*?<\/sup>/gi, "")
       .replace(/<ol\b[^>]*class="[^"]*\breferences\b[^"]*"[\s\S]*?<\/ol>/gi, "")
@@ -60,7 +63,7 @@ function stripWrappers(html: string): string {
       // Math (MathML / LaTeX renders) — keep the alt text only when present
       .replace(
         /<math\b[^>]*\balttext="([^"]+)"[^>]*>[\s\S]*?<\/math>/gi,
-        (_, alt: string) => ` ${alt} `,
+        (_, alt: string) => ` ${alt} `
       )
       .replace(/<math\b[\s\S]*?<\/math>/gi, "")
       // Coordinates blocks
@@ -122,9 +125,7 @@ export function extractSections(rawHtml: string): ArticleSection[] {
     out.push({
       heading,
       text:
-        text.length > MAX_SECTION_CHARS
-          ? text.slice(0, MAX_SECTION_CHARS).trimEnd() + "…"
-          : text,
+        text.length > MAX_SECTION_CHARS ? text.slice(0, MAX_SECTION_CHARS).trimEnd() + "…" : text,
     });
   }
 

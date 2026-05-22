@@ -105,8 +105,8 @@ export default async function LanguageLevelHome({
           </div>
           <h3 className="mt-2 text-lg font-bold text-ink">CEFR-style mock test</h3>
           <p className="mt-1 flex-1 text-[13px] leading-relaxed text-ink-soft">
-            Author-original questions designed around the {descriptor.level} can-do
-            statements. {curriculum?.mockCount ?? 0} items planned per attempt.
+            Author-original questions designed around the {descriptor.level} can-do statements.{" "}
+            {curriculum?.mockCount ?? 0} items planned per attempt.
           </p>
           <span
             className="mt-4 inline-flex items-center gap-1 self-start rounded-xl px-4 py-2 text-[13px] font-bold text-ink-soft"
@@ -120,12 +120,9 @@ export default async function LanguageLevelHome({
       {/* Module list */}
       <h2 className="mt-10 text-lg font-extrabold tracking-tight text-ink">Modules</h2>
       {!hasContent ? (
-        <div
-          className="la-card mt-3 p-5 text-[14px] text-ink-soft"
-          style={{ borderRadius: 16 }}
-        >
-          No modules yet at <strong>{descriptor.level}</strong> for {lang.name}.
-          Contribute via PR in{" "}
+        <div className="la-card mt-3 p-5 text-[14px] text-ink-soft" style={{ borderRadius: 16 }}>
+          No modules yet at <strong>{descriptor.level}</strong> for {lang.name}. Contribute via PR
+          in{" "}
           <code className="rounded bg-line-soft px-1 py-0.5 text-[12px]">
             lib/languages/seed.ts
           </code>

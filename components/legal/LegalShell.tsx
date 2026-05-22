@@ -26,13 +26,7 @@ const TABS: Array<{ id: "privacy" | "terms" | "help"; label: string; href: strin
  * different product. Tabbed sub-nav so a reader can jump across the
  * three pages without using the browser back button.
  */
-export default function LegalShell({
-  eyebrow,
-  title,
-  subtitle,
-  active,
-  children,
-}: Props) {
+export default function LegalShell({ eyebrow, title, subtitle, active, children }: Props) {
   return (
     <div className="min-h-screen" style={{ background: "var(--bg)" }}>
       {/* Top bar */}
@@ -60,10 +54,7 @@ export default function LegalShell({
               );
             })}
           </nav>
-          <Link
-            href="/"
-            className="text-[13px] font-bold text-ink-soft hover:text-ink"
-          >
+          <Link href="/" className="text-[13px] font-bold text-ink-soft hover:text-ink">
             ← Back to LearnAI
           </Link>
         </div>
@@ -77,9 +68,7 @@ export default function LegalShell({
         <h1 className="mt-2 text-[34px] font-extrabold tracking-[-0.02em] text-ink md:text-[40px]">
           {title}
         </h1>
-        {subtitle ? (
-          <p className="mt-2 text-[14px] text-ink-mute">{subtitle}</p>
-        ) : null}
+        {subtitle ? <p className="mt-2 text-[14px] text-ink-mute">{subtitle}</p> : null}
       </div>
 
       {/* Body */}
@@ -92,11 +81,17 @@ export default function LegalShell({
         <div className="mt-10 flex flex-wrap items-center justify-between gap-3 text-[12px] text-ink-mute">
           <div>© 2026 LearnAI · Apache 2.0 source · CC BY-SA 4.0 content</div>
           <div className="flex gap-3">
-            <Link href="/legal/privacy" className="hover:text-ink-soft">Privacy</Link>
+            <Link href="/legal/privacy" className="hover:text-ink-soft">
+              Privacy
+            </Link>
             <span aria-hidden>·</span>
-            <Link href="/legal/terms" className="hover:text-ink-soft">Terms</Link>
+            <Link href="/legal/terms" className="hover:text-ink-soft">
+              Terms
+            </Link>
             <span aria-hidden>·</span>
-            <Link href="/help" className="hover:text-ink-soft">Help</Link>
+            <Link href="/help" className="hover:text-ink-soft">
+              Help
+            </Link>
             <span aria-hidden>·</span>
             <a
               href="https://github.com/ruslanmv/learnai"

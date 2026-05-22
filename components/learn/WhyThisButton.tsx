@@ -21,12 +21,7 @@ type Props = {
  * quadratic roots last week") rather than vague ("based on your
  * activity"). Reversibility lives in /progress.
  */
-export default function WhyThisButton({
-  reason,
-  details,
-  label = "Why this?",
-  className,
-}: Props) {
+export default function WhyThisButton({ reason, details, label = "Why this?", className }: Props) {
   const [open, setOpen] = useState(false);
   const popRef = useRef<HTMLDivElement | null>(null);
   const btnRef = useRef<HTMLButtonElement | null>(null);
@@ -58,7 +53,7 @@ export default function WhyThisButton({
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-haspopup="dialog"
-        className="inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-bold text-ink-mute hover:bg-bg-2 hover:text-ink"
+        className="hover:bg-bg-2 inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-bold text-ink-mute hover:text-ink"
       >
         <span aria-hidden>ⓘ</span>
         {label}
@@ -89,7 +84,7 @@ export default function WhyThisButton({
           ) : null}
           <div className="mt-2.5 border-t border-line-soft pt-2 text-[11px] text-ink-mute">
             Adaptive choices stay reversible in{" "}
-            <a className="font-bold text-ink-soft hover:text-ink underline" href="/progress">
+            <a className="font-bold text-ink-soft underline hover:text-ink" href="/progress">
               Progress
             </a>
             .

@@ -24,7 +24,7 @@ const FORMAT_HINTS: Record<Format, string> = {
   short_answer:
     'Use "short_answer" only. expectedAnswer is one sentence (≤ 25 words). Omit choices/correctIndex.',
   mixed:
-    'Mix multiple_choice, true_false, and short_answer questions roughly 5:2:3 by count. Each item follows the rules for its own kind.',
+    "Mix multiple_choice, true_false, and short_answer questions roughly 5:2:3 by count. Each item follows the rules for its own kind.",
 };
 
 const SHARED_RULES = `\
@@ -73,10 +73,7 @@ export function testFromArticlePrompt(input: {
 }): ChatMessage[] {
   const headings = input.sections.map((s) => s.heading).join(", ");
   const articleBlock = input.sections
-    .map(
-      (s, i) =>
-        `## Section ${i + 1} — ${s.heading}\n${s.text}`,
-    )
+    .map((s, i) => `## Section ${i + 1} — ${s.heading}\n${s.text}`)
     .join("\n\n");
 
   const system = `You write factual, single-source tests from a provided Wikipedia article. \

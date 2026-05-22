@@ -44,7 +44,7 @@ export const POST = handler(async (req: Request) => {
     if (sections.length === 0) {
       return fail(
         422,
-        "Couldn't extract enough teaching content from this article. Try a more substantial topic.",
+        "Couldn't extract enough teaching content from this article. Try a more substantial topic."
       );
     }
 
@@ -62,11 +62,15 @@ export const POST = handler(async (req: Request) => {
   } catch (err) {
     if (err instanceof WikiClientError) {
       const status =
-        err.code === "rate_limited" ? 429 :
-        err.code === "timeout" ? 504 :
-        err.code === "disambiguation" ? 400 :
-        err.code === "not_found" ? 404 :
-        502;
+        err.code === "rate_limited"
+          ? 429
+          : err.code === "timeout"
+            ? 504
+            : err.code === "disambiguation"
+              ? 400
+              : err.code === "not_found"
+                ? 404
+                : 502;
       return fail(status, err.message);
     }
     throw err;

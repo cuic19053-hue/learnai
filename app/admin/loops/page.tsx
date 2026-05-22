@@ -43,7 +43,11 @@ export default function AdminLoops() {
           title="Loop performance"
           subtitle="Every session runs the same 6 steps. This page shows where learners drop off and which step needs the most teaching-design attention."
           right={
-            <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "9px 14px", fontSize: 13 }}
+            >
               Last 7 days ▾
             </button>
           }
@@ -67,8 +71,12 @@ export default function AdminLoops() {
                   STEP 0{i + 1}
                 </div>
                 <div className="mt-1 flex items-center gap-1.5">
-                  <span aria-hidden className="text-[16px]">{s.ic}</span>
-                  <span className="text-[14px] font-extrabold" style={{ color: s.color }}>{s.l}</span>
+                  <span aria-hidden className="text-[16px]">
+                    {s.ic}
+                  </span>
+                  <span className="text-[14px] font-extrabold" style={{ color: s.color }}>
+                    {s.l}
+                  </span>
                 </div>
                 <div
                   className="mt-1.5 text-[22px] font-extrabold"
@@ -104,9 +112,9 @@ export default function AdminLoops() {
               Suggested action
             </div>
             <p className="mt-1 text-[13px] leading-relaxed text-ink">
-              <b>Reflect</b> is your biggest drop (−16%). Move the Shatalov reference signal
-              earlier and reduce the reflection prompt to one sentence. Builder + Explorer worlds
-              account for 70% of the drop.
+              <b>Reflect</b> is your biggest drop (−16%). Move the Shatalov reference signal earlier
+              and reduce the reflection prompt to one sentence. Builder + Explorer worlds account
+              for 70% of the drop.
             </p>
           </div>
         </section>
@@ -161,11 +169,7 @@ export default function AdminLoops() {
                     className="la-mono text-[11px] font-extrabold"
                     style={{
                       color:
-                        m.score >= 8
-                          ? "#16a34a"
-                          : m.score >= 7
-                            ? "#f59e0b"
-                            : "var(--ink-mute)",
+                        m.score >= 8 ? "#16a34a" : m.score >= 7 ? "#f59e0b" : "var(--ink-mute)",
                     }}
                   >
                     ★ {m.score}

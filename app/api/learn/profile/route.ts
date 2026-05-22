@@ -1,5 +1,10 @@
 import { z } from "zod";
-import { clearProfile, defaultAttentionMinutes, readProfile, writeProfile } from "@/lib/learn/profile";
+import {
+  clearProfile,
+  defaultAttentionMinutes,
+  readProfile,
+  writeProfile,
+} from "@/lib/learn/profile";
 import { ensureGuestId } from "@/lib/learn/guest";
 import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
 

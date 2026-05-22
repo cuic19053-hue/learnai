@@ -14,9 +14,7 @@ function guestFallback(req: Request) {
   // raw 503 JSON blob. These are reached by clicking a link, not by SDK.
   if (
     req.method === "GET" &&
-    (pathname.endsWith("/error") ||
-      pathname.endsWith("/signin") ||
-      pathname.endsWith("/signout"))
+    (pathname.endsWith("/error") || pathname.endsWith("/signin") || pathname.endsWith("/signout"))
   ) {
     const home = new URL("/", url);
     return NextResponse.redirect(home, { status: 303 });
@@ -39,7 +37,7 @@ function guestFallback(req: Request) {
   }
   return NextResponse.json(
     { error: "Authentication is not configured. Continue as a guest." },
-    { status: 503 },
+    { status: 503 }
   );
 }
 

@@ -47,7 +47,7 @@ const BodySchema = z.object({
           confidence: z.number(),
           relevance: z.number(),
         }),
-      }),
+      })
     )
     .max(60)
     .default([]),
@@ -105,9 +105,7 @@ function normalise(r: ReadinessReport, body: z.infer<typeof BodySchema>): Readin
       : [],
     nextTrainingRecommendations: arr(r?.nextTrainingRecommendations, 6),
     finalAdvice:
-      typeof r?.finalAdvice === "string" && r.finalAdvice
-        ? r.finalAdvice
-        : defaultAdvice(body),
+      typeof r?.finalAdvice === "string" && r.finalAdvice ? r.finalAdvice : defaultAdvice(body),
   };
 }
 

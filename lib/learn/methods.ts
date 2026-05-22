@@ -9,13 +9,7 @@ import type { LearnerStage } from "./stages";
  *   Hook → Explain → Practice → Feedback → Reflect → Evolve.
  */
 
-export type LoopStepId =
-  | "hook"
-  | "explain"
-  | "practice"
-  | "feedback"
-  | "reflect"
-  | "evolve";
+export type LoopStepId = "hook" | "explain" | "practice" | "feedback" | "reflect" | "evolve";
 
 export type LearningMethodId =
   | "socratic"
@@ -182,10 +176,7 @@ export function methodById(id: LearningMethodId): LearningMethod {
 /**
  * Methods well-suited to a given Loop step, optionally filtered by stage.
  */
-export function methodsForStep(
-  step: LoopStepId,
-  stage?: LearnerStage,
-): LearningMethod[] {
+export function methodsForStep(step: LoopStepId, stage?: LearnerStage): LearningMethod[] {
   return METHODS.filter((m) => {
     if (!m.loopSteps.includes(step)) return false;
     if (m.stages && stage && !m.stages.includes(stage)) return false;

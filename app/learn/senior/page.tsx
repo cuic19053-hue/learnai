@@ -51,9 +51,7 @@ export default function SeniorPage() {
           <PersonaAvatar emoji="🌿" color={j.color} bg={j.bg} size={48} />
           <div>
             <div className="text-base text-ink-mute">Hello</div>
-            <div className="text-2xl font-extrabold tracking-[-0.01em] text-ink">
-              Welcome back
-            </div>
+            <div className="text-2xl font-extrabold tracking-[-0.01em] text-ink">Welcome back</div>
           </div>
         </div>
         <Link
@@ -81,12 +79,9 @@ export default function SeniorPage() {
           <h1 className="mt-1.5 text-3xl font-extrabold leading-tight tracking-[-0.01em] md:text-4xl">
             Spot a scam in 5 minutes
           </h1>
-          <p
-            className="mt-2.5 max-w-[520px] leading-relaxed opacity-90"
-            style={{ fontSize: 18 }}
-          >
-            We&apos;ll read a fake message together and you&apos;ll tell me what
-            you think. We go slowly, and you can hear it read aloud.
+          <p className="mt-2.5 max-w-[520px] leading-relaxed opacity-90" style={{ fontSize: 18 }}>
+            We&apos;ll read a fake message together and you&apos;ll tell me what you think. We go
+            slowly, and you can hear it read aloud.
           </p>
           <Link
             href="/learn/lesson/senior"
@@ -100,9 +95,7 @@ export default function SeniorPage() {
 
       {/* Practical lessons grid */}
       <section className="mt-8">
-        <div className="mb-3 text-base font-bold text-ink-mute">
-          More practical lessons
-        </div>
+        <div className="mb-3 text-base font-bold text-ink-mute">More practical lessons</div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {PRACTICAL_LESSONS.map((l) => (
             <Link

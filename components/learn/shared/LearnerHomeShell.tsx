@@ -141,9 +141,7 @@ export default function LearnerHomeShell({
             const isHighlight = it.highlight && !it.active;
             return (
               <div key={it.label}>
-                {it.divider ? (
-                  <div className="my-3 border-t border-line-soft" />
-                ) : null}
+                {it.divider ? <div className="my-3 border-t border-line-soft" /> : null}
                 <Tag
                   href={it.href}
                   className="mb-1 flex cursor-pointer items-center gap-2.5 rounded-[10px] px-3 py-2.5 text-sm"
@@ -190,12 +188,7 @@ export default function LearnerHomeShell({
               YOUR TEACHER
             </div>
             <div className="mt-2 flex items-center gap-2.5">
-              <PersonaAvatar
-                emoji={teacherEmoji}
-                color={journey.color}
-                bg={journey.bg}
-                size={36}
-              />
+              <PersonaAvatar emoji={teacherEmoji} color={journey.color} bg={journey.bg} size={36} />
               <div>
                 <div className="text-sm font-bold text-ink">{teacherName}</div>
                 <div className="text-[11px] text-ink-soft">● Online</div>
@@ -228,4 +221,3 @@ export default function LearnerHomeShell({
     </div>
   );
 }
-

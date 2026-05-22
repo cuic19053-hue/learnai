@@ -21,11 +21,7 @@ export async function generateMetadata({
     : { title: "WikiTest exam" };
 }
 
-export default async function WikiQuizPage({
-  params,
-}: {
-  params: Promise<{ testId: string }>;
-}) {
+export default async function WikiQuizPage({ params }: { params: Promise<{ testId: string }> }) {
   const { testId } = await params;
   const stored = getStoredTest(testId);
   if (!stored) notFound();
@@ -54,8 +50,8 @@ export default async function WikiQuizPage({
         Test · {test.article.title}
       </h1>
       <p className="mt-1 max-w-[720px] text-[14px] leading-relaxed text-ink-soft">
-        Timed and graded. No reveals during the test — you&apos;ll get the
-        full readiness scorecard with cited paragraphs when you submit.
+        Timed and graded. No reveals during the test — you&apos;ll get the full readiness scorecard
+        with cited paragraphs when you submit.
       </p>
 
       <div className="mt-6">

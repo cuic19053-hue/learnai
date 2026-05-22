@@ -21,12 +21,11 @@ export const GET = handler(async () => {
       [
         {
           role: "system",
-          content:
-            "You are a connection probe. Reply with the single word: pong",
+          content: "You are a connection probe. Reply with the single word: pong",
         },
         { role: "user", content: "ping" },
       ],
-      { maxTokens: 8, temperature: 0, timeoutMs: 12_000 },
+      { maxTokens: 8, temperature: 0, timeoutMs: 12_000 }
     );
     return ok({
       reachable: true,

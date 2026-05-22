@@ -25,14 +25,94 @@ const WORLD_C = {
 } as const;
 
 const LEARNERS: Learner[] = [
-  { name: "Jess M.", world: "Scholar", age: 16, parent: "—", lastActive: "just now", streak: 1, xp: 45, status: "active", email: "jess@school.org" },
-  { name: "Sofia C.", world: "Little Learner", age: 5, parent: "Maria C. (mother)", lastActive: "2 min", streak: 4, xp: 320, status: "active", email: "via parent" },
-  { name: "Maya R.", world: "Builder", age: 14, parent: "—", lastActive: "6 min", streak: 2, xp: 156, status: "active", email: "maya.r@hs.org" },
-  { name: "Ruslan M.", world: "Professional", age: 32, parent: "—", lastActive: "14 min", streak: 2, xp: 210, status: "active", email: "ruslan@…" },
-  { name: "Captain Aiden", world: "Explorer", age: 9, parent: "Tom W. (father)", lastActive: "1 h", streak: 7, xp: 540, status: "active", email: "via parent" },
-  { name: "Elena P.", world: "Senior Learner", age: 68, parent: "—", lastActive: "yest.", streak: 0, xp: 38, status: "paused", email: "elena.p@…" },
-  { name: "Diego F.", world: "Scholar", age: 17, parent: "—", lastActive: "2 days", streak: 0, xp: 12, status: "at-risk", email: "diego.f@…" },
-  { name: "Hana K.", world: "Builder", age: 13, parent: "Aki K. (mother)", lastActive: "3 days", streak: 0, xp: 0, status: "invited", email: "via parent" },
+  {
+    name: "Jess M.",
+    world: "Scholar",
+    age: 16,
+    parent: "—",
+    lastActive: "just now",
+    streak: 1,
+    xp: 45,
+    status: "active",
+    email: "jess@school.org",
+  },
+  {
+    name: "Sofia C.",
+    world: "Little Learner",
+    age: 5,
+    parent: "Maria C. (mother)",
+    lastActive: "2 min",
+    streak: 4,
+    xp: 320,
+    status: "active",
+    email: "via parent",
+  },
+  {
+    name: "Maya R.",
+    world: "Builder",
+    age: 14,
+    parent: "—",
+    lastActive: "6 min",
+    streak: 2,
+    xp: 156,
+    status: "active",
+    email: "maya.r@hs.org",
+  },
+  {
+    name: "Ruslan M.",
+    world: "Professional",
+    age: 32,
+    parent: "—",
+    lastActive: "14 min",
+    streak: 2,
+    xp: 210,
+    status: "active",
+    email: "ruslan@…",
+  },
+  {
+    name: "Captain Aiden",
+    world: "Explorer",
+    age: 9,
+    parent: "Tom W. (father)",
+    lastActive: "1 h",
+    streak: 7,
+    xp: 540,
+    status: "active",
+    email: "via parent",
+  },
+  {
+    name: "Elena P.",
+    world: "Senior Learner",
+    age: 68,
+    parent: "—",
+    lastActive: "yest.",
+    streak: 0,
+    xp: 38,
+    status: "paused",
+    email: "elena.p@…",
+  },
+  {
+    name: "Diego F.",
+    world: "Scholar",
+    age: 17,
+    parent: "—",
+    lastActive: "2 days",
+    streak: 0,
+    xp: 12,
+    status: "at-risk",
+    email: "diego.f@…",
+  },
+  {
+    name: "Hana K.",
+    world: "Builder",
+    age: 13,
+    parent: "Aki K. (mother)",
+    lastActive: "3 days",
+    streak: 0,
+    xp: 0,
+    status: "invited",
+    email: "via parent",
+  },
 ];
 
 const STATUS_TONES: Record<Learner["status"], { c: string; bg: string }> = {
@@ -54,9 +134,27 @@ export default function AdminLearners() {
           subtitle="2,148 active · 312 new this week · 14 at-risk"
           right={
             <>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>📩 Invite</button>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>CSV export</button>
-              <button type="button" className="la-btn" style={{ padding: "9px 14px", fontSize: 13 }}>+ Add learner</button>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
+                📩 Invite
+              </button>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
+                CSV export
+              </button>
+              <button
+                type="button"
+                className="la-btn"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
+                + Add learner
+              </button>
             </>
           }
         />
@@ -69,7 +167,10 @@ export default function AdminLearners() {
           <Chip>🎓 Scholar (580)</Chip>
           <Chip>💼 Pro (286)</Chip>
           <Chip>🌿 Senior (80)</Chip>
-          <span aria-hidden style={{ width: 1, height: 20, background: "var(--line)", margin: "0 4px" }} />
+          <span
+            aria-hidden
+            style={{ width: 1, height: 20, background: "var(--line)", margin: "0 4px" }}
+          />
           <Chip>⚠ At-risk · 14</Chip>
           <Chip>✨ New this wk · 312</Chip>
           <div className="ml-auto flex items-center gap-2">
@@ -78,7 +179,11 @@ export default function AdminLearners() {
               className="rounded-lg border border-line bg-white px-3 py-2 text-[13px] outline-none focus:border-brand-1"
               style={{ width: 220 }}
             />
-            <button type="button" className="la-btn ghost" style={{ padding: "8px 12px", fontSize: 12 }}>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "8px 12px", fontSize: 12 }}
+            >
               Sort: Recent ▾
             </button>
           </div>
@@ -133,7 +238,17 @@ export default function AdminLearners() {
                   <div className="la-mono text-[10px] text-ink-mute">{l.email}</div>
                 </div>
                 <span className="text-[12px] font-extrabold" style={{ color: WORLD_C[l.world] }}>
-                  <span aria-hidden style={{ display: "inline-block", width: 6, height: 6, borderRadius: 99, background: WORLD_C[l.world], marginRight: 6 }} />
+                  <span
+                    aria-hidden
+                    style={{
+                      display: "inline-block",
+                      width: 6,
+                      height: 6,
+                      borderRadius: 99,
+                      background: WORLD_C[l.world],
+                      marginRight: 6,
+                    }}
+                  />
                   {l.world}
                 </span>
                 <span className="la-mono text-[12px]">{l.age}</span>
@@ -155,8 +270,20 @@ export default function AdminLearners() {
         <div className="mt-4 flex items-center justify-between text-[12px] text-ink-mute">
           <span className="la-mono">showing 8 of 2,148</span>
           <div className="flex gap-2">
-            <button type="button" className="la-btn ghost" style={{ padding: "6px 12px", fontSize: 12 }}>← Prev</button>
-            <button type="button" className="la-btn ghost" style={{ padding: "6px 12px", fontSize: 12 }}>Next →</button>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "6px 12px", fontSize: 12 }}
+            >
+              ← Prev
+            </button>
+            <button
+              type="button"
+              className="la-btn ghost"
+              style={{ padding: "6px 12px", fontSize: 12 }}
+            >
+              Next →
+            </button>
           </div>
         </div>
       </div>

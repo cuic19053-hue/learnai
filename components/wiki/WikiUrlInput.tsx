@@ -45,7 +45,7 @@ export default function WikiUrlInput() {
         if (!res.ok || !payload || payload.ok === false) {
           setError(
             (payload && payload.ok === false && payload.error) ||
-              "Couldn't build a test from that article. Try a more substantial topic.",
+              "Couldn't build a test from that article. Try a more substantial topic."
           );
           return;
         }
@@ -86,9 +86,7 @@ export default function WikiUrlInput() {
       </form>
 
       <div className="mt-3 flex flex-wrap items-center gap-2">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
-          Try
-        </span>
+        <span className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">Try</span>
         {SAMPLES.map((s) => (
           <button
             key={s.url}
@@ -108,9 +106,7 @@ export default function WikiUrlInput() {
 
       <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <label className="la-card flex flex-col gap-1 p-3 text-[12px]">
-          <span className="font-extrabold uppercase tracking-wider text-ink-mute">
-            Difficulty
-          </span>
+          <span className="font-extrabold uppercase tracking-wider text-ink-mute">Difficulty</span>
           <select
             value={difficulty}
             onChange={(e) => setDifficulty(e.target.value as Difficulty)}
@@ -139,9 +135,7 @@ export default function WikiUrlInput() {
           </select>
         </label>
         <label className="la-card flex flex-col gap-1 p-3 text-[12px]">
-          <span className="font-extrabold uppercase tracking-wider text-ink-mute">
-            Questions
-          </span>
+          <span className="font-extrabold uppercase tracking-wider text-ink-mute">Questions</span>
           <select
             value={count}
             onChange={(e) => setCount(Number(e.target.value))}
@@ -168,8 +162,8 @@ export default function WikiUrlInput() {
 
       {pending ? (
         <p className="mt-4 text-[12px] text-ink-mute">
-          Reading the article and writing your test — this takes 10–25 seconds.
-          Repeat requests with the same settings are instant (deduplicated).
+          Reading the article and writing your test — this takes 10–25 seconds. Repeat requests with
+          the same settings are instant (deduplicated).
         </p>
       ) : null}
     </div>

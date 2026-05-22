@@ -131,16 +131,13 @@ export default async function LibraryPage({
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "library" })}
     >
-      <Link
-        href={world.homePath}
-        className="text-[13px] font-bold text-ink-soft hover:text-ink"
-      >
+      <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
         ← Back to {world.journey.name} home
       </Link>
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
         Library
       </h1>
-      <p className="mt-1 mb-6 text-[15px] text-ink-soft">
+      <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         {total} lesson{total === 1 ? "" : "s"} across {groups.length} topic
         {groups.length === 1 ? "" : "s"} in the {world.journey.name} world.
       </p>
@@ -167,15 +164,11 @@ export default async function LibraryPage({
               Turn any Wikipedia article into a graded test
             </h3>
             <p className="mt-1 max-w-[560px] text-[13px] leading-relaxed text-ink-soft">
-              Paste a link — get a cited study session with train mode,
-              practice drills, and a timed exam. Perfect for prep on any topic
-              your library doesn&apos;t cover yet.
+              Paste a link — get a cited study session with train mode, practice drills, and a timed
+              exam. Perfect for prep on any topic your library doesn&apos;t cover yet.
             </p>
           </div>
-          <span
-            className="la-btn"
-            style={{ background: "var(--brand-grad)" }}
-          >
+          <span className="la-btn" style={{ background: "var(--brand-grad)" }}>
             Try WikiTest →
           </span>
         </Link>
@@ -199,9 +192,7 @@ export default async function LibraryPage({
                     <div className="truncate text-[14px] font-bold text-ink">{it.title}</div>
                     <div className="text-[11px] text-ink-mute">
                       {it.durationMin} min
-                      {typeof it.mastery === "number"
-                        ? ` · mastery ${it.mastery}%`
-                        : ""}
+                      {typeof it.mastery === "number" ? ` · mastery ${it.mastery}%` : ""}
                     </div>
                   </div>
                   <span className="text-[12px] font-bold" style={{ color: world.journey.color }}>

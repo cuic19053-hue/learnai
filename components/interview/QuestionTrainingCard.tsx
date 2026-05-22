@@ -81,9 +81,7 @@ export default function QuestionTrainingCard({
 
   return (
     <div className="la-card p-5" style={{ borderRadius: 16 }}>
-      <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
-        Question
-      </div>
+      <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">Question</div>
       <h3 className="mt-1 text-[17px] font-bold leading-snug text-ink">{question}</h3>
 
       <label className="mt-4 block">
@@ -133,7 +131,10 @@ export default function QuestionTrainingCard({
       </div>
 
       {score ? (
-        <div className="mt-4 rounded-xl border border-line-soft p-4" style={{ background: "var(--bg-2)" }}>
+        <div
+          className="mt-4 rounded-xl border border-line-soft p-4"
+          style={{ background: "var(--bg-2)" }}
+        >
           {degraded ? (
             <div className="mb-2 text-[11px]" style={{ color: "#b45309" }}>
               AI provider degraded — feedback is generic.
@@ -146,7 +147,11 @@ export default function QuestionTrainingCard({
             </div>
             <div
               className="la-pill text-[11px]"
-              style={{ background: "#fff", color: signalColor, boxShadow: `0 0 0 1px ${signalColor}40` }}
+              style={{
+                background: "#fff",
+                color: signalColor,
+                boxShadow: `0 0 0 1px ${signalColor}40`,
+              }}
             >
               {score.signal.toUpperCase()}
             </div>
@@ -208,9 +213,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   return (
     <div className="mt-3">
       {title ? (
-        <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">
-          {title}
-        </div>
+        <div className="text-[10px] font-bold uppercase tracking-wider text-ink-mute">{title}</div>
       ) : null}
       <div className={title ? "mt-1" : ""}>{children}</div>
     </div>

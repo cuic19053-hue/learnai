@@ -1,15 +1,13 @@
 import { z } from "zod";
 import { fail, handler, ok } from "@/lib/api";
-import {
-  listProviders,
-  removeProvider,
-  upsertProvider,
-} from "@/lib/ai/config-store";
+import { listProviders, removeProvider, upsertProvider } from "@/lib/ai/config-store";
 import { PROVIDER_IDS } from "@/lib/ai/providers";
 
 export const dynamic = "force-dynamic";
 
-const ProviderIdSchema = z.enum(PROVIDER_IDS as [typeof PROVIDER_IDS[number], ...Array<typeof PROVIDER_IDS[number]>]);
+const ProviderIdSchema = z.enum(
+  PROVIDER_IDS as [(typeof PROVIDER_IDS)[number], ...Array<(typeof PROVIDER_IDS)[number]>]
+);
 
 const UpsertSchema = z.object({
   id: ProviderIdSchema,

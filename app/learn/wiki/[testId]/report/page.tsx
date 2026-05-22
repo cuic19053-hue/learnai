@@ -21,11 +21,7 @@ export async function generateMetadata({
     : { title: "WikiTest report" };
 }
 
-export default async function WikiReportPage({
-  params,
-}: {
-  params: Promise<{ testId: string }>;
-}) {
+export default async function WikiReportPage({ params }: { params: Promise<{ testId: string }> }) {
   const { testId } = await params;
   const stored = getStoredTest(testId);
   if (!stored) notFound();
@@ -41,7 +37,11 @@ export default async function WikiReportPage({
       teacherName={world.teacherName}
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "wikitest" })}
-      pageContext={{ kind: "wiki-report", topic: test.article.title, worldLabel: world.journey.name }}
+      pageContext={{
+        kind: "wiki-report",
+        topic: test.article.title,
+        worldLabel: world.journey.name,
+      }}
     >
       <Link
         href={`/learn/wiki/${testId}`}
@@ -54,8 +54,8 @@ export default async function WikiReportPage({
         Report · {test.article.title}
       </h1>
       <p className="mt-1 max-w-[720px] text-[14px] leading-relaxed text-ink-soft">
-        Your readiness scorecard with per-section accuracy and a cited
-        explanation for every question.
+        Your readiness scorecard with per-section accuracy and a cited explanation for every
+        question.
       </p>
 
       <div className="mt-6">

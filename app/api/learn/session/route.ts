@@ -13,7 +13,7 @@ const TurnSchema = z.object({
         q: z.string(),
         a: z.string(),
         score: z.number().int().min(0).max(10).optional(),
-      }),
+      })
     )
     .default([]),
   userAnswer: z.string().min(1),
@@ -74,7 +74,7 @@ export async function POST(req: Request) {
   } catch (err: any) {
     return NextResponse.json(
       { ok: false, error: err?.message ?? "Unknown error" },
-      { status: 400 },
+      { status: 400 }
     );
   }
 }

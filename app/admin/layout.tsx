@@ -8,16 +8,9 @@ import AdminSidebar from "@/components/admin/AdminSidebar";
  */
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div
-      className="grid h-screen"
-      style={{ gridTemplateColumns: "260px minmax(0, 1fr)" }}
-    >
+    <div className="grid h-screen" style={{ gridTemplateColumns: "260px minmax(0, 1fr)" }}>
       <AdminSidebar />
-      <main
-        id="main"
-        className="overflow-auto"
-        style={{ background: "#f7f8fc" }}
-      >
+      <main id="main" className="overflow-auto" style={{ background: "#f7f8fc" }}>
         {children}
       </main>
     </div>

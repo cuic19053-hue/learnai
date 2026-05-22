@@ -17,10 +17,7 @@ export default function TeachersPage() {
           <Link href="/" aria-label="LearnAI home">
             <Mark size={28} fontSize={18} />
           </Link>
-          <Link
-            href="/"
-            className="text-[13px] font-bold text-ink-soft hover:text-ink"
-          >
+          <Link href="/" className="text-[13px] font-bold text-ink-soft hover:text-ink">
             ← Back home
           </Link>
         </div>

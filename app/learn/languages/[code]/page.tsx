@@ -19,11 +19,7 @@ export async function generateMetadata({
     : { title: "Language" };
 }
 
-export default async function LanguageOverview({
-  params,
-}: {
-  params: Promise<{ code: string }>;
-}) {
+export default async function LanguageOverview({ params }: { params: Promise<{ code: string }> }) {
   const { code } = await params;
   const lang = findLanguage(code);
   if (!lang) notFound();
@@ -40,10 +36,7 @@ export default async function LanguageOverview({
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "library" })}
     >
-      <Link
-        href="/learn/languages"
-        className="text-[13px] font-bold text-ink-soft hover:text-ink"
-      >
+      <Link href="/learn/languages" className="text-[13px] font-bold text-ink-soft hover:text-ink">
         ← Back to all languages
       </Link>
 
@@ -55,25 +48,17 @@ export default async function LanguageOverview({
           <h1 className="text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[34px]">
             {lang.name}
           </h1>
-          <p
-            className="mt-0.5 text-lg font-bold"
-            dir={lang.dir}
-            style={{ color: lang.accent }}
-          >
+          <p className="mt-0.5 text-lg font-bold" dir={lang.dir} style={{ color: lang.accent }}>
             {lang.nativeName}
           </p>
         </div>
       </div>
-      <p className="mt-2 max-w-[720px] text-[15px] leading-relaxed text-ink-soft">
-        {lang.blurb}
-      </p>
+      <p className="mt-2 max-w-[720px] text-[15px] leading-relaxed text-ink-soft">{lang.blurb}</p>
 
-      <h2 className="mt-8 text-lg font-extrabold tracking-tight text-ink">
-        CEFR levels
-      </h2>
+      <h2 className="mt-8 text-lg font-extrabold tracking-tight text-ink">CEFR levels</h2>
       <p className="mt-1 text-[13px] text-ink-mute">
-        Each level lists what you can do once you reach it. Tap a card to open
-        the level home with modules, drills, and a mock test.
+        Each level lists what you can do once you reach it. Tap a card to open the level home with
+        modules, drills, and a mock test.
       </p>
 
       <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -118,12 +103,9 @@ export default async function LanguageOverview({
       </div>
 
       <p className="mt-10 text-[12px] text-ink-mute">
-        Curriculum scaffold — A1 ships with seed modules; higher levels are
-        ready for contributors to add via PR in{" "}
-        <code className="rounded bg-line-soft px-1 py-0.5 text-[11px]">
-          lib/languages/seed.ts
-        </code>
-        .
+        Curriculum scaffold — A1 ships with seed modules; higher levels are ready for contributors
+        to add via PR in{" "}
+        <code className="rounded bg-line-soft px-1 py-0.5 text-[11px]">lib/languages/seed.ts</code>.
       </p>
     </LearnerHomeShell>
   );

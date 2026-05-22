@@ -33,8 +33,7 @@ interface ExtendedUser extends User {
  * @see https://next-auth.js.org/configuration/options
  */
 const HAS_DATABASE = !!process.env.DATABASE_URL;
-const HAS_GOOGLE =
-  !!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET;
+const HAS_GOOGLE = !!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET;
 
 export const authOptions: NextAuthOptions = {
   // Use Prisma adapter only when a database is configured.
@@ -107,9 +106,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Email and password are required");
         }
         if (!HAS_DATABASE) {
-          throw new Error(
-            "Sign-in is unavailable in this environment. Continue as a guest.",
-          );
+          throw new Error("Sign-in is unavailable in this environment. Continue as a guest.");
         }
 
         try {
@@ -261,7 +258,7 @@ export async function hashPassword(password: string, rounds: number = 12): Promi
   if (!password || password.length < 8) {
     throw new Error("Password must be at least 8 characters long");
   }
-  return await bcrypt.hash(password, rounds);
+  return bcrypt.hash(password, rounds);
 }
 
 /**
@@ -277,5 +274,5 @@ export async function hashPassword(password: string, rounds: number = 12): Promi
  * ```
  */
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  return await bcrypt.compare(password, hash);
+  return bcrypt.compare(password, hash);
 }

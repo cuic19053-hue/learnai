@@ -18,16 +18,16 @@ export default function MarketingHeader() {
             </Link>
 
             <div className="hidden items-center gap-8 md:flex">
-              <Link href="/" className="text-gray-600 hover:text-primary transition-colors">
+              <Link href="/" className="text-gray-600 transition-colors hover:text-primary">
                 Home
               </Link>
-              <Link href="/explore" className="text-gray-600 hover:text-primary transition-colors">
+              <Link href="/explore" className="text-gray-600 transition-colors hover:text-primary">
                 Professors
               </Link>
-              <a href="#pricing" className="text-gray-600 hover:text-primary transition-colors">
+              <a href="#pricing" className="text-gray-600 transition-colors hover:text-primary">
                 Pricing
               </a>
-              <a href="#about" className="text-gray-600 hover:text-primary transition-colors">
+              <a href="#about" className="text-gray-600 transition-colors hover:text-primary">
                 About
               </a>
             </div>
@@ -44,12 +44,12 @@ export default function MarketingHeader() {
               {/* Login optional: modal only on click */}
               <button
                 onClick={() => setOpen(true)}
-                className="rounded-lg bg-primary px-6 py-2 text-white hover:bg-secondary transition-colors"
+                className="rounded-lg bg-primary px-6 py-2 text-white transition-colors hover:bg-secondary"
               >
                 Get Started
               </button>
 
-              <button className="md:hidden text-gray-600" aria-label="Open menu">
+              <button className="text-gray-600 md:hidden" aria-label="Open menu">
                 ☰
               </button>
             </div>

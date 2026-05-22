@@ -9,13 +9,7 @@ export type ContinueItem = {
   progress: number;
 };
 
-export function ContinueCard({
-  items,
-  journey,
-}: {
-  items: ContinueItem[];
-  journey: Journey;
-}) {
+export function ContinueCard({ items, journey }: { items: ContinueItem[]; journey: Journey }) {
   return (
     <div className="la-card" style={{ padding: 18, borderRadius: 18 }}>
       <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-ink-mute">
@@ -143,8 +137,8 @@ export function WikiTestPromoCard({
           Build a test from any Wikipedia article
         </h3>
         <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
-          Paste a link. {teacherName} walks you through the article, then
-          grades you on it. Same Loop — taught from a source you choose.
+          Paste a link. {teacherName} walks you through the article, then grades you on it. Same
+          Loop — taught from a source you choose.
         </p>
         <div className="mt-3.5 flex flex-wrap gap-2">
           <Link

@@ -98,8 +98,8 @@ export default function RegisterPage() {
 
         <div className="mt-6 rounded-lg bg-blue-50 p-4">
           <p className="text-xs text-gray-700">
-            <strong>Note:</strong> Are you a professor? After signing up, you can set up your teaching
-            profile in your dashboard to start earning money.
+            <strong>Note:</strong> Are you a professor? After signing up, you can set up your
+            teaching profile in your dashboard to start earning money.
           </p>
         </div>
       </div>

@@ -55,10 +55,18 @@ export default function AdminOverview() {
           subtitle="Today's pulse · 24-hour window · refreshes every 60 s"
           right={
             <>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
                 Last 24 h ▾
               </button>
-              <button type="button" className="la-btn ghost" style={{ padding: "9px 14px", fontSize: 13 }}>
+              <button
+                type="button"
+                className="la-btn ghost"
+                style={{ padding: "9px 14px", fontSize: 13 }}
+              >
                 Export CSV
               </button>
             </>
@@ -66,8 +74,20 @@ export default function AdminOverview() {
         />
 
         <div className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-5">
-          <KpiBig label="Active learners" value="2,148" delta="+184 vs yest." color="var(--brand-1)" sparkline={SPARK} />
-          <KpiBig label="Sessions · 24h" value="6,402" delta="+12%" color="var(--brand-2)" sparkline={SPARK} />
+          <KpiBig
+            label="Active learners"
+            value="2,148"
+            delta="+184 vs yest."
+            color="var(--brand-1)"
+            sparkline={SPARK}
+          />
+          <KpiBig
+            label="Sessions · 24h"
+            value="6,402"
+            delta="+12%"
+            color="var(--brand-2)"
+            sparkline={SPARK}
+          />
           <KpiBig
             label="AI requests"
             value="14,230"
@@ -100,18 +120,39 @@ export default function AdminOverview() {
           <section className="la-card p-5" style={{ borderRadius: 18 }}>
             <h3 className="text-[16px] font-extrabold text-ink">System health</h3>
             <div className="mt-2 divide-y divide-line-soft">
-              <HealthRow name="OllaBridge" latency="780 ms" status="ok" detail="HF Space · 99.94%" />
+              <HealthRow
+                name="OllaBridge"
+                latency="780 ms"
+                status="ok"
+                detail="HF Space · 99.94%"
+              />
               <HealthRow name="OpenAI" latency="640 ms" status="ok" detail="failover ready" />
-              <HealthRow name="Database (Neon)" latency="34 ms" status="ok" detail="PostgreSQL · 99.99%" />
-              <HealthRow name="Safety classifier" latency="82 ms" status="ok" detail="LlamaGuard-7B in-line" />
-              <HealthRow name="Object storage" latency="—" status="warn" detail="2 retries last hr" />
+              <HealthRow
+                name="Database (Neon)"
+                latency="34 ms"
+                status="ok"
+                detail="PostgreSQL · 99.99%"
+              />
+              <HealthRow
+                name="Safety classifier"
+                latency="82 ms"
+                status="ok"
+                detail="LlamaGuard-7B in-line"
+              />
+              <HealthRow
+                name="Object storage"
+                latency="—"
+                status="warn"
+                detail="2 retries last hr"
+              />
               <HealthRow name="Email service" latency="—" status="ok" detail="SES · 100%" />
             </div>
             <div
               className="mt-3 rounded-xl border border-line-soft px-3 py-2 text-[11.5px] text-ink-soft"
               style={{ background: "var(--surface-soft)" }}
             >
-              <b>Note:</b> object storage retries on a tracked S3 throttling event. No impact on learners.
+              <b>Note:</b> object storage retries on a tracked S3 throttling event. No impact on
+              learners.
             </div>
           </section>
         </div>
@@ -222,24 +263,19 @@ function HealthRow({
 }) {
   const c = status === "ok" ? "#16a34a" : status === "warn" ? "#f59e0b" : "#dc2626";
   return (
-    <div className="grid items-center gap-3 py-2.5" style={{ gridTemplateColumns: "14px 1.2fr 70px 1fr" }}>
+    <div
+      className="grid items-center gap-3 py-2.5"
+      style={{ gridTemplateColumns: "14px 1.2fr 70px 1fr" }}
+    >
       <span aria-hidden style={{ width: 8, height: 8, borderRadius: 99, background: c }} />
       <span className="text-[13px] font-extrabold text-ink">{name}</span>
-      <span className="la-mono text-[11px] text-right text-ink-soft">{latency}</span>
+      <span className="la-mono text-right text-[11px] text-ink-soft">{latency}</span>
       <span className="la-mono text-[11px] text-ink-mute">{detail}</span>
     </div>
   );
 }
 
-function MiniStat({
-  label,
-  v,
-  detail,
-}: {
-  label: string;
-  v: string;
-  detail?: string;
-}) {
+function MiniStat({ label, v, detail }: { label: string; v: string; detail?: string }) {
   return (
     <div>
       <div className="la-mono text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
@@ -273,10 +309,7 @@ function ActiveByWorldCard() {
             <span className="text-[12px] font-semibold text-ink">{r.w}</span>
             <span className="la-mono text-[11px] text-ink-mute">{r.n}</span>
             <div className="wt-meter">
-              <div
-                className="fill"
-                style={{ width: `${r.pct * 4}%`, background: r.c }}
-              />
+              <div className="fill" style={{ width: `${r.pct * 4}%`, background: r.c }} />
             </div>
           </div>
         ))}
@@ -287,9 +320,20 @@ function ActiveByWorldCard() {
 
 function RecentActivityCard() {
   const events = [
-    { ic: "✨", t: "New WikiTest generated", sub: "Linear algebra · jess@school", when: "just now" },
+    {
+      ic: "✨",
+      t: "New WikiTest generated",
+      sub: "Linear algebra · jess@school",
+      when: "just now",
+    },
     { ic: "🎯", t: "Sofia (5) completed Loop", sub: "Counting 1–10 · Active recall", when: "2m" },
-    { ic: "🛡️", t: "Safety block · profanity", sub: "Builder · auto-resolved", when: "6m", tone: "warn" as const },
+    {
+      ic: "🛡️",
+      t: "Safety block · profanity",
+      sub: "Builder · auto-resolved",
+      when: "6m",
+      tone: "warn" as const,
+    },
     { ic: "🎓", t: "Mock defense rehearsal", sub: "Transformer · 78% readiness", when: "14m" },
     { ic: "💳", t: "OpenAI usage · $1.20", sub: "below cap", when: "20m", tone: "muted" as const },
     { ic: "✨", t: "New persona added", sub: "Forge (Builder) · admin@", when: "1h" },
@@ -304,7 +348,9 @@ function RecentActivityCard() {
             className="grid items-center gap-3 py-2"
             style={{ gridTemplateColumns: "24px 1fr auto" }}
           >
-            <span aria-hidden className="text-[15px]">{e.ic}</span>
+            <span aria-hidden className="text-[15px]">
+              {e.ic}
+            </span>
             <div>
               <div
                 className="text-[12.5px] font-bold"
@@ -331,10 +377,30 @@ function RecentActivityCard() {
 
 function QuickActionsCard() {
   const items = [
-    { ic: "🤖", t: "Add an AI provider", sub: "OllaBridge default · Grok recommended", href: "/admin/providers" },
-    { ic: "🎭", t: "Edit Mentor Max's prompt", sub: "6 sessions with low score yest.", href: "/admin/personas" },
-    { ic: "🛡️", t: "Review 3 safety incidents", sub: "all under 12 · auto-resolved", href: "/admin/safety" },
-    { ic: "📜", t: "Export this week's audit log", sub: "for compliance review", href: "/admin/audit" },
+    {
+      ic: "🤖",
+      t: "Add an AI provider",
+      sub: "OllaBridge default · Grok recommended",
+      href: "/admin/providers",
+    },
+    {
+      ic: "🎭",
+      t: "Edit Mentor Max's prompt",
+      sub: "6 sessions with low score yest.",
+      href: "/admin/personas",
+    },
+    {
+      ic: "🛡️",
+      t: "Review 3 safety incidents",
+      sub: "all under 12 · auto-resolved",
+      href: "/admin/safety",
+    },
+    {
+      ic: "📜",
+      t: "Export this week's audit log",
+      sub: "for compliance review",
+      href: "/admin/audit",
+    },
   ];
   return (
     <section className="la-card p-5" style={{ borderRadius: 18 }}>
@@ -344,15 +410,19 @@ function QuickActionsCard() {
           <a
             key={q.t}
             href={q.href}
-            className="grid items-center gap-3 rounded-lg px-2.5 py-2 transition hover:bg-bg-2"
+            className="hover:bg-bg-2 grid items-center gap-3 rounded-lg px-2.5 py-2 transition"
             style={{ gridTemplateColumns: "22px 1fr 14px" }}
           >
-            <span aria-hidden className="text-[14px]">{q.ic}</span>
+            <span aria-hidden className="text-[14px]">
+              {q.ic}
+            </span>
             <div>
               <div className="text-[12.5px] font-extrabold text-ink">{q.t}</div>
               <div className="la-mono text-[10px] text-ink-mute">{q.sub}</div>
             </div>
-            <span aria-hidden className="text-ink-mute">›</span>
+            <span aria-hidden className="text-ink-mute">
+              ›
+            </span>
           </a>
         ))}
       </div>

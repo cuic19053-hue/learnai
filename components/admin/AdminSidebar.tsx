@@ -41,9 +41,7 @@ const NAV_GROUPS: NavGroup[] = [
   },
   {
     title: "BUSINESS",
-    items: [
-      { icon: "💳", label: "Billing", href: "/admin/billing" },
-    ],
+    items: [{ icon: "💳", label: "Billing", href: "/admin/billing" }],
   },
 ];
 

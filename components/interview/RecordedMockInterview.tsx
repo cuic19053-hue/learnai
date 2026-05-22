@@ -7,11 +7,7 @@ import type {
   JobBrief,
   TrainingBank,
 } from "@/lib/interview/types";
-import {
-  AudioRecorder,
-  isRecordingSupported,
-  type TurnRecording,
-} from "@/lib/interview/recording";
+import { AudioRecorder, isRecordingSupported, type TurnRecording } from "@/lib/interview/recording";
 
 type Round = 1 | 2 | 3;
 
@@ -21,7 +17,8 @@ const ROUND_META: Record<Round, { name: string; topic: string; targetTurns: numb
   3: { name: "Leadership · system", topic: "People · scale · trade-offs", targetTurns: 3 },
 };
 
-const TOTAL_TURNS = ROUND_META[1].targetTurns + ROUND_META[2].targetTurns + ROUND_META[3].targetTurns;
+const TOTAL_TURNS =
+  ROUND_META[1].targetTurns + ROUND_META[2].targetTurns + ROUND_META[3].targetTurns;
 
 const FALLBACK_OPENERS: Record<Round, string> = {
   1: "Tell me about yourself and why you're interested in this role.",
@@ -67,9 +64,7 @@ export default function RecordedMockInterview({
 
   // ── Audio recording (optional, opt-in per simulation) ──
   const [recordingEnabled, setRecordingEnabled] = useState(false);
-  const [micState, setMicState] = useState<"idle" | "armed" | "recording" | "denied">(
-    "idle",
-  );
+  const [micState, setMicState] = useState<"idle" | "armed" | "recording" | "denied">("idle");
   const [recElapsedSec, setRecElapsedSec] = useState(0);
   const recorderRef = useRef<AudioRecorder | null>(null);
   const recTickRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -103,10 +98,7 @@ export default function RecordedMockInterview({
       setMicState("recording");
       setRecElapsedSec(0);
       if (recTickRef.current) clearInterval(recTickRef.current);
-      recTickRef.current = setInterval(
-        () => setRecElapsedSec((s) => s + 1),
-        1000,
-      );
+      recTickRef.current = setInterval(() => setRecElapsedSec((s) => s + 1), 1000);
     } catch (e) {
       setError((e as Error).message);
     }
@@ -140,7 +132,7 @@ export default function RecordedMockInterview({
       recorderRef.current?.dispose();
       recorderRef.current = null;
     },
-    [],
+    []
   );
 
   // First question for the active round (when entering a fresh round).
@@ -239,7 +231,7 @@ export default function RecordedMockInterview({
         // Continue in the same round with the AI's follow-up.
         const nextQ = (turn as unknown as { nextQuestion?: string }).nextQuestion;
         setCurrentQuestion(
-          nextQ && nextQ.trim() ? nextQ.trim() : pickOpener(banks, round, FALLBACK_OPENERS[round]),
+          nextQ && nextQ.trim() ? nextQ.trim() : pickOpener(banks, round, FALLBACK_OPENERS[round])
         );
       }
       setAnswer("");
@@ -263,10 +255,17 @@ export default function RecordedMockInterview({
           </h3>
           <ul className="mt-3 space-y-2 text-[14px] leading-relaxed text-ink-soft">
             <li>• Three rounds, ~10 questions total, no retakes.</li>
-            <li>• Each answer is scored live. The AI calibrates the next question to your last one.</li>
-            <li>• <strong>Audio recording is optional.</strong> Recordings stay on your device — they never leave the browser.</li>
+            <li>
+              • Each answer is scored live. The AI calibrates the next question to your last one.
+            </li>
+            <li>
+              • <strong>Audio recording is optional.</strong> Recordings stay on your device — they
+              never leave the browser.
+            </li>
             <li>• Your answers stay on your device until you sign in to save progress.</li>
-            <li>• We <strong>never</strong> use your data to train models.</li>
+            <li>
+              • We <strong>never</strong> use your data to train models.
+            </li>
           </ul>
 
           {supportsAudio ? (
@@ -280,8 +279,8 @@ export default function RecordedMockInterview({
                     🔴 Enable audio recording (optional)
                   </div>
                   <p className="mt-1 text-[12px] text-ink-soft">
-                    We&apos;ll capture audio of each answer so you can play it back
-                    in the report. Mic permission is requested once.
+                    We&apos;ll capture audio of each answer so you can play it back in the report.
+                    Mic permission is requested once.
                   </p>
                   {micState === "denied" ? (
                     <p className="mt-1 text-[11px] text-red-600">
@@ -364,17 +363,14 @@ export default function RecordedMockInterview({
             <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
               {meta.name} · question {(roundCounts[round] ?? 0) + 1} of {meta.targetTurns}
             </div>
-            <h3 className="mt-1 text-[19px] font-bold leading-snug text-ink">
-              {currentQuestion}
-            </h3>
+            <h3 className="mt-1 text-[19px] font-bold leading-snug text-ink">{currentQuestion}</h3>
 
             {recordingEnabled ? (
               <div
                 aria-live="polite"
                 className="mt-3 flex items-center gap-2 rounded-lg border border-line-soft px-3 py-1.5 text-[12px]"
                 style={{
-                  background:
-                    micState === "recording" ? "rgba(220,38,38,0.06)" : "var(--bg-2)",
+                  background: micState === "recording" ? "rgba(220,38,38,0.06)" : "var(--bg-2)",
                 }}
               >
                 <span
@@ -382,7 +378,8 @@ export default function RecordedMockInterview({
                   className="h-2 w-2 rounded-full"
                   style={{
                     background: micState === "recording" ? "#dc2626" : "var(--ink-mute)",
-                    animation: micState === "recording" ? "pulse 1.4s ease-in-out infinite" : "none",
+                    animation:
+                      micState === "recording" ? "pulse 1.4s ease-in-out infinite" : "none",
                   }}
                 />
                 <span className="font-bold text-ink">
@@ -461,9 +458,7 @@ export default function RecordedMockInterview({
                     <div className="mt-1 line-clamp-2 text-[12px] font-bold text-ink">
                       {t.question}
                     </div>
-                    <div className="mt-1 line-clamp-2 text-[11px] text-ink-soft">
-                      {t.answer}
-                    </div>
+                    <div className="mt-1 line-clamp-2 text-[11px] text-ink-soft">{t.answer}</div>
                     {t.recording ? (
                       <audio
                         controls

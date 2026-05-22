@@ -26,8 +26,8 @@ export default function WikiQuizView({ test }: Props) {
   const total = questions.length;
 
   const [idx, setIdx] = useState(0);
-  const [answers, setAnswers] = useState<AnswerState[]>(
-    () => Array.from({ length: total }, () => ({ response: "", flagged: false })),
+  const [answers, setAnswers] = useState<AnswerState[]>(() =>
+    Array.from({ length: total }, () => ({ response: "", flagged: false }))
   );
   const [remainingSec, setRemainingSec] = useState(test.estDurationMin * 60);
   const [submitting, setSubmitting] = useState(false);
@@ -52,7 +52,7 @@ export default function WikiQuizView({ test }: Props) {
 
   const answered = useMemo(
     () => answers.filter((a) => a.response.trim().length > 0).length,
-    [answers],
+    [answers]
   );
   const flagged = useMemo(() => answers.filter((a) => a.flagged).length, [answers]);
 
@@ -113,7 +113,9 @@ export default function WikiQuizView({ test }: Props) {
           style={{ borderRadius: 16 }}
         >
           <div className="flex items-center gap-3">
-            <span className="text-2xl" aria-hidden>⏱️</span>
+            <span className="text-2xl" aria-hidden>
+              ⏱️
+            </span>
             <div>
               <div className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
                 Time left
@@ -128,9 +130,13 @@ export default function WikiQuizView({ test }: Props) {
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-3 text-[12px] font-bold text-ink-soft">
-            <span>Answered <span className="text-ink">{answered}</span> / {total}</span>
+            <span>
+              Answered <span className="text-ink">{answered}</span> / {total}
+            </span>
             <span>·</span>
-            <span>Flagged <span className="text-ink">{flagged}</span></span>
+            <span>
+              Flagged <span className="text-ink">{flagged}</span>
+            </span>
           </div>
           <button
             type="button"
@@ -148,13 +154,9 @@ export default function WikiQuizView({ test }: Props) {
             <span className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
               Question {idx + 1} of {total}
             </span>
-            <span className="la-pill text-[11px]">
-              {labelKind(current.kind)}
-            </span>
+            <span className="la-pill text-[11px]">{labelKind(current.kind)}</span>
           </div>
-          <h2 className="mt-3 text-[18px] font-bold leading-relaxed text-ink">
-            {current.prompt}
-          </h2>
+          <h2 className="mt-3 text-[18px] font-bold leading-relaxed text-ink">{current.prompt}</h2>
 
           {current.kind === "short_answer" ? (
             <label className="mt-4 block">

@@ -55,16 +55,8 @@ export default function CountingTask() {
         ))}
       </div>
 
-      <div
-        aria-live="polite"
-        role="status"
-        className="mt-5 min-h-[2rem] text-2xl font-semibold"
-      >
-        {picked === null
-          ? ""
-          : correct
-            ? "Great job! ⭐"
-            : "Try again, you can do it!"}
+      <div aria-live="polite" role="status" className="mt-5 min-h-[2rem] text-2xl font-semibold">
+        {picked === null ? "" : correct ? "Great job! ⭐" : "Try again, you can do it!"}
       </div>
 
       <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
@@ -75,10 +67,7 @@ export default function CountingTask() {
         >
           Try again
         </button>
-        <a
-          href="/parent"
-          className="rounded-xl bg-gray-100 px-5 py-3 text-lg font-semibold"
-        >
+        <a href="/parent" className="rounded-xl bg-gray-100 px-5 py-3 text-lg font-semibold">
           Parent Exit
         </a>
       </div>

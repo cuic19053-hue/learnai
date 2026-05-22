@@ -13,7 +13,10 @@
 
 import type { ProjectLesson } from "./lesson";
 
-function lesson(id: string, body: Omit<ProjectLesson, "id" | "projectId" | "generatedAt">): ProjectLesson {
+function lesson(
+  id: string,
+  body: Omit<ProjectLesson, "id" | "projectId" | "generatedAt">
+): ProjectLesson {
   return {
     id: `static-${id}`,
     projectId: id,
@@ -33,8 +36,15 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
     ].join("\n\n"),
     keyTerms: [
       { term: "Derivative", definition: "Instantaneous rate of change of a function at a point." },
-      { term: "Tangent line", definition: "Line touching a curve at one point with the same slope as the curve there." },
-      { term: "Chain rule", definition: "Derivative of a composition: differentiate the outside, multiply by the derivative of the inside." },
+      {
+        term: "Tangent line",
+        definition: "Line touching a curve at one point with the same slope as the curve there.",
+      },
+      {
+        term: "Chain rule",
+        definition:
+          "Derivative of a composition: differentiate the outside, multiply by the derivative of the inside.",
+      },
     ],
     exercises: [
       {
@@ -52,16 +62,20 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
         kind: "short_answer",
         prompt: "Differentiate f(x) = (2x + 1)⁵ using the chain rule. Give the simplified answer.",
         expectedAnswer: "10(2x + 1)^4",
-        explanation: "Chain rule: outside derivative is 5·(2x+1)⁴, inside derivative is 2, multiply to get 10(2x+1)⁴.",
+        explanation:
+          "Chain rule: outside derivative is 5·(2x+1)⁴, inside derivative is 2, multiply to get 10(2x+1)⁴.",
         hint: "Outside is (·)⁵; inside is 2x + 1. Take the outside derivative as if the inside were a single variable, then multiply by the inside's derivative.",
         method: "Worked example → twin",
       },
       {
         id: "ex3",
         kind: "explain_back",
-        prompt: "In one sentence, explain why the chain rule exists — what conceptual problem does it solve?",
-        expectedAnswer: "When a function is composed of an inner function inside an outer function, the chain rule lets us compute the total rate of change by multiplying the local rates of change of each layer.",
-        explanation: "Composition means changes propagate through layers. The chain rule says the total rate is the product of the per-layer rates — exactly like multiplying gear ratios.",
+        prompt:
+          "In one sentence, explain why the chain rule exists — what conceptual problem does it solve?",
+        expectedAnswer:
+          "When a function is composed of an inner function inside an outer function, the chain rule lets us compute the total rate of change by multiplying the local rates of change of each layer.",
+        explanation:
+          "Composition means changes propagate through layers. The chain rule says the total rate is the product of the per-layer rates — exactly like multiplying gear ratios.",
         method: "Feynman technique",
       },
     ],
@@ -76,9 +90,18 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
       "Energy levels are evenly spaced at Eₙ = ℏω (n + ½). The 'half' is the zero-point energy — even the ground state |0⟩ has energy ℏω/2, a purely quantum effect. The operators a and a† 'lower' and 'raise' between adjacent levels: a|n⟩ = √n |n−1⟩ and a†|n⟩ = √(n+1) |n+1⟩.",
     ].join("\n\n"),
     keyTerms: [
-      { term: "Ladder operators", definition: "a (lowering) and a† (raising); take a state to the adjacent energy level." },
-      { term: "Number operator", definition: "N = a†a; its eigenvalue counts which level |n⟩ a state is in." },
-      { term: "Zero-point energy", definition: "Ground-state energy ℏω/2 — minimum energy is non-zero in QM." },
+      {
+        term: "Ladder operators",
+        definition: "a (lowering) and a† (raising); take a state to the adjacent energy level.",
+      },
+      {
+        term: "Number operator",
+        definition: "N = a†a; its eigenvalue counts which level |n⟩ a state is in.",
+      },
+      {
+        term: "Zero-point energy",
+        definition: "Ground-state energy ℏω/2 — minimum energy is non-zero in QM.",
+      },
     ],
     exercises: [
       {
@@ -87,16 +110,19 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
         prompt: "What is the commutator [a, a†] for the QHO ladder operators?",
         choices: ["0", "1", "iℏ", "a†a"],
         correctIndex: 1,
-        explanation: "[a, a†] = 1 (the identity) — this is the defining algebra that makes the ladder construction work.",
+        explanation:
+          "[a, a†] = 1 (the identity) — this is the defining algebra that makes the ladder construction work.",
         hint: "It's a simple constant, derived from [x, p] = iℏ.",
         method: "Active recall",
       },
       {
         id: "ex2",
         kind: "short_answer",
-        prompt: "What does the operator a†·a return when applied to the state |3⟩, and what does this operator represent?",
+        prompt:
+          "What does the operator a†·a return when applied to the state |3⟩, and what does this operator represent?",
         expectedAnswer: "3|3⟩; it is the number operator counting the energy level.",
-        explanation: "a†a is the number operator N. N|n⟩ = n|n⟩, so on |3⟩ it returns 3|3⟩ — telling you which level you're in.",
+        explanation:
+          "a†a is the number operator N. N|n⟩ = n|n⟩, so on |3⟩ it returns 3|3⟩ — telling you which level you're in.",
         hint: "Apply the lowering operator first, then the raising operator, and track the √n coefficients.",
         method: "Worked example → twin",
       },
@@ -104,8 +130,10 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
         id: "ex3",
         kind: "explain_back",
         prompt: "In one sentence, explain why the QHO ground state has non-zero energy.",
-        expectedAnswer: "The uncertainty principle forbids x and p from both being exactly zero, so the lowest-energy state still has ℏω/2 of zero-point energy.",
-        explanation: "Heisenberg's Δx·Δp ≥ ℏ/2 means a state with zero kinetic and zero potential energy is forbidden — the ground state is the best compromise, with energy ℏω/2.",
+        expectedAnswer:
+          "The uncertainty principle forbids x and p from both being exactly zero, so the lowest-energy state still has ℏω/2 of zero-point energy.",
+        explanation:
+          "Heisenberg's Δx·Δp ≥ ℏ/2 means a state with zero kinetic and zero potential energy is forbidden — the ground state is the best compromise, with energy ℏω/2.",
         method: "Feynman technique",
       },
     ],
@@ -120,18 +148,31 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
       "Entanglement is the engine of quantum advantage. The simplest entangled state is the Bell state |Φ⁺⟩ = (|00⟩ + |11⟩)/√2. You make it with one circuit: apply H to qubit 1, then CNOT with qubit 1 as control and qubit 2 as target.",
     ].join("\n\n"),
     keyTerms: [
-      { term: "Qubit", definition: "Two-state quantum unit. Superposition + interference + entanglement are the resources." },
-      { term: "Hadamard gate (H)", definition: "Creates an equal superposition. H|0⟩ = (|0⟩+|1⟩)/√2, H|1⟩ = (|0⟩−|1⟩)/√2." },
-      { term: "CNOT gate", definition: "Two-qubit gate; flips the target if the control is |1⟩. The workhorse of entanglement." },
+      {
+        term: "Qubit",
+        definition:
+          "Two-state quantum unit. Superposition + interference + entanglement are the resources.",
+      },
+      {
+        term: "Hadamard gate (H)",
+        definition: "Creates an equal superposition. H|0⟩ = (|0⟩+|1⟩)/√2, H|1⟩ = (|0⟩−|1⟩)/√2.",
+      },
+      {
+        term: "CNOT gate",
+        definition:
+          "Two-qubit gate; flips the target if the control is |1⟩. The workhorse of entanglement.",
+      },
     ],
     exercises: [
       {
         id: "ex1",
         kind: "multiple_choice",
-        prompt: "Two qubits start as |00⟩. You apply H to qubit 1, then CNOT (control = qubit 1, target = qubit 2). What state results?",
+        prompt:
+          "Two qubits start as |00⟩. You apply H to qubit 1, then CNOT (control = qubit 1, target = qubit 2). What state results?",
         choices: ["(|00⟩ + |01⟩)/√2", "(|00⟩ + |11⟩)/√2", "|11⟩", "(|10⟩ + |01⟩)/√2"],
         correctIndex: 1,
-        explanation: "H|0⟩ ⊗ |0⟩ = (|00⟩+|10⟩)/√2. CNOT flips the second qubit when the first is |1⟩, giving (|00⟩+|11⟩)/√2 — the Bell state |Φ⁺⟩.",
+        explanation:
+          "H|0⟩ ⊗ |0⟩ = (|00⟩+|10⟩)/√2. CNOT flips the second qubit when the first is |1⟩, giving (|00⟩+|11⟩)/√2 — the Bell state |Φ⁺⟩.",
         hint: "Apply H first to get a superposition, then trace what CNOT does to each branch.",
         method: "Worked example → twin",
       },
@@ -148,9 +189,12 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
       {
         id: "ex3",
         kind: "explain_back",
-        prompt: "In one sentence, explain why measuring one qubit of a Bell state determines the result of measuring the other.",
-        expectedAnswer: "Because the Bell state is a single entangled superposition over |00⟩ and |11⟩, measuring the first qubit collapses the whole state to whichever branch it found — so the second is correlated even before being measured.",
-        explanation: "Entanglement means the two qubits don't have independent states. The amplitudes only support |00⟩ and |11⟩ — measuring either qubit picks a branch for both.",
+        prompt:
+          "In one sentence, explain why measuring one qubit of a Bell state determines the result of measuring the other.",
+        expectedAnswer:
+          "Because the Bell state is a single entangled superposition over |00⟩ and |11⟩, measuring the first qubit collapses the whole state to whichever branch it found — so the second is correlated even before being measured.",
+        explanation:
+          "Entanglement means the two qubits don't have independent states. The amplitudes only support |00⟩ and |11⟩ — measuring either qubit picks a branch for both.",
         method: "Feynman technique",
       },
     ],
@@ -165,9 +209,19 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
       "The two failure modes are well-named. Expert collapse: a few experts get all the traffic, the rest die. Dead experts: never selected, so they never train. The standard fixes are an auxiliary load-balancing loss (penalises uneven routing) and noisy top-k routing (random tie-breaking).",
     ].join("\n\n"),
     keyTerms: [
-      { term: "Gating network", definition: "Small network that scores each expert per token; top-k get routed traffic." },
-      { term: "Top-k routing", definition: "Send each token to its k highest-scoring experts (k = 1 or 2 typically)." },
-      { term: "Load balancing loss", definition: "Auxiliary term that penalises imbalanced expert usage; keeps every expert training." },
+      {
+        term: "Gating network",
+        definition: "Small network that scores each expert per token; top-k get routed traffic.",
+      },
+      {
+        term: "Top-k routing",
+        definition: "Send each token to its k highest-scoring experts (k = 1 or 2 typically).",
+      },
+      {
+        term: "Load balancing loss",
+        definition:
+          "Auxiliary term that penalises imbalanced expert usage; keeps every expert training.",
+      },
     ],
     exercises: [
       {
@@ -176,25 +230,32 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
         prompt: "An 8×7B top-2 MoE has roughly how many active parameters per token?",
         choices: ["7B", "14B", "56B", "8B"],
         correctIndex: 1,
-        explanation: "Active = k · expert_size = 2 × 7B = 14B. The other 42B are stored but not used per token.",
+        explanation:
+          "Active = k · expert_size = 2 × 7B = 14B. The other 42B are stored but not used per token.",
         hint: "k experts run per token. Each expert has 7B params.",
         method: "Active recall",
       },
       {
         id: "ex2",
         kind: "short_answer",
-        prompt: "Two failure modes of MoE routing are 'expert collapse' (a few experts get most tokens) and 'dead experts' (some never get any). Name the standard training-time fix for both.",
-        expectedAnswer: "An auxiliary load-balancing loss (often combined with noisy top-k routing).",
-        explanation: "Add an auxiliary loss that penalises imbalanced routing — gradients then push the gate towards even usage. Noisy top-k adds randomness so dead experts get occasional traffic to train on.",
+        prompt:
+          "Two failure modes of MoE routing are 'expert collapse' (a few experts get most tokens) and 'dead experts' (some never get any). Name the standard training-time fix for both.",
+        expectedAnswer:
+          "An auxiliary load-balancing loss (often combined with noisy top-k routing).",
+        explanation:
+          "Add an auxiliary loss that penalises imbalanced routing — gradients then push the gate towards even usage. Noisy top-k adds randomness so dead experts get occasional traffic to train on.",
         hint: "Think about adding a loss term that punishes the gate when traffic is lopsided.",
         method: "Worked example → twin",
       },
       {
         id: "ex3",
         kind: "explain_back",
-        prompt: "In one sentence, explain the central trade-off MoE buys you compared to a dense model of the same active-parameter count.",
-        expectedAnswer: "MoE gives you more total capacity (more parameters to store specialisation) at the same per-token compute cost, in exchange for harder training (routing imbalance) and higher memory footprint.",
-        explanation: "Same FLOPs per token, much more capacity in the parameter store. The price is training stability and memory for the inactive experts.",
+        prompt:
+          "In one sentence, explain the central trade-off MoE buys you compared to a dense model of the same active-parameter count.",
+        expectedAnswer:
+          "MoE gives you more total capacity (more parameters to store specialisation) at the same per-token compute cost, in exchange for harder training (routing imbalance) and higher memory footprint.",
+        explanation:
+          "Same FLOPs per token, much more capacity in the parameter store. The price is training stability and memory for the inactive experts.",
         method: "Feynman technique",
       },
     ],
@@ -212,9 +273,20 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
       "Defense-prep heuristic: every claim in the paper has an ablation, every architectural choice has an alternative. Be ready for the methodologist's questions: 'why scale by √dₖ?' (variance of dot product); 'how do you know heads specialise?' (Voita et al. 2019); 'why pre-norm vs post-norm?' (training stability at depth).",
     ].join("\n\n"),
     keyTerms: [
-      { term: "Self-attention", definition: "Each token attends to every other; weights are softmax(QKᵀ/√dₖ)." },
-      { term: "Position encoding", definition: "Mechanism that breaks permutation-equivariance — sinusoidal, learned, or rotary (RoPE)." },
-      { term: "Pre-norm vs post-norm", definition: "Where the LayerNorm sits relative to the residual; pre-norm trains deeper, post-norm was the original." },
+      {
+        term: "Self-attention",
+        definition: "Each token attends to every other; weights are softmax(QKᵀ/√dₖ).",
+      },
+      {
+        term: "Position encoding",
+        definition:
+          "Mechanism that breaks permutation-equivariance — sinusoidal, learned, or rotary (RoPE).",
+      },
+      {
+        term: "Pre-norm vs post-norm",
+        definition:
+          "Where the LayerNorm sits relative to the residual; pre-norm trains deeper, post-norm was the original.",
+      },
     ],
     exercises: [
       {
@@ -228,25 +300,32 @@ export const STATIC_LESSONS: Record<string, ProjectLesson> = {
           "It's an empirical regulariser, not theoretically motivated.",
         ],
         correctIndex: 1,
-        explanation: "If Q and K have i.i.d. zero-mean unit-variance entries, QKᵀ has variance dₖ. Dividing by √dₖ keeps the softmax inputs in a regime where gradients don't vanish.",
+        explanation:
+          "If Q and K have i.i.d. zero-mean unit-variance entries, QKᵀ has variance dₖ. Dividing by √dₖ keeps the softmax inputs in a regime where gradients don't vanish.",
         hint: "Compute the variance of the dot product of two random vectors of dimension dₖ.",
         method: "Active recall",
       },
       {
         id: "ex2",
         kind: "short_answer",
-        prompt: "A reviewer asks: 'Why use rotary position embeddings (RoPE) instead of the original sinusoidal absolute encodings?' Give the one-sentence answer you'd give in a defense.",
-        expectedAnswer: "RoPE encodes relative position by rotating Q and K, so attention scores depend on token distance, not absolute index — which extrapolates better to longer sequences.",
-        explanation: "Sinusoidal absolute encodings are added to the embedding once; RoPE rotates Q and K so the dot product carries relative-position information naturally and extends past the training length.",
+        prompt:
+          "A reviewer asks: 'Why use rotary position embeddings (RoPE) instead of the original sinusoidal absolute encodings?' Give the one-sentence answer you'd give in a defense.",
+        expectedAnswer:
+          "RoPE encodes relative position by rotating Q and K, so attention scores depend on token distance, not absolute index — which extrapolates better to longer sequences.",
+        explanation:
+          "Sinusoidal absolute encodings are added to the embedding once; RoPE rotates Q and K so the dot product carries relative-position information naturally and extends past the training length.",
         hint: "Compare what each encoding makes the attention score depend on.",
         method: "Worked example → twin",
       },
       {
         id: "ex3",
         kind: "explain_back",
-        prompt: "In one sentence, explain why multi-head attention is more expressive than single-head attention with the same total dimensionality.",
-        expectedAnswer: "Splitting into heads lets each subspace specialise on a different pattern — different heads can attend to local syntax, long-range coreference, or copying — instead of being forced into one shared similarity function.",
-        explanation: "Heads create multiple low-rank similarity functions instead of one full-rank one. Voita et al. (2019) showed they specialise in identifiable ways.",
+        prompt:
+          "In one sentence, explain why multi-head attention is more expressive than single-head attention with the same total dimensionality.",
+        expectedAnswer:
+          "Splitting into heads lets each subspace specialise on a different pattern — different heads can attend to local syntax, long-range coreference, or copying — instead of being forced into one shared similarity function.",
+        explanation:
+          "Heads create multiple low-rank similarity functions instead of one full-rank one. Voita et al. (2019) showed they specialise in identifiable ways.",
         method: "Feynman technique",
       },
     ],

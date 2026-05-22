@@ -115,9 +115,7 @@ export default function TeacherChatPanel({
           ]);
         } else {
           // eslint-disable-next-line no-console
-          console.log(
-            `[tutor-rail] reply source=${data.source} ms=${data.latencyMs ?? "-"}`,
-          );
+          console.log(`[tutor-rail] reply source=${data.source} ms=${data.latencyMs ?? "-"}`);
           setThread((t) => [...t, { side: "in", text: data.reply as string }]);
         }
       } catch (err) {
@@ -144,7 +142,7 @@ export default function TeacherChatPanel({
           <PersonaAvatar emoji={teacherEmoji} color={journey.color} bg={journey.bg} size={36} />
           <div>
             <div className="text-sm font-bold text-ink">{teacherName}</div>
-            <div className="text-[11px] text-ink-soft flex items-center gap-1.5">
+            <div className="flex items-center gap-1.5 text-[11px] text-ink-soft">
               <span
                 aria-hidden
                 style={{
@@ -162,7 +160,7 @@ export default function TeacherChatPanel({
         <button
           type="button"
           aria-label="Tutor settings"
-          className="grid h-7 w-7 place-items-center rounded-md text-ink-mute hover:bg-bg-2"
+          className="hover:bg-bg-2 grid h-7 w-7 place-items-center rounded-md text-ink-mute"
         >
           ⋯
         </button>
@@ -172,7 +170,11 @@ export default function TeacherChatPanel({
       <MemoryRibbon memory={memory} accent={journey.color} />
 
       {/* Thread */}
-      <div className="flex flex-1 flex-col gap-2 overflow-y-auto pr-1" role="log" aria-live="polite">
+      <div
+        className="flex flex-1 flex-col gap-2 overflow-y-auto pr-1"
+        role="log"
+        aria-live="polite"
+      >
         {thread.map((b, i) => (
           <ChatBubble key={i} side={b.side}>
             {b.text}
@@ -189,7 +191,7 @@ export default function TeacherChatPanel({
 
       {/* Suggested prompts — every one is anchored to a named technique */}
       <div>
-        <div className="text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute mb-1.5">
+        <div className="mb-1.5 text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
           Try one
         </div>
         <ul className="flex flex-wrap gap-1.5">
@@ -237,10 +239,7 @@ export default function TeacherChatPanel({
       </form>
 
       {/* Transparency footer — data control is a baseline expectation */}
-      <Link
-        href="/progress"
-        className="text-center text-[10px] text-ink-mute hover:text-ink-soft"
-      >
+      <Link href="/progress" className="text-center text-[10px] text-ink-mute hover:text-ink-soft">
         See or clear what I remember →
       </Link>
     </div>
@@ -286,13 +285,7 @@ function MemoryRibbon({ memory, accent }: { memory: TutorMemory; accent: string 
 }
 
 /* ── Suggested prompt chip with technique label ─────────────────────── */
-function SuggestedChip({
-  prompt,
-  onClick,
-}: {
-  prompt: SuggestedPrompt;
-  onClick: () => void;
-}) {
+function SuggestedChip({ prompt, onClick }: { prompt: SuggestedPrompt; onClick: () => void }) {
   const meta = METHOD_META[prompt.method];
   return (
     <button

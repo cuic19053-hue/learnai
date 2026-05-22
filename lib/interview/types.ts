@@ -7,15 +7,9 @@
  * same types serialise straight into rows.
  */
 
-export type InterviewGoal =
-  | "specific_job"
-  | "general_practice"
-  | "role_type";
+export type InterviewGoal = "specific_job" | "general_practice" | "role_type";
 
-export type InterviewMode =
-  | "full-simulation"
-  | "training-only"
-  | "presentation-only";
+export type InterviewMode = "full-simulation" | "training-only" | "presentation-only";
 
 export type Seniority =
   | "intern"

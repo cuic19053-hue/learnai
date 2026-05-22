@@ -39,9 +39,7 @@ export default function KidsPage() {
           <PersonaAvatar emoji="🦁" color={j.color} bg={j.bg} size={44} />
           <div>
             <div className="text-[13px] text-ink-mute">Hello</div>
-            <div className="text-[22px] font-extrabold tracking-[-0.01em] text-ink">
-              Lina! ✨
-            </div>
+            <div className="text-[22px] font-extrabold tracking-[-0.01em] text-ink">Lina! ✨</div>
           </div>
         </div>
         {/* Parent exit — labelled pill, not a bare emoji. Big enough for
@@ -52,7 +50,9 @@ export default function KidsPage() {
           style={{ boxShadow: "var(--shadow-1)" }}
           aria-label="Parent area — leave the kids app"
         >
-          <span aria-hidden className="text-[18px]">👨‍👩‍👧</span>
+          <span aria-hidden className="text-[18px]">
+            👨‍👩‍👧
+          </span>
           <span>Parent</span>
         </Link>
       </div>
@@ -69,9 +69,7 @@ export default function KidsPage() {
         >
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-[12px] font-bold uppercase opacity-85">
-                Today’s story
-              </div>
+              <div className="text-[12px] font-bold uppercase opacity-85">Today’s story</div>
               <div className="mt-1 text-[22px] font-extrabold leading-tight tracking-[-0.01em]">
                 Count jungle animals
                 <br />
@@ -120,10 +118,7 @@ export default function KidsPage() {
               <div className="text-[40px]" aria-hidden>
                 {t.icon}
               </div>
-              <div
-                className="text-lg font-extrabold tracking-[-0.01em]"
-                style={{ color: t.color }}
-              >
+              <div className="text-lg font-extrabold tracking-[-0.01em]" style={{ color: t.color }}>
                 {t.label}
               </div>
             </Link>

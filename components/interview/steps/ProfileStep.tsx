@@ -25,8 +25,7 @@ export default function ProfileStep({
   return (
     <div className="max-w-[760px]">
       <p className="mt-2 text-[15px] text-ink-soft">
-        Adding your CV is optional, but the fit analysis and training questions
-        get sharper with it.
+        Adding your CV is optional, but the fit analysis and training questions get sharper with it.
       </p>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-2">
@@ -46,7 +45,9 @@ export default function ProfileStep({
             min={0}
             max={80}
             value={value.yearsExperience ?? ""}
-            onChange={(e) => update("yearsExperience", e.target.value ? Number(e.target.value) : undefined)}
+            onChange={(e) =>
+              update("yearsExperience", e.target.value ? Number(e.target.value) : undefined)
+            }
             placeholder="e.g. 8"
             className="w-full rounded-xl border border-line bg-white p-3 text-[15px] focus:border-brand-1 focus:outline-none focus:ring-4 focus:ring-brand-1/10"
           />

@@ -21,11 +21,7 @@ export async function generateMetadata({
     : { title: "Train" };
 }
 
-export default async function WikiTrainPage({
-  params,
-}: {
-  params: Promise<{ testId: string }>;
-}) {
+export default async function WikiTrainPage({ params }: { params: Promise<{ testId: string }> }) {
   const { testId } = await params;
   const stored = getStoredTest(testId);
   if (!stored) notFound();
@@ -41,7 +37,11 @@ export default async function WikiTrainPage({
       teacherName={world.teacherName}
       teacherEmoji={world.teacherEmoji}
       navItems={buildLearnerNav({ world, active: "wikitest" })}
-      pageContext={{ kind: "wiki-train", topic: test.article.title, worldLabel: world.journey.name }}
+      pageContext={{
+        kind: "wiki-train",
+        topic: test.article.title,
+        worldLabel: world.journey.name,
+      }}
     >
       <Link
         href={`/learn/wiki/${testId}`}
@@ -56,11 +56,9 @@ export default async function WikiTrainPage({
             Train · {test.article.title}
           </h1>
           <p className="mt-1 max-w-[720px] text-[14px] leading-relaxed text-ink-soft">
-            Read each section, then answer the check-in. Wrong answers reveal
-            the exact citation — so you learn from the source, not from a
-            guess. Correct answers earn XP toward your{" "}
-            <span className="font-bold text-ink">{world.journey.name}</span>{" "}
-            track.
+            Read each section, then answer the check-in. Wrong answers reveal the exact citation —
+            so you learn from the source, not from a guess. Correct answers earn XP toward your{" "}
+            <span className="font-bold text-ink">{world.journey.name}</span> track.
           </p>
         </div>
       </div>
@@ -70,7 +68,15 @@ export default async function WikiTrainPage({
       </div>
 
       <p className="mt-8 text-[11px] leading-relaxed text-ink-mute">
-        Source: <a className="underline" href={test.article.canonicalUrl} target="_blank" rel="noreferrer noopener">{test.article.canonicalUrl}</a>{" "}
+        Source:{" "}
+        <a
+          className="underline"
+          href={test.article.canonicalUrl}
+          target="_blank"
+          rel="noreferrer noopener"
+        >
+          {test.article.canonicalUrl}
+        </a>{" "}
         · Wikipedia contributors, CC BY-SA 4.0.
       </p>
     </LearnerHomeShell>

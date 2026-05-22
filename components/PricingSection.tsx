@@ -46,9 +46,7 @@ export default function PricingSection() {
   return (
     <section id="pricing" className="bg-white py-20">
       <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-center text-3xl font-bold text-dark md:text-4xl">
-          Simple Pricing
-        </h2>
+        <h2 className="text-center text-3xl font-bold text-dark md:text-4xl">Simple Pricing</h2>
         <p className="mx-auto mt-4 max-w-2xl text-center text-gray-600">
           Explore freely. Login only when you decide to book or save progress.
         </p>
@@ -96,7 +94,7 @@ export default function PricingSection() {
                   "mt-8 inline-flex w-full items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold transition-colors",
                   t.highlight
                     ? "bg-primary text-white hover:bg-secondary"
-                    : "bg-white text-dark border hover:bg-gray-50",
+                    : "border bg-white text-dark hover:bg-gray-50",
                 ].join(" ")}
               >
                 {t.cta.label}

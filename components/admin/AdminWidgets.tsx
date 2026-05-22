@@ -17,9 +17,7 @@ export function KpiCard({ kpi }: { kpi: Kpi }) {
       <div className="text-[11px] font-bold uppercase tracking-wider text-ink-mute">
         {kpi.label}
       </div>
-      <div className="mt-1 text-[26px] font-extrabold tracking-[-0.02em] text-ink">
-        {kpi.value}
-      </div>
+      <div className="mt-1 text-[26px] font-extrabold tracking-[-0.02em] text-ink">{kpi.value}</div>
       <div className="mt-0.5 text-[11px] font-bold" style={{ color: kpi.deltaColor }}>
         {kpi.delta}
       </div>
@@ -42,9 +40,7 @@ export function LoopDropoffChart({
   return (
     <div className="la-card p-[18px]" style={{ borderRadius: 18 }}>
       <div className="flex items-center justify-between">
-        <div className="text-[13px] font-bold text-ink">
-          Loop drop-off (last 7 days)
-        </div>
+        <div className="text-[13px] font-bold text-ink">Loop drop-off (last 7 days)</div>
         <div className="text-[11px] text-ink-mute">{caption}</div>
       </div>
 
@@ -99,20 +95,14 @@ export function RecentLearners({ learners }: { learners: Learner[] }) {
     <div className="la-card p-[18px]" style={{ borderRadius: 18 }}>
       <div className="mb-2.5 text-[13px] font-bold text-ink">Recent learners</div>
       {learners.map((l, idx) => {
-        const journey: Journey =
-          JOURNEYS.find((j) => j.id === l.journeyId) ?? JOURNEYS[0];
+        const journey: Journey = JOURNEYS.find((j) => j.id === l.journeyId) ?? JOURNEYS[0];
         return (
           <button
             type="button"
             key={`${l.name}-${idx}`}
             className="flex w-full items-center gap-2.5 border-t border-line-soft py-2.5 text-left"
           >
-            <PersonaAvatar
-              emoji={journey.emoji}
-              color={journey.color}
-              bg={journey.bg}
-              size={32}
-            />
+            <PersonaAvatar emoji={journey.emoji} color={journey.color} bg={journey.bg} size={32} />
             <div className="min-w-0 flex-1">
               <div className="text-[13px] font-bold text-ink">
                 {l.name} · {l.age}

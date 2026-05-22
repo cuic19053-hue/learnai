@@ -234,9 +234,11 @@ export function simulationTurnPrompt(input: {
 }): ChatMessage[] {
   const { job, profile, history, userAnswer, round, language = "English" } = input;
   const roundName =
-    round === 1 ? "Recruiter screen"
-    : round === 2 ? "Technical deep-dive"
-    : "Leadership / system design";
+    round === 1
+      ? "Recruiter screen"
+      : round === 2
+        ? "Technical deep-dive"
+        : "Leadership / system design";
 
   return [
     { role: "system", content: CORE_COACH },
@@ -300,8 +302,14 @@ export function readinessReportPrompt(input: {
   history: InterviewTurn[];
   language?: string;
 }): ChatMessage[] {
-  const { job, profile, trainingAttempts, presentationScore, history, language = "English" } =
-    input;
+  const {
+    job,
+    profile,
+    trainingAttempts,
+    presentationScore,
+    history,
+    language = "English",
+  } = input;
   return [
     { role: "system", content: CORE_COACH },
     {
@@ -351,7 +359,7 @@ ${JSON.stringify(
     score: t.score0to10,
     signal: t.signal,
     weaknesses: t.weaknesses,
-  })),
+  }))
 )}`,
     },
   ];

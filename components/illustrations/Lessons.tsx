@@ -65,10 +65,18 @@ export function VolcanoCrossSection({
       <ellipse cx="160" cy="130" rx="42" ry="16" fill="url(#vol-magma)" />
 
       {/* Channel from chamber to vent */}
-      <path d="M148 130 Q 156 100 152 70 L 168 70 Q 164 100 172 130 Z" fill="#dc2626" opacity="0.85" />
+      <path
+        d="M148 130 Q 156 100 152 70 L 168 70 Q 164 100 172 130 Z"
+        fill="#dc2626"
+        opacity="0.85"
+      />
 
       {/* Lava flowing down the side */}
-      <path d="M170 70 Q 200 100 230 130 L 240 140 L 220 145 L 210 138 Q 188 110 168 78 Z" fill="#f97316" opacity="0.9" />
+      <path
+        d="M170 70 Q 200 100 230 130 L 240 140 L 220 145 L 210 138 Q 188 110 168 78 Z"
+        fill="#f97316"
+        opacity="0.9"
+      />
 
       {/* Layered crust ground */}
       <rect y="146" width="320" height="14" fill="#78350f" />
@@ -81,10 +89,7 @@ export function VolcanoCrossSection({
 /*  Three apples on a cream backdrop — counting prompt for Little Learner  */
 /* ────────────────────────────────────────────────────────────────────── */
 
-export function Apples({
-  className = "",
-  title = "Three red apples on a wooden table",
-}: Props) {
+export function Apples({ className = "", title = "Three red apples on a wooden table" }: Props) {
   return (
     <svg
       viewBox="0 0 320 160"
@@ -116,9 +121,23 @@ export function Apples({
         <g key={i}>
           <circle cx={cx} cy={cy} r={r} fill="url(#apple-skin)" />
           {/* Highlight */}
-          <ellipse cx={(cx as number) - r * 0.35} cy={(cy as number) - r * 0.45} rx={r * 0.2} ry={r * 0.13} fill="#fff" opacity="0.6" />
+          <ellipse
+            cx={(cx as number) - r * 0.35}
+            cy={(cy as number) - r * 0.45}
+            rx={r * 0.2}
+            ry={r * 0.13}
+            fill="#fff"
+            opacity="0.6"
+          />
           {/* Stem */}
-          <rect x={(cx as number) - 1.5} y={(cy as number) - r - 4} width="3" height="6" rx="1.5" fill="#3f2611" />
+          <rect
+            x={(cx as number) - 1.5}
+            y={(cy as number) - r - 4}
+            width="3"
+            height="6"
+            rx="1.5"
+            fill="#3f2611"
+          />
           {/* Leaf */}
           <path
             d={`M ${(cx as number) + 1} ${(cy as number) - r - 2} q 8 -4 10 4 q -8 2 -10 -4 z`}
@@ -161,17 +180,45 @@ export function PythonSnippet({
       {/* Editor-style code blocks (abstract — colour bars not real text) */}
       {(
         [
-          { y: 42, blocks: [{ x: 16, w: 56, c: "#a78bfa" }, { x: 76, w: 36, c: "#34d399" }] },
-          { y: 60, blocks: [{ x: 28, w: 40, c: "#fde047" }, { x: 72, w: 80, c: "#f9a8d4" }] },
+          {
+            y: 42,
+            blocks: [
+              { x: 16, w: 56, c: "#a78bfa" },
+              { x: 76, w: 36, c: "#34d399" },
+            ],
+          },
+          {
+            y: 60,
+            blocks: [
+              { x: 28, w: 40, c: "#fde047" },
+              { x: 72, w: 80, c: "#f9a8d4" },
+            ],
+          },
           { y: 78, blocks: [{ x: 28, w: 80, c: "#94a3b8" }] },
-          { y: 96, blocks: [{ x: 28, w: 40, c: "#fde047" }, { x: 72, w: 50, c: "#f9a8d4" }, { x: 126, w: 60, c: "#94a3b8" }] },
+          {
+            y: 96,
+            blocks: [
+              { x: 28, w: 40, c: "#fde047" },
+              { x: 72, w: 50, c: "#f9a8d4" },
+              { x: 126, w: 60, c: "#94a3b8" },
+            ],
+          },
           { y: 114, blocks: [{ x: 40, w: 120, c: "#34d399" }] },
           { y: 132, blocks: [{ x: 28, w: 56, c: "#a78bfa" }] },
         ] as const
       ).map((row, i) => (
         <g key={i}>
           {row.blocks.map((b, j) => (
-            <rect key={j} x={b.x} y={row.y} width={b.w} height="6" rx="2" fill={b.c} opacity="0.85" />
+            <rect
+              key={j}
+              x={b.x}
+              y={row.y}
+              width={b.w}
+              height="6"
+              rx="2"
+              fill={b.c}
+              opacity="0.85"
+            />
           ))}
         </g>
       ))}
@@ -208,19 +255,46 @@ export function TrigAngle({
       </defs>
       <rect width="320" height="160" fill="url(#trig-bg)" />
       {/* Triangle: right angle at lower-left, 30° at right vertex, hypotenuse */}
-      <polygon points="60,130 260,130 60,40" fill="#f59e0b" opacity="0.18" stroke="#b45309" strokeWidth="2" />
+      <polygon
+        points="60,130 260,130 60,40"
+        fill="#f59e0b"
+        opacity="0.18"
+        stroke="#b45309"
+        strokeWidth="2"
+      />
       {/* Right-angle square */}
       <polygon points="60,118 72,118 72,130" fill="none" stroke="#b45309" strokeWidth="1.5" />
       {/* 30° arc near right vertex */}
       <path d="M 230 130 A 30 30 0 0 0 248 116" fill="none" stroke="#dc2626" strokeWidth="2" />
       {/* Side labels */}
-      <text x="160" y="148" textAnchor="middle" fontSize="13" fontFamily="ui-monospace, monospace" fill="#451a03">
+      <text
+        x="160"
+        y="148"
+        textAnchor="middle"
+        fontSize="13"
+        fontFamily="ui-monospace, monospace"
+        fill="#451a03"
+      >
         b
       </text>
-      <text x="40" y="86" textAnchor="middle" fontSize="13" fontFamily="ui-monospace, monospace" fill="#451a03">
+      <text
+        x="40"
+        y="86"
+        textAnchor="middle"
+        fontSize="13"
+        fontFamily="ui-monospace, monospace"
+        fill="#451a03"
+      >
         a
       </text>
-      <text x="170" y="78" textAnchor="middle" fontSize="13" fontFamily="ui-monospace, monospace" fill="#451a03">
+      <text
+        x="170"
+        y="78"
+        textAnchor="middle"
+        fontSize="13"
+        fontFamily="ui-monospace, monospace"
+        fill="#451a03"
+      >
         c
       </text>
       <text x="220" y="124" fontSize="13" fontFamily="ui-monospace, monospace" fill="#dc2626">
@@ -255,7 +329,16 @@ export function ScamEmail({
       </defs>
       <rect width="320" height="160" fill="url(#scam-bg)" />
       {/* Email card */}
-      <rect x="44" y="24" width="232" height="112" rx="14" fill="#fff" stroke="#e6e8f5" strokeWidth="1.5" />
+      <rect
+        x="44"
+        y="24"
+        width="232"
+        height="112"
+        rx="14"
+        fill="#fff"
+        stroke="#e6e8f5"
+        strokeWidth="1.5"
+      />
       {/* Avatar + sender */}
       <circle cx="64" cy="48" r="10" fill="#dde3f0" />
       <text x="64" y="52" textAnchor="middle" fontSize="11" fill="#6b7280">
@@ -287,10 +370,7 @@ export function ScamEmail({
 /*  Generic empty state — used as a graceful default everywhere            */
 /* ────────────────────────────────────────────────────────────────────── */
 
-export function EmptyState({
-  className = "",
-  title = "Friendly placeholder illustration",
-}: Props) {
+export function EmptyState({ className = "", title = "Friendly placeholder illustration" }: Props) {
   return (
     <svg
       viewBox="0 0 320 160"
@@ -311,7 +391,15 @@ export function EmptyState({
         </linearGradient>
       </defs>
       <rect width="320" height="160" fill="url(#empty-bg)" />
-      <circle cx="160" cy="80" r="44" fill="none" stroke="url(#empty-shape)" strokeWidth="2.5" strokeDasharray="4 6" />
+      <circle
+        cx="160"
+        cy="80"
+        r="44"
+        fill="none"
+        stroke="url(#empty-shape)"
+        strokeWidth="2.5"
+        strokeDasharray="4 6"
+      />
       <circle cx="160" cy="80" r="14" fill="url(#empty-shape)" opacity="0.4" />
       <circle cx="160" cy="80" r="6" fill="#fff" />
     </svg>
