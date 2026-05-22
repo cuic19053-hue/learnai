@@ -8,6 +8,9 @@ interface Props {
   params: Promise<{ id: string }>;
 }
 
+// Reads the NextAuth session — can't be statically prerendered.
+export const dynamic = "force-dynamic";
+
 export default async function ClassroomPage({ params }: Props) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) {

@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import { AppLayout } from "@/components/AppLayout";
 
+// Reads the NextAuth session — can't be statically prerendered.
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const session = await getServerSession(authOptions);
 

@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   description: "Wizard to draft a new project in your world.",
 };
 
+// Reads the NextAuth session via getLearnerFirstName() — can't be
+// statically prerendered (no request URL at build time).
+export const dynamic = "force-dynamic";
+
 export default async function NewProjectPage({
   searchParams,
 }: {
