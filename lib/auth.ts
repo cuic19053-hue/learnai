@@ -222,6 +222,33 @@ export const authOptions: NextAuthOptions = {
       // Add custom logic here (e.g., email verification, banned users)
       return true;
     },
+
+    /**
+     * Redirect Callback — decides where the user lands after OAuth.
+     *
+     * NextAuth's default rejects same-origin absolute URLs whose host
+     * doesn't exactly match NEXTAUTH_URL, and silently sends the user
+     * to the base URL instead. That's how learners ended up looping
+     * back to /login after Google sign-in when the canonical domain
+     * (learnskillsai.com) and NEXTAUTH_URL drifted apart.
+     *
+     * Our rules:
+     *   - Bare paths ("/learn/builder") resolve against the base URL.
+     *   - Absolute URLs that share the request's origin pass through
+     *     unchanged so multi-domain deployments work.
+     *   - Anything else collapses to the base URL.
+     */
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      try {
+        const u = new URL(url);
+        const b = new URL(baseUrl);
+        if (u.origin === b.origin) return url;
+      } catch {
+        // fall through to baseUrl
+      }
+      return baseUrl;
+    },
   },
 
   /**
