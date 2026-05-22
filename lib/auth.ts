@@ -173,27 +173,51 @@ export const authOptions: NextAuthOptions = {
      * @returns {Promise<JWT>} Modified JWT token
      */
     async jwt({ token, user }) {
-      // Initial sign in - add role to token
+      // Initial sign in - stamp role, id, and the current tokenVersion
+      // so future requests can detect "Sign out everywhere" events.
       if (user) {
         token.role = (user as ExtendedUser).role;
         token.id = user.id;
+        if (HAS_DATABASE) {
+          try {
+            const fresh = await prisma.user.findUnique({
+              where: { id: user.id },
+              select: { tokenVersion: true },
+            });
+            token.tokenVersion = fresh?.tokenVersion ?? 0;
+          } catch {
+            // Pre-migration databases — accept v0 so sign-in still works.
+            token.tokenVersion = 0;
+          }
+        }
         return token;
       }
 
-      // Subsequent requests - fetch fresh role from database
+      // Subsequent requests - fetch fresh role + tokenVersion. If the
+      // stored tokenVersion is newer than what we minted into this
+      // JWT, "Sign out everywhere" has been triggered: throw away the
+      // token's identity claims so NextAuth treats it as unauthenticated.
       if (token.email && HAS_DATABASE) {
         try {
           const dbUser = await prisma.user.findUnique({
             where: { email: token.email },
-            select: { role: true, id: true },
+            select: { id: true, role: true, tokenVersion: true },
           });
 
           if (dbUser) {
+            const embedded = typeof token.tokenVersion === "number" ? token.tokenVersion : 0;
+            if (dbUser.tokenVersion > embedded) {
+              // Token belongs to an earlier "session generation". Strip
+              // every identity claim so getServerSession returns null
+              // on subsequent calls — the user has to sign in again.
+              return {};
+            }
             token.role = dbUser.role;
             token.id = dbUser.id;
+            token.tokenVersion = dbUser.tokenVersion;
           }
         } catch (error) {
-          console.error("Error fetching user role:", error);
+          console.error("Error refreshing JWT against database:", error);
         }
       }
 

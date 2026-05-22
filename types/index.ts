@@ -256,8 +256,14 @@ declare module "next-auth" {
 
 declare module "next-auth/jwt" {
   interface JWT {
-    id: string;
-    role: Role;
+    // Optional because the "Sign out everywhere" path returns a JWT
+    // with these fields cleared (forcing getServerSession to treat the
+    // request as unauthenticated). All consumers already guard against
+    // missing identity claims via session?.user?.id checks.
+    id?: string;
+    role?: Role;
+    /** Monotonic counter that must match User.tokenVersion in DB. */
+    tokenVersion?: number;
   }
 }
 

@@ -35,6 +35,10 @@ model User {
   image          String?
   password       String?          // hashed for credentials login
   role           Role             @default(STUDENT)
+  /// Monotonic counter used by "sign out everywhere". The JWT
+  /// callback rejects any token whose embedded version is < this
+  /// value, forcing the user to sign in again on every device.
+  tokenVersion   Int              @default(0)
   createdAt      DateTime         @default(now())
   updatedAt      DateTime         @updatedAt
 
