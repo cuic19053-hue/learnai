@@ -26,7 +26,11 @@ name: Deploy to production
 
 on:
   push:
-    branches: [main]
+    # Vercel auto-deploys from `master` for this project, so the migration
+    # job must run on the same branch — otherwise Prisma migrations never
+    # touch Neon and OAuth callbacks fail with P2021 ("table does not
+    # exist"). Listed both names so a future rename to `main` Just Works.
+    branches: [main, master]
   # Lets you re-run the workflow from the GitHub UI without an empty commit.
   workflow_dispatch:
 
