@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { getServerSession } from "next-auth";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
+import { authOptions } from "@/lib/auth";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
+import { isMissingProjectTable, listUserProjects } from "@/lib/projects/db-store";
 import { DEMO_PROJECTS, listDrafts, SUBJECT_ACCENT } from "@/lib/projects/store";
 import { configFor } from "@/lib/projects/wizard-config";
 
@@ -9,6 +12,12 @@ export const metadata: Metadata = {
   title: "Projects",
   description: "Build something real. In-progress and completed projects in your journey.",
 };
+
+// Reads the NextAuth session, so cannot be statically prerendered —
+// at build time there's no request URL and getServerSession throws
+// ERR_INVALID_URL. Force per-request rendering so production builds
+// succeed.
+export const dynamic = "force-dynamic";
 
 type Project = {
   title: string;
@@ -127,15 +136,45 @@ export default async function ProjectsPage({
   const wizardHref = `/learn/projects/new?world=${world.slug}`;
   const justCreatedId = params.created;
 
-  // Combine sample seeds + any drafts produced via the wizard.
-  const drafts = listDrafts(world.slug).map<Project>((d) => ({
-    title: d.topic,
-    brief: d.outcome || "Draft from the wizard.",
-    status: d.status,
-    tags: d.prefs.length ? d.prefs.slice(0, 3) : ["draft"],
-  }));
-  const baseProjects = SAMPLE[world.slug] ?? [];
-  const projects = [...drafts, ...baseProjects];
+  const session = await getServerSession(authOptions);
+  const userId = session?.user?.id ?? null;
+
+  // Per-user view: signed-in users get only their own DB-backed drafts.
+  // Guests still see SAMPLE + DEMO so the empty wizard page isn't a
+  // wall of nothing. The legacy in-memory store keeps the onboarding
+  // guest path working until they sign in.
+  let userDrafts: Project[] = [];
+  if (userId) {
+    try {
+      const rows = await listUserProjects(userId, world.slug);
+      userDrafts = rows.map<Project>((d) => ({
+        title: d.topic,
+        brief: d.outcome || "Draft from the wizard.",
+        status: d.status,
+        tags: d.prefs.length ? d.prefs.slice(0, 3) : ["draft"],
+      }));
+    } catch (err) {
+      // Tables missing in production → fall through to the legacy in-
+      // memory drafts so the page still loads (with a hint that the
+      // schema needs deploying — surfaced via /api/diagnose/auth).
+      if (!isMissingProjectTable(err)) throw err;
+    }
+  }
+
+  const guestDrafts: Project[] = userId
+    ? []
+    : listDrafts(world.slug).map<Project>((d) => ({
+        title: d.topic,
+        brief: d.outcome || "Draft from the wizard.",
+        status: d.status,
+        tags: d.prefs.length ? d.prefs.slice(0, 3) : ["draft"],
+      }));
+  const baseProjects = userId ? [] : (SAMPLE[world.slug] ?? []);
+  const projects = [...userDrafts, ...guestDrafts, ...baseProjects];
+  // Demos are templates — useful when the user has nothing yet, noisy
+  // for someone who has real work going. Show them to guests always,
+  // and to signed-in users only when their drafts list is empty.
+  const showDemos = !userId || userDrafts.length === 0;
 
   return (
     <LearnerHomeShell
@@ -226,64 +265,74 @@ export default async function ProjectsPage({
         </Link>
       </div>
 
-      {/* Ready-to-use demo gallery — uniform rendering for every topic */}
-      <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3">
-        <div>
-          <h2 className="text-lg font-extrabold tracking-tight text-ink">Ready-to-use examples</h2>
-          <p className="mt-1 text-[13px] text-ink-mute">
-            Five real projects built with this wizard. Each one is one tap away from running.
-          </p>
-        </div>
-        <span className="la-pill text-[11px]" style={{ background: "var(--bg-2)" }}>
-          5 examples · same shape, six audiences
-        </span>
-      </div>
-
-      <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {DEMO_PROJECTS.map((d) => {
-          const accent = SUBJECT_ACCENT[d.subject];
-          return (
-            <Link
-              key={d.id}
-              href={`/learn/projects/${d.id}`}
-              className="la-card group flex flex-col p-4 transition hover:-translate-y-0.5"
-              style={{ borderRadius: 18 }}
-            >
-              <div className="flex items-center gap-2">
-                <span
-                  className="la-pill text-[10px] font-extrabold"
-                  style={{ background: accent.bg, color: accent.color }}
-                >
-                  {accent.label}
-                </span>
-                <span
-                  className="la-pill text-[10px] font-extrabold uppercase"
-                  style={{ background: "var(--bg-2)", color: "var(--ink-mute)" }}
-                >
-                  {d.audience}
-                </span>
-              </div>
-              <h3 className="mt-2 line-clamp-2 text-[16px] font-extrabold tracking-tight text-ink">
-                {d.topic}
-              </h3>
-              <p className="mt-1 line-clamp-3 flex-1 text-[12.5px] leading-relaxed text-ink-soft">
-                {d.blurb}
+      {/* Ready-to-use demo gallery — uniform rendering for every topic.
+          Hidden when a signed-in user already has their own drafts so
+          their workspace stays focused on their own work. */}
+      {showDemos ? (
+        <>
+          <div className="mt-10 flex flex-wrap items-baseline justify-between gap-3">
+            <div>
+              <h2 className="text-lg font-extrabold tracking-tight text-ink">
+                {userId ? "Try a template" : "Ready-to-use examples"}
+              </h2>
+              <p className="mt-1 text-[13px] text-ink-mute">
+                {userId
+                  ? "Tap one to copy the wizard answers and start your own version."
+                  : "Five real projects built with this wizard. Each one is one tap away from running."}
               </p>
-              <div className="mt-3 flex items-center justify-between text-[11px] text-ink-mute">
-                <span className="la-mono">
-                  {d.daysPerWeek}d × {d.minutesPerDay}m
-                </span>
-                <span
-                  className="font-extrabold transition-transform group-hover:translate-x-0.5"
-                  style={{ color: accent.color }}
+            </div>
+            <span className="la-pill text-[11px]" style={{ background: "var(--bg-2)" }}>
+              5 examples · same shape, six audiences
+            </span>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {DEMO_PROJECTS.map((d) => {
+              const accent = SUBJECT_ACCENT[d.subject];
+              return (
+                <Link
+                  key={d.id}
+                  href={`/learn/projects/${d.id}`}
+                  className="la-card group flex flex-col p-4 transition hover:-translate-y-0.5"
+                  style={{ borderRadius: 18 }}
                 >
-                  Use this →
-                </span>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="la-pill text-[10px] font-extrabold"
+                      style={{ background: accent.bg, color: accent.color }}
+                    >
+                      {accent.label}
+                    </span>
+                    <span
+                      className="la-pill text-[10px] font-extrabold uppercase"
+                      style={{ background: "var(--bg-2)", color: "var(--ink-mute)" }}
+                    >
+                      {d.audience}
+                    </span>
+                  </div>
+                  <h3 className="mt-2 line-clamp-2 text-[16px] font-extrabold tracking-tight text-ink">
+                    {d.topic}
+                  </h3>
+                  <p className="mt-1 line-clamp-3 flex-1 text-[12.5px] leading-relaxed text-ink-soft">
+                    {d.blurb}
+                  </p>
+                  <div className="mt-3 flex items-center justify-between text-[11px] text-ink-mute">
+                    <span className="la-mono">
+                      {d.daysPerWeek}d × {d.minutesPerDay}m
+                    </span>
+                    <span
+                      className="font-extrabold transition-transform group-hover:translate-x-0.5"
+                      style={{ color: accent.color }}
+                    >
+                      Use this →
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </>
+      ) : null}
     </LearnerHomeShell>
   );
 }

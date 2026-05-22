@@ -2,6 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import Link from "next/link";
+import UserMenu from "@/components/account/UserMenu";
 import Mark from "@/components/design/Mark";
 import PersonaAvatar from "@/components/design/PersonaAvatar";
 import TeacherChatPanel from "@/components/learn/shared/TeacherChatPanel";
@@ -117,14 +118,9 @@ export default function LearnerHomeShell({
           >
             ⚙ Settings
           </Link>
-          <Link
-            href="/login"
-            className="grid h-9 w-9 place-items-center rounded-full font-extrabold text-white"
-            style={{ background: "var(--brand-grad)" }}
-            aria-label="Account"
-          >
-            {learnerInitial}
-          </Link>
+          {/* Real account dropdown — Profile / Settings / Sign out for
+              authenticated users, Sign in / Settings for guests. */}
+          <UserMenu fallbackInitial={learnerInitial} />
         </div>
       </div>
 

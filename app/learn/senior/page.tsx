@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   description: "Large text, slow pace, and practical lessons for older adults.",
 };
 
+// getServerSession (via getLearnerFirstName) can't run during SSG.
+export const dynamic = "force-dynamic";
+
 const PRACTICAL_LESSONS = [
   {
     title: "Spotting scam messages",

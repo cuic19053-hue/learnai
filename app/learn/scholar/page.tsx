@@ -3,7 +3,7 @@ import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, WikiTestPromoCard } from "@/components/learn/SecondaryCards";
 import WhyThisButton from "@/components/learn/WhyThisButton";
-import { getLearnerDisplayName } from "@/lib/learn/learner-name";
+import { getLearnerDisplayName, isAuthenticated } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -11,8 +11,12 @@ export const metadata: Metadata = {
   description: "Exam preparation, weak-area focus, and study plans for ages 16–18.",
 };
 
+// getServerSession (via isAuthenticated) can't run during SSG.
+export const dynamic = "force-dynamic";
+
 export default async function ScholarPage() {
   const learnerName = await getLearnerDisplayName();
+  const signedIn = await isAuthenticated();
   const world = WORLDS.scholar;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -63,23 +67,29 @@ export default async function ScholarPage() {
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <ContinueCard
-          journey={journey}
-          items={[
-            {
-              title: "Algebra: quadratic equations",
-              subtitle: "Math · 68% mastery",
-              progress: 68,
-              href: "/learn/lesson/scholar",
-            },
-            {
-              title: "Probability fundamentals",
-              subtitle: "Math · 75% mastery",
-              progress: 75,
-              href: "/learn/lesson/scholar",
-            },
-          ]}
-        />
+        {/* Curated "Continue practicing" cards are example seeds for
+            guests. Signed-in learners only see this once real progress
+            data lands (Batch 6+). Until then we keep their dashboard
+            clean of placeholders that aren't actually theirs. */}
+        {!signedIn ? (
+          <ContinueCard
+            journey={journey}
+            items={[
+              {
+                title: "Algebra: quadratic equations",
+                subtitle: "Math · 68% mastery",
+                progress: 68,
+                href: "/learn/lesson/scholar",
+              },
+              {
+                title: "Probability fundamentals",
+                subtitle: "Math · 75% mastery",
+                progress: 75,
+                href: "/learn/lesson/scholar",
+              },
+            ]}
+          />
+        ) : null}
         <WikiTestPromoCard worldLabel="Scholar" teacherName="Mentor Max" />
       </div>
     </LearnerHomeShell>

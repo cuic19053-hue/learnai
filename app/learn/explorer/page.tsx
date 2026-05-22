@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, RecommendationCard } from "@/components/learn/SecondaryCards";
-import { getLearnerDisplayName } from "@/lib/learn/learner-name";
+import { getLearnerDisplayName, isAuthenticated } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -10,8 +10,12 @@ export const metadata: Metadata = {
   description: "Quests, badges, and short curiosity lessons for ages 7–11.",
 };
 
+// getServerSession (via isAuthenticated) can't run during SSG.
+export const dynamic = "force-dynamic";
+
 export default async function ExplorerPage() {
   const learnerName = await getLearnerDisplayName();
+  const signedIn = await isAuthenticated();
   const world = WORLDS.explorer;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -49,23 +53,25 @@ export default async function ExplorerPage() {
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <ContinueCard
-          journey={journey}
-          items={[
-            {
-              title: "How clouds make rain",
-              subtitle: "Science · 4 mins left",
-              progress: 60,
-              href: "/learn/lesson/explorer",
-            },
-            {
-              title: "Reading: tiger cubs",
-              subtitle: "Reading · 9 mins left",
-              progress: 25,
-              href: "/learn/lesson/explorer",
-            },
-          ]}
-        />
+        {!signedIn ? (
+          <ContinueCard
+            journey={journey}
+            items={[
+              {
+                title: "How clouds make rain",
+                subtitle: "Science · 4 mins left",
+                progress: 60,
+                href: "/learn/lesson/explorer",
+              },
+              {
+                title: "Reading: tiger cubs",
+                subtitle: "Reading · 9 mins left",
+                progress: 25,
+                href: "/learn/lesson/explorer",
+              },
+            ]}
+          />
+        ) : null}
         <RecommendationCard
           journey={journey}
           teacherName="Luna"

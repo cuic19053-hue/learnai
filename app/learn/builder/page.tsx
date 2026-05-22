@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, RecommendationCard } from "@/components/learn/SecondaryCards";
-import { getLearnerDisplayName } from "@/lib/learn/learner-name";
+import { getLearnerDisplayName, isAuthenticated } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -10,8 +10,12 @@ export const metadata: Metadata = {
   description: "Project-first learning with hints and feedback for ages 12–15.",
 };
 
+// getServerSession (via isAuthenticated) can't run during SSG.
+export const dynamic = "force-dynamic";
+
 export default async function BuilderPage() {
   const learnerName = await getLearnerDisplayName();
+  const signedIn = await isAuthenticated();
   const world = WORLDS.builder;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -47,23 +51,25 @@ export default async function BuilderPage() {
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <ContinueCard
-          journey={journey}
-          items={[
-            {
-              title: "Logic gates: AND, OR, NOT",
-              subtitle: "Coding · 6 mins left",
-              progress: 70,
-              href: "/learn/lesson/builder",
-            },
-            {
-              title: "Algebra: solving for x",
-              subtitle: "Math · 12 mins left",
-              progress: 30,
-              href: "/learn/lesson/builder",
-            },
-          ]}
-        />
+        {!signedIn ? (
+          <ContinueCard
+            journey={journey}
+            items={[
+              {
+                title: "Logic gates: AND, OR, NOT",
+                subtitle: "Coding · 6 mins left",
+                progress: 70,
+                href: "/learn/lesson/builder",
+              },
+              {
+                title: "Algebra: solving for x",
+                subtitle: "Math · 12 mins left",
+                progress: 30,
+                href: "/learn/lesson/builder",
+              },
+            ]}
+          />
+        ) : null}
         <RecommendationCard
           journey={journey}
           emoji="🧩"

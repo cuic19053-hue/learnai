@@ -5,7 +5,7 @@ import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, WikiTestPromoCard } from "@/components/learn/SecondaryCards";
 import WhyThisButton from "@/components/learn/WhyThisButton";
 import { Arrow } from "@/components/design/icons";
-import { getLearnerDisplayName } from "@/lib/learn/learner-name";
+import { getLearnerDisplayName, isAuthenticated } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -13,8 +13,12 @@ export const metadata: Metadata = {
   description: "Learning paths and certification preparation for adults.",
 };
 
+// getServerSession (via isAuthenticated) can't run during SSG.
+export const dynamic = "force-dynamic";
+
 export default async function AdultPage() {
   const learnerName = await getLearnerDisplayName();
+  const signedIn = await isAuthenticated();
   const world = WORLDS.adult;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -66,23 +70,25 @@ export default async function AdultPage() {
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <ContinueCard
-          journey={journey}
-          items={[
-            {
-              title: "IAM policies in practice",
-              subtitle: "Security · 12 mins left",
-              progress: 55,
-              href: "/learn/lesson/adult",
-            },
-            {
-              title: "S3 lifecycle and storage classes",
-              subtitle: "Storage · 18 mins left",
-              progress: 40,
-              href: "/learn/lesson/adult",
-            },
-          ]}
-        />
+        {!signedIn ? (
+          <ContinueCard
+            journey={journey}
+            items={[
+              {
+                title: "IAM policies in practice",
+                subtitle: "Security · 12 mins left",
+                progress: 55,
+                href: "/learn/lesson/adult",
+              },
+              {
+                title: "S3 lifecycle and storage classes",
+                subtitle: "Storage · 18 mins left",
+                progress: 40,
+                href: "/learn/lesson/adult",
+              },
+            ]}
+          />
+        ) : null}
         <WikiTestPromoCard worldLabel="Professional" teacherName="Professor Turing" />
       </div>
 

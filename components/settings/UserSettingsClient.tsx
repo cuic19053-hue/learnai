@@ -1,5 +1,6 @@
 "use client";
 
+import { signIn, useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import Mark from "@/components/design/Mark";
@@ -29,6 +30,9 @@ import {
  * signed-in user — sync-to-server lands when DB persistence ships.
  */
 export default function UserSettingsClient() {
+  const { data: session, status: sessionStatus } = useSession();
+  const userId = session?.user?.id ?? null;
+
   const [settings, setSettings] = useState<UserSettings>(DEFAULT_SETTINGS);
   const [hydrated, setHydrated] = useState(false);
   const [sample, setSample] = useState("Hi! Let's learn something new together today.");
@@ -36,13 +40,61 @@ export default function UserSettingsClient() {
   const [engineNotice, setEngineNotice] = useState<string | null>(null);
   const tts = useTTS();
 
+  // Load settings under the current user's key. When the session
+  // hydrates from null → authenticated we re-load so the page picks
+  // up the right per-user blob instead of leaving the guest defaults.
   useEffect(() => {
-    setSettings(loadSettings());
+    setSettings(loadSettings(userId));
     setHydrated(true);
-  }, []);
+  }, [userId]);
+
+  // When signed in, fetch any server-side preferences and prefer them
+  // over the local cache so settings sync across devices.
+  useEffect(() => {
+    if (!userId) return;
+    let cancelled = false;
+    void (async () => {
+      try {
+        const r = await fetch("/api/me/preferences", { cache: "no-store" });
+        if (!r.ok) return;
+        const body = (await r.json()) as {
+          preferences?: {
+            teacherId: string | null;
+            ttsEngine: "web-speech" | "piper" | null;
+            voiceLabel: string | null;
+          };
+        };
+        if (cancelled || !body.preferences) return;
+        const p = body.preferences;
+        const patch: Partial<UserSettings> = {};
+        if (p.teacherId) patch.teacherId = p.teacherId;
+        if (p.ttsEngine) patch.ttsEngine = p.ttsEngine;
+        if (p.voiceLabel !== null) patch.voiceLabel = p.voiceLabel;
+        if (Object.keys(patch).length > 0) {
+          setSettings(saveSettings(patch, userId));
+        }
+      } catch {
+        // Network blip — local cache is the fallback.
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
 
   function update(patch: Partial<UserSettings>) {
-    setSettings(saveSettings(patch));
+    setSettings(saveSettings(patch, userId));
+    // Mirror to the server for signed-in users. Fire-and-forget; the
+    // local cache already has the value if the network call fails.
+    if (userId) {
+      void fetch("/api/me/preferences", {
+        method: "PUT",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(patch),
+      }).catch(() => {
+        // ignore — surfaced as a generic "Save failed" via the next read
+      });
+    }
   }
 
   async function changeEngine(engineId: "web-speech" | "piper") {
@@ -134,9 +186,13 @@ export default function UserSettingsClient() {
           Make it yours
         </h1>
         <p className="mt-2 max-w-[640px] text-[14px] text-ink-soft">
-          Pick the AI tutor, the voice, and the speech engine. Everything saves on your device — no
-          account needed, no sync to anywhere.
+          Pick the AI tutor, the voice, and the speech engine. Signed-in learners get these synced
+          across devices; guests keep them on this device.
         </p>
+
+        {/* "Your account" identity strip — shows the signed-in user, or
+            invites a guest to sign in to sync settings across devices. */}
+        <AccountStrip session={session} status={sessionStatus} />
 
         {!hydrated ? (
           <div className="mt-8 h-48 animate-pulse rounded-2xl bg-line-soft" />
@@ -375,7 +431,7 @@ export default function UserSettingsClient() {
                   ) {
                     return;
                   }
-                  saveSettings(DEFAULT_SETTINGS);
+                  saveSettings(DEFAULT_SETTINGS, userId);
                   setSettings(DEFAULT_SETTINGS);
                   void tts.setEngine("web-speech");
                   setEngineNotice(null);
@@ -388,5 +444,106 @@ export default function UserSettingsClient() {
         )}
       </main>
     </div>
+  );
+}
+
+/* ─── Account identity strip ──────────────────────────────────────────── */
+
+function AccountStrip({
+  session,
+  status,
+}: {
+  session: ReturnType<typeof useSession>["data"];
+  status: ReturnType<typeof useSession>["status"];
+}) {
+  // Skeleton while NextAuth is hydrating; avoids a flash from "Guest"
+  // to the real account on first paint.
+  if (status === "loading") {
+    return <div className="mt-7 h-20 animate-pulse rounded-2xl bg-line-soft" />;
+  }
+
+  if (status !== "authenticated" || !session?.user) {
+    return (
+      <section
+        className="mt-7 flex items-center gap-4 rounded-2xl p-4"
+        style={{ background: "var(--bg-2)", border: "1px solid var(--line-soft)" }}
+      >
+        <div
+          className="grid h-12 w-12 flex-none place-items-center rounded-full font-extrabold text-white"
+          style={{ background: "var(--brand-grad)" }}
+          aria-hidden
+        >
+          G
+        </div>
+        <div className="flex-1">
+          <div className="text-[15px] font-extrabold text-ink">Guest mode</div>
+          <div className="mt-0.5 text-[12.5px] leading-relaxed text-ink-soft">
+            These settings stay on this device. Sign in to sync your tutor, voice, and progress
+            across browsers.
+          </div>
+        </div>
+        <button
+          type="button"
+          onClick={() => signIn(undefined, { callbackUrl: "/settings" })}
+          className="la-btn"
+          style={{ padding: "10px 16px", fontSize: 13 }}
+        >
+          Sign in
+        </button>
+      </section>
+    );
+  }
+
+  const user = session.user;
+  const initial = (user.name ?? user.email ?? "?")[0].toUpperCase();
+  const provider = "Account";
+
+  return (
+    <section
+      className="mt-7 flex items-center gap-4 rounded-2xl p-4"
+      style={{
+        background: "#fff",
+        border: "1px solid var(--line-soft)",
+        boxShadow: "var(--shadow-1)",
+      }}
+    >
+      <div
+        className="grid h-12 w-12 flex-none place-items-center overflow-hidden rounded-full font-extrabold text-white"
+        style={{ background: "var(--brand-grad)" }}
+        aria-hidden
+      >
+        {user.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={user.image}
+            alt=""
+            className="h-full w-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        ) : (
+          initial
+        )}
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="truncate text-[15px] font-extrabold text-ink">
+          {user.name ?? "Signed in"}
+        </div>
+        {user.email ? (
+          <div className="truncate text-[12.5px] text-ink-soft" title={user.email}>
+            {user.email}
+          </div>
+        ) : null}
+        <div className="mt-0.5 text-[11px] font-bold uppercase tracking-wider text-ink-mute">
+          {provider} · {user.role ?? "STUDENT"}
+        </div>
+      </div>
+      <Link
+        href="/settings/profile"
+        className="la-btn ghost"
+        style={{ padding: "10px 14px", fontSize: 13 }}
+      >
+        Edit profile
+      </Link>
+    </section>
   );
 }
