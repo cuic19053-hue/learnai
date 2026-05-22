@@ -102,10 +102,10 @@ export const piperProvider: TTSProvider = {
     if (typeof window === "undefined") return;
     // Pre-warm the module fetch so the first speak() call doesn't pay
     // the round-trip. The voice model itself downloads on first speak.
-    await loadModule().catch((err) => {
-      // eslint-disable-next-line no-console
-      console.warn("[piper] pre-load failed; will retry on first speak:", err);
-    });
+    // We intentionally let errors propagate — the registry catches them
+    // and falls back to web-speech so the UI never lies about Piper being
+    // ready when the CDN load actually failed.
+    await loadModule();
   },
 
   async speak(text: string, opts: TTSSpeakOptions = {}): Promise<void> {
