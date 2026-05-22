@@ -24,6 +24,23 @@ const nextConfig = {
     ],
   },
 
+  // Force a single canonical host so OAuth state cookies stay on one
+  // origin. Google's authorised redirect URI is the apex
+  // (https://learnskillsai.com/api/auth/callback/google), so any visit
+  // to the `www` variant has to land on apex before signIn runs —
+  // otherwise the state cookie set on www is invisible to apex and
+  // NextAuth aborts the callback with ?error=Callback.
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.learnskillsai.com' }],
+        destination: 'https://learnskillsai.com/:path*',
+        permanent: true,
+      },
+    ];
+  },
+
   // Security headers. CSP is intentionally permissive for inline styles
   // (required by Next.js streaming) but blocks third-party script origins.
   async headers() {
