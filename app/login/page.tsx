@@ -1,6 +1,6 @@
 "use client";
 
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,6 +23,7 @@ type ProviderStatus = {
 
 export default function LoginPage() {
   const router = useRouter();
+  const { status: sessionStatus } = useSession();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +32,17 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [status, setStatus] = useState<ProviderStatus | null>(null);
+
+  // If the visitor is already signed in (e.g. they just completed Google
+  // OAuth and the callback landed them back here), don't keep them on a
+  // login form — bounce them straight into their world. Without this,
+  // the OAuth round-trip looked like a no-op: cookie set, then back to
+  // /login showing the same form.
+  useEffect(() => {
+    if (sessionStatus === "authenticated") {
+      router.replace(GUEST_HOME);
+    }
+  }, [sessionStatus, router]);
 
   useEffect(() => {
     fetch("/api/auth/status")
