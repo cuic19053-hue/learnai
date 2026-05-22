@@ -3,6 +3,7 @@ import Link from "next/link";
 import PersonaAvatar from "@/components/design/PersonaAvatar";
 import { Arrow } from "@/components/design/icons";
 import { journeyForStage } from "@/lib/learn/journeys";
+import { getLearnerFirstName } from "@/lib/learn/learner-name";
 
 export const metadata: Metadata = {
   title: "Senior Learner",
@@ -36,7 +37,8 @@ const PRACTICAL_LESSONS = [
   },
 ];
 
-export default function SeniorPage() {
+export default async function SeniorPage() {
+  const learnerName = await getLearnerFirstName();
   const j = journeyForStage("SENIOR");
 
   return (
@@ -51,7 +53,9 @@ export default function SeniorPage() {
           <PersonaAvatar emoji="🌿" color={j.color} bg={j.bg} size={48} />
           <div>
             <div className="text-base text-ink-mute">Hello</div>
-            <div className="text-2xl font-extrabold tracking-[-0.01em] text-ink">Welcome back</div>
+            <div className="text-2xl font-extrabold tracking-[-0.01em] text-ink">
+              {learnerName ? `Welcome back, ${learnerName}` : "Welcome, Guest"}
+            </div>
           </div>
         </div>
         <Link

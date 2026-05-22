@@ -5,6 +5,7 @@ import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, WikiTestPromoCard } from "@/components/learn/SecondaryCards";
 import WhyThisButton from "@/components/learn/WhyThisButton";
 import { Arrow } from "@/components/design/icons";
+import { getLearnerDisplayName } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -12,7 +13,8 @@ export const metadata: Metadata = {
   description: "Learning paths and certification preparation for adults.",
 };
 
-export default function AdultPage() {
+export default async function AdultPage() {
+  const learnerName = await getLearnerDisplayName();
   const world = WORLDS.adult;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -37,7 +39,7 @@ export default function AdultPage() {
     >
       <div className="text-[13px] text-ink-mute">{today}</div>
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        Welcome back, Ruslan 👋
+        Welcome back, {learnerName} 👋
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         AWS Solutions Architect track · VPC Networking is your current weak domain.{" "}
@@ -71,11 +73,13 @@ export default function AdultPage() {
               title: "IAM policies in practice",
               subtitle: "Security · 12 mins left",
               progress: 55,
+              href: "/learn/lesson/adult",
             },
             {
               title: "S3 lifecycle and storage classes",
               subtitle: "Storage · 18 mins left",
               progress: 40,
+              href: "/learn/lesson/adult",
             },
           ]}
         />

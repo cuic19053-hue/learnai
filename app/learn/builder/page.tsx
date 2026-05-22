@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, RecommendationCard } from "@/components/learn/SecondaryCards";
+import { getLearnerDisplayName } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
   description: "Project-first learning with hints and feedback for ages 12–15.",
 };
 
-export default function BuilderPage() {
+export default async function BuilderPage() {
+  const learnerName = await getLearnerDisplayName();
   const world = WORLDS.builder;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -29,7 +31,7 @@ export default function BuilderPage() {
     >
       <div className="text-[13px] text-ink-mute">{today}</div>
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        Welcome back, Sam 👋
+        Welcome back, {learnerName} 👋
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         You&apos;re 30 minutes from finishing your Python calculator project.
@@ -48,8 +50,18 @@ export default function BuilderPage() {
         <ContinueCard
           journey={journey}
           items={[
-            { title: "Logic gates: AND, OR, NOT", subtitle: "Coding · 6 mins left", progress: 70 },
-            { title: "Algebra: solving for x", subtitle: "Math · 12 mins left", progress: 30 },
+            {
+              title: "Logic gates: AND, OR, NOT",
+              subtitle: "Coding · 6 mins left",
+              progress: 70,
+              href: "/learn/lesson/builder",
+            },
+            {
+              title: "Algebra: solving for x",
+              subtitle: "Math · 12 mins left",
+              progress: 30,
+              href: "/learn/lesson/builder",
+            },
           ]}
         />
         <RecommendationCard

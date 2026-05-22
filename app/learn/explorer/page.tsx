@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, RecommendationCard } from "@/components/learn/SecondaryCards";
+import { getLearnerDisplayName } from "@/lib/learn/learner-name";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
@@ -9,7 +10,8 @@ export const metadata: Metadata = {
   description: "Quests, badges, and short curiosity lessons for ages 7–11.",
 };
 
-export default function ExplorerPage() {
+export default async function ExplorerPage() {
+  const learnerName = await getLearnerDisplayName();
   const world = WORLDS.explorer;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
@@ -29,7 +31,7 @@ export default function ExplorerPage() {
     >
       <div className="text-[13px] text-ink-mute">{today}</div>
       <h1 className="mt-1 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        Welcome back, Ana 👋
+        Welcome back, {learnerName} 👋
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
         Today&apos;s quest: discover how volcanoes work — and earn a Science Explorer badge.
@@ -50,8 +52,18 @@ export default function ExplorerPage() {
         <ContinueCard
           journey={journey}
           items={[
-            { title: "How clouds make rain", subtitle: "Science · 4 mins left", progress: 60 },
-            { title: "Reading: tiger cubs", subtitle: "Reading · 9 mins left", progress: 25 },
+            {
+              title: "How clouds make rain",
+              subtitle: "Science · 4 mins left",
+              progress: 60,
+              href: "/learn/lesson/explorer",
+            },
+            {
+              title: "Reading: tiger cubs",
+              subtitle: "Reading · 9 mins left",
+              progress: 25,
+              href: "/learn/lesson/explorer",
+            },
           ]}
         />
         <RecommendationCard
