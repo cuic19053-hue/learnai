@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* WikiTest section tokens + utility classes — kept in a sibling file so
+   the handoff bundle's `wikitest-tokens.css` can be diffed against the
+   production version line for line. */
+@import "./wikitest-tokens.css";
+
 /* =========================================================================
    LearnAI design tokens (from design handoff)
    Brand: blue → violet gradient. Six journey accents. Six Loop colors.

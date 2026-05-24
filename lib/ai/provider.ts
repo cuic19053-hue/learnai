@@ -14,6 +14,7 @@ import "server-only";
 import { env } from "@/lib/env";
 import { AiProviderError, chatViaProvider, type ChatMessage, type ChatOptions } from "./chat-impl";
 import { activeProviders } from "./config-store";
+import { estimateInputTokens, isUnderCap, projectCallCost, recordCall } from "./spend-tracker";
 
 export type { ChatMessage, ChatOptions };
 export { AiProviderError };
@@ -33,9 +34,39 @@ export async function chat(messages: ChatMessage[], options: ChatOptions = {}): 
   }
 
   const errors: Array<{ provider: string; message: string; status: number }> = [];
+
+  // Estimate inputs once — they don't change across the fallback chain.
+  const inputTokens = estimateInputTokens(messages);
+  const maxOutputTokens = options.maxTokens ?? 600;
+
   for (const config of chain) {
+    // Cap check — skip a provider whose monthly cap would be blown
+    // by this projected call. The next entry in the chain gets the
+    // chance, which is exactly why we have a fallback chain.
+    const projected = projectCallCost({
+      providerId: config.id,
+      inputTokens,
+      maxOutputTokens,
+    });
+    if (!isUnderCap(config, projected)) {
+      errors.push({
+        provider: config.id,
+        message: `monthly cap reached (projected $${projected.toFixed(4)})`,
+        status: 429,
+      });
+      continue;
+    }
+
     try {
       const text = await chatViaProvider(config, messages, options);
+      // Record usage on success. We bill the actual output text rather
+      // than the maxTokens cap so under-budget responses get a smaller
+      // charge against the cap.
+      recordCall({
+        providerId: config.id,
+        inputTokens,
+        outputTokens: Math.ceil((text?.length ?? 0) / 4),
+      });
       return text;
     } catch (err) {
       if (err instanceof AiProviderError) {

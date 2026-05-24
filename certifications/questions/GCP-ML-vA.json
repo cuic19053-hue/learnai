@@ -1,882 +1,222 @@
 [
   {
-    "question": "You are building an ML model to detect anomalies in  real-time sensor data. You will use Pub/Sub to han dle incoming requests. You want to store the results fo r analytics and visualization. How should you confi gure the pipeline?",
+    "question": "A team builds an ML pipeline that ingests real-time sensor data via Pub/Sub, processes it, trains an anomaly detector, and stores results for analytics. Which combination of services is most appropriate?",
     "options": [
-      "A. 1 = Dataflow, 2 = AI Platform, 3 = BigQuery",
-      "B. 1 = DataProc, 2 = AutoML, 3 = Cloud Bigtable",
-      "C. 1 = BigQuery, 2 = AutoML, 3 = Cloud Functions",
-      "D. 1 = BigQuery, 2 = AI Platform, 3 = Cloud Storage"
+      "A. Pub/Sub → Dataflow (streaming) → Vertex AI (training & prediction) → BigQuery (analytics)",
+      "B. Pub/Sub → Dataproc → AutoML → Cloud Bigtable",
+      "C. Pub/Sub → BigQuery → AutoML → Cloud Functions",
+      "D. Pub/Sub → Cloud Storage → Vertex AI → Cloud Storage"
     ],
-    "correct": "A. 1 = Dataflow, 2 = AI Platform, 3 = BigQuery",
-    "explanation": "Explanation:\nThe correct answer is A because Pub/Sub is used to handle incoming requests and sensor data is processed in real-time. Dataflow is a fully-managed service for processing and analyzing data in real-time. It is ideal for handling large amounts of data from Pub/Sub. AI Platform is a managed service that enables developers to build, deploy, and manage machine learning models. It is used to build the ML model to detect anomalies. Finally, BigQuery is a fully-managed enterprise data warehouse that enables fast SQL queries. It is used to store the results for analytics and visualization.\n\nOption B is incorrect because DataProc is a fully-managed service for running Apache Spark and Hadoop workloads, which is not suitable for real-time processing. AutoML is a suite of machine learning tools that enables developers with limited ML expertise to train high-quality models, but it is not the best choice for building an ML model to detect anomalies. Cloud Bigtable is a fully-managed NoSQL database service that is ideal for large-scale analytical and operational workloads, but it is not suitable for storing results for analytics and visualization.\n\nOption C is incorrect because BigQuery is not suitable for processing real-time sensor data. AutoML is not the best choice for building an ML model to detect anomalies. Cloud Functions is a serverless compute service that enables developers to run small code snippets in response to events, but it is not suitable for storing results for analytics and visualization.\n\nOption D is incorrect because BigQuery is not",
-    "references": ""
+    "correct": "A. Pub/Sub → Dataflow (streaming) → Vertex AI (training & prediction) → BigQuery (analytics)",
+    "explanation": "Dataflow is the canonical streaming processor on Google Cloud; Vertex AI is the unified ML platform for training and serving; BigQuery is the standard analytics store."
   },
   {
-    "question": "Your organization wants to make its internal shuttl e service route more efficient. The shuttles curren tly stop at all pick-up points across the city every 30 minutes  between 7 am and 10 am. The development team has already built an application on Google Kubernetes E ngine that requires users to confirm their presence  and shuttle station one day in advance. What approach s hould you take?",
+    "question": "You want to use a no-code/low-code ML approach for tabular data with automated feature engineering and hyperparameter tuning. Which Vertex AI capability fits?",
     "options": [
-      "A. 1. Build a tree-based regression model that predi cts how many passengers will be picked up at each s huttle",
-      "B. 1. Build a tree-based classification model that p redicts whether the shuttle should pick up passenge rs at",
-      "C. 1. Define the optimal route as the shortest route  that passes by all shuttle stations with confirmed",
-      "D. 1. Build a reinforcement learning model with tree -based classification models that predict the prese nce of"
+      "A. Vertex AI AutoML for tabular data",
+      "B. Vertex AI custom training with PyTorch only",
+      "C. BigQuery storage transfers",
+      "D. Dataflow templates"
     ],
-    "correct": "C. 1. Define the optimal route as the shortest route  that passes by all shuttle stations with confirmed",
-    "explanation": "Explanation:\n\nThe correct answer is C. Define the optimal route as the shortest route that passes by all shuttle stations with confirmed passengers. \n\nThis approach is ideal because it leverages the existing application that requires users to confirm their presence and shuttle station one day in advance. With this data, we can define the optimal route as the shortest route that passes by all shuttle stations with confirmed passengers. This approach ensures that the shuttle service is optimized to cater to the confirmed passengers, reducing unnecessary stops and increasing the overall efficiency of the service.\n\nOption A is incorrect because building a tree-based regression model to predict the number of passengers at each shuttle stop may not directly help in optimizing the route. While it may provide insights into passenger demand, it doesn't take into account the confirmed passengers and may not lead to the most efficient route.\n\nOption B is also incorrect because building a tree-based classification model to predict whether the shuttle should pick up passengers at each stop may not consider the overall route optimization. It may lead to a suboptimal route, and the model may not account for the confirmed passengers.\n\nOption D is incorrect because building a reinforcement learning model with tree-based classification models may be overly complex and may not provide a straightforward solution to the problem. Reinforcement learning models are typically used in scenarios where there are multiple actions and rewards, which is not the case here. The problem can be solved with a simpler approach, such as defining the optimal route as the shortest route that passes by all shuttle stations with confirmed passengers.",
-    "references": ""
+    "correct": "A. Vertex AI AutoML for tabular data",
+    "explanation": "AutoML tabular automates preprocessing, model search, and tuning. Custom training is for users with their own training code; the other choices are not ML modeling services."
   },
   {
-    "question": "You were asked to investigate failures of a product ion line component based on sensor readings. After receiving the dataset, you discover that less than 1% of the readings are positive examples representi ng failure incidents. You have tried to train several classifi cation models, but none of them converge. How shoul d you resolve the class imbalance problem?",
+    "question": "You want to run SQL-based ML training on data already in BigQuery without exporting it. Which feature should you use?",
     "options": [
-      "A. Use the class distribution to generate 10% positi ve examples.",
-      "B. Use a convolutional neural network with max pooling  and softmax activation. C. Downsample the data with upweighting to create a sa mple with 10% positive examples.",
-      "D. Remove negative examples until the numbers of pos itive and negative examples are equal."
+      "A. BigQuery ML (CREATE MODEL ... ML.PREDICT())",
+      "B. Cloud SQL stored procedures",
+      "C. Dataflow batch jobs",
+      "D. Cloud Functions"
     ],
-    "correct": "",
-    "explanation": "C. Downsample the data with upweighting to create a sample with 10% positive examples.\n\nExplanation:\n\nThe correct answer is C, Downsample the data with upweighting to create a sample with 10% positive examples. This approach involves reducing the number of negative examples while assigning a higher weight to the remaining negative examples. This helps to balance the class distribution and allows the model to converge.\n\nOption A is incorrect because generating positive examples artificially can lead to overfitting and poor generalization of the model.\n\nOption B is incorrect because convolutional neural networks with max pooling and softmax activation are typically used for image classification tasks, not for handling class imbalance problems.\n\nOption D is incorrect because removing negative examples can result in loss of valuable information and may not effectively address the class imbalance issue.\n\nIn summary, downsampling the data with upweighting is a suitable approach to handle class imbalance problems, especially when the number of positive examples is very small compared to the number of negative examples.",
-    "references": ""
+    "correct": "A. BigQuery ML (CREATE MODEL ... ML.PREDICT())",
+    "explanation": "BigQuery ML lets analysts train and run predictions on regression, classification, time-series, and even imported TensorFlow models using SQL."
   },
   {
-    "question": "You want to rebuild your ML pipeline for structured  data on Google Cloud. You are using PySpark to con duct data transformations at scale, but your pipelines a re taking over 12 hours to run. To speed up develop ment and pipeline run time, you want to use a serverless too l and SQL syntax. You have already moved your raw d ata into Cloud Storage. How should you build the pipeli ne on Google Cloud while meeting the speed and processing requirements?",
+    "question": "To preprocess unstructured image files at scale into TFRecord shards before training, which managed service is most appropriate?",
     "options": [
-      "A. Use Data Fusion's GUI to build the transformation  pipelines, and then write the data into BigQuery.",
-      "B. Convert your PySpark into SparkSQL queries to tra nsform the data, and then run your pipeline on Data proc",
-      "C. Ingest your data into Cloud SQL, convert your PyS park commands into SQL queries to transform the dat a,",
-      "D. Ingest your data into BigQuery using BigQuery Loa d, convert your PySpark commands into BigQuery SQL"
+      "A. Dataflow (Apache Beam) running a batch pipeline",
+      "B. BigQuery",
+      "C. Cloud DNS",
+      "D. Cloud Run"
     ],
-    "correct": "D. Ingest your data into BigQuery using BigQuery Loa d, convert your PySpark commands into BigQuery SQL",
-    "explanation": "Explanation:\nThe correct answer is D. Ingest your data into BigQuery using BigQuery Load, convert your PySpark commands into BigQuery SQL.\n\nThe main reason for choosing this option is that BigQuery is a serverless, fully-managed enterprise data warehouse that allows you to analyze all your data using SQL-like queries. Since you want to use a serverless tool and SQL syntax, BigQuery is the best fit. \n\nOption A is incorrect because Data Fusion is a fully-managed, cloud-based data integration service that allows you to integrate data from various sources, but it does not support serverless processing and SQL syntax. \n\nOption B is incorrect because Data Proc is a fully-managed service for running Apache Spark and Hadoop clusters in the cloud, but it does not support serverless processing and SQL syntax. \n\nOption C is incorrect because Cloud SQL is a fully-managed database service that allows you to run MySQL, PostgreSQL, and SQL Server databases in the cloud, but it does not support serverless processing and SQL syntax.\n\nTherefore, option D is the correct answer because it allows you to ingest your data into BigQuery using BigQuery Load, and then convert your PySpark commands into BigQuery SQL queries, which meets the speed and processing requirements.",
-    "references": ""
+    "correct": "A. Dataflow (Apache Beam) running a batch pipeline",
+    "explanation": "Dataflow scales to large datasets and writes sharded TFRecord outputs to Cloud Storage in a portable, repeatable way."
   },
   {
-    "question": "You manage a team of data scientists who use a clou d-based backend system to submit training jobs. Thi s system has become very difficult to administer, and  you want to use a managed service instead. The dat a scientists you work with use many different framewo rks, including Keras, PyTorch, theano, Scikit-learn , and custom libraries. What should you do?",
+    "question": "Which Vertex AI capability lets you store and serve precomputed feature values to both training and online prediction with a single API?",
     "options": [
-      "A. Use the AI Platform custom containers feature to receive training jobs using any framework.",
-      "B. Configure Kubeflow to run on Google Kubernetes En gine and receive training jobs through TF Job.",
-      "C. Create a library of VM images on Compute Engine, and publish these images on a centralized repositor y.",
-      "D. Set up Slurm workload manager to receive jobs tha t can be scheduled to run on your cloud infrastruct ure."
+      "A. Vertex AI Feature Store",
+      "B. Vertex AI Model Registry",
+      "C. Vertex AI Pipelines",
+      "D. Vertex AI Workbench"
     ],
-    "correct": "A. Use the AI Platform custom containers feature to receive training jobs using any framework.",
-    "explanation": "Explanation: \nThe correct answer is A. Use the AI Platform custom containers feature to receive training jobs using any framework. This is because AI Platform provides a managed service for training machine learning models, and custom containers allow data scientists to use any framework they prefer. This way, the data scientists can focus on developing their models, while the AI Platform takes care of the underlying infrastructure.\n\nOption B is incorrect because Kubeflow is a platform for machine learning that is built on top of Kubernetes, but it is not a managed service. It would require significant administrative effort to set up and maintain.\n\nOption C is incorrect because creating a library of VM images on Compute Engine would require a significant amount of administrative effort, and it would not provide a managed service for training machine learning models.\n\nOption D is incorrect because Slurm is a workload manager that is designed for high-performance computing, but it is not specifically designed for machine learning workloads, and it would require significant administrative effort to set up and maintain.",
-    "references": ""
+    "correct": "A. Vertex AI Feature Store",
+    "explanation": "Vertex AI Feature Store provides offline (for training) and online (low-latency) feature serving, helping ensure training/serving parity."
   },
   {
-    "question": "end ML pipeline on Google Cloud to classify whether  an image contains your company's product. Expectin g the release of new products You work for an online reta il company that is creating a visual search engine.  You have set up an end-to- retraining functionality in the pipeline so that ne w data can be fed into your ML models. You also wan t to use AI Platform's continuous evaluation service to ensure that the models have high accuracy on in the near f uture, you configured a your test dataset. What should you do?",
+    "question": "What is the recommended Google Cloud service for orchestrating an end-to-end ML workflow as a DAG of components (data prep, training, evaluation, deployment)?",
     "options": [
-      "A. Keep the original test dataset unchanged even if newer products are incorporated into retraining.",
-      "B. Extend your test dataset with images of the newer  products when they are introduced to retraining.",
-      "C. Replace your test dataset with images of the newe r products when they are introduced to retraining.",
-      "D. Update your test dataset with images of the newer  products when your evaluation metrics drop below a  pre-"
+      "A. Vertex AI Pipelines (Kubeflow Pipelines on Vertex)",
+      "B. Cloud Scheduler only",
+      "C. Cloud Functions per step",
+      "D. Cloud DNS"
     ],
-    "correct": "B. Extend your test dataset with images of the newer  products when they are introduced to retraining.",
-    "explanation": "Explanation:\n\nThe correct answer is B. Extend your test dataset with images of the newer products when they are introduced to retraining. \n\nThis is because, as new products are introduced, the test dataset should be updated to include images of these new products. This ensures that the ML model is evaluated on a comprehensive dataset that reflects the changing product offerings. By extending the test dataset, you can ensure that the model's performance is evaluated on a dataset that includes both existing and new products.\n\nOption A is incorrect because keeping the original test dataset unchanged would mean that the model is not evaluated on the new products, which could lead to poor performance on those products.\n\nOption C is also incorrect because replacing the test dataset with images of the newer products would mean that the model's performance on existing products is not evaluated, which could lead to a loss of accuracy on those products.\n\nOption D is incorrect because updating the test dataset only when evaluation metrics drop below a certain threshold would mean that the model's performance is not proactively evaluated on new products, which could lead to delayed detection of accuracy issues.\n\nTherefore, the correct answer is B, which ensures that the ML model is evaluated on a comprehensive dataset that reflects the changing product offerings.",
-    "references": ""
+    "correct": "A. Vertex AI Pipelines (Kubeflow Pipelines on Vertex)",
+    "explanation": "Vertex AI Pipelines is the managed Kubeflow Pipelines runner for orchestrating reproducible ML workflows with caching and lineage."
   },
   {
-    "question": "You need to build classification workflows over sev eral structured datasets currently stored in BigQue ry. Because you will be performing the classification s everal times, you want to complete the following st eps without writing code: exploratory data analysis, feature selection, model  building, training, and hyperparameter tuning and serving. What should you do?",
+    "question": "To label thousands of images consistently before training, which service can route tasks to human labelers with quality controls?",
     "options": [
-      "A. Configure AutoML Tables to perform the classifica tion task.",
-      "B. Run a BigQuery ML task to perform logistic regres sion for the classification.",
-      "C. Use AI Platform Notebooks to run the classificati on model with pandas library.",
-      "D. Use AI Platform to run the classification model j ob configured for hyperparameter tuning."
+      "A. Vertex AI Data Labeling Service",
+      "B. Cloud Translate",
+      "C. Cloud Functions",
+      "D. Cloud Run"
     ],
-    "correct": "A. Configure AutoML Tables to perform the classifica tion task.",
-    "explanation": "Explanation: AutoML Tables is a fully managed service that enables you to automatically build and deploy machine learning models on structured data without writing code. It supports classification workflows and can handle multiple datasets. AutoML Tables performs exploratory data analysis, feature selection, model building, training, and hyperparameter tuning, and serving. Therefore, it is the correct answer.\n\nOption B is incorrect because BigQuery ML is a built-in machine learning capability in BigQuery that allows you to create, train, and deploy machine learning models using SQL-like queries. While it can perform logistic regression for classification, it requires writing code and does not support the entire workflow without code.\n\nOption C is incorrect because AI Platform Notebooks is a managed service that allows you to run Jupyter notebooks in the cloud. While you can use pandas library in AI Platform Notebooks to run a classification model, it requires writing code and does not provide the entire workflow without code.\n\nOption D is incorrect because AI Platform is a managed platform that allows you to build, deploy, and manage machine learning models. While it supports hyperparameter tuning, it requires writing code and does not provide the entire workflow without code.",
-    "references": ""
+    "correct": "A. Vertex AI Data Labeling Service",
+    "explanation": "Vertex AI Data Labeling Service provides managed human-in-the-loop labeling with quality controls for images, text, and video datasets."
   },
   {
-    "question": "You work for a public transportation company and ne ed to build a model to estimate delay times for mul tiple transportation routes. Predictions are served direc tly to users in an app in real time. Because differ ent seasons and population increases impact the data relevance,  you will retrain the model every month. You want t o follow Google-recommended best practices. How should you c onfigure the end-to-end architecture of the predict ive model?",
+    "question": "To compare two trained models on the same validation set and pick the better one before promoting to production, which Vertex AI feature is most useful?",
     "options": [
-      "A. Configure Kubeflow Pipelines to schedule your mul ti-step workflow from training to deploying your mo del.",
-      "B. Use a model trained and deployed on BigQuery ML, and trigger retraining with the scheduled query fea ture",
-      "C. Write a Cloud Functions script that launches a tr aining and deploying job on AI Platform that is tri ggered by"
+      "A. Vertex AI Model Evaluation (with metric and confusion-matrix visualizations)",
+      "B. Cloud Logging",
+      "C. Cloud SQL",
+      "D. Cloud Pub/Sub"
     ],
-    "correct": "A. Configure Kubeflow Pipelines to schedule your mul ti-step workflow from training to deploying your mo del.",
-    "explanation": "Explanation:\nThe correct answer is A. Configure Kubeflow Pipelines to schedule your multi-step workflow from training to deploying your model.\n\nThe reason for this is that Kubeflow Pipelines is a cloud-native platform for machine learning (ML) that provides a flexible and scalable way to deploy, manage, and version ML workflows. It allows you to automate the entire ML lifecycle, including data preparation, model training, model deployment, and model serving. In this scenario, where you need to retrain the model every month and serve predictions in real-time, Kubeflow Pipelines is the best choice.\n\nKubeflow Pipelines provides a number of benefits, including:\n\n* Automation of the ML workflow, allowing you to focus on model development rather than infrastructure management\n* Scalability, allowing you to handle large datasets and high-volume traffic\n* Flexibility, allowing you to use a variety of ML frameworks and tools\n* Versioning, allowing you to track changes to your model and data over time\n\nOption B is incorrect because while BigQuery ML is a powerful tool for machine learning, it is not designed for real-time prediction serving. Additionally, while scheduled queries can be used to trigger retraining, this approach would require additional infrastructure and complexity.\n\nOption C is incorrect because while Cloud Functions can be used to trigger a training and deployment job on AI Platform, this approach would require additional infrastructure and complexity, and would not provide the same level of automation and scalability as Kubeflow Pipelines.\n\n",
-    "references": ""
+    "correct": "A. Vertex AI Model Evaluation (with metric and confusion-matrix visualizations)",
+    "explanation": "Vertex AI Model Evaluation produces standardized metrics and visualizations for tabular, image, text, and video models."
   },
   {
-    "question": "You are developing ML models with AI Platform for i mage segmentation on CT scans. You frequently updat e your model architectures based on the newest availa ble research papers, and have to rerun training on the same dataset to benchmark their performance. You wa nt to minimize computation costs and manual intervention while having version control for your code. What should you do?",
+    "question": "For very large batch predictions on TBs of data, which Vertex AI feature is preferred over real-time online prediction endpoints?",
     "options": [
-      "A. Use Cloud Functions to identify changes to your c ode in Cloud Storage and trigger a retraining job.",
-      "B. Use the gcloud command-line tool to submit traini ng jobs on AI Platform when you update your code.",
-      "C. Use Cloud Build linked with Cloud Source Reposito ries to trigger retraining when new code is pushed to the",
-      "D. Create an automated workflow in Cloud Composer th at runs daily and looks for changes in code in Clou d"
+      "A. Vertex AI Batch Prediction",
+      "B. Vertex AI Online Prediction with maximum replicas",
+      "C. Cloud Run cron jobs",
+      "D. BigQuery only"
     ],
-    "correct": "C. Use Cloud Build linked with Cloud Source Reposito ries to trigger retraining when new code is pushed to the",
-    "explanation": "Explanation: The correct answer is C. Use Cloud Build linked with Cloud Source Repositories to trigger retraining when new code is pushed to the repository.\n\nThis option is correct because it allows for automated version control and retraining of the ML model whenever new code is pushed to the repository. Cloud Build is a service that automates the build, test, and deployment of software, and when linked with Cloud Source Repositories, it can trigger a retraining job on AI Platform whenever new code is pushed. This minimizes manual intervention and computation costs.\n\nOption A is incorrect because Cloud Functions is a serverless compute service that is not designed for long-running tasks like retraining ML models. While it can be used to trigger a retraining job, it is not the most suitable option.\n\nOption B is incorrect because using the gcloud command-line tool requires manual intervention and does not provide automated version control.\n\nOption D is incorrect because creating an automated workflow in Cloud Composer that runs daily and looks for changes in code in Cloud Storage is not the most efficient approach. It would require additional infrastructure and configuration, and may not be triggered immediately when new code is pushed.",
-    "references": ""
+    "correct": "A. Vertex AI Batch Prediction",
+    "explanation": "Batch Prediction scales worker pools to score large datasets cost-effectively without paying for an always-on endpoint."
   },
   {
-    "question": "redicts whether images contain a driver's license, passport, or credit card. The data engineering team  already built the pipeline and generated a dataset composed  of 10,000 images with driver's Your team needs to build a model that p redit cards. You now have to train a model with the  following label map: [`drivers_license', `passport ', `credit_card']. Which loss function should you use?  licenses, 1,000 images with passports, and 1,000 i mages with c",
+    "question": "Which technique reduces overfitting by injecting random transformations of training images during training?",
     "options": [
-      "A. Categorical hinge",
-      "B. Binary cross-entropy",
-      "C. Categorical cross-entropy",
-      "D. Sparse categorical cross-entropy"
+      "A. Data augmentation",
+      "B. Increasing the learning rate",
+      "C. Disabling regularization",
+      "D. Reducing the training set size"
     ],
-    "correct": "D. Sparse categorical cross-entropy",
-    "explanation": "Explanation:\n\nThe correct answer is D. Sparse categorical cross-entropy. \n\nThis is because the problem is a multi-class classification problem, where the model needs to predict one of the three classes (`drivers_license`, `passport`, `credit_card`). \n\nSparse categorical cross-entropy is suitable for this type of problem because it can handle classes that are not one-hot encoded. In this case, the labels are not one-hot encoded, they are just integers (0, 1, 2) that correspond to the three classes.\n\nOn the other hand, categorical cross-entropy (option C) requires one-hot encoded labels, which is not the case here. \n\nBinary cross-entropy (option B) is used for binary classification problems, which is not the case here since we have three classes. \n\nCategorical hinge (option A) is not a common loss function and is not suitable for this type of problem.\n\nTherefore, the correct answer is D. Sparse categorical cross-entropy.",
-    "references": ""
+    "correct": "A. Data augmentation",
+    "explanation": "Augmentation (flips, crops, color jitter, mixup, etc.) increases effective dataset diversity and improves generalization."
   },
   {
-    "question": "will use Recommendations AI to build, test, and dep loy your system. How should you develop recommendations that increase revenue while followi ng best practices?",
+    "question": "Your training fails because the dataset doesn't fit in a single GPU's memory. Which distributed-training strategy is most appropriate to scale across multiple GPUs on the same machine?",
     "options": [
-      "A. Use the \"Other Products You May Like\" recommendat ion type to increase the click-through rate.",
-      "B. Use the \"Frequently Bought Together\" recommendati on type to increase the shopping cart size for each",
-      "C. Import your user events and then your product cat alog to make sure you have the highest quality even t",
-      "D. Because it will take time to collect and record p roduct data, use placeholder values for the product  catalog"
+      "A. Mirrored strategy / DDP (data parallelism across GPUs)",
+      "B. Disable batch normalization",
+      "C. Run on CPU only",
+      "D. Truncate the dataset"
     ],
-    "correct": "B. Use the \"Frequently Bought Together\" recommendati on type to increase the shopping cart size for each",
-    "explanation": "Explanation:\n\nThe correct answer is B. Use the \"Frequently Bought Together\" recommendation type to increase the shopping cart size for each. This is because the \"Frequently Bought Together\" recommendation type is designed to suggest products that are often purchased together, which can increase the average order value and revenue. This type of recommendation is particularly effective in e-commerce settings, where customers are more likely to add related products to their shopping cart.\n\nOption A is incorrect because while the \"Other Products You May Like\" recommendation type can increase click-through rates, it may not necessarily lead to increased revenue. This type of recommendation is more focused on suggesting products that a customer may be interested in, rather than products that are likely to be purchased together.\n\nOption C is incorrect because while importing user events and product catalogs is an important step in building a recommendations system, it is not a strategy for increasing revenue. This step is more focused on collecting and processing data, rather than using that data to drive revenue.\n\nOption D is incorrect because using placeholder values for the product catalog is not a best practice and can lead to inaccurate or irrelevant recommendations. It is important to use high-quality, accurate data to drive recommendations, rather than relying on placeholder values.",
-    "references": ""
+    "correct": "A. Mirrored strategy / DDP (data parallelism across GPUs)",
+    "explanation": "Data parallel strategies (TF Mirrored, PyTorch DDP) replicate the model across GPUs and split the batch — the standard way to scale within a machine."
   },
   {
-    "question": "You are designing an architecture with a serverless  ML system to enrich customer support tickets with informative metadata before they are routed to a su pport agent. You need a set of models to predict ti cket priority, predict ticket resolution time, and perfo rm sentiment analysis to help agents make strategic  decisions when they process support requests. Tickets are not  expected to have any domain-specific terms or jarg on. The proposed architecture has the following flow: Which endpoints should the Enrichment Cloud Functio ns call?",
+    "question": "To improve a transformer language model's accuracy on customer-specific text without changing the base model's weights drastically, which approach is recommended?",
     "options": [
-      "A. 1 = AI Platform, 2 = AI Platform, 3 = AutoML Visi on",
-      "B. 1 = AI Platform, 2 = AI Platform, 3 = AutoML Natu ral Language",
-      "C. 1 = AI Platform, 2 = AI Platform, 3 = Cloud Natur al Language API",
-      "D. 1 = Cloud Natural Language API, 2 = AI Platform, 3 = Cloud Vision API"
+      "A. Parameter-efficient fine-tuning (e.g., LoRA / adapters) on the customer dataset",
+      "B. Train a new model from scratch on the small dataset",
+      "C. Remove all regularization",
+      "D. Use only zero-shot prompts and ignore the data"
     ],
-    "correct": "C. 1 = AI Platform, 2 = AI Platform, 3 = Cloud Natur al Language API",
-    "explanation": "Explanation:\n\nThe correct answer is C. The Enrichment Cloud Function should call AI Platform for ticket priority prediction and resolution time prediction, and Cloud Natural Language API for sentiment analysis.\n\nHere's why the other options are incorrect:\n\nA. AI Platform is not suitable for sentiment analysis, and AutoML Vision is not suitable for natural language processing tasks.\n\nB. AutoML Natural Language is not a suitable option for sentiment analysis, as it is primarily used for text classification and entity extraction tasks.\n\nD. Cloud Natural Language API is suitable for sentiment analysis, but using it for ticket priority prediction and resolution time prediction would not be efficient, as it is not designed for these types of tasks. AI Platform is a better fit for these tasks.\n\nIn this scenario, the Enrichment Cloud Function needs to call three different endpoints to perform three different tasks: ticket priority prediction, ticket resolution time prediction, and sentiment analysis. AI Platform is suitable for the first two tasks, and Cloud Natural Language API is suitable for the third task.",
-    "references": ""
+    "correct": "A. Parameter-efficient fine-tuning (e.g., LoRA / adapters) on the customer dataset",
+    "explanation": "PEFT methods like LoRA fine-tune small added matrices instead of full weights, lowering compute cost and reducing overfitting on small custom datasets."
   },
   {
-    "question": "You have trained a deep neural network model on Goo gle Cloud. The model has low loss on the training d ata, but is performing worse on the validation data. You  want the model to be resilient to overfitting. Whi ch strategy should you use when retraining the model?",
+    "question": "A model performs much worse on production data than on the validation set after a few months. What is the most likely cause and the first step to investigate?",
     "options": [
-      "A. Apply a dropout parameter of 0.2, and decrease th e learning rate by a factor of 10.",
-      "B. Apply a L2 regularization parameter of 0.4, and d ecrease the learning rate by a factor of 10.",
-      "C. Run a hyperparameter tuning job on AI Platform to  optimize for the L2 regularization and dropout",
-      "D. Run a hyperparameter tuning job on AI Platform to  optimize for the learning rate, and increase the n umber"
+      "A. Data drift / concept drift — set up Vertex AI Model Monitoring to detect feature skew and drift",
+      "B. The model file is corrupted",
+      "C. The model's hyperparameters changed automatically",
+      "D. GPUs are too fast"
     ],
-    "correct": "C. Run a hyperparameter tuning job on AI Platform to  optimize for the L2 regularization and dropout",
-    "explanation": "Explanation:\nThe correct answer is C. Run a hyperparameter tuning job on AI Platform to optimize for the L2 regularization and dropout.\n\nOverfitting occurs when a model performs well on the training data but poorly on the validation data. To address this, we need to reduce the model's capacity to fit the training data too closely. One way to do this is by using regularization techniques, such as L2 regularization and dropout.\n\nL2 regularization adds a penalty term to the loss function for large weights, which helps to reduce overfitting. Dropout randomly sets a fraction of the neurons to zero during training, which helps to prevent the model from relying too heavily on any individual neuron.\n\nBy running a hyperparameter tuning job on AI Platform, we can optimize the values of the L2 regularization and dropout parameters to find the best combination that reduces overfitting. This is a more effective approach than manually setting the values of these parameters.\n\nOption A is incorrect because applying a dropout parameter of 0.2 and decreasing the learning rate by a factor of 10 may not be the optimal combination for reducing overfitting. Similarly, option B is incorrect because applying an L2 regularization parameter of 0.4 and decreasing the learning rate by a factor of 10 may not be the optimal combination.\n\nOption D is incorrect because optimizing for the learning rate alone may not address the issue of overfitting. Increasing the number of neurons may even exacerbate the overfitting problem.\n\nTherefore, the correct",
-    "references": ""
+    "correct": "A. Data drift / concept drift — set up Vertex AI Model Monitoring to detect feature skew and drift",
+    "explanation": "Vertex AI Model Monitoring detects training/serving skew (initial) and drift over time, alerting before silent quality regressions."
   },
   {
-    "question": "You built and manage a production system that is re sponsible for predicting sales numbers. Model accur acy is crucial, because the production model is required t o keep up with market changes. Since being deployed  to production, the model hasn't changed; however the a ccuracy of the model has steadily deteriorated. Wha t issue is most likely causing the steady decline in model accuracy?",
+    "question": "Which fairness metric considers whether a model's true-positive rate is similar across protected groups?",
     "options": [
-      "A. Poor data quality",
-      "B. Lack of model retraining",
-      "C. Too few layers in the model for capturing informa tion",
-      "D. Incorrect data split ratio during model training,  evaluation, validation, and test"
+      "A. Equality of opportunity (a.k.a. equal true-positive rate)",
+      "B. Accuracy",
+      "C. F1 score",
+      "D. Mean absolute error"
     ],
-    "correct": "B. Lack of model retraining",
-    "explanation": "Explanation:\n\nThe correct answer is B. Lack of model retraining. This is because machine learning models are designed to learn from the data they are trained on, and if the underlying data distribution changes over time (e.g. market changes), the model's accuracy will deteriorate if it is not retrained on new data. This is known as concept drift.\n\nThe other options are incorrect because:\n\nA. Poor data quality: While poor data quality can affect model accuracy, it is unlikely to cause a steady decline in accuracy over time. If the data quality was poor from the start, the model's accuracy would likely be poor from the start as well.\n\nC. Too few layers in the model: The number of layers in a model can affect its ability to capture complex patterns in the data, but it is not directly related to the decline in accuracy over time.\n\nD. Incorrect data split ratio: The data split ratio is important for model evaluation, but it is not directly related to the decline in accuracy over time. If the data split ratio was incorrect, it would likely affect the model's accuracy from the start, rather than causing a steady decline over time.\n\nI hope it is correct.",
-    "references": ""
+    "correct": "A. Equality of opportunity (a.k.a. equal true-positive rate)",
+    "explanation": "Equality of opportunity requires equal TPR across protected groups, one of several common fairness definitions to evaluate alongside performance metrics."
   },
   {
-    "question": "You have been asked to develop an input pipeline fo r an ML training model that processes images from disparate sources at a low latency. You discover th at your input data does not fit in memory. How shou ld you create a dataset following Google-recommended best practices?",
+    "question": "For a regression task forecasting daily product demand, which evaluation metric is most appropriate when large errors should be penalized more than small ones?",
     "options": [
-      "A. Create a tf.data.Dataset.prefetch transformation.",
-      "B. Convert the images to tf.Tensor objects, and then  run Dataset.from_tensor_slices().",
-      "C. Convert the images to tf.Tensor objects, and then  run tf.data.Dataset.from_tensors().",
-      "D. Convert the images into TFRecords, store the imag es in Cloud Storage, and then use the tf.data API t o"
+      "A. Root Mean Squared Error (RMSE)",
+      "B. Accuracy",
+      "C. F1 score",
+      "D. Precision at K"
     ],
-    "correct": "D. Convert the images into TFRecords, store the imag es in Cloud Storage, and then use the tf.data API t o",
-    "explanation": "Explanation: \n\nThe correct answer is D. Convert the images into TFRecords, store the imag es in Cloud Storage, and then use the tf.data API t o. \n\nThis is because the problem statement indicates that the input data does not fit in memory. Therefore, we need to use a method that can handle large datasets that do not fit in memory. \n\nConverting the images into TFRecords and storing them in Cloud Storage is a recommended approach for handling large datasets. TFRecords are a file format that allows us to store sequence data in a compact format. They are particularly useful for storing large datasets that do not fit in memory. \n\nOnce the images are stored in TFRecords in Cloud Storage, we can use the tf.data API to create a dataset. The tf.data API provides a way to create a pipeline for loading and processing data. It allows us to create a dataset that can be used for training an ML model. \n\nThe other options are incorrect for the following reasons:\n\nA. Creating a tf.data.Dataset.prefetch transformation is useful for improving the performance of a dataset pipeline by prefetching data, but it does not solve the problem of handling large datasets that do not fit in memory.\n\nB. Converting the images to tf.Tensor objects and then running Dataset.from_tensor_slices() is not suitable for handling large datasets that do not fit in memory. This approach would require loading the entire dataset into memory, which is not possible in this case.\n\nC. Converting the images to tf",
-    "references": ""
+    "correct": "A. Root Mean Squared Error (RMSE)",
+    "explanation": "RMSE penalizes large errors more than MAE because errors are squared before averaging. Accuracy/F1 are classification metrics."
   },
   {
-    "question": "y prediction model. Your model's features include r egion, location, historical demand, and seasonal po pularity. You You are an ML engineer at a large grocery retailer with stores in multiple regions. You have been aske d to create an inventor want the algorithm to learn from  new inventory data on a daily basis. Which algorit hms should you use to build the model?",
+    "question": "To avoid leaking future information into training when working with time-series data, which split strategy must be used?",
     "options": [
-      "A. Classification",
-      "B. Reinforcement Learning",
-      "C. Recurrent Neural Networks (RNN)",
-      "D. Convolutional Neural Networks (CNN)"
+      "A. Chronological (time-based) train/validation/test split",
+      "B. Random shuffle",
+      "C. Stratified by label only",
+      "D. K-fold on shuffled data"
     ],
-    "correct": "C. Recurrent Neural Networks (RNN)",
-    "explanation": "Explanation:\n\nThe correct answer is C. Recurrent Neural Networks (RNN). This is because RNNs are designed to handle sequential data, which is ideal for time-series forecasting models that need to learn from new data on a daily basis. RNNs can capture patterns and relationships in the data over time, making them well-suited for predicting inventory levels based on historical demand and seasonal popularity.\n\nOption A, Classification, is incorrect because classification models are designed to classify data into predefined categories, whereas the goal of this project is to predict a continuous value (inventory levels).\n\nOption B, Reinforcement Learning, is incorrect because reinforcement learning is a type of machine learning that involves training agents to make decisions in complex, uncertain environments. While it can be used for time-series forecasting, it is not the most suitable choice for this problem.\n\nOption D, Convolutional Neural Networks (CNN), is incorrect because CNNs are primarily used for image and signal processing tasks, and are not well-suited for time-series forecasting.\n\nI hope it is correct.",
-    "references": ""
+    "correct": "A. Chronological (time-based) train/validation/test split",
+    "explanation": "Time-based splits preserve causality: train on past data and validate/test on later data. Random shuffles leak future information."
   },
   {
-    "question": "You are building a real-time prediction engine that  streams files which may contain Personally Identif iable Information (PII) to Google Cloud. You want to use the Cloud Data Loss Prevention (DLP) API to scan th e files. How should you ensure that the PII is not accessibl e by unauthorized individuals?",
+    "question": "Which AI/ML service on Google Cloud is best for managing fine-tuning, embeddings, and grounded generation with the latest foundation models (e.g., Gemini)?",
     "options": [
-      "A. Stream all files to Google Cloud, and then write the data to BigQuery. Periodically conduct a bulk s can of",
-      "B. Stream all files to Google Cloud, and write batch es of the data to BigQuery. While the data is being  written",
-      "C. Create two buckets of data: Sensitive and Non-sen sitive. Write all data to the Non-sensitive bucket.",
-      "D. Create three buckets of data: Quarantine, Sensiti ve, and Non-sensitive. Write all data to the Quaran tine"
+      "A. Vertex AI Model Garden (and Vertex AI Studio for the generative models)",
+      "B. Cloud DNS",
+      "C. Cloud Functions",
+      "D. BigQuery DTS"
     ],
-    "correct": "A. Stream all files to Google Cloud, and then write the data to BigQuery. Periodically conduct a bulk s can of",
-    "explanation": "Explanation:\n\nThe correct answer is A. Stream all files to Google Cloud, and then write the data to BigQuery. Periodically conduct a bulk scan of.\n\nTo ensure that PII is not accessible by unauthorized individuals, you should stream all files to Google Cloud and then write the data to BigQuery. This approach allows you to leverage the Cloud DLP API to scan the data in BigQuery for PII. By periodically conducting a bulk scan of the data, you can identify and redact any sensitive information before it's accessed by unauthorized individuals.\n\nOption B is incorrect because it involves writing batches of data to BigQuery while it's being written, which may expose the PII to unauthorized access.\n\nOption C is incorrect because creating separate buckets for sensitive and non-sensitive data doesn't ensure that PII is protected from unauthorized access. Additionally, it's not a scalable solution for handling large volumes of data.\n\nOption D is incorrect because creating a quarantine bucket doesn't provide an additional layer of security for PII. It's also unnecessary to create three separate buckets when you can leverage BigQuery and the Cloud DLP API to scan and protect the data.\n\nIn summary, the correct approach is to stream files to Google Cloud, write the data to BigQuery, and periodically conduct a bulk scan using the Cloud DLP API to ensure that PII is protected from unauthorized access.",
-    "references": ""
+    "correct": "A. Vertex AI Model Garden (and Vertex AI Studio for the generative models)",
+    "explanation": "Vertex AI Model Garden hosts foundation and open-source models; Vertex AI Studio provides prompt engineering, fine-tuning, and grounding tooling for generative models."
   },
   {
-    "question": "You work for a large hotel chain and have been aske d to assist the marketing team in gathering predict ions for a targeted marketing strategy. You need to make pre dictions about user lifetime value (LTV) over the n ext 20 days so that marketing can be adjusted accordingly.  The customer dataset is in BigQuery, and you are preparing the tabular data for training with AutoML  Tables. This data has a time signal that is spread  across multiple columns. How should you ensure that AutoML fits the best mod el to your data?",
+    "question": "To find sensitive PII inside text used for training (and redact or block it), which Google Cloud service helps?",
     "options": [
-      "A. Manually combine all columns that contain a time signal into an array. AIlow AutoML to interpret thi s array",
-      "B. Submit the data for training without performing a ny manual transformations. AIlow AutoML to handle t he",
-      "C. Submit the data for training without performing a ny manual transformations, and indicate an appropri ate",
-      "D. Submit the data for training without performing a ny manual transformations. Use the columns that hav e a"
+      "A. Sensitive Data Protection (formerly Cloud DLP)",
+      "B. BigQuery DTS",
+      "C. Cloud Translate",
+      "D. Cloud DNS"
     ],
-    "correct": "D. Submit the data for training without performing a ny manual transformations. Use the columns that hav e a",
-    "explanation": "Explanation:\n\nThe correct answer is option D. Submit the data for training without performing any manual transformations. Use the columns that have a time signal as separate features.\n\nAutoML Tables is a machine learning platform that can automatically handle complex data transformations, including time signals. When submitting the data for training, it's recommended to provide the raw data without manual transformations. This allows AutoML to identify the relevant patterns and relationships in the data, including the time signal.\n\nOption D is correct because it allows AutoML to recognize the time signal columns as separate features, which can be used to make predictions about user lifetime value (LTV) over the next 20 days. By submitting the data in its raw form, AutoML can automatically detect the time signal and incorporate it into the model.\n\nOption A is incorrect because manually combining time signal columns into an array can lead to loss of information and may not accurately represent the time signal. Additionally, this approach may not allow AutoML to fully utilize the time signal in the model.\n\nOption B is incorrect because submitting the data without indicating the time signal columns may not allow AutoML to recognize the importance of these columns in the model.\n\nOption C is incorrect because indicating an appropriate timestamp column without submitting the raw data may not provide AutoML with enough information to accurately model the time signal.\n\nIn summary, option D is the correct answer because it allows AutoML to automatically handle the time signal columns and incorporate them into the model, resulting in more accurate predictions about user lifetime value",
-    "references": ""
+    "correct": "A. Sensitive Data Protection (formerly Cloud DLP)",
+    "explanation": "Sensitive Data Protection inspects text and structured data for PII, supports de-identification (redaction, masking, FPE), and integrates with BigQuery and Cloud Storage."
   },
   {
-    "question": "You have written unit tests for a Kubeflow Pipeline  that require custom libraries. You want to automat e the execution of unit tests with each new push to your development branch in Cloud Source Repositories. Wh at should you do?",
+    "question": "To run a Jupyter notebook environment with GPUs and direct access to BigQuery, which Vertex AI feature is recommended?",
     "options": [
-      "A. Write a script that sequentially performs the pus h to your development branch and executes the unit tests",
-      "B. Using Cloud Build, set an automated trigger to ex ecute the unit tests when changes are pushed to you r",
-      "C. Set up a Cloud Logging sink to a Pub/Sub topic th at captures interactions with Cloud Source Reposito ries.",
-      "D. Set up a Cloud Logging sink to a Pub/Sub topic th at captures interactions with Cloud Source Reposito ries."
+      "A. Vertex AI Workbench (Managed notebooks or Instances)",
+      "B. Compute Engine VM with manual installs",
+      "C. Cloud Run",
+      "D. Cloud SQL"
     ],
-    "correct": "B. Using Cloud Build, set an automated trigger to ex ecute the unit tests when changes are pushed to you r",
-    "explanation": "Explanation:\nThe correct answer is B. Using Cloud Build, set an automated trigger to execute the unit tests when changes are pushed to your development branch. \n\nCloud Build is a service provided by Google Cloud Platform that allows you to automate your build, test, and deployment pipeline. You can create a trigger that will automatically execute the unit tests whenever changes are pushed to your development branch in Cloud Source Repositories. This ensures that your code is tested and validated automatically whenever changes are made.\n\nThe other options are incorrect because:\n\nA. Writing a script that sequentially performs the push to your development branch and executes the unit tests is a manual process and does not automate the execution of unit tests. It requires manual intervention and is not scalable.\n\nC. and D. Setting up a Cloud Logging sink to a Pub/Sub topic that captures interactions with Cloud Source Repositories is not related to automating the execution of unit tests. Cloud Logging is a service that allows you to collect, process, and analyze log data from your applications and services, but it does not provide a way to automate the execution of unit tests.\n\nTherefore, option B is the correct answer.",
-    "references": ""
+    "correct": "A. Vertex AI Workbench (Managed notebooks or Instances)",
+    "explanation": "Vertex AI Workbench provides managed JupyterLab notebooks with GPU support, BigQuery/Cloud Storage integrations, and lifecycle scripts."
   },
   {
-    "question": "You are training an LSTM-based model on AI Platform  to summarize text using the following job submissi on script: gcloud ai-platform jobs submit training $JOB_NAME \\ --package-path $TRAINER_PACKAGE_PATH \\ --module-name $MAIN_TRAINER_MODULE \\ --job-dir $JOB_DIR \\ --region $REGION \\ --scale-tier basic \\ -- \\ --epochs 20 \\ --batch_size=32 \\ --learning_rate=0.001 \\ You want to ensure that training time is minimized without significantly compromising the accuracy of your model. What should you do?",
+    "question": "What is a good rule of thumb when an imbalanced classification task shows extremely high accuracy but poor recall on the minority class?",
     "options": [
-      "A. Modify the `epochs' parameter.",
-      "B. Modify the `scale-tier' parameter.",
-      "C. Modify the `batch size' parameter.",
-      "D. Modify the `learning rate' parameter."
+      "A. Use class-weighting, resampling (SMOTE, undersampling), or alternative loss functions; evaluate with precision/recall/F1 or PR-AUC, not raw accuracy",
+      "B. Train longer with no other changes",
+      "C. Switch metrics to plain accuracy",
+      "D. Reduce the dataset size"
     ],
-    "correct": "B. Modify the `scale-tier' parameter.",
-    "explanation": "Explanation:\nThe correct answer is B. Modify the `scale-tier' parameter. The `scale-tier' parameter determines the amount of computational resources allocated to the training job. Increasing the scale tier will allow the training job to use more computational resources, which can significantly reduce the training time. This is especially important for LSTM-based models, which can be computationally expensive to train.\n\nThe other options are incorrect because:\n\nA. Modifying the `epochs' parameter will affect the number of iterations the model trains on the data, but it will not directly impact the training time. Increasing the number of epochs may actually increase the training time.\n\nC. Modifying the `batch size' parameter will affect the number of samples used to compute the gradient in each iteration, but it will not significantly impact the training time. Increasing the batch size may actually increase the training time due to the increased memory requirements.\n\nD. Modifying the `learning rate' parameter will affect the step size of each iteration, but it will not directly impact the training time. Decreasing the learning rate may actually increase the training time.\n\nTherefore, modifying the `scale-tier' parameter is the best option to minimize the training time without significantly compromising the accuracy of the model.",
-    "references": ""
-  },
-  {
-    "question": "You have deployed multiple versions of an image cla ssification model on AI Platform. You want to monit or the performance of the model versions over time. How sh ould you perform this comparison?",
-    "options": [
-      "A. Compare the loss performance for each model on a held-out dataset.",
-      "B. Compare the loss performance for each model on th e validation data.",
-      "C. Compare the receiver operating characteristic (RO C) curve for each model using the What-If Tool.",
-      "D. Compare the mean average precision across the mod els using the Continuous Evaluation feature."
-    ],
-    "correct": "D. Compare the mean average precision across the mod els using the Continuous Evaluation feature.",
-    "explanation": "Explanation:\n\nThe correct answer is option D. Compare the mean average precision across the models using the Continuous Evaluation feature. \n\nContinuous Evaluation is a feature in AI Platform that allows you to continuously evaluate and compare the performance of multiple model versions over time. It provides a way to monitor the performance of your models in a production-like environment, which is ideal for comparing the performance of multiple model versions.\n\nOption A is incorrect because comparing the loss performance on a held-out dataset only provides a snapshot of the model's performance at a particular point in time. It does not provide a comprehensive view of the model's performance over time.\n\nOption B is also incorrect because comparing the loss performance on the validation data is similar to option A, it only provides a snapshot of the model's performance and does not account for changes in the data distribution or concept drift over time.\n\nOption C is incorrect because while the What-If Tool is a useful tool for understanding the performance of a single model, it is not designed for comparing the performance of multiple model versions over time.\n\nTherefore, option D is the correct answer because it provides a comprehensive view of the model's performance over time, allowing you to compare the performance of multiple model versions and make informed decisions about which model to deploy.",
-    "references": ""
-  },
-  {
-    "question": "You trained a text classification model. You have t he following SignatureDefs: You started a TensorFlow-serving component server a nd tried to send an HTTP request to get a predictio n using: headers = {\"content-type\": \"application/json\"} json_response = requests.post('http://localhost:850 1/v1/models/text_model:predict', data=data, headers=headers) What is the correct way to write the predict reques t? A. data = json.dumps({\"signature_name\": \"seving_defa ult\", \"instances\" [[`ab', `bc', `cd']]})",
-    "options": [
-      "B. data = json.dumps({\"signature_name\": \"serving_def ault\", \"instances\" [[`a', `b', `c', `d', `e', `f']] })",
-      "C. data = json.dumps({\"signature_name\": \"serving_def ault\", \"instances\" [[`a', `b', `c'], [`d', `e', `f' ]]})",
-      "D. data = json.dumps({\"signature_name\": \"serving_def ault\", \"instances\" [[`a', `b'], [`c', `d'], [`e', ` f']]})"
-    ],
-    "correct": "D. data = json.dumps({\"signature_name\": \"serving_def ault\", \"instances\" [[`a', `b'], [`c', `d'], [`e', ` f']]})",
-    "explanation": "Explanation:\nThe correct answer is D because it follows the correct structure of the predict request in TensorFlow Serving. \n\nIn TensorFlow Serving, the predict request should contain a JSON payload with the following structure:\n- \"signature_name\": specifies the name of the SignatureDef to use for prediction.\n- \"instances\": specifies the input data to be predicted. This should be a list of lists, where each inner list represents a single instance to be predicted.\n\nIn this case, the correct predict request should have the following structure:\ndata = json.dumps({\"signature_name\": \"serving_default\", \"instances\" [[`a', `b'], [`c', `d'], [`e', `f']]})\n\nOption A is incorrect because it only contains a single instance with three elements. \n\nOption B is incorrect because it contains a single instance with six elements, which does not match the structure of the input data.\n\nOption C is incorrect because it contains two instances, but each instance has three elements, which does not match the structure of the input data.\n\nTherefore, option D is the correct answer.",
-    "references": ""
-  },
-  {
-    "question": "Your organization's call center has asked you to de velop a model that analyzes customer sentiments in each call. The call center receives over one million cal ls daily, and data is stored in Cloud Storage. The data collected must not leave the region in which the ca ll originated, and no Personally Identifiable Infor mation (PII) can be stored or analyzed. The data science team ha s a third-party tool for visualization and access w hich requires a SQL ANSI-2011 compliant interface. You n eed to select components for data processing and fo r analytics. How should the data pipeline be designed ?",
-    "options": [
-      "A. 1= Dataflow, 2= BigQuery",
-      "B. 1 = Pub/Sub, 2= Datastore",
-      "C. 1 = Dataflow, 2 = Cloud SQL",
-      "D. 1 = Cloud Function, 2= Cloud SQL"
-    ],
-    "correct": "A. 1= Dataflow, 2= BigQuery",
-    "explanation": "Explanation:\nThe correct answer is A. 1= Dataflow, 2= BigQuery. Here's why:\n\nThe requirements of the problem are:\n- Handling over one million calls daily\n- Data is stored in Cloud Storage\n- Data must not leave the region in which the call originated\n- No PII can be stored or analyzed\n- The data science team has a third-party tool for visualization and access which requires a SQL ANSI-2011 compliant interface\n\nDataflow is a fully-managed service for processing and analyzing data in stream and batch modes. It can handle large volumes of data and can process data in the same region where the data is stored. It also has built-in support for data processing pipelines that do not store or process PII.\n\nBigQuery is a fully-managed enterprise data warehouse that supports SQL ANSI-2011 compliant queries. It can handle large volumes of data and can integrate with Dataflow for data processing and analysis.\n\nThe other options are incorrect because:\n- Option B is incorrect because Pub/Sub is a messaging service that is not designed for data processing and analysis. Datastore is a NoSQL database that is not designed for large-scale data analysis.\n- Option C is incorrect because Cloud SQL is a relational database service that is not designed for large-scale data analysis. It also does not support SQL ANSI-2011 compliant queries.\n- Option D is incorrect because Cloud Function is a serverless computing service that is not designed for data processing and analysis. It",
-    "references": ""
-  },
-  {
-    "question": "You are an ML engineer at a global shoe store. You manage the ML models for the company's website. You are asked to build a model that will recommend new products to the user based on their purchase behavi or and similarity with other users. What should you do? A. Build a classification model",
-    "options": [
-      "B. Build a knowledge-based filtering model",
-      "C. Build a collaborative-based filtering model",
-      "D. Build a regression model using the features as pr edictors"
-    ],
-    "correct": "C. Build a collaborative-based filtering model",
-    "explanation": "Explanation:\nThe correct answer is C. Build a collaborative-based filtering model. \n\nCollaborative-based filtering is a technique used in recommender systems that takes into account the behavior or preferences of similar users to make recommendations. In this case, , it is suitable because the goal is to recommend new products to the user based on their purchase behavior and similarity with other users. The model will analyze the purchase history of similar users and recommend products that they have purchased but the target user has not.\n\nOption A is incorrect because classification models are used for predicting categorical labels, not for recommending products. \n\nOption B is incorrect because knowledge-based filtering models are used when there is explicit knowledge about the items, such as product features. However, in this case, the goal is to recommend products based on user behavior, not product features.\n\nOption D is incorrect because regression models are used for predicting continuous values, not for recommending products.\n\nIn summary, the correct answer is C because collaborative-based filtering is a technique that is specifically designed for recommending products based on user behavior and similarity with other users.",
-    "references": ""
-  },
-  {
-    "question": "You work for a social media company. You need to de tect whether posted images contain cars. Each train ing example is a member of exactly one class. You have trained an object detection neural network and depl oyed the model version to AI Platform Prediction for eva luation. Before deployment, you created an evaluati on job and attached it to the AI Platform Prediction model  version. You notice that the precision is lower th an your business requirements allow. How should you adjust the model's final layer softmax threshold to increa se precision?",
-    "options": [
-      "A. Increase the recall.",
-      "B. Decrease the recall.",
-      "C. Increase the number of false positives.",
-      "D. Decrease the number of false negatives."
-    ],
-    "correct": "D. Decrease the number of false negatives.",
-    "explanation": "Explanation:\n\nThe correct answer is D. Decrease the number of false negatives. The reason is that precision is the ratio of true positives to the sum of true positives and false positives. To increase precision, you need to reduce the number of false positives. However, the question asks to adjust the model's final layer softmax threshold to increase precision. \n\nDecreasing the softmax threshold will make the model more conservative in its predictions, resulting in fewer false positives but potentially more false negatives. Therefore, to increase precision, you need to decrease the number of false negatives, which can be achieved by increasing the softmax threshold. This will make the model more aggressive in its predictions, resulting in more true positives but potentially more false positives as well.\n\nThe other options are incorrect because:\n\nA. Increasing the recall will not necessarily increase precision. Recall is the ratio of true positives to the sum of true positives and false negatives. Increasing recall may lead to more false positives, which would decrease precision.\n\nB. Decreasing the recall will not increase precision. A lower recall means fewer true positives, which would decrease precision.\n\nC. Increasing the number of false positives will decrease precision, not increase it.\n\nNote: The softmax threshold is a hyperparameter that controls the confidence level of the model's predictions. A higher softmax threshold means the model needs to be more confident in its predictions before classifying an image as containing a car. A lower softmax threshold means the model is more aggressive in its predictions and will classify more images as containing",
-    "references": ""
-  },
-  {
-    "question": "You are responsible for building a unified analytic s environment across a variety of on-premises data marts. Your company is experiencing data quality and secur ity challenges when integrating data across the ser vers, caused by the use of a wide range of disconnected t ools and temporary solutions. You need a fully mana ged, cloud-native data integration service that will low er the total cost of work and reduce repetitive wor k. Some members on your team prefer a codeless interface fo r building Extract, Transform, Load (ETL) process. Which service should you use?",
-    "options": ["A. Dataflow", "B. Dataprep", "C. Apache Flink", "D. Cloud Data Fusion"],
-    "correct": "D. Cloud Data Fusion",
-    "explanation": "Explanation: \n\nThe correct answer is D. Cloud Data Fusion. Cloud Data Fusion is a fully managed, cloud-native data integration service that provides a codeless interface for building ETL processes. It allows users to integrate data from various sources, transform and cleanse the data, and load it into target systems. Cloud Data Fusion provides a graphical interface for building data pipelines, making it easy to use for users who prefer a codeless approach.\n\nOption A. Dataflow is incorrect because it is a fully managed service for building, deploying, and managing data pipelines, but it does not provide a codeless interface for building ETL processes. Dataflow requires users to write code in languages like Java or Python to build data pipelines.\n\nOption B. Dataprep is incorrect because it is a service for data preparation and exploration, not for building ETL processes. Dataprep provides a graphical interface for data preparation, but it is not designed for building data pipelines.\n\nOption C. Apache Flink is incorrect because it is an open-source platform for distributed stream and batch processing, not a cloud-native data integration service. Apache Flink requires users to write code in languages like Java or Scala to build data pipelines.\n\nTherefore, the correct answer is D. Cloud Data Fusion, which provides a fully managed, cloud-native data integration service with a codeless interface for building ETL processes.",
-    "references": ""
-  },
-  {
-    "question": "You are an ML engineer at a regulated insurance com pany. You are asked to develop an insurance approva l model that accepts or rejects insurance application s from potential customers. What factors should you consider before building the model? A. Redaction, reproducibility, and explainability",
-    "options": [
-      "B. Traceability, reproducibility, and explainability",
-      "C. Federated learning, reproducibility, and explaina bility",
-      "D. Differential privacy, federated learning, and exp lainability"
-    ],
-    "correct": "B. Traceability, reproducibility, and explainability",
-    "explanation": "Explanation:\nThe correct answer is B. Traceability, reproducibility, and explainability. \n\nWhen building an insurance approval model, it is crucial to consider factors that ensure the model's reliability, transparency, and accountability. \n\n1. **Traceability**: This refers to the ability to track and document the data used to train the model, including its origin, processing, and storage. This is essential in regulated industries like insurance, where auditing and compliance requirements are stringent.\n\n2. **Reproducibility**: This means that the model should produce consistent results when trained on the same data and with the same parameters. Reproducibility is vital in ensuring that the model's performance is reliable and trustworthy.\n\n3. **Explainability**: This involves making the model's decision-making process transparent and interpretable. In the context of insurance approval, explainability is critical in understanding why an application was accepted or rejected, which can help identify biases and ensure fairness.\n\nNow, let's discuss why the other options are incorrect:\n\nA. Redaction is not a relevant factor in building an insurance approval model. Redaction involves removing sensitive information from documents, which is not directly related to model development.\n\nC. Federated learning is a distributed learning approach that allows multiple parties to collaboratively train a model without sharing their data. While it can be useful in certain scenarios, it is not a critical factor to consider when building an insurance approval model.\n\nD. Differential privacy is a technique used to protect sensitive information",
-    "references": ""
-  },
-  {
-    "question": "You are training a Resnet model on AI Platform usin g TPUs to visually categorize types of defects in automobile engines. You capture the training profil e using the Cloud TPU profiler plugin and observe t hat it is highly input-bound. You want to reduce the bottlene ck and speed up your model training process. Which modifications should you make to the tf.data datase t? (Choose two.)",
-    "options": [
-      "A. Use the interleave option for reading data.",
-      "B. Reduce the value of the repeat parameter.",
-      "C. Increase the buffer size for the shuttle option.",
-      "D. Set the prefetch option equal to the training bat ch size."
-    ],
-    "correct": "",
-    "explanation": "The correct answer is A. Use the interleave option for reading data and D. Set the prefetch option equal to the training batch size.\n\nExplanation:\n\nWhen the training profile is highly input-bound, (meaning the model is waiting for data to be available), we need to optimize the data pipeline to reduce the bottleneck. \n\nOption A: Using the interleave option for reading data allows for parallelizing the data reading process, which can significantly speed up the data loading process and reduce the bottleneck.\n\nOption D: Setting the prefetch option equal to the training batch size allows the data pipeline to prepare the next batch of data while the current batch is being processed, reducing idle time and speeding up the training process.\n\nThe other options are incorrect because:\n\nOption B: Reducing the value of the repeat parameter would actually reduce the amount of data being processed, which is not what we want to do when the model is input-bound. We want to process more data, not less.\n\nOption C: Increasing the buffer size for the shuffle option would not address the input-bound bottleneck, as it only affects the shuffling of data, not the loading of data.\n\nTherefore, the correct answer is A and D.",
-    "references": ""
-  },
-  {
-    "question": "You have trained a model on a dataset that required  computationally expensive preprocessing operations . You need to execute the same preprocessing at predictio n time. You deployed the model on AI Platform for h igh- throughput online prediction. Which architecture sh ould you use?",
-    "options": [
-      "A. Validate the accuracy of the model that you trained  on preprocessed data.",
-      "B. Send incoming prediction requests to a Pub/Sub to pic.",
-      "C. Stream incoming prediction request data into Clou d Spanner.",
-      "D. Send incoming prediction requests to a Pub/Sub to pic."
-    ],
-    "correct": "",
-    "explanation": "D. Send incoming prediction requests to a Pub/Sub topic. \n\nExplanation: \n\nThe correct answer is D. Send incoming prediction requests to a Pub/Sub topic. \n\nHere's why: \n\nWhen you deploy a model on AI Platform for high-throughput online prediction, you need to execute the same preprocessing operations at prediction time. This requires a scalable and efficient way to handle incoming prediction requests. \n\nSending incoming prediction requests to a Pub/Sub topic allows you to decouple the preprocessing operations from the model prediction. This enables you to process the requests asynchronously, which is essential for high-throughput online prediction. \n\nPub/Sub provides a scalable and reliable messaging service that can handle a large volume of requests. By sending the requests to a Pub/Sub topic, you can fan out the requests to multiple preprocessing instances, which can process the requests in parallel. This architecture enables you to scale the preprocessing operations horizontally, ensuring that you can handle a high volume of requests efficiently.\n\nNow, let's discuss why the other options are incorrect:\n\nA. Validate the accuracy of the model that you trained on preprocessed data. \n\nThis option is incorrect because it doesn't address the requirement of executing the same preprocessing operations at prediction time. Validating the accuracy of the model is an important step in the machine learning workflow, but it's not relevant to the problem at hand.\n\nB. Send incoming prediction requests to a Pub/Sub topic.\n\nWait, isn't this the correct answer? No, it's not. The correct answer is",
-    "references": ""
-  },
-  {
-    "question": "Your team trained and tested a DNN regression model  with good results. Six months after deployment, th e model is performing poorly due to a change in the d istribution of the input data. How should you addre ss the input differences in production?",
-    "options": [
-      "A. Create alerts to monitor for skew, and retrain th e model.",
-      "B. Perform feature selection on the model, and retra in the model with fewer features.",
-      "C. Retrain the model, and select an L2 regularizatio n parameter with a hyperparameter tuning service.",
-      "D. Perform feature selection on the model, and retra in the model on a monthly basis with fewer features ."
-    ],
-    "correct": "A. Create alerts to monitor for skew, and retrain th e model.",
-    "explanation": "Explanation:\n\nThe correct answer is A. Create alerts to monitor for skew, and retrain the model.\n\nWhen a model is deployed in production, it's essential to continuously monitor its performance and detect any changes in the input data distribution. In this scenario, the model is performing poorly due to a change in the input data distribution. To address this issue, creating alerts to monitor for skew (i.e., changes in the data distribution) is the first step. This will allow you to detect when the input data distribution changes, and then retrain the model with the new data. This approach ensures that the model adapts to the changing data distribution and maintains its performance.\n\nWhy the other options are incorrect:\n\nOption B, Perform feature selection on the model, and retrain the model with fewer features, is incorrect because feature selection might not address the issue of changing data distribution. Feature selection is used to reduce the dimensionality of the data, but it doesn't account for changes in the data distribution.\n\nOption C, Retrain the model, and select an L2 regularization parameter with a hyperparameter tuning service, is incorrect because L2 regularization is used to prevent overfitting, but it doesn't address the issue of changing data distribution. Hyperparameter tuning can help improve the model's performance, but it's not a solution to adapt to changing data distribution.\n\nOption D, Perform feature selection on the model, and retrain the model on a monthly basis with fewer features, is incorrect because it's",
-    "references": ""
-  },
-  {
-    "question": "You need to train a computer vision model that pred icts the type of government ID present in a given i mage using a GPU-powered virtual machine on Compute Engi ne. You use the following parameters: Optimizer: SGD Batch size = 64 Epochs = 10 Verbose =2 During training you encounter the following error: ResourceExhaustedError: Out Of Memory (OOM) when allocating tensor. What should you do?",
-    "options": [
-      "A. Change the optimizer.",
-      "B. Reduce the batch size.",
-      "C. Change the learning rate.",
-      "D. Reduce the image shape."
-    ],
-    "correct": "B. Reduce the batch size.",
-    "explanation": "Explanation: The error message \"ResourceExhaustedError: Out Of Memory (OOM) when allocating tensor\" indicates that the model is running out of memory during training. This is likely due to the large batch size of 64, which requires a significant amount of memory to store the input data and intermediate results. \n\nReducing the batch size (option B) is a straightforward solution to this problem. By reducing the batch size, you decrease the amount of memory required to store the input data and intermediate results, making it more likely that the model can fit within the available memory.\n\nOption A, changing the optimizer, is unlikely to solve the memory issue. While different optimizers may have different memory requirements, the SGD optimizer is a relatively lightweight optimizer, and changing it is unlikely to significantly reduce memory usage.\n\nOption C, changing the learning rate, is also unlikely to solve the memory issue. The learning rate controls how quickly the model learns from the data, but it does not directly affect memory usage.\n\nOption D, reducing the image shape, may help reduce memory usage, but it is not the most direct solution to the problem. Reducing the image shape would reduce the amount of memory required to store the input data, but it would also reduce the accuracy of the model. \n\nTherefore, the correct answer is option B, reducing the batch size.",
-    "references": ""
-  },
-  {
-    "question": "You developed an ML model with AI Platform, and you  want to move it to production. You serve a few tho usand queries per second and are experiencing latency iss ues. Incoming requests are served by a load balance r that distributes them across multiple Kubeflow CPU-only pods running on Google Kubernetes Engine (GKE). You r goal is to improve the serving latency without chan ging the underlying infrastructure. What should you  do?",
-    "options": [
-      "A. Significantly increase the max_batch_size TensorF low Serving parameter.",
-      "B. Switch to the tensorflow-model-server-universal v ersion of TensorFlow Serving.",
-      "C. Significantly increase the max_enqueued_batches Ten sorFlow Serving parameter. D. Recompile TensorFlow Serving using the source to support CPU-specific optimizations. Instruct GKE to"
-    ],
-    "correct": "",
-    "explanation": "C. Significantly increase the max_enqueued_batches TensorFlow Serving parameter.",
-    "references": ""
-  },
-  {
-    "question": "You have a demand forecasting pipeline in productio n that uses Dataflow to preprocess raw data prior t o model training and prediction. During preprocessing, you employ Z-score normalization on data stored in BigQ uery and write it back to BigQuery. New training data is  added every week. You want to make the process mor e efficient by minimizing computation time and manual  intervention. What should you do?",
-    "options": [
-      "A. Normalize the data using Google Kubernetes Engine .",
-      "B. Translate the normalization algorithm into SQL fo r use with BigQuery.",
-      "C. Use the normalizer_fn argument in TensorFlow's Fe ature Column API.",
-      "D. Normalize the data with Apache Spark using the Da taproc connector for BigQuery."
-    ],
-    "correct": "B. Translate the normalization algorithm into SQL fo r use with BigQuery.",
-    "explanation": "Explanation:\nThe correct answer is B. Translate the normalization algorithm into SQL for use with BigQuery. This is because the data is already stored in BigQuery, and translating the normalization algorithm into SQL will allow for the normalization to be done directly within BigQuery, minimizing the need for data movement and manual intervention. This approach will also reduce computation time as BigQuery can handle large-scale data processing efficiently.\n\nOption A is incorrect because using Google Kubernetes Engine (GKE) would require setting up a cluster, deploying a container, and managing the infrastructure, which would add complexity and manual intervention to the process.\n\nOption C is incorrect because the normalizer_fn argument in TensorFlow's Feature Column API is used for feature normalization during model training, not for preprocessing data in BigQuery.\n\nOption D is incorrect because using Apache Spark with the Dataproc connector for BigQuery would require setting up a Spark cluster, which would add complexity and manual intervention to the process. Additionally, Spark would need to read data from BigQuery, perform the normalization, and write it back, which would increase computation time and data movement.",
-    "references": ""
-  },
-  {
-    "question": "You need to design a customized deep neural network  in Keras that will predict customer purchases base d on their purchase history. You want to explore model p erformance using multiple model architectures, stor e training data, and be able to compare the evaluatio n metrics in the same dashboard. What should you do ?",
-    "options": [
-      "A. Create multiple models using AutoML Tables.",
-      "B. Automate multiple training runs using Cloud Compo ser.",
-      "C. Run multiple training jobs on AI Platform with si milar job names.",
-      "D. Create an experiment in Kubeflow Pipelines to org anize multiple runs."
-    ],
-    "correct": "D. Create an experiment in Kubeflow Pipelines to org anize multiple runs.",
-    "explanation": "Explanation:\nThe correct answer is D. Create an experiment in Kubeflow Pipelines to organize multiple runs. \n\nKubeflow Pipelines is a platform that allows you to define, execute, and manage machine learning workflows. It provides a way to organize multiple runs of a model, store training data, and compare evaluation metrics in a single dashboard. This makes it an ideal choice for exploring model performance using multiple model architectures.\n\nOption A is incorrect because AutoML Tables is a fully managed service that automates the process of building, deploying, and managing machine learning models, but it does not provide a way to organize multiple runs of a model or compare evaluation metrics in a single dashboard.\n\nOption B is incorrect because Cloud Composer is a fully managed workflow orchestration service that allows you to author, schedule, and monitor pipelines, but it is not specifically designed for machine learning workflows and does not provide the same level of functionality as Kubeflow Pipelines.\n\nOption C is incorrect because running multiple training jobs on AI Platform with similar job names does not provide a way to organize multiple runs of a model or compare evaluation metrics in a single dashboard. AI Platform is a managed platform for building, deploying, and managing machine learning models, but it does not provide the same level of workflow management as Kubeflow Pipelines.",
-    "references": ""
-  },
-  {
-    "question": "You are developing a Kubeflow pipeline on Google Ku bernetes Engine. The first step in the pipeline is to issue a query against BigQuery. You plan to use the resul ts of that query as the input to the next step in y our pipeline. You want to achieve this in the easiest way possibl e. What should you do?",
-    "options": [
-      "A. Use the BigQuery console to execute your query, a nd then save the query results into a new BigQuery",
-      "B. Write a Python script that uses the BigQuery API to execute queries against BigQuery. Execute this s cript",
-      "C. Use the Kubeflow Pipelines domain-specific langua ge to create a custom component that uses the Pytho n"
-    ],
-    "correct": "",
-    "explanation": "C. Use the Kubeflow Pipelines domain-specific language to create a custom component that uses the Python BigQuery client library.\n\nExplanation:\nThe correct answer is C. Use the Kubeflow Pipelines domain-specific language to create a custom component that uses the Python BigQuery client library. This is because Kubeflow Pipelines provides a domain-specific language (DSL) that allows you to define pipeline components in a declarative way. By using the DSL, you can create a custom component that uses the Python BigQuery client library to execute the query and retrieve the results. This approach is the easiest way to achieve the desired outcome, as it allows you to define the pipeline component in a concise and readable way, and leverage the built-in support for BigQuery in the Kubeflow Pipelines DSL.\n\nOption A is incorrect because it involves manually executing the query in the BigQuery console and saving the results to a new table. This approach is not automated and would require manual intervention, which is not ideal for a pipeline.\n\nOption B is also incorrect because it involves writing a Python script that uses the BigQuery API to execute queries against BigQuery. While this approach would work, it would require more code and complexity compared to using the Kubeflow Pipelines DSL. Additionally, it would not integrate seamlessly with the rest of the pipeline.",
-    "references": ""
-  },
-  {
-    "question": "You are building a model to predict daily temperatu res. You split the data randomly and then transform ed the training and test datasets. Temperature data for mo del training is uploaded hourly. During testing, yo ur model performed with 97% accuracy; however, after deployi ng to production, the model's accuracy dropped to 6 6%. How can you make your production model more accurat e?",
-    "options": [
-      "A. Normalize the data for the training, and test dat asets as two separate steps.",
-      "B. Split the training and test data based on time ra ther than a random split to avoid leakage.",
-      "C. Add more data to your test set to ensure that you  have a fair distribution and sample for testing.",
-      "D. Apply data transformations before splitting, and cross-validate to make sure that the transformation s are"
-    ],
-    "correct": "B. Split the training and test data based on time ra ther than a random split to avoid leakage.",
-    "explanation": "Explanation:\nThe correct answer is B. Split the training and test data based on time rather than a random split to avoid leakage.\n\nWhen you split the data randomly, you might be introducing leakage, which means that some information from the future is being used to train the model. This can happen if the data is time-dependent and the model is not aware of the temporal relationships between the data points. \n\nIn this case, since the temperature data is uploaded hourly, splitting the data randomly can lead to the model seeing future data during training, which is not available during deployment. This can cause the model to perform well during testing but poorly during deployment.\n\nBy splitting the data based on time, you ensure that the model is trained on past data and tested on future data, which is more representative of the real-world scenario. This can help to avoid leakage and improve the model's accuracy in production.\n\nThe other options are incorrect because:\n\nA. Normalizing the data separately for the training and test datasets can lead to different scales, which can affect the model's performance. Normalization should be applied after splitting the data to ensure that both datasets have the same scale.\n\nC. Adding more data to the test set might not solve the problem of leakage, and it can also lead to overfitting if the test set becomes too large.\n\nD. Applying data transformations before splitting the data can also lead to leakage, as the transformations might be based on the entire dataset, including future data. Cross-validation can help to",
-    "references": ""
-  },
-  {
-    "question": "You are developing models to classify customer supp ort emails. You created models with TensorFlow Estimators using small datasets on your on-premises  system, but you now need to train the models using  large datasets to ensure high performance. You will port your models to Google Cloud and want to minimize co de refactoring and infrastructure overhead for easier migration from on-prem to cloud. What should you do ?",
-    "options": [
-      "A. Use AI Platform for distributed training.",
-      "B. Create a cluster on Dataproc for training.",
-      "C. Create a Managed Instance Group with autoscaling.",
-      "D. Use Kubeflow Pipelines to train on a Google Kuber netes Engine cluster."
-    ],
-    "correct": "A. Use AI Platform for distributed training.",
-    "explanation": "Explanation:\nThe correct answer is A. Use AI Platform for distributed training. This is because AI Platform provides a managed service for distributed training of machine learning models, which allows for easier migration from on-premises to cloud. AI Platform also provides automated model training, hyperparameter tuning, and model deployment, which minimizes code refactoring and infrastructure overhead.\n\nOption B, Create a cluster on Dataproc for training, is incorrect because Dataproc is a managed service for running Apache Spark and Hadoop workloads, not for distributed training of machine learning models.\n\nOption C, Create a Managed Instance Group with autoscaling, is incorrect because this option is related to infrastructure management and not specifically designed for distributed training of machine learning models.\n\nOption D, Use Kubeflow Pipelines to train on a Google Kubernetes Engine cluster, is incorrect because while Kubeflow Pipelines is a great tool for automating machine learning workflows, it requires more infrastructure overhead and code refactoring compared to AI Platform.\n\nIn summary, AI Platform provides a managed service for distributed training of machine learning models, which makes it the best option for minimizing code refactoring and infrastructure overhead for easier migration from on-premises to cloud.",
-    "references": ""
-  },
-  {
-    "question": "You have trained a text classification model in Ten sorFlow using AI Platform. You want to use the trai ned model for batch predictions on text data stored in BigQuery while minimizing computational overhead. W hat should you do?",
-    "options": [
-      "A. Export the model to BigQuery ML.",
-      "B. Deploy and version the model on AI Platform. C. Use Dataflow with the SavedModel to read the data f rom BigQuery.",
-      "D. Submit a batch prediction job on AI Platform that  points to the model location in Cloud Storage."
-    ],
-    "correct": "A. Export the model to BigQuery ML.",
-    "explanation": "Explanation:\n\nThe correct answer is A. Export the model to BigQuery ML. This is because BigQuery ML is a managed service that allows you to run machine learning models directly on your data in BigQuery, minimizing computational overhead. By exporting the trained model to BigQuery ML, you can use it for batch predictions on your text data stored in BigQuery without having to move the data out of BigQuery or set up a separate prediction infrastructure.\n\nOption B, deploying and versioning the model on AI Platform, would require setting up a separate prediction infrastructure and moving the data from BigQuery to AI Platform, which would increase computational overhead.\n\nOption C, using Dataflow with the SavedModel to read the data from BigQuery, would also require moving the data out of BigQuery and setting up a separate prediction infrastructure, which would increase computational overhead.\n\nOption D, submitting a batch prediction job on AI Platform that points to the model location in Cloud Storage, would also require moving the data from BigQuery to AI Platform and setting up a separate prediction infrastructure, which would increase computational overhead.\n\nTherefore, the correct answer is A, exporting the model to BigQuery ML, which minimizes computational overhead by running the model directly on the data in BigQuery.",
-    "references": ""
-  },
-  {
-    "question": "You work with a data engineering team that has deve loped a pipeline to clean your dataset and save it in a Cloud Storage bucket. You have created an ML model and want to use the data to refresh your model as s oon as new data is available. As part of your CI/CD wor kflow, you want to automatically run a Kubeflow Pip elines training job on Google Kubernetes Engine (GKE). How  should you architect this workflow?",
-    "options": [
-      "A. Configure your pipeline with Dataflow, which save s the files in Cloud Storage. After the file is sav ed, start",
-      "B. Use App Engine to create a lightweight python cli ent that continuously polls Cloud Storage for new f iles. As",
-      "C. Configure a Cloud Storage trigger to send a messa ge to a Pub/Sub topic when a new file is available in a",
-      "D. Use Cloud Scheduler to schedule jobs at a regular  interval. For the first step of the job, check the  timestamp"
-    ],
-    "correct": "C. Configure a Cloud Storage trigger to send a messa ge to a Pub/Sub topic when a new file is available in a",
-    "explanation": "Explanation:\n\nThe correct answer is C. This is because the requirement is to automatically run a Kubeflow Pipelines training job on Google Kubernetes Engine (GKE) as soon as new data is available. To achieve this, we need to create an event-driven architecture where the pipeline is triggered automatically when new data is available in the Cloud Storage bucket.\n\nConfiguring a Cloud Storage trigger to send a message to a Pub/Sub topic when a new file is available in the bucket is the best approach. This trigger will send a notification to the Pub/Sub topic as soon as a new file is uploaded to the bucket. Then, a Cloud Function or a Kubernetes Job can be triggered by the Pub/Sub topic to run the Kubeflow Pipelines training job on GKE.\n\nNow, let's discuss why the other options are incorrect:\n\nA. This option is incorrect because Dataflow is a data processing service that is not designed to trigger pipelines automatically. While Dataflow can save files to Cloud Storage, it does not have a built-in mechanism to trigger pipelines when new data is available.\n\nB. This option is incorrect because using App Engine to create a lightweight Python client that continuously polls Cloud Storage for new files is not an efficient approach. This would require constant polling, which can lead to unnecessary costs and latency.\n\nD. This option is incorrect because using Cloud Scheduler to schedule jobs at a regular interval does not meet the requirement of running the pipeline as soon as new data is available. This approach would require scheduling jobs",
-    "references": ""
-  },
-  {
-    "question": "You have a functioning end-to-end ML pipeline that involves tuning the hyperparameters of your ML mode l using AI Platform, and then using the best-tuned pa rameters for training. Hypertuning is taking longer  than expected and is delaying the downstream processes. You want to speed up the tuning job without signifi cantly compromising its effectiveness. Which actions shoul d you take? (Choose two.)",
-    "options": [
-      "A. Decrease the number of parallel trials.",
-      "B. Decrease the range of floating-point values.",
-      "C. Set the early stopping parameter to TRUE.",
-      "D. Change the search algorithm from Bayesian search to random search."
-    ],
-    "correct": "",
-    "explanation": "C. Set the early stopping parameter to TRUE.\nD. Decrease the range of floating-point values.\n\nExplanation:\n\nThe correct answers are C. Set the early stopping parameter to TRUE and D. Decrease the range of floating-point values.\n\nOption C is correct because setting the early stopping parameter to TRUE allows the hypertuning job to stop early when it detects that the model's perfor mance is not improving. This can significantly reduce the time taken for hypertuning.\n\nOption D is correct because decreasing the range of floating-point values reduces the search space for the hyperparameters, which can result in faster tuning times. However, this may compromise the effectiveness of the tuning job if the optimal hyperparameters are outside the reduced range.\n\nOption A is incorrect because decreasing the number of parallel trials would actually increase the time taken for hypertuning, not decrease it.\n\nOption B is incorrect because decreasing the range of floating-point values is correct, but the question asks to decrease the range, not the number of floating-point values.\n\nOption D is correct because changing the search algorithm from Bayesian search to random search may result in faster tuning times, but it may also compromise the effectiveness of the tuning job.\n\nPlease provide an explanation about the correct answer and explain why the other options are incorrect.",
-    "references": ""
-  },
-  {
-    "question": "del that predicts customers' account balances 3 day s in the future. Your team will use the results in a new feature that Your team is building an application for a global b ank that will be used by millions of customers. You  built a forecasting mo will notify users when their account  balance is likely to drop below $25. How should yo u serve your predictions?",
-    "options": [
-      "A. 1. Create a Pub/Sub topic for each user.",
-      "B. 1. Create a Pub/Sub topic for each user.",
-      "C. 1. Build a notification system on Firebase.",
-      "D. 1. Build a notification system on Firebase."
-    ],
-    "correct": "D. 1. Build a notification system on Firebase.",
-    "explanation": "Explanation:\n\nThe correct answer is D. Build a notification system on Firebase. Here's why:\n\nTo serve predictions in a scalable and efficient manner, we need a system that can handle a large volume of users and notifications. Firebase is a Google Cloud service that provides a scalable and reliable platform for building mobile and web applications. It has a built-in notification system, Firebase Cloud Messaging (FCM), which allows us to send targeted and personalized notifications to users.\n\nBy building a notification system on Firebase, we can leverage FCM's scalability and reliability to send notifications to millions of customers. We can also use Firebase's real-time database or Cloud Firestore to store the prediction results and trigger notifications when a user's account balance is likely to drop below $25.\n\nNow, let's see why the other options are incorrect:\n\nA. Create a Pub/Sub topic for each user: This approach is not scalable and would require creating millions of Pub/Sub topics, one for each user. Pub/Sub is a messaging service that allows for asynchronous communication between independent applications, but it's not designed for sending personalized notifications to individual users.\n\nB. Create a Pub/Sub topic for each user: This option is identical to A, and for the same reasons, it's not a suitable solution for sending notifications to millions of users.\n\nC. Build a notification system on Pub/Sub: While Pub/Sub is a powerful messaging service, it's not designed for building notification systems. It's better suited for decoupling applications and services, rather",
-    "references": ""
-  },
-  {
-    "question": "You work for an advertising company and want to und erstand the effectiveness of your company's latest advertising campaign. You have streamed 500 MB of c ampaign data into BigQuery. You want to query the table, and then manipulate the results of that quer y with a pandas dataframe in an AI Platform noteboo k. What should you do?",
-    "options": [
-      "A. Use AI Platform Notebooks' BigQuery cell magic to  query the data, and ingest the results as a pandas",
-      "B. Export your table as a CSV file from BigQuery to Google Drive, and use the Google Drive API to inges t the",
-      "C. Download your table from BigQuery as a local CSV file, and upload it to your AI Platform notebook in stance.",
-      "D. From a bash cell in your AI Platform notebook, us e the bq extract command to export the table as a C SV"
-    ],
-    "correct": "A. Use AI Platform Notebooks' BigQuery cell magic to  query the data, and ingest the results as a pandas",
-    "explanation": "Explanation:\nThe correct answer is A. This is because AI Platform Notebooks provides a feature called BigQuery cell magic, which allows users to query BigQuery tables directly from within a notebook. This feature enables seamless integration between BigQuery and pandas, allowing users to easily ingest query results into a pandas dataframe for further manipulation and analysis.\n\nThe other options are incorrect because:\nOption B is incorrect because exporting the table as a CSV file from BigQuery to Google Drive would require additional steps and APIs to ingest the data into the AI Platform notebook. This approach would be more complicated and less efficient.\n\nOption C is incorrect because downloading the table as a local CSV file and uploading it to the AI Platform notebook instance would require manual intervention and would not take advantage of the seamless integration provided by BigQuery cell magic.\n\nOption D is incorrect because using the bq extract command from a bash cell in the AI Platform notebook would require additional steps to ingest the exported CSV file into a pandas dataframe, and would not provide the same level of integration and convenience as BigQuery cell magic.",
-    "references": ""
-  },
-  {
-    "question": "You are an ML engineer at a global car manufacture.  You need to build an ML model to predict car sales  in different cities around the world. Which features o r feature crosses should you use to train city-spec ific relationships between car type and number of sales?A. Thee individual features: binned latitude, binned l ongitude, and one-hot encoded car type.",
-    "options": [
-      "B. One feature obtained as an element-wise product b etween latitude, longitude, and car type.",
-      "C. One feature obtained as an element-wise product b etween binned latitude, binned longitude, and one-h ot",
-      "D. Two feature crosses as an element-wise product: t he first between binned latitude and one-hot encode d car"
-    ],
-    "correct": "C. One feature obtained as an element-wise product b etween binned latitude, binned longitude, and one-h ot",
-    "explanation": "Explanation:\nThe correct answer is C because it correctly captures the city-specific relationships between car type and number of sales. By taking the element-wise product between binned latitude, binned longitude, and one-hot encoded car type, we are effectively creating a unique identifier for each city-car type combination. This allows the model to learn the specific relationships between car types and sales in each city.\n\nOption A is incorrect because using individual features does not capture the interactions between latitude, longitude, and car type. The model would not be able to learn the city-specific relationships between car types and sales.\n\nOption B is incorrect because taking the element-wise product between latitude, longitude, and car type would result in a feature that is not meaningful. Latitude and longitude are continuous variables, and taking their product would not create a meaningful feature.\n\nOption D is incorrect because creating two feature crosses as an element-wise product between binned latitude and one-hot encoded car type, and between binned longitude and one-hot encoded car type, would not capture the interactions between all three features. The model would not be able to learn the city-specific relationships between car types and sales.\n\nTherefore, option C is the correct answer because it correctly captures the city-specific relationships between car type and number of sales by creating a unique identifier for each city-car type combination.",
-    "references": ""
-  },
-  {
-    "question": "You work for a large technology company that wants to modernize their contact center. You have been as ked to develop a solution to classify incoming calls by pr oduct so that requests can be more quickly routed t o the correct support team. You have already transcribed the calls using the Speech-to-Text API. You want to minimize data preprocessing and development time. H ow should you build the model?",
-    "options": [
-      "A. Use the AI Platform Training built-in algorithms to create a custom model.",
-      "B. Use AutoMlL Natural Language to extract custom en tities for classification.",
-      "C. Use the Cloud Natural Language API to extract cus tom entities for classification.",
-      "D. Build a custom model to identify the product keyw ords from the transcribed calls, and then run the k eywords"
-    ],
-    "correct": "B. Use AutoMlL Natural Language to extract custom en tities for classification.",
-    "explanation": "Explanation:\nThe correct answer is B. The reason is that AutoML Natural Language is a fully managed service that allows users to train high-quality machine learning models without requiring extensive machine learning knowledge. In this scenario, AutoML Natural Language can be used to extract custom entities from the transcribed calls, which can then be used for classification. This approach minimizes data preprocessing and development time.\n\nOption A is incorrect because AI Platform Training requires more expertise and development time to create a custom model. It also requires more data preprocessing, which is not ideal in this scenario.\n\nOption C is incorrect because the Cloud Natural Language API is primarily used for text analysis and sentiment analysis, not for custom entity extraction.\n\nOption D is incorrect because building a custom model requires more expertise and development time, and it may not be as accurate as using a fully managed service like AutoML Natural Language. Additionally, it requires more data preprocessing, which is not ideal in this scenario.",
-    "references": ""
-  },
-  {
-    "question": "You are training a TensorFlow model on a structured  dataset with 100 billion records stored in several  CSV files. You need to improve the input/output executi on performance. What should you do?",
-    "options": [
-      "A. Load the data into BigQuery, and read the data fr om BigQuery.",
-      "B. Load the data into Cloud Bigtable, and read the d ata from Bigtable.",
-      "C. Convert the CSV files into shards of TFRecords, a nd store the data in Cloud Storage.",
-      "D. Convert the CSV files into shards of TFRecords, a nd store the data in the Hadoop Distributed File Sy stem"
-    ],
-    "correct": "C. Convert the CSV files into shards of TFRecords, a nd store the data in Cloud Storage.",
-    "explanation": "Explanation:\n\nThe correct answer is C. Convert the CSV files into shards of TFRecords, and store the data in Cloud Storage.\n\nThis is because TensorFlow is optimized to read data from TFRecords, which is a binary format that allows for efficient data loading. By converting the CSV files into shards of TFRecords, you can take advantage of TensorFlow's optimized data loading capabilities.\n\nAdditionally, storing the data in Cloud Storage allows for scalable and durable storage, which is essential for large datasets like the one described in the question.\n\nOption A, loading the data into BigQuery, is incorrect because BigQuery is a data warehousing solution that is optimized for analytics workloads, not for machine learning model training. While BigQuery can handle large datasets, it is not optimized for the type of data loading required for TensorFlow model training.\n\nOption B, loading the data into Cloud Bigtable, is also incorrect because Bigtable is a NoSQL database that is optimized for large-scale analytics and data processing, but it is not optimized for machine learning model training.\n\nOption D, converting the CSV files into shards of TFRecords and storing the data in the Hadoop Distributed File System, is incorrect because while HDFS is a scalable and durable storage solution, it is not optimized for cloud-native workloads like TensorFlow model training. Cloud Storage is a more suitable choice for this use case.",
-    "references": ""
-  },
-  {
-    "question": "As the lead ML Engineer for your company, you are r esponsible for building ML models to digitize scann ed customer forms. You have developed a TensorFlow mod el that converts the scanned images into text and stores them in Cloud Storage. You need to use your ML model on the aggregated data collected at the en d of each day with minimal manual intervention. What sho uld you do? A. Use the batch prediction functionality of AI Platfo rm.",
-    "options": [
-      "B. Create a serving pipeline in Compute Engine for p rediction.",
-      "C. Use Cloud Functions for prediction each time a ne w data point is ingested.",
-      "D. Deploy the model on AI Platform and create a vers ion of it for online inference."
-    ],
-    "correct": "",
-    "explanation": "A. Use the batch prediction functionality of AI Platform.\n\nExplanation: \nThe correct answer is A. Use the batch prediction functionality of AI Platform. \n\nIn this scenario, since the model needs to be run on aggregated data collected at the end of each day, batch prediction is the most suitable option. Batch prediction allows you to run your machine learning model on a large dataset in an asynchronous manner, which is ideal for processing large volumes of data without requiring real-time inference.\n\nThe other options are incorrect because:\n\nB. Creating a serving pipeline in Compute Engine for prediction would require manual intervention and would not be suitable for large-scale batch processing.\n\nC. Using Cloud Functions for prediction each time a new data point is ingested would be more suitable for real-time inference rather than batch processing.\n\nD. Deploying the model on AI Platform and creating a version of it for online inference would also be more suitable for real-time inference rather than batch processing.\n\nTherefore, option A is the correct answer.",
-    "references": ""
-  },
-  {
-    "question": "You recently joined an enterprise-scale company tha t has thousands of datasets. You know that there ar e accurate descriptions for each table in BigQuery, a nd you are searching for the proper BigQuery table to use for a model you are building on AI Platform. How should  you find the data that you need?",
-    "options": [
-      "A. Use Data Catalog to search the BigQuery datasets by using keywords in the table description.",
-      "B. Tag each of your model and version resources on A I Platform with the name of the BigQuery table that  was",
-      "C. Maintain a lookup table in BigQuery that maps the  table descriptions to the table ID. Query the look up table",
-      "D. Execute a query in BigQuery to retrieve all the e xisting table names in your project using the"
-    ],
-    "correct": "A. Use Data Catalog to search the BigQuery datasets by using keywords in the table description.",
-    "explanation": "Explanation:\nThe correct answer is A. Use Data Catalog to search the BigQuery datasets by using keywords in the table description.\n\nData Catalog is a fully managed service that enables you to search, discover, and manage enterprise data sources, including BigQuery datasets. By using Data Catalog, you can search for BigQuery datasets based on keywords in the table description, which allows you to find the proper BigQuery table to use for your model on AI Platform.\n\nOption B is incorrect because tagging model and version resources on AI Platform with the name of the BigQuery table does not provide a way to search for datasets based on table descriptions.\n\nOption C is incorrect because maintaining a lookup table in BigQuery that maps table descriptions to table IDs requires manual effort and is not a scalable solution for an enterprise-scale company with thousands of datasets.\n\nOption D is incorrect because executing a query in BigQuery to retrieve all existing table names in your project does not provide a way to search for datasets based on table descriptions. Additionally, this approach would require you to manually search through the list of table names to find the desired dataset.\n\nTherefore, the correct answer is A. Use Data Catalog to search the BigQuery datasets by using keywords in the table description.",
-    "references": ""
-  },
-  {
-    "question": "cteristic curve (AUC ROC) value of 99% for training  data after just a few experiments. You haven't exp lored using You started working on a classification problem wit h time series data and achieved an area under the r eceiver operating chara any sophisticated algorithms or spe nt any time on hyperparameter tuning. What should y our next step be to identify and fix the problem?",
-    "options": [
-      "A. Address the model overfitting by using a less com plex algorithm.",
-      "B. Address data leakage by applying nested cross-val idation during model training.",
-      "C. Address data leakage by removing features highly correlated with the target value.",
-      "D. Address the model overfitting by tuning the hyper parameters to reduce the AUC ROC value."
-    ],
-    "correct": "B. Address data leakage by applying nested cross-val idation during model training.",
-    "explanation": "Explanation:\n\nThe correct answer is B. Address data leakage by applying nested cross-validation during model training.\n\nWhen you achieve an AUC ROC value of 99% with just a few experiments, it is likely that there is a problem with the data or the model. One possible explanation is that there is data leakage, which means that the model is using information from the target variable to make predictions. This can happen when the model is trained on data that is not representative of the real-world scenario.\n\nNested cross-validation is a technique that can help identify and fix data leakage. It involves splitting the data into multiple folds, training the model on each fold, and evaluating its performance on the remaining folds. This helps to ensure that the model is not overfitting to the training data and is generalizing well to new, unseen data.\n\nOption A is incorrect because using a less complex algorithm may not necessarily address the problem of data leakage. A simpler model may still be prone to overfitting or data leakage.\n\nOption C is incorrect because removing features highly correlated with the target value may not address the problem of data leakage. Correlated features may be important for the model's performance, and removing them may not fix the issue.\n\nOption D is incorrect because tuning the hyperparameters to reduce the AUC ROC value may not address the problem of data leakage. Hyperparameter tuning can help improve the model's performance, but it may not fix the underlying issue of data leakage.\n\nIn summary, the correct answer is B",
-    "references": ""
-  },
-  {
-    "question": "You have been asked to predict the most relevant we b banner that a user should see next. Security is important to your company. The model latency requir ements are 300ms@p99, the inventory is thousands of web banners, and your exploratory analysis has show n that navigation context is a good predictor. You want to Implement the simplest solution. How should you con figure the prediction pipeline?",
-    "options": [
-      "A. Embed the client on the website, and then deploy the model on AI Platform Prediction.",
-      "B. Embed the client on the website, deploy the gatew ay on App Engine, and then deploy the model on AI",
-      "C. Embed the client on the website, deploy the gatew ay on App Engine, deploy the database on Cloud Bigt able",
-      "D. Embed the client on the website, deploy the gatew ay on App Engine, deploy the database on Memorystor e"
-    ],
-    "correct": "D. Embed the client on the website, deploy the gatew ay on App Engine, deploy the database on Memorystor e",
-    "explanation": "Explanation: \nThe correct answer is D. Embed the client on the website, deploy the gateway on App Engine, deploy the database on Memorystore. \n\nHere's why: \n\n- The client-side embedding is necessary to capture the navigation context. \n- The gateway on App Engine is necessary to handle the HTTP requests and provide a scalable entry point for the prediction pipeline. \n- Memorystore is an in-memory database that can provide low-latency access to the inventory of web banners, which is critical for meeting the 300ms@p99 latency requirement. \n\nThe other options are incorrect because: \n\n- Option A is incorrect because it lacks a gateway to handle HTTP requests, which is necessary for scalability and security. \n- Option B is incorrect because AI Platform Prediction is not designed for low-latency access to inventory data. \n- Option C is incorrect because Cloud Bigtable is a NoSQL database that is not optimized for low-latency access to inventory data.",
-    "references": ""
-  },
-  {
-    "question": "Your team is building a convolutional neural networ k (CNN)-based architecture from scratch. The prelim inary experiments running on your on-premises CPU-only in frastructure were encouraging, but have slow convergence. You have been asked to speed up model training to reduce time-to-market. You want to experiment with virtual machines (VMs) on Google Cl oud to leverage more powerful hardware. Your code d oes not include any manual device placement and has not  been wrapped in Estimator model-level abstraction. Which environment should you train your model on?",
-    "options": [
-      "A. AVM on Compute Engine and 1 TPU with all dependen cies installed manually.",
-      "B. AVM on Compute Engine and 8 GPUs with all depende ncies installed manually.",
-      "C. A Deep Learning VM with an n1-standard-2 machine and 1 GPU with all libraries pre-installed.",
-      "D. A Deep Learning VM with more powerful CPU e2-high cpu-16 machines with all libraries pre-installed."
-    ],
-    "correct": "D. A Deep Learning VM with more powerful CPU e2-high cpu-16 machines with all libraries pre-installed.",
-    "explanation": "Explanation: \n\nThe correct answer is D. A Deep Learning VM with more powerful CPU e2-high cpu-16 machines with all libraries pre-installed.\n\nThe key point here is that the code doesn't include manual device placement and hasn't been wrapped in Estimator model-level abstraction. This means that the model will automatically use the available hardware, which in this case is the CPU.\n\nOption A is incorrect because TPUs are specialized hardware for machine learning and require specific code modifications to utilize them efficiently. Since the code doesn't include manual device placement, it won't be able to take advantage of the TPU.\n\nOption B is incorrect because while the code could potentially use the GPUs, the lack of manual device placement means it won't be able to automatically utilize the 8 GPUs. Additionally, installing dependencies manually can be error-prone and time-consuming.\n\nOption C is incorrect because a single GPU may not provide a significant speedup for the model training, especially if the code is not optimized to use the GPU efficiently.\n\nOption D is correct because the e2-high cpu-16 machine provides a more powerful CPU, which can significantly speed up model training. Additionally, the Deep Learning VM comes with all the necessary libraries pre-installed, making it easy to get started with model training.",
-    "references": ""
-  },
-  {
-    "question": "You work on a growing team of more than 50 data sci entists who all use AI Platform. You are designing a strategy to organize your jobs, models, and version s in a clean and scalable way. Which strategy shoul d you choose?",
-    "options": [
-      "A. Set up restrictive IAM permissions on the AI Plat form notebooks so that only a single user or group can",
-      "B. Separate each data scientist's work into a differ ent project to ensure that the jobs, models, and ve rsions",
-      "C. Use labels to organize resources into descriptive  categories. Apply a label to each created resource  so that"
-    ],
-    "correct": "C. Use labels to organize resources into descriptive  categories. Apply a label to each created resource  so that",
-    "explanation": "Explanation:\nThe correct answer is C. Use labels to organize resources into descriptive categories. Apply a label to each created resource so that. This strategy is recommended because it allows for flexibility and scalability as the team grows. Labels can be used to categorize resources by data scientist, project, or any other relevant category, making it easy to filter, search, and manage resources. This approach also enables easy tracking of resources and versions.\n\nOption A is incorrect because setting up restrictive IAM permissions would limit collaboration and hinder the scalability of the team. It would also create unnecessary administrative overhead.\n\nOption B is incorrect because separating each data scientist's work into a different project would lead to project proliferation, making it difficult to manage and track resources. This approach would also result in unnecessary duplication of resources and increased costs.\n\nIn summary, using labels to organize resources into descriptive categories is the most scalable and flexible approach, allowing for easy management and tracking of resources, and enabling collaboration among data scientists.",
-    "references": ""
-  },
-  {
-    "question": "You are training a deep learning model for semantic  image segmentation with reduced training time. Whi le using a Deep Learning VM Image, you receive the fol lowing error: The resource 'projects/deeplearning-p latforn/ zones/europe-west4-c/acceleratorTypes/nvidia-tesla- k80' was not found. What should you do?",
-    "options": [
-      "A. Ensure that you have GPU quota in the selected re gion.",
-      "B. Ensure that the required GPU is available in the selected region.",
-      "C. Ensure that you have preemptible GPU quota in the  selected region.",
-      "D. Ensure that the selected GPU has enough GPU memor y for the workload."
-    ],
-    "correct": "A. Ensure that you have GPU quota in the selected re gion.",
-    "explanation": "Explanation:\nThe correct answer is A. Ensure that you have GPU quota in the selected region. This error occurs when the GPU accelerator type is not available in the region you are trying to use. To resolve this issue, you need to ensure that you have a sufficient quota for the NVIDIA Tesla K80 GPU accelerator type in the europe-west4-c region. This can be done by going to the IAM & Admin > Quotas page in the Google Cloud Console and checking the quota for NVIDIA Tesla K80 GPUs in the europe-west4-c region.\n\nOption B is incorrect because even if the required GPU is available in the selected region, if you do not have a sufficient quota, you will still receive this error. Option C is incorrect because preemptible GPU quota is not related to this error. Option D is incorrect because the error does not indicate that the selected GPU has insufficient memory for the workload.",
-    "references": ""
-  },
-  {
-    "question": "Your team is working on an NLP research project to predict political affiliation of authors based on a rticles they have written. You have a large training dataset tha t is structured like this: You followed the standard 80%-10%-10% data distribu tion across the training, testing, and evaluation s ubsets. How should you distribute the training examples acr oss the train-test-eval subsets while maintaining t he 80-10- 10 proportion? A. Distribute texts randomly across the train-test-e val subsets: Train set: [TextA1, TextB2, ...] Test set: [TextA2, TextC1, TextD2, ...] Eval set: [TextB1, TextC2, TextD1, ...]",
-    "options": [
-      "B. Distribute authors randomly across the train-test -eval subsets: (*)",
-      "C. Distribute sentences randomly across the train-te st-eval subsets:",
-      "D. Distribute paragraphs of texts (i.e., chunks of c onsecutive sentences) across the train-test-eval su bsets:"
-    ],
-    "correct": "B. Distribute authors randomly across the train-test -eval subsets: (*)",
-    "explanation": "Explanation:\nThe correct answer is B. Distribute authors randomly across the train-test-eval subsets. This is because the goal of the NLP research project is to predict the political affiliation of authors based on the articles they have written. To achieve this, the model needs to learn the patterns and characteristics of each author's writing style, which is unique to each author. By distributing authors randomly across the train-test-eval subsets, the model will be trained on a diverse range of authors and will be able to generalize better to new, unseen authors.\n\nOption A is incorrect because distributing texts randomly across the subsets would not ensure that the model is trained on a diverse range of authors. It's possible that multiple texts from the same author could end up in the same subset, which would not allow the model to learn from different authors.\n\nOption C is also incorrect because distributing sentences randomly across the subsets would not capture the author's writing style, which is a key factor in predicting political affiliation. Sentences from different authors may have similar structures or wording, but the author's overall style and tone would be lost.\n\nOption D is incorrect because distributing paragraphs of texts across the subsets would not provide a comprehensive view of the author's writing style. Paragraphs may be similar within an article, but the author's overall style and tone may vary across different articles.\n\nTherefore, the correct answer is B, which ensures that the model is trained on a diverse range of authors and can generalize better to new, unseen authors.",
-    "references": ""
-  },
-  {
-    "question": "Your team has been tasked with creating an ML solut ion in Google Cloud to classify support requests fo r one of your platforms. You analyzed the requirements and d ecided to use TensorFlow to build the classifier so  that you have full control of the model's code, serving,  and deployment. You will use Kubeflow pipelines fo r the ML platform. To save time, you want to build on existi ng resources and use managed services instead of bu ilding a completely new model. How should you build the clas sifier?",
-    "options": [
-      "A. Use the Natural Language API to classify support requests.",
-      "B. Use AutoML Natural Language to build the support requests classifier.",
-      "C. Use an established text classification model on A I Platform to perform transfer learning.",
-      "D. Use an established text classification model on A I Platform as-is to classify support requests."
-    ],
-    "correct": "C. Use an established text classification model on A I Platform to perform transfer learning.",
-    "explanation": "Explanation:\n\nThe correct answer is C. Use an established text classification model on AI Platform to perform transfer learning. \n\nThis option is correct because it allows the team to leverage an existing model that has already been trained on a large dataset, and fine-tune it for their specific use case. This approach is known as transfer learning, and it can save time and resources compared to building a model from scratch. By using an established model on AI Platform, the team can take advantage of the pre-trained weights and architecture, and adapt it to their specific needs.\n\nOption A is incorrect because the Natural Language API is a pre-trained model that is not customizable, and it may not provide the level of control and flexibility that the team needs for their specific use case.\n\nOption B is incorrect because AutoML Natural Language is a fully automated machine learning service that builds models from scratch, which may not be the best approach if the team wants to leverage existing resources and have full control over the model's code, serving, and deployment.\n\nOption D is incorrect because using an established model as-is without fine-tuning it for the specific use case may not provide the best results, and may not adapt well to the specific characteristics of the support requests data.",
-    "references": ""
-  },
-  {
-    "question": "are asked to determine the production readiness of the ML components. The team has already tested feat ures and data, model development, and infrastructure. Wh ich additional readiness check should you recommend  to the team?",
-    "options": [
-      "A. Ensure that training is reproducible.",
-      "B. Ensure that all hyperparameters are tuned.",
-      "C. Ensure that model performance is monitored.",
-      "D. Ensure that feature expectations are captured in the schema."
-    ],
-    "correct": "A. Ensure that training is reproducible.",
-    "explanation": "Explanation:\nThe correct answer is A. Ensure that training is reproducible. This is because reproducibility is a critical aspect of machine learning (ML) production readiness. Reproducibility means that the model training process should be able to produce the same results consistently, given the same inputs and conditions. This ensures that the model is reliable and can be trusted to make accurate predictions in production.\n\nOption B, Ensure that all hyperparameters are tuned, is incorrect because while hyperparameter tuning is an important aspect of ML model development, it is not a critical aspect of production readiness. Hyperparameter tuning is typically done during the model development phase, and it is assumed that the team has already completed this step.\n\nOption C, Ensure that model performance is monitored, is incorrect because while monitoring model performance is important for ensuring that the model is performing well in production, it is not a critical aspect of production readiness. Model performance monitoring is typically done after the model has been deployed to production.\n\nOption D, Ensure that feature expectations are captured in the schema, is incorrect because while capturing feature expectations in the schema is an important aspect of data preparation, it is not a critical aspect of production readiness. This step is typically done during the data preparation phase, and it is assumed that the team has already completed this step.\n\nIn summary, ensuring that training is reproducible is a critical aspect of ML production readiness, and it is the correct answer. The other options are important aspects of ML model development and deployment, but",
-    "references": ""
-  },
-  {
-    "question": "You work for a credit card company and have been as ked to create a custom fraud detection model based on historical data using AutoML Tables. You need to pr ioritize detection of fraudulent transactions while  minimizing false positives. Which optimization objective should you use when tr aining the model?",
-    "options": [
-      "A. An optimization objective that minimizes Log loss",
-      "B. An optimization objective that maximizes the Prec ision at a Recall value of 0.50",
-      "C. An optimization objective that maximizes the area  under the precision-recall curve (AUC PR) value",
-      "D. An optimization objective that maximizes the area  under the receiver operating characteristic curve (AUC"
-    ],
-    "correct": "D. An optimization objective that maximizes the area  under the receiver operating characteristic curve (AUC",
-    "explanation": "Explanation:\nThe correct answer is D. An optimization objective that maximizes the area under the receiver operating characteristic curve (AUC ROC).\n\nIn the context of fraud detection, it's essential to prioritize the detection of fraudulent transactions while minimizing false positives. The AUC ROC (Area Under the Receiver Operating Characteristic Curve) is a suitable optimization objective for this task.\n\nAUC ROC measures the model's ability to distinguish between positive (fraudulent) and negative (legitimate) classes. A higher AUC ROC value indicates better performance in detecting fraudulent transactions while minimizing false positives. This is because the ROC curve plots the True Positive Rate against the False Positive Rate at different thresholds, and the AUC ROC represents the model's performance across all possible thresholds.\n\nNow, let's discuss why the other options are incorrect:\n\nA. Minimizing Log loss is not the best optimization objective for this task. Log loss is a measure of the difference between predicted probabilities and true labels, but it doesn't directly address the trade-off between detection of fraudulent transactions and false positives.\n\nB. Maximizing Precision at a Recall value of 0.50 is not suitable because it focuses on a specific operating point (Recall = 0.50) rather than considering the model's performance across all possible thresholds. This might lead to suboptimal performance in detecting fraudulent transactions or minimizing false positives.\n\nC. Maximizing the AUC PR (Area Under the Precision-Recall Curve) value is not the best choice either",
-    "references": ""
-  },
-  {
-    "question": "Your company manages a video sharing website where users can watch and upload videos. You need to create an ML model to predict which newly uploaded videos will be the most popular so that those video s can be prioritized on your company's website. Which res ult should you use to determine whether the model i s successful?",
-    "options": [
-      "A. The model predicts videos as popular if the user who uploads them has over 10,000 likes.",
-      "B. The model predicts 97.5% of the most popular clic kbait videos measured by number of clicks.",
-      "C. The model predicts 95% of the most popular videos  measured by watch time within 30 days of being",
-      "D. The Pearson correlation coefficient between the l og-transformed number of views after 7 days and 30 days"
-    ],
-    "correct": "",
-    "explanation": "D. The Pearson correlation coefficient between the log-transformed number of views after 7 days and 30 days\n\nExplanation:\n\nThe correct answer is option D. The Pearson correlation coefficient between the log-transformed number of views after 7 days and 30 days. This is because the goal is to predict which newly uploaded videos will be the most popular, and popularity is often measured by the number of views. The Pearson correlation coefficient measures the linear correlation between two continuous variables, in this case, the number of views after 7 days and 30 days. By log-transforming the number of views, we can reduce the effect of extreme outliers and make the distribution more normal. A high correlation coefficient (close to 1) would indicate that the model is successful in predicting popular videos.\n\nNow, let's explain why the other options are incorrect:\n\nOption A is incorrect because it only considers the number of likes of the user who uploads the video, which may not be a good indicator of the video's popularity. A user with many likes may upload a video that is not popular, and vice versa.\n\nOption B is incorrect because it only considers the number of clicks, which may not be the best measure of popularity. A video may have many clicks but not be watched for long, or it may have few clicks but be watched repeatedly.\n\nOption C is incorrect because it only considers the watch time within 30 days, which may not capture the full picture of a video's popularity. A video may",
-    "references": ""
-  },
-  {
-    "question": "You are working on a Neural Network-based project. The dataset provided to you has columns with differ ent ranges. While preparing the data for model training , you discover that gradient optimization is having  difficulty moving weights to a good solution. What should you do?",
-    "options": [
-      "A. Use feature construction to combine the strongest  features.",
-      "B. Use the representation transformation (normalizat ion) technique.",
-      "C. Improve the data cleaning step by removing featur es with missing values.",
-      "D. Change the partitioning step to reduce the dimens ion of the test set and have a larger training set."
-    ],
-    "correct": "B. Use the representation transformation (normalizat ion) technique.",
-    "explanation": "Explanation: \nThe correct answer is B. Use the representation transformation (normalization) technique. \n\nWhen dealing with datasets that have columns with different ranges, it can cause issues with gradient optimization during model training. This is because the model is trying to move weights in different directions and scales, making it difficult to converge to a good solution. \n\nNormalization, also known as feature scaling, is a technique that transforms the features to have similar ranges, usually between 0 and 1. This helps the model to move weights in a more consistent and efficient manner, allowing it to converge to a better solution.\n\nOption A is incorrect because feature construction is a technique used to create new features from existing ones, which may not necessarily solve the issue of different ranges in the dataset.\n\nOption C is incorrect because removing features with missing values may help with data cleaning, but it does not address the issue of different ranges in the dataset.\n\nOption D is incorrect because changing the partitioning step to reduce the dimension of the test set and have a larger training set may affect the model's performance, but it does not address the issue of different ranges in the dataset.\n\nTherefore, the correct answer is B, using the representation transformation (normalization) technique to transform the features to have similar ranges, which helps the model to converge to a better solution during training.",
-    "references": ""
-  },
-  {
-    "question": "Your data science team needs to rapidly experiment with various features, model architectures, and hyperparameters. They need to track the accuracy me trics for various experiments and use an API to que ry the metrics over time. What should they use to track an d report their experiments while minimizing manual effort?",
-    "options": [
-      "A. Use Kubeflow Pipelines to execute the experiments . Export the metrics file, and query the results us ing the",
-      "B. Use AI Platform Training to execute the experimen ts. Write the accuracy metrics to BigQuery, and que ry",
-      "C. Use AI Platform Training to execute the experimen ts. Write the accuracy metrics to Cloud Monitoring,  and",
-      "D. Use AI Platform Notebooks to execute the experime nts. Collect the results in a shared Google Sheets file,"
-    ],
-    "correct": "A. Use Kubeflow Pipelines to execute the experiments . Export the metrics file, and query the results us ing the",
-    "explanation": "Explanation: \n\nThe correct answer is A. Use Kubeflow Pipelines to execute the experiments. Export the metrics file, and query the results using the Kubeflow Pipelines API. \n\nThe reason for this is that Kubeflow Pipelines is designed specifically for machine learning (ML) experimentation and tracking. It provides a robust way to execute, track, and manage ML experiments, including features, model architectures, and hyperparameters. By using Kubeflow Pipelines, the data science team can easily execute their experiments, track the accuracy metrics, and query the results over time using the Kubeflow Pipelines API. This minimizes manual effort and provides a scalable and reproducible way to manage ML experiments.\n\nOption B is incorrect because while AI Platform Training can execute experiments, it is not designed for tracking and querying metrics over time. Writing the accuracy metrics to BigQuery would require additional processing and querying, which is not as efficient as using Kubeflow Pipelines.\n\nOption C is also incorrect because Cloud Monitoring is primarily used for monitoring and logging application performance, not for tracking ML experiment metrics. \n\nOption D is incorrect because AI Platform Notebooks are designed for interactive data exploration and prototyping, not for executing and tracking ML experiments at scale. Collecting results in a shared Google Sheets file would require manual effort and is not a scalable solution.",
-    "references": ""
-  },
-  {
-    "question": "includes transactions, of which 1% are identified a s fraudulent. Which data transformation strategy wo uld likely improve the performance of your classifier?",
-    "options": [
-      "A. Write your data in TFRecords.",
-      "B. Z-normalize all the numeric features.",
-      "C. Oversample the fraudulent transaction 10 times.",
-      "D. Use one-hot encoding on all categorical features."
-    ],
-    "correct": "C. Oversample the fraudulent transaction 10 times.",
-    "explanation": "Explanation:\nThe correct answer is C. Oversample the fraudulent transaction 10 times. This is because the dataset is heavily imbalanced, with only 1% of transactions being identified as fraudulent. This imbalance can lead to biased models that are not effective in detecting fraudulent transactions. By oversampling the fraudulent transactions, we can increase the number of examples of the minority class, which can help improve the performance of the classifier.\n\nOption A, writing data in TFRecords, is not directly related to improving the performance of the classifier. TFRecords is a file format used for storing and loading data in TensorFlow, but it does not address the issue of class imbalance.\n\nOption B, z-normalizing all numeric features, is a preprocessing step that can help improve the performance of some machine learning algorithms, but it does not address the issue of class imbalance.\n\nOption D, using one-hot encoding on all categorical features, is a preprocessing step that can help improve the performance of some machine learning algorithms, but it does not address the issue of class imbalance.\n\nTherefore, the correct answer is C, oversampling the fraudulent transactions 10 times, which can help improve the performance of the classifier by addressing the issue of class imbalance.",
-    "references": ""
-  },
-  {
-    "question": "You are developing an ML model intended to classify  whether X-Ray images indicate bone fracture risk. You have trained on Api Resnet architecture on Vertex A I using a TPU A. accelerator, however you are unsat isfied with the trainning time and use memory usage. You w ant to quickly iterate your training code but make minimal changes to the code. You also want to minimize impa ct on the models accuracy. What should you do?",
-    "options": [
-      "A. Configure your model to use bfloat 16 instead flo at32",
-      "B. Reduce the global batch size from 1024 to 256",
-      "C. Reduce the number of layers in the model architec ture",
-      "D. Reduce the dimensions of the images used un the m odel"
-    ],
-    "correct": "B. Reduce the global batch size from 1024 to 256",
-    "explanation": "Explanation:\n\nThe correct answer is B. Reduce the global batch size from 1024 to 256. This is because batch size directly affects the memory usage and training time of the model. A larger batch size requires more memory and increases the training time. Reducing the batch size will reduce the memory usage and training time, allowing for faster iteration of the training code. \n\nMoreover, reducing the batch size will have a minimal impact on the model's accuracy, especially if the model is already trained on a large dataset. \n\nNow, let's discuss why the other options are incorrect:\n\nA. Configuring the model to use bfloat16 instead of float32 will reduce the memory usage but it may also reduce the model's accuracy. This is because bfloat16 has a lower precision than float32, which may affect the model's ability to capture complex patterns in the data. \n\nC. Reducing the number of layers in the model architecture will likely reduce the model's accuracy. This is because the model will have fewer opportunities to learn complex patterns in the data, resulting in a less accurate model.\n\nD. Reducing the dimensions of the images used in the model will also likely reduce the model's accuracy. This is because the model will have less information to work with, making it more difficult to accurately classify the images.\n\nIn summary, reducing the global batch size is the best option because it will reduce the memory usage and training time while having a minimal impact on the model's accuracy.",
-    "references": ""
-  },
-  {
-    "question": "Your task is classify if a company logo is present on an image. You found out that 96% of a data does not include a logo. You are dealing with data imbalance  problem. Which metric do you use to evaluate to mo del?",
-    "options": [
-      "A. F1 Score",
-      "B. RMSE",
-      "C. F Score with higher precision weighting than reca ll",
-      "D. F Score with higher recall weighted than precisio n"
-    ],
-    "correct": "",
-    "explanation": "I will provide the correct answer and you will explain why it is the correct answer and why the other options are incorrect.\n\nCorrect Answer: 1. A. F1 Score\n\nExplanation:\n\nThe correct answer is the F1 Score because it is a suitable metric for evaluating the model when dealing with data imbalance problems. In this case, 96% of the data does not include a logo, which means that the model is biased towards the negative class (no logo). The F1 Score is a harmonic mean of precision and recall, which makes it a more balanced metric compared to precision or recall alone. \n\nThe F1 Score is particularly useful when dealing with data imbalance because it gives equal weight to precision and recall. This means that the model is penalized equally for false positives (predicting a logo when there isn't one) and false negatives (not predicting a logo when there is one). \n\nNow, let's discuss why the other options are incorrect:\n\nOption B. RMSE (Root Mean Squared Error) is a metric typically used for regression problems, not classification problems. It measures the average magnitude of the error, but it's not suitable for evaluating a model that predicts the presence or absence of a logo.\n\nOption C. F Score with higher precision weighting than recall is not suitable because, in this case, we want to give equal weight to precision and recall. If we give higher weight to precision, the model will be biased towards avoiding false positives, which may lead to more",
-    "references": ""
-  },
-  {
-    "question": "You need to train a regression model based on a dat aset containing 50,000 records that is stored in Bi gQuery. The data includes a total of20 categorical and nume rical features with a target variable that can incl ude negative values. You need to minimize effort and tr aining time while maximizing model performance. Wha t approach should you take to train this regression m odel? A. Create a custom TensorFlow DNN model.",
-    "options": [
-      "B. Use BQML XGBoost regression to train the model",
-      "C. Use AutoML Tables to train the model without earl y stopping.",
-      "D. Use AutoML Tables to train the model with RMSLE a s the optimization objective"
-    ],
-    "correct": "B. Use BQML XGBoost regression to train the model",
-    "explanation": "Explanation:\n\nThe correct answer is B. Use BQML XGBoost regression to train the model. This is because BQML XGBoost regression is a scalable and efficient algorithm for training regression models on large datasets like the one described (50,000 records). XGBoost is particularly well-suited for handling categorical and numerical features, and it can handle negative target values. Additionally, BQML XGBoost regression is a fully managed service that integrates with BigQuery, making it easy to train and deploy models with minimal effort and training time.\n\nOption A is incorrect because creating a custom TensorFlow DNN model would require significant effort and expertise, and may not be the most efficient approach for training a regression model on a large dataset.\n\nOption C is incorrect because while AutoML Tables can be used to train regression models, it may not be the most suitable approach for this specific problem. AutoML Tables is a general-purpose automated machine learning service that may not be optimized for regression problems with large datasets. Additionally, without early stopping, the training process may take longer and may not converge to an optimal solution.\n\nOption D is incorrect because while AutoML Tables can be used with RMSLE as the optimization objective, it may not be the most suitable approach for this specific problem. RMSLE is a loss function that is commonly used for regression problems, but it may not be the best choice for this specific problem. XGBoost regression is a more suitable approach that can handle the specific requirements of the",
-    "references": ""
-  },
-  {
-    "question": "Your data science team has requested a system that supports scheduled model retraining, Docker contain ers, and a service that supports autoscaling and monitor ing for online prediction requests. Which platform components should you choose for thi s system?",
-    "options": [
-      "A. Kubetlow Pipelines and App Engine",
-      "B. Kubetlow Pipelines and AI Platform Prediction",
-      "C. Cloud Composer, BigQuery ML , and AI Platform Pre diction",
-      "D. Cloud Composer, AI Platform Training with custom containers , and App Engine"
-    ],
-    "correct": "B. Kubetlow Pipelines and AI Platform Prediction",
-    "explanation": "Explanation:\nKubeflow Pipelines is designed for machine learning (ML) workflows, allowing the creation, deployment, and management of ML pipelines. It supports Docker containers, which aligns with the requirement for Docker containers. AI Platform Prediction is a managed service for online prediction requests, providing autoscaling and monitoring capabilities, which meets the requirements for autoscaling and monitoring.\n\nOption A is incorrect because App Engine is not designed for online prediction requests, and it does not provide autoscaling and monitoring capabilities.\n\nOption C is incorrect because BigQuery ML is a machine learning service that allows users to create and execute machine learning models in BigQuery, but it does not support Docker containers or autoscaling and monitoring for online prediction requests.\n\nOption D is incorrect because Cloud Composer is a workflow orchestration service, and AI Platform Training with custom containers does not provide autoscaling and monitoring capabilities for online prediction requests. App Engine is not suitable for online prediction requests.\n\nTherefore, the correct answer is B. Kubeflow Pipelines and AI Platform Prediction.",
-    "references": ""
-  },
-  {
-    "question": "You work for a global footwear retailer and need to  predict when an item will be out of stock based on  historical inventory data. Customer behavior is highly dynamic  since footwear demand is influenced by many differ ent factors. You want to serve models that are trained on all available data, but track your performance o n specific subsets of data before pushing to production. What is the most streamlined and reliable way to perfonn this validation?",
-    "options": [
-      "A. Use the TFX ModeiValidator tools to specify perfo rmance metrics for production readiness",
-      "B. Use k-fold cross-validation as a validation strat egy to ensure that your model is ready for producti on.",
-      "C. Use the last relevant week of data as a validatio n set to ensure that your model is performing accur ately on",
-      "D. Use the entire dataset and treat the area under t he receiver operating characteristics curve (AUC RO C) as"
-    ],
-    "correct": "A. Use the TFX ModeiValidator tools to specify perfo rmance metrics for production readiness",
-    "explanation": "Explanation:\n\nThe correct answer is A. Use the TFX ModeiValidator tools to specify performance metrics for production readiness.\n\nTFX (TensorFlow Extended) is an end-to-end machine learning platform that provides a suite of tools for building, deploying, and managing machine learning models. The ModelValidator tool in TFX is specifically designed for validating machine learning models before deploying them to production. It allows you to specify performance metrics and validate your model on specific subsets of data, ensuring that it meets the required standards before pushing it to production.\n\nOption B, k-fold cross-validation, is a technique used to evaluate the performance of a machine learning model by splitting the data into multiple folds and training the model on each fold separately. While it's a useful technique for model evaluation, it's not specifically designed for validating models before production.\n\nOption C, using the last relevant week of data as a validation set, is a simplistic approach that may not capture the dynamic nature of customer behavior. It may not provide a comprehensive view of the model's performance, especially if the data is highly variable.\n\nOption D, using the entire dataset and treating the area under the receiver operating characteristics curve (AUC ROC) as a performance metric, is also not suitable for this scenario. While AUC ROC is a useful metric for evaluating model performance, using the entire dataset for validation may not provide a realistic view of the model's performance on new, unseen data.\n\nIn summary, the TFX ModelValidator tool is the most streamlined",
-    "references": ""
-  },
-  {
-    "question": "During batch training of a neural network, you noti ce that there is an oscillation in the loss. How sh ould you adjust your model to ensure that it converges?",
-    "options": [
-      "A. Increase the size of the training batch B. Decrease the size of the training batch",
-      "C. Increase the learning rate hyperparameter",
-      "D. Decrease the learning rate hyperparameter"
-    ],
-    "correct": "C. Increase the learning rate hyperparameter",
-    "explanation": "Explanation: \n\nThe correct answer is actually D. Decrease the learning rate hyperparameter. \n\nHere's why: \n\nWhen the loss oscillates during batch training of a neural network, it usually indicates that the learning rate is too high. This causes the model to overshoot the optimal solution, resulting in oscillations in the loss. \n\nDecreasing the learning rate helps to reduce the step size of each update, allowing the model to converge more smoothly. \n\nNow, let's discuss why the other options are incorrect: \n\nOption A, increasing the size of the training batch, might help to reduce the oscillations, but it's not a direct solution to the problem. \n\nOption B, decreasing the size of the training batch, is unlikely to help, as smaller batches can lead to more oscillations due to increased variance in the gradient estimates. \n\nOption C, increasing the learning rate, would likely make the oscillations worse, as it would cause the model to take even larger steps and overshoot the optimal solution even more.",
-    "references": ""
-  },
-  {
-    "question": "You are building a linear model with over 100 input  features, all with values between -1 and I . You s uspect that many features are non-informative. You want to remo ve the non-informative features from your model whi le keeping the informative ones in their original form . Which technique should you use?",
-    "options": [
-      "A. Use Principal Component Analysis to eliminate the  least informative features.",
-      "B. Use L l regularization to reduce the coefficients  of uninformative features to 0.",
-      "C. After building your model, use Shapley values to determine which features are the most informative.",
-      "D. Use an iterative dropout technique to identify wh ich features do not degrade the model when removed."
-    ],
-    "correct": "B. Use L l regularization to reduce the coefficients  of uninformative features to 0.",
-    "explanation": "Explanation:\n\nThe correct answer is indeed B. Use L1 regularization to reduce the coefficients of uninformative features to 0.\n\nL1 regularization, also known as Lasso regularization, is a technique used in linear regression to reduce overfitting by adding a penalty term to the loss function. The penalty term is proportional to the absolute value of the model coefficients. This encourages the model to set the coefficients of non-informative features to zero, effectively removing them from the model.\n\nThe reason why L1 regularization is suitable for this task is that it performs feature selection by setting the coefficients of non-informative features to zero. This is exactly what we want to achieve: remove the non-informative features from the model while keeping the informative ones in their original form.\n\nNow, let's explain why the other options are incorrect:\n\nA. Principal Component Analysis (PCA) is a dimensionality reduction technique that transforms the original features into a new set of orthogonal features called principal components. While PCA can help reduce the number of features, it does not perform feature selection. It transforms all features, informative and non-informative, into new components. Therefore, it is not suitable for removing non-informative features while keeping the informative ones in their original form.\n\nC. Shapley values are a technique used to explain the predictions of a machine learning model by assigning a value to each feature for a specific prediction. While Shapley values can help identify the most informative features, they do",
-    "references": ""
-  },
-  {
-    "question": "You are an ML engineer at a bank that has a mobile application. Management has asked you to build an M L- based biometric authentication for the app that ver ifies a customer's identity based on their fingerpr int. Fingerprints are considered highly sensitive person al information and cannot be downloaded and stored into the bank databases. Which learning strategy should you recommend to train and deploy this ML model?",
-    "options": [
-      "A. Differential privacy",
-      "B. Federated learning",
-      "C. MD 5 to encrypt data",
-      "D. Data Loss Prevention API"
-    ],
-    "correct": "B. Federated learning",
-    "explanation": "Explanation:\n\nThe correct answer is B. Federated learning. Federated learning is a distributed learning strategy that allows multiple parties to collaborate on a machine learning model without sharing their respective data sets. This approach allows the bank to train the ML model on the customers' mobile devices without collecting their fingerprint data. The model learns from the data on the devices and updates are sent to the server. This ensures that the sensitive fingerprint data remains on the device and is not transmitted to the bank's servers.\n\nOption A, Differential privacy, is a technique used to protect the privacy of individuals in a dataset. While it can be used to protect sensitive data, it is not a learning strategy that can be used to train a model on decentralized data.\n\nOption C, MD5 to encrypt data, is a hash function that can be used to encrypt data, but it is not a learning strategy. Additionally, encryption alone is not sufficient to protect sensitive data in this scenario, as the encrypted data would still need to be transmitted to the bank's servers.\n\nOption D, Data Loss Prevention API, is a set of tools and policies used to detect and prevent unauthorized access to sensitive data. While it can be used to protect sensitive data, it is not a learning strategy that can be used to train a model on decentralized data.\n\nIn summary, federated learning is the correct answer because it allows the bank to train an ML model on the customers' mobile devices without collecting their sensitive fingerprint data, ensuring that the data remains private and",
-    "references": ""
-  },
-  {
-    "question": "You are building a linear regression model on BigQu ery ML to predict a customer's likelihood of purcha sing your company's products. Your model uses a city nam e variable as a key predictive component. In order to train and serve the model, your data must be organi zed in columns. You want to prepare your data using  the least amount of coding while maintaining the predic table variables. What should you do?",
-    "options": [
-      "A. Create a new view with BigQuery that does not inc lude a column with city information",
-      "B. Use Dataprep to transform the state column using a one-hot encoding method, and make each city a column with binary values.",
-      "C. Use Cloud Data Fusion to assign each city to a re gion labeled as 1, 2, 3, 4, or 5r and then use that  number",
-      "D. Use Tensorflow to create a categorical variable w ith a vocabulary list Create the vocabulary file, a nd upload"
-    ],
-    "correct": "C. Use Cloud Data Fusion to assign each city to a re gion labeled as 1, 2, 3, 4, or 5r and then use that  number",
-    "explanation": "Explanation:\nThe correct answer is C. Use Cloud Data Fusion to assign each city to a region labeled as 1, 2, 3, 4, or 5 and then use that number. This approach is suitable because it allows you to maintain the predictive variables while organizing the data in columns. By assigning each city to a region, you can create a numerical column that can be used in the linear regression model.\n\nOption A is incorrect because creating a new view without the city information column would remove a key predictive component from the model.\n\nOption B is incorrect because one-hot encoding would create multiple columns for each city, which would increase the dimensionality of the data and make it difficult to train the model.\n\nOption D is incorrect because creating a categorical variable using TensorFlow would require additional coding and processing, which goes against the requirement of using the least amount of coding. Additionally, using a vocabulary list would not allow you to maintain the predictive variables in a columnar format.\n\nTherefore, the correct answer is C, which uses Cloud Data Fusion to assign each city to a region and then uses that number to create a numerical column that can be used in the linear regression model.",
-    "references": ""
-  },
-  {
-    "question": "You work for a toy manufacturer that has been exper iencing a large increase in demand. You need to bui ld an ML model to reduce the amount of time spent by qual ity control inspectors checking for product defects . Faster defect detection is a priority. The factory does no t have reliable Wi-Fi. Your company wants to implem ent the new ML model as soon as possible. Which model shoul d you use?",
-    "options": [
-      "A. AutoML Vision model",
-      "B. AutoML Vision Edge mobile-versatile-! model",
-      "C. AutoML Vision Edge mobile-low-latency-! model",
-      "D. AutoML Vision Edge mobile-high-accuracy- I model"
-    ],
-    "correct": "A. AutoML Vision model",
-    "explanation": "Explanation: The correct answer is A. AutoML Vision model. This is because the factory does not have reliable Wi-Fi and the priority is to implement the new ML model as soon as possible. AutoML Vision model is a cloud-based model that can be trained and deployed quickly, , which meets the priority of implementing the model as soon as possible. The other options are incorrect because they are edge models that require reliable Wi-Fi to function, which is not available in the factory.\n\nDo you agree with the explanation?",
-    "references": ""
-  },
-  {
-    "question": "You are going to train a DNN regression model with Keras APis using this code: How many trainable weights does your model have? (T he arithmetic below is correct.)",
-    "options": [
-      "A. 501 *256+257* 128+2 = 161154",
-      "B. 500*256+256* 128+ 128*2 = 161024",
-      "C. 501*256+257*128+128*2=161408",
-      "D. 500*256*0 25+256* 128*0 25+ 128*2 = 40448"
-    ],
-    "correct": "C. 501*256+257*128+128*2=161408",
-    "explanation": "Explanation:\nThe correct answer is C. 501*256+257*128+128*2=161408. \n\nThe given code is for a deep neural network (DNN) regression model using Keras APIs. To calculate the number of trainable weights, we need to consider the number of weights in each layer. \n\nIn the first layer (input layer), there are 501 inputs, and each input is connected to 256 neurons in the hidden layer. So, there are 501*256 weights in this layer. \n\nIn the second layer (hidden layer), there are 257 neurons (including the bias term), and each neuron is connected to 128 neurons in the output layer. So, there are 257*128 weights in this layer. \n\nFinally, in the output layer, there are 128 neurons, and each neuron is connected to 2 outputs. So, there are 128*2 weights in this layer. \n\nAdding up the weights from all layers, we get the total number of trainable weights as 501*256+257*128+128*2=161408. \n\nOption A is incorrect because it does not include the bias term in the hidden layer. \n\nOption B is incorrect because it assumes there are 500 inputs in the input layer, which is not the case. \n\nOption D is incorrect because it multiplies the number of weights by 0.25, which is not the correct calculation.",
-    "references": ""
-  },
-  {
-    "question": "You recently designed and built a custom neural net work that uses critical dependencies specific to yo ur organization's framework. You need to train the mod el using a managed training service on Google Cloud . However, the ML framework and related dependencies are not supported by Al Platform Training. Also, bo th your model and your data are too large to fit in me mory on a single machine. Your ML framework of choi ce uses the scheduler, workers, and servers distributi on structure. What should you do? A. Use a built-in model available on AI Platform Tra ining",
-    "options": [
-      "B. Build your custom container to run jobs on AI Pla tform Training",
-      "C. Build your custom containers to run distributed t raining jobs on Al Platform Training",
-      "D. Reconfigure your code to a ML framework with depe ndencies that are supported by AI Platform Training"
-    ],
-    "correct": "C. Build your custom containers to run distributed t raining jobs on Al Platform Training",
-    "explanation": "Explanation:\n\nThe correct answer is C. Build your custom containers to run distributed training jobs on AI Platform Training. \n\nThis option is correct because it addresses the specific requirements of the problem. The custom neural network uses critical dependencies specific to the organization's framework, which are not supported by AI Platform Training. Additionally, the model and data are too large to fit in memory on a single machine. \n\nBy building custom containers to run distributed training jobs on AI Platform Training, you can package your custom ML framework and its dependencies, and then use AI Platform Training to distribute the training workload across multiple machines. This approach allows you to utilize the scalability and flexibility of AI Platform Training while still using your custom ML framework.\n\nOption A is incorrect because it suggests using a built-in model available on AI Platform Training, which does not address the custom dependencies and large model/data requirements.\n\nOption B is incorrect because it suggests building a custom container to run jobs on AI Platform Training, but it does not account for the distributed training requirement.\n\nOption D is incorrect because it suggests reconfiguring the code to use a ML framework with dependencies that are supported by AI Platform Training, which may not be feasible or desirable, especially if the custom framework is critical to the organization's workflow.",
-    "references": ""
-  },
-  {
-    "question": "You are an ML engineer in the contact center of a l arge enterprise. You need to build a sentiment anal ysis tool that predicts customer sentiment from recorded phon e conversations. You need to identify the best appr oach to building a model while ensuring that the gender, ag e, and cultural differences of the customers who ca lled the contact center do not impact any stage of the model  development pipeline and results. What should you do?",
-    "options": [
-      "A. Extract sentiment directly from the voice recordi ngs",
-      "B. Convert the speech to text and build a model base d on the words",
-      "C. Convert the speech to text and extract sentiments  based on the sentences",
-      "D. Convert the speech to text and extract sentiment using syntactical analysis"
-    ],
-    "correct": "C. Convert the speech to text and extract sentiments  based on the sentences",
-    "explanation": "Explanation: The correct answer is C because it is the most effective way to handle the complexities of human language, including cultural differences, accents, and dialects. Converting speech to text and then analyzing the sentences provides a more accurate representation of the customer's sentiment. This approach also allows for the use of natural language processing (NLP) techniques, which can help to mitigate biases in the model.\n\nNow, let me explain why the other options are incorrect:\n\nA. Extracting sentiment directly from voice recordings is not a feasible approach because voice recordings contain a lot of noise and variability that can affect the accuracy of the sentiment analysis. Additionally, voice recordings do not provide a clear and structured representation of the customer's sentiment, making it difficult to analyze.\n\nB. Building a model based on the words is not sufficient because words can have different meanings depending on the context, cultural background, and dialect. This approach can lead to biases and inaccuracies in the model.\n\nD. Extracting sentiment using syntactical analysis is not the best approach because it focuses on the grammatical structure of the sentences rather than their meaning. This approach can lead to oversimplification of the customer's sentiment and may not capture the nuances of human language.\n\nIn summary, converting speech to text and extracting sentiments based on the sentences is the most effective approach to building a sentiment analysis model that can handle the complexities of human language and mitigate biases.",
-    "references": ""
-  },
-  {
-    "question": "Your team needs to build a model that predicts whet her images contain a driver's license, passport, or  credit card. The data engineering team already built the p ipeline and generated a dataset composed of 10,000 images with driver's licenses, 1,000 images with pa ssports, and 1,000 images with credit cards. You no w have to train a model with the following label map: ['driverslicense', passport', 'credit_ card']. Whic h loss function should you use?",
-    "options": [
-      "A. Categorical hinge",
-      "B. Binary cross-entropy",
-      "C. Categorical cross-entropy",
-      "D. Sparse categorical cross-entropy"
-    ],
-    "correct": "C. Categorical cross-entropy",
-    "explanation": "Explanation:\nThe correct answer is C. Categorical cross-entropy. This is because the problem involves multi-class classification where the model needs to predict one of the three classes: driver's license, passport, or credit card. Categorical cross-entropy is the most suitable loss function for multi-class classification problems. It measures the difference between the predicted probabilities and the true labels.\n\nThe other options are incorrect because:\nA. Categorical hinge loss is typically used in support vector machines (SVMs) and is not suitable for multi-class classification problems.\n\nB. Binary cross-entropy is used for binary classification problems where the model needs to predict one of two classes. It is not suitable for multi-class classification problems.\n\nD. Sparse categorical cross-entropy is used when the labels are sparse, meaning most of the labels are zero. In this problem, the labels are not sparse, so sparse categorical cross-entropy is not the correct choice.\n\nIn summary, the correct answer is C. Categorical cross-entropy because it is the most suitable loss function for multi-class classification problems.",
-    "references": ""
-  },
-  {
-    "question": "different cities around the world. Which features o r feature crosses should you use to train city-spec ific relationships between car type and number of sales?",
-    "options": [
-      "A. Three individual features binned latitude, binned  longitude, and one-hot encoded car type",
-      "B. One feature obtained A. element-wise product betw een latitude, longitude, and car type",
-      "C. One feature obtained A. element-wise product betw een binned latitude, binned longitude, and one-hot",
-      "D. Two feature crosses as a element-wise product the  first between binned latitude and one-hot encoded car"
-    ],
-    "correct": "C. One feature obtained A. element-wise product betw een binned latitude, binned longitude, and one-hot",
-    "explanation": "Explanation:\n\nThe correct answer is C. One feature obtained A. element-wise product between binned latitude, binned longitude, and one-hot encoded car type.\n\nThis is because the element-wise product between binned latitude, binned longitude, and one-hot encoded car type will capture the interactions between the city-specific location (binned latitude and longitude) and the car type. This will allow the model to learn city-specific relationships between car type and number of sales.\n\nOption A is incorrect because using three individual features (binned latitude, binned longitude, and one-hot encoded car type) will not capture the interactions between the location and car type.\n\nOption B is incorrect because taking the element-wise product between latitude, longitude, and car type will not capture the city-specific relationships, as the latitude and longitude are not binned.\n\nOption D is incorrect because using two feature crosses (between binned latitude and one-hot encoded car type, and between binned longitude and one-hot encoded car type) will not capture the interactions between the location and car type in a city-specific way.\n\nTherefore, option C is the correct answer.",
-    "references": ""
+    "correct": "A. Use class-weighting, resampling (SMOTE, undersampling), or alternative loss functions; evaluate with precision/recall/F1 or PR-AUC, not raw accuracy",
+    "explanation": "Imbalanced data inflates accuracy. Class weighting/resampling and minority-aware loss functions improve recall; precision/recall, F1, and PR-AUC are appropriate metrics."
   }
 ]

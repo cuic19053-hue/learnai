@@ -61,7 +61,6 @@ export default async function ScholarPage() {
         title="Trigonometry: sine and cosine basics"
         description="Concept refresher, two worked examples, then 5 exam-style questions with feedback. Teach-until-learned loop on misses."
         currentStep={2}
-        ctaLabel="Start session"
         meta="~25 min · +90 XP"
         ctaHref="/learn/lesson/scholar"
       />

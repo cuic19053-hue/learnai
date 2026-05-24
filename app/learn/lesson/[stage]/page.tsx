@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import LessonPlayer from "@/components/learn/lesson/LessonPlayer";
-import KidsLesson from "@/components/learn/lesson/KidsLesson";
 import SeniorLesson from "@/components/learn/lesson/SeniorLesson";
 import { journeyForStage } from "@/lib/learn/journeys";
 import type { LearnerStage } from "@/lib/learn/stages";
+import { findMission } from "@/lib/learn/missions";
 
 const VALID: LearnerStage[] = [
   "LITTLE_LEARNER",
@@ -99,7 +99,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function LessonPage({ params }: { params: Promise<{ stage: string }> }) {
+export default async function LessonPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ stage: string }>;
+  searchParams?: Promise<{ mission?: string }>;
+}) {
   const { stage: raw } = await params;
   const stage = resolveStage(raw);
   if (!stage) notFound();
@@ -107,18 +113,26 @@ export default async function LessonPage({ params }: { params: Promise<{ stage: 
   const journey = journeyForStage(stage);
   const lesson = STAGE_LESSON[stage];
 
-  // Per-stage dispatch — Little Learner and Senior have dedicated calmer
-  // surfaces; everyone else uses the shared LessonPlayer.
-  if (stage === "LITTLE_LEARNER") return <KidsLesson journey={journey} />;
+  // Per-stage dispatch — Little Learner has a dedicated three-layer IA
+  // at /learn/kids and we redirect any old /learn/lesson/kids link to
+  // it so the same audience never sees two competing UIs. Senior keeps
+  // its own calmer surface.
+  if (stage === "LITTLE_LEARNER") redirect("/learn/kids");
   if (stage === "SENIOR") return <SeniorLesson journey={journey} />;
+
+  // Resolve the mission (if any) so Resume from a specific mission
+  // opens that mission's practice — not the shared volcano default.
+  const sp = (await searchParams) ?? {};
+  const mission = findMission(raw.toLowerCase(), sp.mission);
 
   return (
     <LessonPlayer
       journey={journey}
-      title={lesson.title}
-      subject={lesson.subject}
-      teacherName={lesson.teacherName}
-      teacherEmoji={lesson.teacherEmoji}
+      title={mission?.title ?? lesson.title}
+      subject={mission?.practice?.subject ?? lesson.subject}
+      teacherName={mission?.practice?.teacherName ?? lesson.teacherName}
+      teacherEmoji={mission?.practice?.teacherEmoji ?? lesson.teacherEmoji}
+      practice={mission?.practice}
     />
   );
 }

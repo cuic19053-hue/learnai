@@ -4,6 +4,8 @@ import { parseWikipediaUrl } from "@/lib/wiki/url";
 import { WikiClientError, fetchArticleHtml, fetchSummary } from "@/lib/wiki/client";
 import { extractSections, totalChars } from "@/lib/wiki/extract";
 import { generateTest, WikiGenerationError } from "@/lib/wiki/generate";
+import { persistTest } from "@/lib/wiki/grading";
+import { resolveWikiOwner } from "@/lib/wiki/owner";
 import type { WikiArticle } from "@/lib/wiki/types";
 
 export const dynamic = "force-dynamic";
@@ -87,6 +89,16 @@ export const POST = handler(async (req: Request) => {
       count: body.count,
       language: body.language ?? parsed.lang,
     });
+
+    // Persist a snapshot so the test shows up in the learner's library
+    // beyond the 24 h in-memory cache. Best-effort: a DB outage must
+    // not break the live generation flow.
+    const owner = await resolveWikiOwner(req);
+    persistTest({ test, userId: owner.userId }).catch((err) => {
+      // eslint-disable-next-line no-console
+      console.warn("[wiki] persistTest failed (non-fatal):", err);
+    });
+
     return ok({ test });
   } catch (err) {
     if (err instanceof WikiGenerationError) {

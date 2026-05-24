@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState, useTransition } from "react";
+import { useEffect, useMemo, useState, useTransition } from "react";
 import {
   PROVIDER_CATALOGUE,
   PROVIDER_IDS,
@@ -254,6 +254,69 @@ async function runTest(id: ProviderId, refresh: () => Promise<void>) {
 }
 
 /* ── Default provider hero card ──────────────────────────────────── */
+/**
+ * Live KPIs for the OllaBridge hero card. Polls our aggregator route
+ * `/api/admin/providers/ollabridge/info` (which fans /pair/info,
+ * /v1/models, and /health) on a 30 s tick so the model count, health
+ * pill, and pairing-availability badge reflect the real cloud.
+ */
+function useOllabridgeKpis() {
+  type Kpis = {
+    modelCount: number | null;
+    healthStatus: "healthy" | "waking" | "unreachable" | "unknown";
+    pairingAvailable: boolean;
+    activeModels: string[];
+    lastUpdated: number | null;
+    error: string | null;
+  };
+  const [kpis, setKpis] = useState<Kpis>({
+    modelCount: null,
+    healthStatus: "unknown",
+    pairingAvailable: false,
+    activeModels: [],
+    lastUpdated: null,
+    error: null,
+  });
+  useEffect(() => {
+    let cancelled = false;
+    async function tick() {
+      try {
+        const res = await fetch("/api/admin/providers/ollabridge/info");
+        const data = await res.json();
+        if (cancelled || !data?.ok) return;
+        const modelsArr = Array.isArray(data.models) ? (data.models as Array<{ id: string }>) : [];
+        const healthStatus: Kpis["healthStatus"] =
+          data.health?.status === "ok" || data.health?.status === "healthy"
+            ? "healthy"
+            : data.health?.status === "waking"
+              ? "waking"
+              : data.health?.status === "unreachable"
+                ? "unreachable"
+                : modelsArr.length > 0
+                  ? "healthy"
+                  : "unreachable";
+        setKpis({
+          modelCount: modelsArr.length,
+          healthStatus,
+          pairingAvailable: Boolean(data.pairing?.pairing_enabled),
+          activeModels: modelsArr.map((m) => m.id).slice(0, 8),
+          lastUpdated: Date.now(),
+          error: null,
+        });
+      } catch (e) {
+        if (!cancelled) setKpis((k) => ({ ...k, error: (e as Error).message }));
+      }
+    }
+    tick();
+    const id = window.setInterval(tick, 30_000);
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, []);
+  return kpis;
+}
+
 function DefaultProviderCard({
   cfg,
   onEdit,
@@ -266,6 +329,7 @@ function DefaultProviderCard({
   onTest: () => void;
 }) {
   const meta = PROVIDER_CATALOGUE[cfg.id];
+  const kpis = useOllabridgeKpis();
   return (
     <div
       className="la-card mt-6 overflow-hidden p-6"
@@ -344,6 +408,77 @@ function DefaultProviderCard({
           </div>
         ))}
       </div>
+
+      {cfg.id === "ollabridge" ? (
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-[11px]">
+          <span
+            className="la-pill"
+            style={{
+              background:
+                kpis.healthStatus === "healthy"
+                  ? "#dcfce7"
+                  : kpis.healthStatus === "waking"
+                    ? "#fef3c7"
+                    : "#fee2e2",
+              color:
+                kpis.healthStatus === "healthy"
+                  ? "#166534"
+                  : kpis.healthStatus === "waking"
+                    ? "#92400e"
+                    : "#991b1b",
+            }}
+          >
+            ●{" "}
+            {kpis.healthStatus === "healthy"
+              ? "Healthy"
+              : kpis.healthStatus === "waking"
+                ? "Warming up · first answer in ~10 s"
+                : kpis.healthStatus === "unreachable"
+                  ? "Unreachable"
+                  : "Probing…"}
+          </span>
+          <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
+            🧠 {kpis.modelCount ?? "—"} model{kpis.modelCount === 1 ? "" : "s"}
+          </span>
+          <span
+            className="la-pill"
+            style={{
+              background: kpis.pairingAvailable ? "#ede9fe" : "var(--bg-2)",
+              color: kpis.pairingAvailable ? "#5b21b6" : "var(--ink-soft)",
+            }}
+          >
+            📺 Pairing {kpis.pairingAvailable ? "available" : "off"}
+          </span>
+          {kpis.lastUpdated ? (
+            <span className="la-mono text-[10px] text-ink-mute">
+              live · refreshed {Math.max(1, Math.floor((Date.now() - kpis.lastUpdated) / 1000))}s
+              ago
+            </span>
+          ) : null}
+        </div>
+      ) : null}
+
+      {cfg.id === "ollabridge" && kpis.activeModels.length > 0 ? (
+        <div
+          className="mt-3 rounded-xl border border-line-soft p-3"
+          style={{ background: "var(--surface-soft)" }}
+        >
+          <div className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
+            Models published right now
+          </div>
+          <div className="mt-1.5 flex flex-wrap gap-1.5">
+            {kpis.activeModels.map((m) => (
+              <code
+                key={m}
+                className="la-mono rounded bg-white px-1.5 py-0.5 text-[11px]"
+                style={{ border: "1px solid var(--line-soft)" }}
+              >
+                {m}
+              </code>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -750,6 +885,21 @@ function ProviderConfigDrawer({
 }
 
 /* ── OllaBridge device-pairing modal ─────────────────────────────── */
+/**
+ * Two-mode pairing per the real OllaBridge Cloud protocol:
+ *
+ *   LEFT  (primary) — "My PC is asking to pair"
+ *     The PC ran `ollabridge pair` and printed a user_code.
+ *     The admin types it here; we POST /pair/confirm which calls
+ *     OllaBridge /device/confirm with X-User-Id of this admin.
+ *     The PC's next /device/poll receives its device_token.
+ *
+ *   RIGHT (secondary) — "Generate a code for a headless PC"
+ *     We POST /pair/start, show the user_code in the gradient box
+ *     with a countdown, and poll /pair/poll every 2.5 s until the
+ *     cloud reports the PC has paired (which also persists the
+ *     device_token onto the OllaBridge ProviderConfig server-side).
+ */
 function PairingModal({
   onClose,
   onPaired,
@@ -757,37 +907,52 @@ function PairingModal({
   onClose: () => void;
   onPaired: () => void | Promise<void>;
 }) {
+  return (
+    <ModalShell title="Pair an OllaBridge device" onClose={onClose} width={780}>
+      <p className="text-[13px] leading-relaxed text-ink-soft">
+        Two ways to pair, depending on whether the PC has a screen.
+      </p>
+      <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <PairConfirmCard onPaired={onPaired} />
+        <PairGenerateCard onPaired={onPaired} />
+      </div>
+    </ModalShell>
+  );
+}
+
+/**
+ * Mode A — the PC is the initiator. It ran `ollabridge pair` (or any
+ * client that calls /device/start) and displayed a user_code. The
+ * admin types it here to approve.
+ */
+function PairConfirmCard({ onPaired }: { onPaired: () => void | Promise<void> }) {
   const [code, setCode] = useState("");
   const [pending, startTransition] = useTransition();
-  const [result, setResult] = useState<
-    null | { ok: true; latencyMs?: number; sample?: string } | { ok: false; message: string }
-  >(null);
+  const [result, setResult] = useState<null | { ok: true } | { ok: false; message: string }>(null);
 
   const cleaned = code.toUpperCase().replace(/[^A-Z0-9-]/g, "");
-  const looksLikeCode = /^[A-Z0-9]{4}-?[A-Z0-9]{4}$/.test(cleaned);
+  // Real format: [A-Z]{4}-[0-9]{4}.
+  const valid = /^[A-Z]{4}-[0-9]{4}$/.test(cleaned);
 
   function submit() {
-    if (!looksLikeCode || pending) return;
+    if (!valid || pending) return;
     setResult(null);
     startTransition(async () => {
       try {
-        const res = await fetch("/api/admin/providers/pairing", {
+        const res = await fetch("/api/admin/providers/ollabridge/pair/confirm", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ code: cleaned }),
+          body: JSON.stringify({ userCode: cleaned }),
         });
         const data = await res.json();
         if (!res.ok || !data?.ok) {
-          setResult({ ok: false, message: data?.error ?? "Couldn't save the pairing code." });
+          setResult({ ok: false, message: data?.error ?? "Couldn't approve the code." });
           return;
         }
-        // Show probe result inline before closing.
-        setResult(data.probe);
-        if (data.probe?.ok) {
-          window.setTimeout(async () => {
-            await onPaired();
-          }, 800);
-        }
+        setResult({ ok: true });
+        window.setTimeout(async () => {
+          await onPaired();
+        }, 1_200);
       } catch (e) {
         setResult({ ok: false, message: (e as Error).message });
       }
@@ -795,65 +960,47 @@ function PairingModal({
   }
 
   return (
-    <ModalShell title="Pair an OllaBridge device" onClose={onClose} width={580}>
-      <p className="text-[13px] leading-relaxed text-ink-soft">
-        Open{" "}
-        <a
-          className="font-extrabold underline"
-          href="https://ruslanmv-ollabridge.hf.space"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          ruslanmv-ollabridge.hf.space
-        </a>{" "}
-        in another tab, sign in, and copy the pairing code from your dashboard. Paste it below —
-        we&apos;ll save it and immediately test the connection.
+    <div className="rounded-2xl border border-line bg-white p-4">
+      <div className="text-[12px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
+        Primary mode
+      </div>
+      <div className="mt-1 text-[15px] font-extrabold text-ink">My PC is asking to pair</div>
+      <p className="mt-2 text-[12px] leading-relaxed text-ink-soft">
+        The PC displayed a code like <code className="bg-bg-2 rounded px-1">ABCD-1234</code>. Type
+        it here to approve the pairing.
       </p>
 
-      <label className="mt-4 block">
-        <span className="la-mono text-[10px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
-          Pairing code
-        </span>
-        <input
-          value={code}
-          onChange={(e) => setCode(e.target.value)}
-          onPaste={(e) => {
-            const v = e.clipboardData.getData("text").trim();
-            if (v) {
-              e.preventDefault();
-              setCode(v);
-            }
-          }}
-          placeholder="FYNS-1159"
-          autoFocus
-          autoComplete="off"
-          spellCheck={false}
-          className="mt-1.5 w-full rounded-2xl border-2 border-dashed bg-white px-4 py-4 text-center font-mono text-[26px] font-extrabold tracking-[0.12em] outline-none focus:border-brand-1"
-          style={{
-            borderColor: looksLikeCode ? "var(--brand-1)" : "var(--line)",
-            color: looksLikeCode ? "var(--ink)" : "var(--ink-mute)",
-            letterSpacing: "0.18em",
-          }}
-        />
-        <div className="mt-1.5 text-[11px] text-ink-mute">
-          Format: 4 chars · dash · 4 chars (we&apos;ll auto-normalise).
-        </div>
-      </label>
+      <input
+        value={code}
+        onChange={(e) => setCode(e.target.value)}
+        placeholder="ABCD-1234"
+        autoComplete="off"
+        spellCheck={false}
+        maxLength={9}
+        className="mt-3 w-full rounded-xl border-2 border-dashed bg-white px-3 py-3 text-center font-mono text-[20px] font-extrabold tracking-[0.18em] outline-none focus:border-brand-1"
+        style={{
+          borderColor: valid ? "var(--brand-1)" : "var(--line)",
+          color: valid ? "var(--ink)" : "var(--ink-mute)",
+        }}
+      />
+      <div className="mt-1.5 text-[11px] text-ink-mute">
+        Format: ABCD-1234 (4 letters · dash · 4 digits).
+      </div>
 
       <button
         type="button"
         onClick={submit}
-        disabled={!looksLikeCode || pending}
-        className="la-btn mt-4 w-full"
-        style={{ padding: "12px 18px", fontSize: 14 }}
+        disabled={!valid || pending}
+        className="la-btn mt-3 w-full"
+        style={{ padding: "10px 14px", fontSize: 13 }}
       >
-        {pending ? "Pairing + testing connection…" : "Pair & test"}
+        {pending ? "Approving…" : "Approve pairing"}
       </button>
 
       {result ? (
         <div
           role="status"
-          className={`mt-4 rounded-xl border px-4 py-3 text-[13px] ${
+          className={`mt-3 rounded-xl border px-3 py-2.5 text-[12px] ${
             result.ok
               ? "border-emerald-200 bg-emerald-50 text-emerald-800"
               : "border-rose-200 bg-rose-50 text-rose-700"
@@ -861,39 +1008,197 @@ function PairingModal({
         >
           {result.ok ? (
             <>
-              <div className="font-extrabold">
-                ✓ Paired and connected
-                {"latencyMs" in result && result.latencyMs ? ` · ${result.latencyMs} ms` : ""}
-              </div>
-              {"sample" in result && result.sample ? (
-                <div className="la-mono mt-1 text-[11px]">
-                  model reply: <span className="font-extrabold">{result.sample}</span>
-                </div>
-              ) : null}
+              <div className="font-extrabold">✓ Approved</div>
+              <div className="mt-0.5">The PC will receive its device token on its next poll.</div>
             </>
           ) : (
             <>
-              <div className="font-extrabold">Couldn&apos;t reach OllaBridge</div>
-              <div className="la-mono mt-1 text-[11px]">{result.message}</div>
+              <div className="font-extrabold">Couldn&apos;t approve the code</div>
+              <div className="la-mono mt-0.5">{result.message}</div>
             </>
           )}
         </div>
       ) : null}
 
-      <ol className="mt-5 space-y-1.5 text-[12px] leading-relaxed text-ink-soft">
+      <ol className="mt-3 space-y-1 text-[11px] leading-relaxed text-ink-soft">
         <li>
-          1. Open <code className="bg-bg-2 rounded px-1">ruslanmv-ollabridge.hf.space</code> in
-          another tab.
-        </li>
-        <li>2. Sign in with the account hosting your premium models.</li>
-        <li>
-          3. Click <b>Device Pairing</b> — your dashboard shows a code.
+          1. On the PC, run <code className="bg-bg-2 rounded px-1">ollabridge pair</code>.
         </li>
         <li>
-          4. Paste the code here and click <b>Pair &amp; test</b>.
+          2. Read the <code className="bg-bg-2 rounded px-1">ABCD-1234</code> code it prints.
+        </li>
+        <li>
+          3. Type that code above and click <b>Approve pairing</b>.
         </li>
       </ol>
-    </ModalShell>
+    </div>
+  );
+}
+
+/**
+ * Mode B — admin generates a code on this screen. The headless PC
+ * calls /device/pair-simple (or the cloud's /poll) and the
+ * device_token is persisted server-side once approved.
+ */
+function PairGenerateCard({ onPaired }: { onPaired: () => void | Promise<void> }) {
+  type Started = { userCode: string; verificationUrl: string; expiresIn: number };
+  const [started, setStarted] = useState<Started | null>(null);
+  const [startedAt, setStartedAt] = useState<number | null>(null);
+  const [now, setNow] = useState(Date.now());
+  const [pending, startTransition] = useTransition();
+  const [polling, setPolling] = useState(false);
+  const [result, setResult] = useState<null | { ok: true } | { ok: false; message: string }>(null);
+
+  useEffect(() => {
+    if (!startedAt) return;
+    const id = window.setInterval(() => setNow(Date.now()), 1_000);
+    return () => window.clearInterval(id);
+  }, [startedAt]);
+
+  function generate() {
+    if (pending) return;
+    setResult(null);
+    setStarted(null);
+    startTransition(async () => {
+      try {
+        const res = await fetch("/api/admin/providers/ollabridge/pair/start", { method: "POST" });
+        const data = await res.json();
+        if (!res.ok || !data?.ok) {
+          setResult({ ok: false, message: data?.error ?? "Couldn't request a code." });
+          return;
+        }
+        setStarted({
+          userCode: data.userCode,
+          verificationUrl: data.verificationUrl,
+          expiresIn: data.expiresIn,
+        });
+        setStartedAt(Date.now());
+        setPolling(true);
+      } catch (e) {
+        setResult({ ok: false, message: (e as Error).message });
+      }
+    });
+  }
+
+  useEffect(() => {
+    if (!polling || !started) return;
+    let cancelled = false;
+    const tick = async () => {
+      try {
+        const res = await fetch("/api/admin/providers/ollabridge/pair/poll", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ userCode: started.userCode }),
+        });
+        const data = await res.json();
+        if (cancelled) return;
+        if (!res.ok || !data?.ok) {
+          setResult({ ok: false, message: data?.error ?? "Polling failed." });
+          setPolling(false);
+          return;
+        }
+        if (data.status === "approved") {
+          setResult({ ok: true });
+          setPolling(false);
+          window.setTimeout(async () => {
+            await onPaired();
+          }, 800);
+        } else if (data.status === "expired") {
+          setResult({ ok: false, message: "Code expired before the PC paired." });
+          setPolling(false);
+        }
+      } catch (e) {
+        if (!cancelled) setResult({ ok: false, message: (e as Error).message });
+      }
+    };
+    const id = window.setInterval(tick, 2_500);
+    return () => {
+      cancelled = true;
+      window.clearInterval(id);
+    };
+  }, [polling, started, onPaired]);
+
+  const secondsLeft =
+    started && startedAt
+      ? Math.max(0, Math.ceil((startedAt + started.expiresIn * 1_000 - now) / 1_000))
+      : 0;
+  const expired = Boolean(started && secondsLeft === 0);
+
+  return (
+    <div className="rounded-2xl border border-line bg-white p-4">
+      <div className="text-[12px] font-extrabold uppercase tracking-[0.08em] text-ink-mute">
+        Headless mode
+      </div>
+      <div className="mt-1 text-[15px] font-extrabold text-ink">
+        Generate a code for a headless PC
+      </div>
+      <p className="mt-2 text-[12px] leading-relaxed text-ink-soft">
+        Use when the PC has no display. Tell it to POST to{" "}
+        <code className="bg-bg-2 rounded px-1">/device/pair-simple</code> with this code.
+      </p>
+
+      {!started ? (
+        <button
+          type="button"
+          onClick={generate}
+          disabled={pending}
+          className="la-btn mt-3 w-full"
+          style={{ padding: "10px 14px", fontSize: 13 }}
+        >
+          {pending ? "Requesting code…" : "Generate pairing code"}
+        </button>
+      ) : (
+        <>
+          <div
+            className="mt-3 rounded-2xl border-2 border-dashed px-4 py-5 text-center"
+            style={{
+              borderColor: expired ? "var(--line)" : "var(--brand-1)",
+              background: expired ? "var(--bg-2)" : "linear-gradient(135deg, #fdf4ff, #fef3c7)",
+            }}
+          >
+            <div className="font-mono text-[28px] font-extrabold tracking-[0.18em] text-ink">
+              {started.userCode}
+            </div>
+            <div className="mt-1.5 text-[11px] text-ink-mute">
+              {expired
+                ? "Expired — generate a new code."
+                : polling
+                  ? `Expires in ${secondsLeft}s · waiting for the PC to pair…`
+                  : `Expires in ${secondsLeft}s`}
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={generate}
+            disabled={pending}
+            className="la-btn mt-3 w-full"
+            style={{ padding: "8px 12px", fontSize: 12 }}
+          >
+            Generate a new code
+          </button>
+        </>
+      )}
+
+      {result ? (
+        <div
+          role="status"
+          className={`mt-3 rounded-xl border px-3 py-2.5 text-[12px] ${
+            result.ok
+              ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+              : "border-rose-200 bg-rose-50 text-rose-700"
+          }`}
+        >
+          {result.ok ? (
+            <div className="font-extrabold">✓ Paired and connected</div>
+          ) : (
+            <>
+              <div className="font-extrabold">Pairing failed</div>
+              <div className="la-mono mt-0.5">{result.message}</div>
+            </>
+          )}
+        </div>
+      ) : null}
+    </div>
   );
 }
 

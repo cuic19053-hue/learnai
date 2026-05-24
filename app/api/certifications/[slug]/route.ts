@@ -1,47 +1,82 @@
-import { z } from "zod";
+/**
+ * GET /api/certifications/:slug
+ *
+ * Detail view for a single certification. Returns the cert row plus
+ * its domains, vendor-owned official sources, and live counts.
+ *
+ * DB-first with legacy JSON-pack fallback so file-only installs keep
+ * rendering. The legacy adapter returns the same envelope with
+ * empty domains/sources arrays so the frontend doesn't need to
+ * branch on the source.
+ */
+
 import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
-import {
-  findCertification,
-  loadCertificationPage,
-  sampleCertification,
-} from "@/lib/certifications/load";
+import { getCertificationBySlug } from "@/lib/certifications/db";
+import { legacyGetCertificationBySlug } from "@/lib/certifications/legacy-bridge";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
-const QuerySchema = z.object({
-  mode: z.enum(["page", "sample"]).default("page"),
-  offset: z.coerce.number().int().min(0).max(2000).default(0),
-  limit: z.coerce.number().int().min(1).max(100).default(20),
-  size: z.coerce.number().int().min(1).max(50).default(10),
-});
-
-/**
- * GET /api/certifications/:slug?mode=page&offset=0&limit=20
- *   → paged list of questions for review.
- *
- * GET /api/certifications/:slug?mode=sample&size=10
- *   → random N questions for a quick-drill session.
- */
 export const GET = handler(async (req: Request, ctx: { params: Promise<{ slug: string }> }) => {
-  const limit = rateLimit(`cert:${clientIp(req)}`, { limit: 60, windowMs: 60_000 });
+  const limit = rateLimit(`cert:detail:${clientIp(req)}`, { limit: 60, windowMs: 60_000 });
   if (!limit.allowed) return fail(429, "Too many certification requests.");
 
   const { slug } = await ctx.params;
-  const meta = await findCertification(slug);
-  if (!meta) return fail(404, `Unknown certification: ${slug}`);
 
-  const url = new URL(req.url);
-  const params = QuerySchema.parse({
-    mode: url.searchParams.get("mode") ?? undefined,
-    offset: url.searchParams.get("offset") ?? undefined,
-    limit: url.searchParams.get("limit") ?? undefined,
-    size: url.searchParams.get("size") ?? undefined,
-  });
-
-  if (params.mode === "sample") {
-    const items = await sampleCertification(slug, params.size);
-    return ok({ meta, items, total: items.length, mode: "sample" });
+  // DB first.
+  try {
+    const dbRow = await getCertificationBySlug(slug);
+    if (dbRow && dbRow.isPublished) {
+      return ok({
+        source: "db",
+        certification: {
+          id: dbRow.id,
+          slug: dbRow.slug,
+          code: dbRow.code,
+          title: dbRow.title,
+          vendor: dbRow.vendor,
+          level: dbRow.level,
+          status: dbRow.status,
+          shortDescription: dbRow.shortDescription,
+          fullDescription: dbRow.fullDescription,
+          officialUrl: dbRow.officialUrl,
+          examGuideUrl: dbRow.examGuideUrl,
+          learningPathUrl: dbRow.learningPathUrl,
+          retiredAt: dbRow.retiredAt,
+          replacementSlug: dbRow.replacementSlug,
+        },
+        domains: dbRow.domains.map((d) => ({
+          id: d.id,
+          name: d.name,
+          description: d.description,
+          weightPercent: d.weightPercent,
+          sortOrder: d.sortOrder,
+        })),
+        sources: dbRow.sources.map((s) => ({
+          id: s.id,
+          title: s.title,
+          url: s.url,
+          domain: s.domain,
+          sourceType: s.sourceType,
+          isPrimary: s.isPrimary,
+          pageLastUpdated: s.pageLastUpdated,
+          lastFetchedAt: s.lastFetchedAt,
+        })),
+        stats: {
+          questionCount: dbRow._count.questions,
+          sourceCount: dbRow._count.sources,
+          domainCount: dbRow._count.domains,
+        },
+      });
+    }
+  } catch (err) {
+    // eslint-disable-next-line no-console
+    console.warn("[certifications] DB detail failed, trying legacy", err);
   }
-  const { items, total } = await loadCertificationPage(slug, params.offset, params.limit);
-  return ok({ meta, items, total, offset: params.offset, limit: params.limit, mode: "page" });
+
+  // Legacy fallback (file pack).
+  const legacy = await legacyGetCertificationBySlug(slug);
+  if (legacy) return ok({ source: "legacy", ...legacy });
+
+  return fail(404, `Unknown certification: ${slug}`);
 });
