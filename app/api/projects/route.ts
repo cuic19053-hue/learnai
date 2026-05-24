@@ -24,6 +24,12 @@ const BodySchema = z.object({
   minutesPerDay: z.number().int().min(5).max(180),
   deadline: z.string().min(8).max(40).optional(),
   prefs: z.array(z.string().min(1).max(40)).max(8).default([]),
+  /**
+   * Wizard variant the learner went through. Recorded as a tag in
+   * `prefs[]` so we don't need a schema migration; the existing
+   * `prefs` field already free-form-stores wizard choices.
+   */
+  variant: z.enum(["standard", "parent", "calm"]).optional(),
 });
 
 /**
@@ -75,6 +81,11 @@ export const POST = handler(async (req: Request) => {
   const body = BodySchema.parse(await req.json());
   const session = await getServerSession(authOptions);
 
+  // Fold the wizard variant into prefs[] (idempotent: never duplicates
+  // a "variant:*" tag). Keeps the schema additive while letting downstream
+  // analytics filter by variant.
+  const prefs = mergePrefsWithVariant(body.prefs, body.variant);
+
   if (session?.user?.id) {
     try {
       const project = await createUserProject(session.user.id, {
@@ -85,7 +96,7 @@ export const POST = handler(async (req: Request) => {
         daysPerWeek: body.daysPerWeek,
         minutesPerDay: body.minutesPerDay,
         deadline: body.deadline,
-        prefs: body.prefs,
+        prefs,
       });
       return ok({ project });
     } catch (err) {
@@ -112,10 +123,23 @@ export const POST = handler(async (req: Request) => {
     daysPerWeek: body.daysPerWeek,
     minutesPerDay: body.minutesPerDay,
     deadline: body.deadline,
-    prefs: body.prefs,
+    prefs,
     status: "idea",
     createdAt: new Date().toISOString(),
   };
   saveDraft(draft);
   return ok({ project: draft });
 });
+
+/**
+ * Adds a `variant:<name>` tag to prefs[] without duplicating it on
+ * repeat submits. Treated as part of the request normaliser so signed-in
+ * and guest paths produce identical stored payloads.
+ */
+function mergePrefsWithVariant(prefs: string[], variant?: string): string[] {
+  if (!variant) return prefs;
+  const tag = `variant:${variant}`;
+  const filtered = prefs.filter((p) => !p.toLowerCase().startsWith("variant:"));
+  filtered.push(tag);
+  return filtered;
+}

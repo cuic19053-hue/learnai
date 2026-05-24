@@ -1,0 +1,415 @@
+/* =========================================================================
+   WikiTest — College/University design tokens + utility classes.
+   Imported by app/globals.css. Extends the shared LearnAI tokens with:
+     - subject accents (one per academic domain)
+     - exam state colors (ok/warn/bad)
+     - WikiTest-specific utility classes (.wt-*)
+   Mirrors the design-handoff file `wikitest-tokens.css` verbatim so any
+   future export can be diffed line-for-line.
+   ========================================================================= */
+:root {
+  /* Subject accents — one per academic domain. Used by chips, cards,
+     and concept lists in WikiTest, QHO, QC, MoE, and the Forge wizards. */
+  --s-math: #2e5bff;
+  --s-math-bg: #e6ecff;
+  --s-math-soft: #f3f6ff;
+  --s-history: #b45309;
+  --s-history-bg: #fef3c7;
+  --s-history-soft: #fffbeb;
+  --s-physics: #0ea5a4;
+  --s-physics-bg: #d6f1f0;
+  --s-physics-soft: #e9f8f7;
+  --s-bio: #2dbb6c;
+  --s-bio-bg: #e7f8ee;
+  --s-bio-soft: #f3fbf5;
+  --s-cs: #7c3aed;
+  --s-cs-bg: #efe7ff;
+  --s-cs-soft: #f7f3ff;
+  --s-lit: #ec4899;
+  --s-lit-bg: #fce0ec;
+  --s-lit-soft: #fcedf3;
+
+  /* Exam state colors */
+  --ok: #16a34a;
+  --ok-bg: #dcfce7;
+  --warn: #f59e0b;
+  --warn-bg: #fef3c7;
+  --bad: #dc2626;
+  --bad-bg: #fee2e2;
+
+  /* Optional serif for math display (the design uses Source Serif 4
+     italics; falls back to platform serifs). */
+  --font-serif: "Source Serif 4", "Source Serif Pro", Georgia, serif;
+}
+
+/* ---- Shared building blocks (mirror la-* tokens in globals.css) ---- */
+.la-card {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line-soft);
+  box-shadow: var(--shadow-1);
+}
+
+.la-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--bg-2);
+  color: var(--ink-soft);
+}
+
+.la-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  background: var(--brand-grad);
+  box-shadow: 0 8px 20px rgba(46, 91, 255, 0.25);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.12s ease;
+}
+.la-btn:hover {
+  transform: translateY(-1px);
+}
+.la-btn.ghost {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 0 0 1px var(--line) inset;
+}
+.la-btn.dark {
+  background: var(--ink);
+  color: #fff;
+  box-shadow: var(--shadow-1);
+}
+
+.la-iconbtn {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+.la-iconbtn:hover {
+  background: var(--bg-2);
+  color: var(--ink);
+}
+
+/* Striped placeholder ("image slot") — used in mockups to indicate a
+   future generated diagram (forge plan, defense source kit, etc.). */
+.la-imgslot {
+  position: relative;
+  background:
+    repeating-linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0 6px, transparent 6px 12px),
+    var(--brand-grad-soft);
+  border-radius: var(--r-lg);
+  display: grid;
+  place-items: center;
+  color: var(--ink-mute);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-align: center;
+  border: 1px dashed rgba(124, 58, 237, 0.25);
+  overflow: hidden;
+}
+.la-imgslot span {
+  padding: 6px 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 6px;
+}
+
+/* ---- WikiTest app shell ---- */
+.wt-shell {
+  min-height: 100%;
+  background: var(--bg);
+}
+.wt-topbar {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-soft);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+.wt-nav {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.wt-tab {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.wt-tab.active {
+  color: var(--ink);
+  background: var(--bg-2);
+}
+.wt-tab .sub {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--brand-grad);
+  color: #fff;
+  margin-left: 6px;
+  letter-spacing: 0.04em;
+}
+
+/* Subject chip (Maths / Physics / History …) */
+.wt-subj {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--bg-2);
+  color: var(--ink-soft);
+}
+.wt-subj .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  background: var(--ink-mute);
+}
+
+/* The big Wikipedia URL input on the landing page */
+.wt-urlbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow-2);
+  padding: 8px 8px 8px 18px;
+  border: 1.5px solid var(--brand-1);
+}
+.wt-urlbar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  background: transparent;
+  padding: 12px 0;
+}
+.wt-urlbar input::placeholder {
+  color: var(--ink-mute);
+}
+
+/* Concept chip (analyze + train sidebars) */
+.wt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.wt-chip .n {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--ink-mute);
+}
+
+/* Difficulty meter */
+.wt-diff {
+  display: inline-flex;
+  gap: 3px;
+  align-items: center;
+}
+.wt-diff .b {
+  width: 14px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--line);
+}
+.wt-diff .b.on {
+  background: var(--brand-1);
+}
+
+/* Subtle dotted background used on landing / forge hero */
+.wt-dots {
+  background-image: radial-gradient(rgba(46, 91, 255, 0.08) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+/* Loop step ring (Hook/Explain/Practice/Feedback/Reflect/Evolve) */
+.la-loop-ring {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  background: #fff;
+  border: 2px solid currentColor;
+}
+
+/* MCQ option (Exam in progress, simulator) */
+.wt-mcq {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.wt-mcq:hover {
+  border-color: var(--brand-1);
+  background: var(--surface-soft);
+}
+.wt-mcq.selected {
+  border-color: var(--brand-1);
+  background: var(--bg-2);
+}
+.wt-mcq.correct {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+}
+.wt-mcq.wrong {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+}
+.wt-mcq .key {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 800;
+  background: #fff;
+  border: 1.5px solid var(--line);
+  color: var(--ink-soft);
+}
+.wt-mcq.selected .key {
+  background: var(--brand-1);
+  color: #fff;
+  border-color: var(--brand-1);
+}
+.wt-mcq.correct .key {
+  background: var(--ok);
+  color: #fff;
+  border-color: var(--ok);
+}
+.wt-mcq.wrong .key {
+  background: var(--bad);
+  color: #fff;
+  border-color: var(--bad);
+}
+
+/* Question nav (Exam grid) */
+.wt-qnav {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  background: #fff;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+.wt-qnav.done {
+  background: var(--brand-grad);
+  color: #fff;
+  border: none;
+}
+.wt-qnav.current {
+  box-shadow: 0 0 0 3px rgba(46, 91, 255, 0.18);
+  border-color: var(--brand-1);
+  color: var(--ink);
+}
+.wt-qnav.flagged {
+  background: var(--warn-bg);
+  border-color: var(--warn);
+  color: var(--warn);
+}
+
+/* Generic horizontal meter */
+.wt-meter {
+  height: 8px;
+  background: var(--bg-2);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.wt-meter .fill {
+  height: 100%;
+  background: var(--brand-grad);
+  border-radius: 99px;
+}
+
+/* Keyboard shortcut indicator */
+.wt-kbd {
+  display: inline-grid;
+  place-items: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  background: #fff;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+}
+
+/* Math display block (italic serif, soft-tinted background) */
+.wt-math {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--ink);
+  background: var(--surface-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: inline-block;
+}

@@ -3,76 +3,11 @@ import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { Arrow } from "@/components/design/icons";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
+import { MISSIONS, type Mission } from "@/lib/learn/missions";
 
 export const metadata: Metadata = {
   title: "My missions",
   description: "Active, completed, and locked missions in your learning journey.",
-};
-
-type Mission = {
-  title: string;
-  subject: string;
-  status: "active" | "completed" | "locked";
-  progressPct: number;
-};
-
-const SAMPLE: Record<string, Mission[]> = {
-  kids: [
-    {
-      title: "Count jungle animals with Milo",
-      subject: "Numbers",
-      status: "active",
-      progressPct: 30,
-    },
-    { title: "Find the letter A", subject: "Letters", status: "active", progressPct: 0 },
-    { title: "Match the colours", subject: "Colours", status: "locked", progressPct: 0 },
-  ],
-  explorer: [
-    { title: "Why does a volcano erupt?", subject: "Science", status: "active", progressPct: 50 },
-    {
-      title: "How do clouds make rain?",
-      subject: "Science",
-      status: "completed",
-      progressPct: 100,
-    },
-    { title: "Solve the river puzzle", subject: "Logic", status: "active", progressPct: 20 },
-  ],
-  builder: [
-    { title: "Build a calculator in Python", subject: "Coding", status: "active", progressPct: 67 },
-    { title: "Logic gates: AND, OR, NOT", subject: "Coding", status: "active", progressPct: 30 },
-    { title: "Algebra: solving for x", subject: "Math", status: "completed", progressPct: 100 },
-    { title: "Build a tic-tac-toe game", subject: "Coding", status: "locked", progressPct: 0 },
-  ],
-  scholar: [
-    { title: "Trigonometry: sine & cosine", subject: "Math", status: "active", progressPct: 40 },
-    { title: "Probability fundamentals", subject: "Math", status: "active", progressPct: 75 },
-    { title: "Practice exam: Set A", subject: "Exam", status: "locked", progressPct: 0 },
-  ],
-  adult: [
-    {
-      title: "VPC networking: subnets & routes",
-      subject: "Cloud",
-      status: "active",
-      progressPct: 50,
-    },
-    { title: "IAM policies in practice", subject: "Security", status: "active", progressPct: 55 },
-    {
-      title: "S3 lifecycle & storage classes",
-      subject: "Storage",
-      status: "active",
-      progressPct: 40,
-    },
-    { title: "Mock SAA-C03: Block 2", subject: "Exam", status: "locked", progressPct: 0 },
-  ],
-  senior: [
-    {
-      title: "Spotting scam messages",
-      subject: "Digital safety",
-      status: "active",
-      progressPct: 60,
-    },
-    { title: "Use WhatsApp safely", subject: "Digital safety", status: "active", progressPct: 0 },
-  ],
 };
 
 export default async function MissionsPage({
@@ -82,7 +17,7 @@ export default async function MissionsPage({
 }) {
   const params = (await searchParams) ?? {};
   const world = worldFromParam(params.world);
-  const missions = SAMPLE[world.slug] ?? [];
+  const missions = MISSIONS[world.slug] ?? [];
 
   return (
     <LearnerHomeShell
@@ -105,12 +40,16 @@ export default async function MissionsPage({
       </p>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-        {missions.map((m, i) => (
+        {missions.map((m) => (
           <MissionRow
-            key={i}
+            key={m.id}
             mission={m}
             accent={world.journey.color}
-            lessonHref={`/learn/lesson/${world.slug}`}
+            // Resume routes per mission. The lesson route reads the
+            // `mission` query param and looks up the practice payload
+            // — so a Professional VPC mission no longer opens the
+            // Explorer volcano practice.
+            lessonHref={`/learn/lesson/${world.slug}?mission=${m.id}`}
           />
         ))}
       </div>

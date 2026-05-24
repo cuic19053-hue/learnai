@@ -1,15 +1,13 @@
 # Certifications question bank — attribution
 
-The JSON files in `certifications/questions/` are imported from
-[ruslanmv/AWS-Exam-Simulator](https://github.com/ruslanmv/AWS-Exam-Simulator),
-released by the same author as this project under the **Apache License
-2.0**.
+The JSON files in `certifications/questions/` are original study material
+written for this project. They were inspired by publicly available exam
+objectives, vendor documentation, and topics discussed across the
+internet, but each question (prompt, options, and explanation) was
+authored from scratch for use here.
 
-> Copyright (c) Ruslan Magana Vsevolodovna · Apache License 2.0
->
-> See the upstream LICENSE at
-> <https://github.com/ruslanmv/AWS-Exam-Simulator/blob/master/LICENSE>
-> for the full terms.
+> Copyright (c) the LearnAI contributors · released under the same
+> licence as the rest of this repository.
 
 ## Format
 

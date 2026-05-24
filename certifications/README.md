@@ -101,6 +101,6 @@ Within a vendor, packs are sorted by level (Fundamentals → Associate
 
 ## Source
 
-The packs currently shipped come from
-[ruslanmv/AWS-Exam-Simulator](https://github.com/ruslanmv/AWS-Exam-Simulator)
-under the Apache 2.0 licence — see `NOTICE.md` in this folder.
+The packs currently shipped are original study material written for this
+project, inspired by publicly available exam objectives and topics
+discussed across the internet. See `NOTICE.md` in this folder.

@@ -9,37 +9,37 @@ import { LOOP } from "@/lib/learn/loop";
 import type { Journey } from "@/lib/learn/journeys";
 import { stageToPath } from "@/lib/learn/stages";
 import LoopProgressStrip from "./LoopProgressStrip";
+import type { MissionPracticePayload } from "@/lib/learn/missions";
 
-/** Drop targets for the volcano cross-section practice. */
-type Target = {
-  id: string;
-  label: string;
-  /** Position on the diagram, expressed as a percentage. */
-  x: string;
-  y: string;
-};
-
-/** Draggable label tokens for the practice tray. */
 type Token = { id: string; label: string; emoji: string };
 
-const TARGETS: Target[] = [
-  { id: "magma", label: "Magma chamber", x: "18%", y: "55%" },
-  { id: "vent", label: "Vent", x: "50%", y: "40%" },
-  { id: "ash", label: "Ash cloud", x: "78%", y: "15%" },
-];
-
-const TOKENS: Token[] = [
-  { id: "magma", emoji: "🟠", label: "Magma chamber" },
-  { id: "ash", emoji: "☁️", label: "Ash cloud" },
-  { id: "crust", emoji: "🪨", label: "Crust" },
-  { id: "lava", emoji: "🔥", label: "Lava flow" },
-];
-
-const HINT_LADDER = [
-  { emoji: "💡", text: "It’s deep underground." },
-  { emoji: "🌋", text: "It’s where the magma collects." },
-  { emoji: "🔬", text: "Look at the bottom layer of the diagram." },
-];
+/** Default volcano payload — preserves the original Explorer demo so
+ *  callers that don't pass a `practice` prop see the same UI as before. */
+const DEFAULT_VOLCANO_PRACTICE: MissionPracticePayload = {
+  prompt: "Drag each label to the correct part of the volcano",
+  subject: "Science",
+  diagramLabel: "🌋 Cross-section diagram (volcano)",
+  diagramGradient: "linear-gradient(180deg, #fef9e7 0%, #fde2c8 60%, #f8b78a 100%)",
+  targets: [
+    { id: "magma", label: "Magma chamber", x: "18%", y: "55%" },
+    { id: "vent", label: "Vent", x: "50%", y: "40%" },
+    { id: "ash", label: "Ash cloud", x: "78%", y: "15%" },
+  ],
+  tokens: [
+    { id: "magma", emoji: "🟠", label: "Magma chamber" },
+    { id: "ash", emoji: "☁️", label: "Ash cloud" },
+    { id: "crust", emoji: "🪨", label: "Crust" },
+    { id: "lava", emoji: "🔥", label: "Lava flow" },
+  ],
+  initialPlaced: { magma: null, vent: "vent", ash: null },
+  initialFeedback:
+    "Nice — that vent is right! Magma comes up through the vent. Now: where does the magma start?",
+  hintLadder: [
+    { emoji: "💡", text: "It’s deep underground." },
+    { emoji: "🌋", text: "It’s where the magma collects." },
+    { emoji: "🔬", text: "Look at the bottom layer of the diagram." },
+  ],
+};
 
 type LessonPlayerProps = {
   journey: Journey;
@@ -48,41 +48,61 @@ type LessonPlayerProps = {
   /** Optional override for the displayed lesson title. */
   title?: string;
   subject?: string;
+  /** Mission-specific practice content. When omitted, falls back to
+   *  the original Explorer volcano practice so older entry points
+   *  keep working. */
+  practice?: MissionPracticePayload;
 };
 
 export default function LessonPlayer({
   journey,
-  teacherName = "Rex",
-  teacherEmoji = "🦊",
-  title = "Why does a volcano erupt? 🌋",
-  subject = "Science",
+  teacherName,
+  teacherEmoji,
+  title,
+  subject,
+  practice,
 }: LessonPlayerProps) {
-  // Practice step (3 of 6) — initial state matches the design preview:
-  // "Vent" already correctly placed.
+  const payload = practice ?? DEFAULT_VOLCANO_PRACTICE;
+  const TARGETS = payload.targets;
+  const TOKENS = payload.tokens;
+  const HINT_LADDER = payload.hintLadder;
+
+  // Practice step (3 of 6).
   const PRACTICE_STEP = 2;
-  const [placed, setPlaced] = useState<Record<string, string | null>>({
-    magma: null,
-    vent: "vent",
-    ash: null,
-  });
+  const initialPlaced = useMemo<Record<string, string | null>>(() => {
+    if (payload.initialPlaced) return { ...payload.initialPlaced };
+    return Object.fromEntries(TARGETS.map((t) => [t.id, null]));
+  }, [payload, TARGETS]);
+  const [placed, setPlaced] = useState<Record<string, string | null>>(initialPlaced);
   const [picked, setPicked] = useState<Token | null>(null);
   const [feedback, setFeedback] = useState<string | null>(
-    "Nice — that vent is right! Magma comes up through the vent. Now: where does the magma start?"
+    payload.initialFeedback ?? "Pick a label, then tap the diagram to drop it."
   );
-  const [hintsRevealed, setHintsRevealed] = useState(2);
+  // Reveal half the ladder up-front so the first hint is visible.
+  const [hintsRevealed, setHintsRevealed] = useState(Math.min(2, HINT_LADDER.length));
 
   const remainingTokens = useMemo(
     () =>
       TOKENS.filter((t) => {
-        // A token disappears from the tray once it has been correctly placed.
         return !Object.entries(placed).some(([targetId, val]) => val === t.id && targetId === t.id);
       }),
-    [placed]
+    [placed, TOKENS]
   );
 
   const placedCount = Object.values(placed).filter((v) => v !== null).length;
   const allCorrect = placedCount === TARGETS.length;
   const stagePill = LOOP[PRACTICE_STEP];
+
+  // Resolved header bits. Mission-supplied subject/teacher wins; then
+  // explicit prop; then the volcano-era default (Rex / Science).
+  const headerSubject = subject ?? payload.subject;
+  const headerTitle = title ?? payload.prompt;
+  const tName = teacherName ?? payload.teacherName ?? "Rex";
+  const tEmoji = teacherEmoji ?? payload.teacherEmoji ?? "🦊";
+
+  function labelFor(id: string): string {
+    return TOKENS.find((t) => t.id === id)?.label ?? id;
+  }
 
   function tryPlace(targetId: string, tokenId: string) {
     if (targetId === tokenId) {
@@ -120,9 +140,9 @@ export default function LessonPlayer({
               className="text-[11px] font-bold uppercase tracking-[0.06em]"
               style={{ color: journey.color }}
             >
-              {journey.name} · {subject}
+              {journey.name} · {headerSubject}
             </div>
-            <div className="text-sm font-bold text-ink">{title}</div>
+            <div className="text-sm font-bold text-ink">{headerTitle}</div>
           </div>
         </div>
         <div className="flex items-center gap-4">
@@ -146,7 +166,7 @@ export default function LessonPlayer({
             {stagePill.icon} Step {PRACTICE_STEP + 1} · {stagePill.label}
           </span>
           <h1 className="mt-2.5 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[30px]">
-            Drag each label to the correct part of the volcano
+            {payload.prompt}
           </h1>
           <p className="mb-6 mt-1.5 text-sm text-ink-soft">
             You&apos;ll get instant feedback after each drop. {TARGETS.length - placedCount} left.
@@ -157,11 +177,11 @@ export default function LessonPlayer({
             className="relative overflow-hidden rounded-[22px] border border-line-soft"
             style={{
               height: 300,
-              background: "linear-gradient(180deg, #fef9e7 0%, #fde2c8 60%, #f8b78a 100%)",
+              background: payload.diagramGradient,
             }}
           >
             <ImgSlot
-              label="🌋 Cross-section diagram (volcano)"
+              label={payload.diagramLabel}
               height={300}
               style={{
                 position: "absolute",
@@ -259,9 +279,9 @@ export default function LessonPlayer({
           style={{ background: "#fbfbff" }}
         >
           <div className="flex items-center gap-2.5">
-            <PersonaAvatar emoji={teacherEmoji} color={journey.color} bg={journey.bg} size={40} />
+            <PersonaAvatar emoji={tEmoji} color={journey.color} bg={journey.bg} size={40} />
             <div>
-              <div className="text-sm font-bold text-ink">{teacherName}</div>
+              <div className="text-sm font-bold text-ink">{tName}</div>
               <div className="text-[11px] text-ink-soft">Your AI teacher</div>
             </div>
             <button
@@ -368,10 +388,6 @@ export default function LessonPlayer({
       </footer>
     </div>
   );
-}
-
-function labelFor(id: string): string {
-  return TOKENS.find((t) => t.id === id)?.label ?? id;
 }
 
 function AdaptiveTuning() {

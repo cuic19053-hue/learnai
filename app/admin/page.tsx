@@ -378,6 +378,12 @@ function RecentActivityCard() {
 function QuickActionsCard() {
   const items = [
     {
+      ic: "🎨",
+      t: "Open the Design Gallery",
+      sub: "Visual QA · all 52 screens",
+      href: "/admin/design-gallery",
+    },
+    {
       ic: "🤖",
       t: "Add an AI provider",
       sub: "OllaBridge default · Grok recommended",

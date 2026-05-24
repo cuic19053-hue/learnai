@@ -10,7 +10,14 @@
  *     variants to handle
  */
 
-export type KidsTheme = "numbers" | "letters" | "colors" | "shapes" | "animals" | "feelings";
+export type KidsTheme =
+  | "numbers"
+  | "letters"
+  | "colors"
+  | "shapes"
+  | "animals"
+  | "feelings"
+  | "stories";
 
 export const THEMES: Array<{
   id: KidsTheme;
@@ -25,6 +32,7 @@ export const THEMES: Array<{
   { id: "shapes", label: "Shapes", emoji: "🔷", color: "#0ea5a4", bg: "#d6f1f0" },
   { id: "animals", label: "Animals", emoji: "🦁", color: "#16a34a", bg: "#d1fae5" },
   { id: "feelings", label: "Feelings", emoji: "🐻", color: "#7c3aed", bg: "#efe7ff" },
+  { id: "stories", label: "Stories", emoji: "📚", color: "#4338ca", bg: "#e0e7ff" },
 ];
 
 export type ExerciseKind =
@@ -635,6 +643,8 @@ const FEELINGS: Exercise[] = [
   },
 ];
 
+import { EXTRA_EXERCISES } from "@/lib/learn/kids/exercises-extra";
+
 export const ALL_EXERCISES: Exercise[] = [
   ...NUMBERS,
   ...LETTERS,
@@ -642,10 +652,97 @@ export const ALL_EXERCISES: Exercise[] = [
   ...SHAPES,
   ...ANIMALS,
   ...FEELINGS,
+  ...EXTRA_EXERCISES,
 ];
 
 export function exercisesByTheme(theme: KidsTheme): Exercise[] {
   return ALL_EXERCISES.filter((e) => e.theme === theme);
+}
+
+/**
+ * Pick `count` exercises for a session, with a day-stable shuffle so
+ * the child doesn't see the same six entries every time. The seed is
+ * a simple djb2 hash of `${theme}-${dayKey}` — deterministic but cheap.
+ *
+ * dayKey defaults to UTC YYYY-MM-DD so a refresh within the same day
+ * keeps the same set, but tomorrow's set is different.
+ */
+/** How strongly an exercise reinforces today's taught item. Higher
+ *  score = better first practice. Used so the first 1-2 practice
+ *  exercises echo what Milo just taught (e.g. number 2 → "How many
+ *  apples?" with count 2 first; later "How many balloons?" with 7
+ *  for difficulty progression). */
+function scoreForTarget(ex: Exercise, target: string): number {
+  if (!target) return 0;
+  const t = target.toLowerCase();
+  let score = 0;
+  // Counting: matches when the count equals the target number.
+  if (ex.showCount !== undefined) {
+    const targetNum = Number.parseInt(target, 10);
+    if (Number.isFinite(targetNum) && ex.showCount === targetNum) score += 12;
+  }
+  // Correct-choice label is the strongest signal for non-numeric items.
+  const correct = ex.choices.find((c) => c.id === ex.correctId);
+  if (correct?.label && correct.label.toLowerCase() === t) score += 10;
+  // "starts with X" / "Find the X" / "Find the number X" — prompt mention.
+  if (ex.prompt.toLowerCase().includes(` ${t}`) || ex.prompt.toLowerCase().endsWith(t)) score += 6;
+  // Any choice mentions the target.
+  if (ex.choices.some((c) => c.label?.toLowerCase().includes(t))) score += 2;
+  return score;
+}
+
+/**
+ * Pick `count` exercises for a session, day-stable shuffled.
+ *
+ * When `targetItem` is supplied (the day's letter / number / color /
+ * etc.), the first 1-2 exercises are scored and pinned so practice
+ * starts coherent with what Milo taught. The rest are mixed for
+ * variety. Without `targetItem`, the previous random-by-day behaviour
+ * is preserved.
+ */
+export function pickSessionExercises(
+  theme: KidsTheme,
+  count: number,
+  opts?: { targetItem?: string; dayKey?: string }
+): Exercise[] {
+  const pool = exercisesByTheme(theme);
+  if (pool.length === 0) return [];
+  const key = opts?.dayKey ?? new Date().toISOString().slice(0, 10);
+  let h = 5381;
+  const seed = `${theme}-${key}`;
+  for (let i = 0; i < seed.length; i++) h = (h * 33) ^ seed.charCodeAt(i);
+  let s = h >>> 0;
+  const rand = () => {
+    s = (s + 0x6d2b79f5) >>> 0;
+    let r = s;
+    r = Math.imul(r ^ (r >>> 15), r | 1);
+    r ^= r + Math.imul(r ^ (r >>> 7), r | 61);
+    return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const copy = pool.slice();
+  // Day-seeded Fisher-Yates so a refresh keeps the same set, but
+  // tomorrow's set is different.
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [copy[i], copy[j]] = [copy[j]!, copy[i]!];
+  }
+
+  const target = opts?.targetItem;
+  if (!target) return copy.slice(0, Math.min(count, copy.length));
+
+  // Pedagogical coherence: pin the highest-scoring matches first.
+  // Stable sort: keep the day-seeded order among equally-scored entries.
+  const scored = copy
+    .map((ex, i) => ({ ex, score: scoreForTarget(ex, target), tiebreak: i }))
+    .sort((a, b) => b.score - a.score || a.tiebreak - b.tiebreak);
+
+  // First 2 from the top of the ranked list (the same-concept echoes),
+  // then fall back to the day-shuffled rest for difficulty progression.
+  const pinned = scored.slice(0, 2).map((s) => s.ex);
+  const pinnedIds = new Set(pinned.map((e) => e.id));
+  const rest = copy.filter((e) => !pinnedIds.has(e.id));
+  return [...pinned, ...rest].slice(0, Math.min(count, pool.length));
 }
 
 export function exerciseCount(theme: KidsTheme): number {

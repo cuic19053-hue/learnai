@@ -9,10 +9,15 @@ type MissionCardProps = {
   title: string;
   /** Lead paragraph under the title; supports plain text only. */
   description: string;
-  /** Inclusive loop step the learner is on (1-6). */
+  /** Completed-loop-steps count (0-6). The "current" step is `currentStep` (zero-indexed). */
   currentStep: number;
   /** Total steps in the loop (default 6). */
   totalSteps?: number;
+  /**
+   * CTA label override. When omitted, the component picks a state-aware
+   * default: "Start session" when currentStep === 0, "Continue with X"
+   * (where X is the next step's label) otherwise.
+   */
   ctaLabel?: string;
   /** When set, the CTA renders as a link to this href (otherwise a static button). */
   ctaHref?: string;
@@ -23,6 +28,18 @@ type MissionCardProps = {
 /**
  * The "today's mission" hero card — gradient slab tinted by the journey
  * accent, with a conic-gradient progress ring and the Loop steps inline.
+ *
+ * UX notes:
+ *   - The kicker reads "X of N completed" so the count isn't mistaken
+ *     for "you are on step X" (X is past tense, the active step is X+1).
+ *   - A subline names the next step ("Next: Practice") so the action
+ *     state and the progress state aren't conflated.
+ *   - Locked steps are visually demoted (opacity, no border, grayscale
+ *     icon, small "lock" indicator) so they don't look interactive.
+ *   - The active step is emphasised with a thicker border + brighter
+ *     background and a "Current step" label.
+ *   - Icons are wrapped in a uniform circular badge so the mixed-style
+ *     emoji set reads as one visual family.
  */
 export default function MissionCard({
   journey,
@@ -31,89 +48,174 @@ export default function MissionCard({
   description,
   currentStep,
   totalSteps = LOOP.length,
-  ctaLabel = "Resume mission",
+  ctaLabel,
   ctaHref,
   meta,
 }: MissionCardProps) {
   const safeStep = Math.max(0, Math.min(totalSteps, currentStep));
   const pct = Math.round((safeStep / totalSteps) * 100);
-  const ctaClasses = "flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold";
+  const nextStep = LOOP[safeStep]; // undefined when all steps done
+  const resolvedCta =
+    ctaLabel ??
+    (safeStep === 0
+      ? "Start session"
+      : nextStep
+        ? `Continue with ${nextStep.label}`
+        : "Review session");
+
+  const ctaClasses =
+    "inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold shadow-sm transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-white";
   const ctaStyle = { color: journey.color } as const;
 
   return (
     <div
-      className="relative overflow-hidden rounded-3xl p-6 text-white"
+      className="relative overflow-hidden rounded-3xl p-7 text-white md:p-8"
       style={{
         background: `linear-gradient(135deg, ${journey.color} 0%, #2a1958 110%)`,
       }}
     >
-      <div className="grid items-center gap-6 md:grid-cols-[1.4fr_1fr]">
+      <div className="grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
         <div>
           <div className="text-[12px] font-bold uppercase tracking-[0.08em] opacity-80">
-            {kicker} · {safeStep}/{totalSteps} STEPS
+            {kicker} · {safeStep} of {totalSteps} completed
           </div>
-          <h2 className="mt-2 text-[28px] font-extrabold tracking-[-0.01em]">{title}</h2>
-          <p className="mt-2 max-w-[460px] text-[14px] leading-relaxed opacity-85">{description}</p>
-          <div className="mt-4 flex items-center gap-3">
+          <h2 className="mt-3 text-[28px] font-extrabold leading-tight tracking-[-0.01em]">
+            {title}
+          </h2>
+          {nextStep ? (
+            <div
+              className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] font-semibold"
+              style={{ background: "rgba(255,255,255,.18)" }}
+            >
+              <span aria-hidden>→</span>
+              <span>
+                Next: Step {safeStep + 1} · {nextStep.label}
+              </span>
+            </div>
+          ) : (
+            <div
+              className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[12px] font-semibold"
+              style={{ background: "rgba(255,255,255,.18)" }}
+            >
+              <span aria-hidden>✓</span>
+              <span>All steps complete</span>
+            </div>
+          )}
+          <p className="mt-3 max-w-[460px] text-[14px] leading-relaxed opacity-85">{description}</p>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
             {ctaHref ? (
               <Link href={ctaHref} className={ctaClasses} style={ctaStyle}>
-                ▶ {ctaLabel}
+                ▶ {resolvedCta}
               </Link>
             ) : (
               <button type="button" className={ctaClasses} style={ctaStyle}>
-                ▶ {ctaLabel}
+                ▶ {resolvedCta}
               </button>
             )}
             {meta ? <span className="text-[13px] opacity-85">{meta}</span> : null}
           </div>
         </div>
 
-        {/* Progress ring */}
-        <div className="flex justify-end" aria-hidden>
+        {/* Progress ring — moved into its own column with explicit
+            labels so it doesn't read as overlapping the title. */}
+        <div className="flex flex-col items-center md:items-end" aria-hidden>
+          <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.08em] opacity-75">
+            Loop progress
+          </div>
           <div
             className="grid place-items-center rounded-full"
             style={{
-              width: 160,
-              height: 160,
-              background: `conic-gradient(#fff 0% ${pct}%, rgba(255,255,255,.2) ${pct}% 100%)`,
+              width: 150,
+              height: 150,
+              background: `conic-gradient(#fff 0% ${pct}%, rgba(255,255,255,.18) ${pct}% 100%)`,
             }}
           >
             <div
-              className="grid h-[132px] w-[132px] place-items-center rounded-full text-center"
-              style={{ background: "rgba(255,255,255,.05)" }}
+              className="grid h-[126px] w-[126px] place-items-center rounded-full text-center"
+              style={{ background: "rgba(20,15,40,0.55)" }}
             >
               <div>
-                <div className="text-[32px] font-extrabold">
-                  {safeStep}/{totalSteps}
+                <div className="text-[30px] font-extrabold leading-none">
+                  {safeStep}
+                  <span className="text-[18px] font-bold opacity-70">/{totalSteps}</span>
                 </div>
-                <div className="text-[11px] opacity-85">Loop progress</div>
+                <div className="mt-1.5 text-[10px] font-semibold uppercase tracking-wider opacity-80">
+                  {pct}%
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Loop chips inline */}
-      <div className="relative z-10 mt-6 flex gap-2">
+      {/* Loop chips inline. Three visual states:
+            done     — translucent fill, check icon, normal opacity
+            current  — bright border + brighter fill + raised, "Current step" label
+            locked   — heavy opacity drop, no border, grayscale icon, tiny 🔒 */}
+      <div
+        className="relative z-10 mt-7 grid grid-cols-3 gap-2 md:grid-cols-6"
+        role="list"
+        aria-label={`Loop progress: ${safeStep} of ${totalSteps} steps complete.`}
+      >
         {LOOP.map((l, i) => {
           const done = i < safeStep;
-          const upNext = i === safeStep;
+          const current = i === safeStep;
+          const locked = i > safeStep;
           return (
             <div
               key={l.n}
-              className="flex-1 rounded-xl"
+              role="listitem"
+              aria-current={current ? "step" : undefined}
+              className="rounded-xl p-3 transition-transform"
               style={{
-                padding: "10px 12px",
-                background: done ? "rgba(255,255,255,.18)" : "rgba(255,255,255,.06)",
-                border: upNext ? "1.5px solid #fff" : "1px solid rgba(255,255,255,.1)",
+                background: current
+                  ? "rgba(255,255,255,0.22)"
+                  : done
+                    ? "rgba(255,255,255,0.14)"
+                    : "rgba(255,255,255,0.04)",
+                border: current
+                  ? "2px solid #fff"
+                  : done
+                    ? "1px solid rgba(255,255,255,0.18)"
+                    : "1px dashed rgba(255,255,255,0.10)",
+                opacity: locked ? 0.45 : 1,
+                transform: current ? "translateY(-2px)" : "none",
+                boxShadow: current ? "0 6px 16px -4px rgba(0,0,0,0.35)" : "none",
               }}
             >
-              <div className="text-lg" aria-hidden>
+              {/* Uniform circular icon badge so the mixed-emoji set
+                  reads as one visual family across steps. */}
+              <div
+                className="grid h-7 w-7 place-items-center rounded-full text-[14px]"
+                style={{
+                  background: "rgba(255,255,255,0.16)",
+                  filter: locked ? "grayscale(0.85)" : "none",
+                }}
+                aria-hidden
+              >
                 {l.icon}
               </div>
-              <div className="mt-1 text-[12px] font-bold">{l.label}</div>
-              <div className="mt-0.5 text-[10px] opacity-70">
-                {done ? "✓ Done" : upNext ? "Up next" : "Locked"}
+              <div
+                className="mt-2 text-[12px] font-bold leading-tight"
+                style={{ opacity: locked ? 0.85 : 1 }}
+              >
+                {l.label}
+              </div>
+              <div
+                className="mt-0.5 text-[10px] font-semibold"
+                style={{
+                  opacity: current ? 1 : 0.7,
+                }}
+              >
+                {done ? (
+                  <span>✓ Done</span>
+                ) : current ? (
+                  <span className="uppercase tracking-wide">Current step</span>
+                ) : (
+                  <span className="inline-flex items-center gap-0.5">
+                    <span aria-hidden>🔒</span> Locked
+                  </span>
+                )}
               </div>
             </div>
           );
