@@ -49,7 +49,7 @@ export default async function ExplorerPage() {
         currentStep={3}
         ctaLabel="Resume quest"
         meta="~8 min · 🏅 Science Explorer"
-        ctaHref="/learn/lesson/explorer"
+        ctaHref="/learn/lesson/explorer?mission=explorer-volcano"
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -61,13 +61,13 @@ export default async function ExplorerPage() {
                 title: "How clouds make rain",
                 subtitle: "Science · 4 mins left",
                 progress: 60,
-                href: "/learn/lesson/explorer",
+                href: "/learn/lesson/explorer?mission=explorer-clouds",
               },
               {
                 title: "Reading: tiger cubs",
                 subtitle: "Reading · 9 mins left",
                 progress: 25,
-                href: "/learn/lesson/explorer",
+                href: "/learn/lesson/explorer?mission=explorer-reading",
               },
             ]}
           />

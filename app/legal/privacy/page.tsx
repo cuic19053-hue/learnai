@@ -131,9 +131,14 @@ export default function PrivacyPage() {
           <strong>Export your data</strong> — the parent dashboard has a one-click JSON export.
         </li>
         <li>
-          <strong>Delete your account</strong> — email us at{" "}
-          <a href="mailto:privacy@learnai.example">privacy@learnai.example</a> and we will delete
-          every record we hold within 30 days.
+          <strong>Delete your account — instantly, from inside the app.</strong> Open Account
+          settings and choose &quot;Delete account&quot;. Everything we store about you (progress,
+          attempts, sessions, OAuth links) is removed on the spot — there is no soft-delete window
+          and no manual ticket to file. The hosted service keeps no shadow copy.
+        </li>
+        <li>
+          <strong>Get human help</strong> — if anything looks wrong, write to{" "}
+          <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a>.
         </li>
         <li>
           <strong>Inspect the source</strong> — every line of how we handle data is public at{" "}
@@ -185,8 +190,9 @@ export default function PrivacyPage() {
 
       <h2>9. Contact</h2>
       <p>
-        Privacy questions, deletion requests, or COPPA escalations:{" "}
-        <a href="mailto:privacy@learnai.example">privacy@learnai.example</a>. For security reports,
+        Privacy questions, COPPA escalations, or general questions:{" "}
+        <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a>. Account deletion does not
+        need an email — it&apos;s a one-click action in your account settings. For security reports,
         see{" "}
         <a
           href="https://github.com/ruslanmv/learnai/blob/main/SECURITY.md"

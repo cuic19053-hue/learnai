@@ -19,12 +19,7 @@
 
 import { z } from "zod";
 import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
-import {
-  getCertificationIdBySlug,
-  getPublicQuestions,
-  type PublicQuestion,
-} from "@/lib/certifications/db";
-import { legacyPagedQuestions, legacySampleQuestions } from "@/lib/certifications/legacy-bridge";
+import { resolveQuestions } from "@/lib/certifications/resolve-questions";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -51,46 +46,33 @@ export const GET = handler(async (req: Request, ctx: { params: Promise<{ slug: s
     difficulty: url.searchParams.get("difficulty") ?? undefined,
   });
 
-  // DB path first.
-  try {
-    const cert = await getCertificationIdBySlug(slug);
-    if (cert && cert.isPublished) {
-      const items = await getPublicQuestions({
-        certificationId: cert.id,
-        mode: query.mode,
-        size: query.size,
-        offset: query.offset,
-        limit: query.limit,
-        difficulty: query.difficulty,
-      });
-      if (items.length > 0) {
-        return ok({
-          source: "db",
-          mode: query.mode,
-          items,
-          total: query.mode === "page" ? items.length : undefined,
+  // Shared resolver: AI-generated DB rows first, JSON file pack as
+  // fallback. The response surfaces `source` so the UI can render an
+  // honest "✨ AI generated" or "starter pack" indicator.
+  const result =
+    query.mode === "sample"
+      ? await resolveQuestions(slug, {
+          mode: "sample",
+          size: query.size,
+          difficulty: query.difficulty,
+        })
+      : await resolveQuestions(slug, {
+          mode: "page",
+          offset: query.offset,
+          limit: query.limit,
+          difficulty: query.difficulty,
         });
-      }
-    }
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.warn("[certifications] questions read failed", err);
+
+  if (result.items.length === 0) {
+    return fail(404, `No questions available for certification: ${slug}`);
   }
 
-  // Legacy fallback (file pack).
-  if (query.mode === "sample") {
-    const items: PublicQuestion[] = await legacySampleQuestions(slug, query.size);
-    if (items.length === 0) return fail(404, `No questions available for certification: ${slug}`);
-    return ok({ source: "legacy", mode: "sample", items });
-  }
-  const { total, items } = await legacyPagedQuestions(slug, query.offset, query.limit);
-  if (total === 0) return fail(404, `No questions available for certification: ${slug}`);
   return ok({
-    source: "legacy",
-    mode: "page",
-    items,
-    total,
-    offset: query.offset,
-    limit: query.limit,
+    source: result.source,
+    mode: query.mode,
+    items: result.items,
+    ...(query.mode === "page"
+      ? { total: result.total, offset: query.offset, limit: query.limit }
+      : {}),
   });
 });

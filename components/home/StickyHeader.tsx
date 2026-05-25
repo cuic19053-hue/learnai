@@ -61,6 +61,7 @@ export default function StickyHeader() {
           {[
             { href: "#journeys", label: "Journeys" },
             { href: "#how", label: "How it works" },
+            { href: "/organizations", label: "For Organizations" },
             { href: "/teachers", label: "Teachers" },
           ].map((l) => (
             <motion.div

@@ -62,7 +62,7 @@ export default async function ScholarPage() {
         description="Concept refresher, two worked examples, then 5 exam-style questions with feedback. Teach-until-learned loop on misses."
         currentStep={2}
         meta="~25 min · +90 XP"
-        ctaHref="/learn/lesson/scholar"
+        ctaHref="/learn/lesson/scholar?mission=scholar-trig"
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -78,13 +78,13 @@ export default async function ScholarPage() {
                 title: "Algebra: quadratic equations",
                 subtitle: "Math · 68% mastery",
                 progress: 68,
-                href: "/learn/lesson/scholar",
+                href: "/learn/lesson/scholar?mission=scholar-quadratics",
               },
               {
                 title: "Probability fundamentals",
                 subtitle: "Math · 75% mastery",
                 progress: 75,
-                href: "/learn/lesson/scholar",
+                href: "/learn/lesson/scholar?mission=scholar-probability",
               },
             ]}
           />

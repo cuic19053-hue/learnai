@@ -5,6 +5,10 @@ import Illustration from "@/components/design/Illustration";
 import { Arrow } from "@/components/design/icons";
 import StickyHeader from "@/components/home/StickyHeader";
 import AnimatedHero from "@/components/home/AnimatedHero";
+import AudienceCards from "@/components/home/AudienceCards";
+import Comparison from "@/components/home/Comparison";
+import HomeFaq from "@/components/home/HomeFaq";
+import StickyMobileCta from "@/components/home/StickyMobileCta";
 import { JOURNEYS } from "@/lib/learn/journeys";
 import { LOOP } from "@/lib/learn/loop";
 
@@ -79,6 +83,9 @@ export default function HomePage() {
 
       {/* ────────── Hero (animated) ────────── */}
       <AnimatedHero />
+
+      {/* ────────── Who it's for (4 audience cards) ────────── */}
+      <AudienceCards />
 
       {/* ────────── Journey grid ────────── */}
       <section id="journeys" className="mx-auto max-w-[1200px] px-6 py-16 md:px-12">
@@ -249,21 +256,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ────────── CTA ────────── */}
+      {/* ────────── Comparison strip ────────── */}
+      <Comparison />
+
+      {/* ────────── FAQ ────────── */}
+      <HomeFaq />
+
+      {/* ────────── Final CTA ────────── */}
       <section className="px-6 py-16 text-center md:px-12 md:py-20">
         <h2 className="m-0 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
           Start the right journey today.
         </h2>
         <p className="mt-3 text-base text-ink-soft">
-          Free to try. No card. No ads. Made for every age.
+          Free to try · No credit card · No ads · Safe for kids
         </p>
-        <Link
-          href="/onboarding"
-          className="la-btn mt-6 inline-flex"
-          style={{ padding: "16px 28px", fontSize: 16 }}
-        >
-          Choose your journey <Arrow />
-        </Link>
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/onboarding"
+            className="la-btn inline-flex"
+            style={{ padding: "16px 28px", fontSize: 16 }}
+          >
+            Start learning free <Arrow />
+          </Link>
+          <Link
+            href="/organizations"
+            className="la-btn ghost inline-flex"
+            style={{ padding: "16px 22px", fontSize: 15 }}
+          >
+            For schools &amp; teams
+          </Link>
+        </div>
       </section>
 
       {/* ────────── Footer ────────── */}
@@ -279,15 +301,25 @@ export default function HomePage() {
             <Link href="/onboarding" className="hover:text-ink">
               Get started
             </Link>
+            <Link href="/organizations" className="hover:text-ink">
+              For Organizations
+            </Link>
             <Link href="/teachers" className="hover:text-ink">
               Teachers
             </Link>
             <Link href="/parent" className="hover:text-ink">
               Parents
             </Link>
+            <Link href="#faq" className="hover:text-ink">
+              FAQ
+            </Link>
           </div>
         </div>
       </footer>
+
+      {/* Floating mobile CTA (hidden on desktop and inside the hero
+          viewport — only appears after the user scrolls past it). */}
+      <StickyMobileCta />
     </main>
   );
 }

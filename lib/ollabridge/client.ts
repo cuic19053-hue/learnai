@@ -25,21 +25,35 @@ export type OllabridgeConfig = {
   baseUrl: string;
   /** Reachable fallback when the canonical host isn't DNS-bound yet. */
   baseUrlFallback?: string;
-  /** Optional device token issued by the pairing flow. */
+  /** Admin-tier API key minted in OllaBridge Cloud Admin → API Keys.
+   *  Format: `ob_<43-char-urlsafe>`. When set, this is the Bearer
+   *  token used for every request — preferred over the device token
+   *  for production deployments. */
+  apiKey?: string;
+  /** Optional device token issued by the pairing flow. Used only
+   *  when `apiKey` isn't set, so the pairing UX still works. */
   deviceToken?: string;
   /** Identifies the calling product for telemetry segmentation. */
   clientType?: string;
   /** Scopes relay/GPU routing to a specific user's devices. */
   userId?: string;
-  /** Per-request timeout. Default 25 s — generous to ride out cold-start. */
+  /** Per-request timeout. Default 45 s per the OllaBridge brief —
+   *  the cloud may cascade through several backends when free-tier
+   *  providers are exhausted; healthy paths return in < 1 s. */
   timeoutMs?: number;
+  /** Default model alias when the caller doesn't pass one. Use
+   *  aliases (`free-fast` / `free-best`) so routing profiles can
+   *  swap providers without code changes. */
+  defaultModel?: string;
 };
 
 export const DEFAULT_CONFIG: OllabridgeConfig = {
   baseUrl: process.env.OLLABRIDGE_URL?.trim() || "https://api.ollabridge.com",
   baseUrlFallback: "https://ruslanmv-ollabridge.hf.space",
+  apiKey: process.env.OLLABRIDGE_API_KEY?.trim() || undefined,
   clientType: "learnai-server",
-  timeoutMs: 25_000,
+  timeoutMs: 45_000,
+  defaultModel: process.env.OLLABRIDGE_DEFAULT_MODEL?.trim() || "free-fast",
 };
 
 function resolveBase(c: OllabridgeConfig): string {
@@ -55,8 +69,20 @@ function withHeaders(c: OllabridgeConfig, extra: Record<string, string> = {}): H
   if (!extra["Content-Type"] && extra["body"] !== "") h.set("Content-Type", "application/json");
   if (c.clientType) h.set("X-Client-Type", c.clientType);
   if (c.userId) h.set("X-User-Id", c.userId);
-  if (c.deviceToken) h.set("Authorization", `Bearer ${c.deviceToken}`);
+  // Admin-tier API key takes precedence over device token. Both use
+  // the same Bearer slot — they're conceptually the same credential
+  // to the OllaBridge gateway, just minted differently.
+  const bearer = c.apiKey ?? c.deviceToken;
+  if (bearer) h.set("Authorization", `Bearer ${bearer}`);
   return h;
+}
+
+/** Mask a Bearer token for logs. "ob_AbCdEfGhI…(xxxxxxx)". Per the
+ *  brief: never log the plaintext, even on failure. */
+export function maskKey(k: string | undefined): string {
+  if (!k) return "(none)";
+  if (k.length <= 11) return k.slice(0, 3) + "…";
+  return `${k.slice(0, 11)}…(${k.length - 11} more)`;
 }
 
 export class OllabridgeError extends Error {
@@ -110,7 +136,15 @@ async function callJson<T>(
   if (!resp.ok) {
     const text = await resp.text().catch(() => "");
     const waking = resp.status === 503 && /warm|wak|starting|booting/i.test(text);
-    if ((resp.status === 502 || resp.status === 503 || resp.status === 504) && !init.absoluteUrl) {
+    // 401 (revoked / wrong key) and 402 (upstream provider quota
+    // exhausted) are deterministic per the brief — do NOT retry on
+    // the fallback host; surface the error to the operator.
+    const deterministicFail = resp.status === 401 || resp.status === 402;
+    if (
+      !deterministicFail &&
+      (resp.status === 502 || resp.status === 503 || resp.status === 504) &&
+      !init.absoluteUrl
+    ) {
       const fb = fallbackBase(c);
       if (fb && fb !== resolveBase(c)) {
         return callJson<T>(c, path, { ...init, absoluteUrl: `${fb}${path}` });
@@ -149,7 +183,9 @@ export type OllabridgeChatMessage = {
 };
 
 export type ChatRequest = {
-  model: string;
+  /** Optional. Falls back to `OLLABRIDGE_DEFAULT_MODEL` or "free-fast"
+   *  so callers don't have to hardcode a model id. */
+  model?: string;
   messages: OllabridgeChatMessage[];
   temperature?: number;
   max_tokens?: number;
@@ -157,13 +193,14 @@ export type ChatRequest = {
 };
 
 export async function chat(req: ChatRequest, c: OllabridgeConfig = DEFAULT_CONFIG) {
+  const model = req.model ?? c.defaultModel ?? DEFAULT_CONFIG.defaultModel ?? "free-fast";
   return callJson<{
     id: string;
     choices: Array<{ message: { role: string; content: string } }>;
     usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
   }>(c, "/v1/chat/completions", {
     method: "POST",
-    body: JSON.stringify({ ...req, stream: false }),
+    body: JSON.stringify({ ...req, model, stream: false }),
   });
 }
 

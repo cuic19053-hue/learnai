@@ -12,8 +12,15 @@
 import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
+import { prisma } from "@/lib/prisma";
 import { inferCertificationMeta } from "./catalog";
-import type { CertificationMeta, CertificationMetaSidecar, RawQuestion } from "./types";
+import type {
+  CertificationLevel,
+  CertificationMeta,
+  CertificationMetaSidecar,
+  CertificationVendor,
+  RawQuestion,
+} from "./types";
 
 const QUESTIONS_DIR = path.join(process.cwd(), "certifications", "questions");
 
@@ -65,11 +72,11 @@ async function readSidecar(slug: string): Promise<CertificationMetaSidecar | nul
 export async function discoverCertifications(): Promise<CertificationMeta[]> {
   if (catalogCache) return catalogCache;
 
-  let entries: string[];
+  let entries: string[] = [];
   try {
     entries = await fs.readdir(QUESTIONS_DIR);
   } catch {
-    return [];
+    entries = [];
   }
 
   const slugs = entries
@@ -78,11 +85,11 @@ export async function discoverCertifications(): Promise<CertificationMeta[]> {
     // Defensive — only allow safe slug characters.
     .filter((s) => /^[A-Za-z0-9._-]+$/.test(s));
 
-  const metas: CertificationMeta[] = [];
+  const bySlug = new Map<string, CertificationMeta>();
   for (const slug of slugs) {
     const base = inferCertificationMeta(slug);
     const sidecar = await readSidecar(slug);
-    metas.push({
+    bySlug.set(slug, {
       slug,
       code: sidecar?.code ?? base.code,
       title: sidecar?.title ?? base.title,
@@ -91,6 +98,37 @@ export async function discoverCertifications(): Promise<CertificationMeta[]> {
       level: sidecar?.level ?? base.level,
     });
   }
+
+  // Merge in user-created packs that have been published to the DB.
+  // DB rows win for slugs that exist in both places (file packs become
+  // a starter / fallback once a published DB row exists for the slug).
+  try {
+    const dbRows = await prisma.certification.findMany({
+      where: { isPublished: true },
+      select: {
+        slug: true,
+        code: true,
+        title: true,
+        vendor: true,
+        level: true,
+        shortDescription: true,
+      },
+    });
+    for (const row of dbRows) {
+      bySlug.set(row.slug, {
+        slug: row.slug,
+        code: row.code,
+        title: row.title,
+        vendor: prismaVendorToDisplay(row.vendor),
+        blurb: row.shortDescription ?? "Community-built · cited from official vendor docs.",
+        level: prismaLevelToDisplay(row.level),
+      });
+    }
+  } catch {
+    // DB unreachable — file packs still render.
+  }
+
+  const metas = Array.from(bySlug.values());
 
   // Stable sort: vendor → level → code so the hub renders predictably.
   const VENDOR_ORDER = ["AWS", "Azure", "GCP", "IBM", "Other"];
@@ -105,6 +143,24 @@ export async function discoverCertifications(): Promise<CertificationMeta[]> {
 
   catalogCache = metas;
   return metas;
+}
+
+function prismaVendorToDisplay(v: string): CertificationVendor {
+  const up = v.toUpperCase();
+  if (up === "AWS") return "AWS";
+  if (up === "AZURE") return "Azure";
+  if (up === "GCP") return "GCP";
+  if (up === "IBM") return "IBM";
+  return "Other";
+}
+
+function prismaLevelToDisplay(l: string): CertificationLevel {
+  const up = l.toUpperCase();
+  if (up === "FUNDAMENTALS" || up === "FOUNDATIONAL") return "Fundamentals";
+  if (up === "ASSOCIATE") return "Associate";
+  if (up === "PROFESSIONAL" || up === "EXPERT" || up === "ADVANCED") return "Professional";
+  if (up === "SPECIALTY") return "Specialty";
+  return "Associate";
 }
 
 export async function findCertification(slug: string): Promise<CertificationMeta | null> {
@@ -146,8 +202,22 @@ export async function loadCertification(slug: string): Promise<LoadedQuestion[]>
 }
 
 export async function countCertification(slug: string): Promise<number> {
-  const all = await loadCertification(slug);
-  return all.length;
+  const fromFile = await loadCertification(slug);
+  if (fromFile.length > 0) return fromFile.length;
+  // DB-only packs (community-created) — fall back to a count from the
+  // CertificationQuestion table so the hub card shows a real number.
+  try {
+    const cert = await prisma.certification.findUnique({
+      where: { slug },
+      select: { id: true, isPublished: true },
+    });
+    if (!cert || !cert.isPublished) return 0;
+    return prisma.certificationQuestion.count({
+      where: { certificationId: cert.id, isPublished: true },
+    });
+  } catch {
+    return 0;
+  }
 }
 
 export async function loadCertificationPage(

@@ -116,7 +116,10 @@ export default function KidsHeader({
             ←
           </Link>
         ) : (
-          <span
+          <Link
+            href="/"
+            aria-label="Back to LearnAI home"
+            title="Back to home"
             style={{
               width: 32,
               height: 32,
@@ -128,10 +131,11 @@ export default function KidsHeader({
               fontSize: 15,
               fontWeight: 800,
               boxShadow: "0 4px 10px rgba(236,72,153,.3)",
+              textDecoration: "none",
             }}
           >
             L
-          </span>
+          </Link>
         )}
         <span
           style={{

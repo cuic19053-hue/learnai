@@ -47,6 +47,23 @@ type AgeBand = "3-6" | "7-11" | "12-15" | "16-18";
 
 const STEP_LABELS = ["Who are we helping?", "What should they learn?", "Start"] as const;
 
+// First mission slug each world should open into from onboarding. Kept
+// in sync with the practice payloads in lib/learn/missions.ts — without
+// these slugs the lesson route falls back to the Explorer-volcano demo
+// for every world.
+const DEFAULT_MISSION_BY_STAGE: Partial<Record<LearnerStage, string>> = {
+  EXPLORER: "explorer-volcano",
+  BUILDER: "python-calculator",
+  SCHOLAR: "scholar-trig",
+  UNIVERSITY: "vpc-networking-subnets-routes",
+  PROFESSIONAL: "vpc-networking-subnets-routes",
+};
+
+function defaultMissionQuery(stage: LearnerStage): string {
+  const slug = DEFAULT_MISSION_BY_STAGE[stage];
+  return slug ? `?mission=${slug}` : "";
+}
+
 const AUDIENCE_OPTIONS: { id: Audience; label: string; emoji: string; hint: string }[] = [
   { id: "child", label: "My child", emoji: "🧒", hint: "We'll pick a kid-safe world by age." },
   {
@@ -310,7 +327,10 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
     } catch {
       /* non-fatal — the lesson route doesn't require the profile cookie */
     }
-    router.push(`/learn/lesson/${worldSlugForStage(stage)}`);
+    // Land each stage on its first real mission so the practice surface
+    // shows real content (and not the Explorer-volcano fallback that the
+    // lesson route uses when ?mission= is missing).
+    router.push(`/learn/lesson/${worldSlugForStage(stage)}${defaultMissionQuery(stage)}`);
   }
 
   const showSidebar = step > 0;

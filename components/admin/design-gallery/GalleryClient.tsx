@@ -55,6 +55,7 @@ import {
   CertForgeHome,
   SafetyForgeHome,
 } from "@/components/learn/wikitest/wikitest-forges";
+import { BuildersPortal } from "@/components/learn/wikitest/wikitest-builders-portal";
 import {
   ForgePlan,
   ForgeGenerating,
@@ -120,6 +121,7 @@ const REGISTRY: Record<string, FC> = {
   StoryForgeHome,
   QuestForgeHome,
   ProjectForgeHome,
+  BuildersPortal,
   ScholarExamForge,
   CertForgeHome,
   SafetyForgeHome,
@@ -168,6 +170,11 @@ const REGISTRY: Record<string, FC> = {
   OnboardingNew,
   MiloGamesHub,
   MiloNumbers,
+  // Batch — Little Learner 3-layer redesign + parent area
+  LittleLearnerHome,
+  MiloLettersHome,
+  MiloPlay,
+  ParentAreaPreview,
 };
 
 function PlaceholderScreen({ batch, comp }: { batch: number; comp: string }) {
