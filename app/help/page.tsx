@@ -66,10 +66,8 @@ const FAQ: Array<{ q: string; a: React.ReactNode }> = [
     q: "Can I export my progress?",
     a: (
       <>
-        Yes. The <Link href="/parent">parent dashboard</Link> has a one-click JSON export. For a
-        signed-in account, email{" "}
-        <a href="mailto:privacy@learnai.example">privacy@learnai.example</a> and we&apos;ll send
-        your data within 30 days.
+        Yes. The <Link href="/parent">parent dashboard</Link> has a one-click JSON export. Signed-in
+        users can also export from Account settings. No support ticket needed.
       </>
     ),
   },
@@ -77,9 +75,10 @@ const FAQ: Array<{ q: string; a: React.ReactNode }> = [
     q: "How do I delete my data?",
     a: (
       <>
-        In guest mode: clearing your browser data deletes everything. Signed in: email{" "}
-        <a href="mailto:privacy@learnai.example">privacy@learnai.example</a> and every record we
-        hold will be removed within 30 days.
+        In guest mode: clearing your browser data deletes everything. Signed in: open Account
+        settings and choose &quot;Delete account&quot; — every record we hold is removed
+        immediately, no email or 30-day wait. For questions, write to{" "}
+        <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a>.
       </>
     ),
   },
@@ -87,9 +86,8 @@ const FAQ: Array<{ q: string; a: React.ReactNode }> = [
     q: "I'm a teacher / school / org — can I use this?",
     a: (
       <>
-        Yes. The license (Apache 2.0) explicitly permits commercial and institutional use. Reach out
-        at <a href="mailto:ai@learnai.example">ai@learnai.example</a> for deployment support, custom
-        integrations, or named-program sponsorship.
+        Yes — LearnAI is open source (MIT). Fork the repo, self-host, or just use the live app. See
+        the <Link href="/organizations">community page</Link> for how to contribute or sponsor.
       </>
     ),
   },
@@ -160,8 +158,8 @@ const FAQ: Array<{ q: string; a: React.ReactNode }> = [
     q: "I have a question that's not here.",
     a: (
       <>
-        Email <a href="mailto:contact@learnai.example">contact@learnai.example</a> and we&apos;ll
-        get back to you. For technical questions, GitHub Discussions is faster.
+        Email <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a> and we&apos;ll get back
+        to you. For technical questions, GitHub Discussions is faster.
       </>
     ),
   },
@@ -189,8 +187,8 @@ export default function HelpPage() {
 
       <h2>Still stuck?</h2>
       <p>
-        Drop us a line at <a href="mailto:contact@learnai.example">contact@learnai.example</a> or
-        open a thread on{" "}
+        Drop us a line at <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a> or open a
+        thread on{" "}
         <a
           href="https://github.com/ruslanmv/learnai/discussions"
           target="_blank"

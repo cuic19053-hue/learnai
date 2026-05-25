@@ -66,7 +66,7 @@ export default async function AdultPage() {
         currentStep={3}
         ctaLabel="Open module"
         meta="~30 min · +120 XP"
-        ctaHref="/learn/lesson/adult"
+        ctaHref="/learn/lesson/adult?mission=vpc-networking-subnets-routes"
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -78,13 +78,13 @@ export default async function AdultPage() {
                 title: "IAM policies in practice",
                 subtitle: "Security · 12 mins left",
                 progress: 55,
-                href: "/learn/lesson/adult",
+                href: "/learn/lesson/adult?mission=iam-policies-practice",
               },
               {
                 title: "S3 lifecycle and storage classes",
                 subtitle: "Storage · 18 mins left",
                 progress: 40,
-                href: "/learn/lesson/adult",
+                href: "/learn/lesson/adult?mission=s3-lifecycle-storage-classes",
               },
             ]}
           />
@@ -184,15 +184,16 @@ export default async function AdultPage() {
                 className="la-pill text-[11px]"
                 style={{ background: journey.bg, color: journey.color }}
               >
-                CERT PREP · 20 exam packs
+                CERT PREP · ✨ AI-generated
               </span>
             </div>
             <h3 className="mt-2 text-xl font-extrabold text-ink">
-              Drill real exam-style questions
+              Practice with freshly synthesized exam questions
             </h3>
             <p className="mt-1 max-w-[640px] text-[14px] leading-relaxed text-ink-soft">
-              AWS · Azure · Google Cloud · IBM. Quick drill or full review, answer reveal with
-              explanation, self-rated mastery.
+              AWS · Azure · Google Cloud · IBM. Every question is AI-synthesized from official
+              vendor documentation and cited back to its source — quick drill or full review with
+              answer reveal and explanation.
             </p>
           </div>
           <span

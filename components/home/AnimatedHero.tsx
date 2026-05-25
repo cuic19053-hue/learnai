@@ -253,14 +253,14 @@ export default function AnimatedHero() {
           </h1>
 
           <motion.p
-            className="mt-5 max-w-[520px] text-lg leading-relaxed text-ink-soft"
+            className="mt-5 max-w-[560px] text-lg leading-relaxed text-ink-soft"
             variants={{
               hidden: reduce ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 },
               show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
             }}
           >
-            LearnAI gives every learner a personal AI teacher, with lessons adapted to their age,
-            pace, and goals.
+            LearnAI is a personal AI tutor that adapts lessons, practice, and feedback to each
+            learner&apos;s age, pace, and goals.
           </motion.p>
 
           <motion.div
@@ -275,19 +275,31 @@ export default function AnimatedHero() {
               className="la-btn group transition-transform hover:-translate-y-0.5"
               style={{ padding: "14px 22px", fontSize: 15 }}
             >
-              Choose your journey
+              Start learning free
               <span className="inline-flex transition-transform group-hover:translate-x-1">
                 <Arrow />
               </span>
             </Link>
             <Link
-              href="#how"
+              href="/organizations"
               className="la-btn ghost group transition-colors hover:border-brand-1 hover:text-ink"
               style={{ padding: "14px 22px", fontSize: 15 }}
             >
-              How it works
+              For schools &amp; teams →
             </Link>
           </motion.div>
+
+          {/* Trust microcopy — directly under the CTA. Repeats what the
+              footer says but at the highest-conversion spot. */}
+          <motion.p
+            className="mt-3 text-[13px] text-ink-mute"
+            variants={{
+              hidden: { opacity: 0 },
+              show: { opacity: 1, transition: { duration: 0.4, delay: 0.1 } },
+            }}
+          >
+            Free to try · No credit card · No ads · Safe for kids
+          </motion.p>
 
           {/* Scenario dots — show which of 5 mini-lessons is on screen */}
           <motion.div

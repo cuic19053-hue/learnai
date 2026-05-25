@@ -128,6 +128,12 @@ export const GALLERY: GallerySection[] = [
         batch: 4,
       },
       {
+        slug: "builders-portal",
+        label: "Builder · Portal (enterprise · DataCamp-lite)",
+        comp: "BuildersPortal",
+        batch: 4,
+      },
+      {
         slug: "forge-exam",
         label: "Scholar · ExamForge (flagship)",
         comp: "ScholarExamForge",

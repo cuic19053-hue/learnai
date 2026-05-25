@@ -20,7 +20,7 @@ import { AiProviderError, jsonChat } from "@/lib/ai/provider";
 import type { ChatMessage } from "@/lib/ai/provider";
 import { prisma } from "@/lib/prisma";
 import { filterAllowedRefs } from "./source-policy";
-import type { OfficialRef, QuestionOption } from "./types";
+import type { QuestionOption } from "./types";
 import type { QuestionDifficulty, QuestionType } from "@prisma/client";
 
 const MAX_TOKENS = 2_400;

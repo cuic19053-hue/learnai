@@ -16,21 +16,22 @@ export default function TermsPage() {
       active="terms"
     >
       <p>
-        <strong>The short version.</strong> LearnAI is free to use, the source is Apache 2.0, and
-        there is no premium tier for at least the first year of operation. These terms cover the
-        hosted service at <code>learnai.app</code>. By using the service you agree to these terms;
-        if you don&apos;t, please don&apos;t.
+        <strong>The short version.</strong> LearnAI is an open-source project. Its only purpose is
+        to help people learn — children, students, professionals, seniors. It is free to use, the
+        source is Apache 2.0, and there is no premium tier or paywall. These terms cover the hosted
+        service; by using it you agree to them, and if you don&apos;t, please don&apos;t.
       </p>
 
       <h2>1. The service</h2>
       <p>
-        LearnAI is an open-source AI teacher. We provide a hosted version at{" "}
-        <code>learnai.app</code> for anyone to use, free of charge. You can also self-host the
-        application from the public source code at{" "}
+        LearnAI is an open-source AI teacher whose scope is to help people learn. Lessons, tests,
+        and tutor replies exist to support learners of every age — not to sell anything, not to
+        collect training data, not to lock features behind a tier. We host a free public version for
+        anyone to use, and the same Apache 2.0 source is at{" "}
         <a href="https://github.com/ruslanmv/learnai" target="_blank" rel="noreferrer noopener">
           github.com/ruslanmv/learnai
-        </a>
-        . The same Apache 2.0 license applies in both cases.
+        </a>{" "}
+        so you can read, fork, or self-host it.
       </p>
 
       <h2>2. Accounts</h2>
@@ -69,7 +70,7 @@ export default function TermsPage() {
       <p>
         We will rate-limit, block, or revoke access for clear violations. We try hard to keep this
         list short and obvious — if in doubt, ask at{" "}
-        <a href="mailto:contact@learnai.example">contact@learnai.example</a>.
+        <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a>.
       </p>
 
       <h2>5. Content and citations</h2>
@@ -143,9 +144,8 @@ export default function TermsPage() {
 
       <h2>11. Contact</h2>
       <p>
-        Questions about these terms:{" "}
-        <a href="mailto:contact@learnai.example">contact@learnai.example</a>. Privacy-specific
-        matters: see <a href="/legal/privacy">Privacy policy</a>.
+        Questions about these terms: <a href="mailto:contact@ruslanmv.com">contact@ruslanmv.com</a>.
+        Privacy-specific matters: see <a href="/legal/privacy">Privacy policy</a>.
       </p>
     </LegalShell>
   );
