@@ -13,7 +13,11 @@ const PUBLIC_PATHS = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = (process.env.NEXTAUTH_URL ?? "https://learnai.example").replace(/\/$/, "");
+  // `||` (not `??`) so that an empty-string NEXTAUTH_URL — which CI can
+  // set unintentionally — still falls back. An empty base produces
+  // `new URL("/path")` which throws ERR_INVALID_URL during prerender.
+  const raw = (process.env.NEXTAUTH_URL || "").trim();
+  const base = (raw || "https://learnai.example").replace(/\/$/, "");
   const lastModified = new Date();
   return PUBLIC_PATHS.map((path) => ({
     url: `${base}${path}`,
