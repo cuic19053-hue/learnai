@@ -1,7 +1,9 @@
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXTAUTH_URL ?? "https://learnai.example";
+  // `||` (not `??`) so an empty-string env var still falls back.
+  const raw = (process.env.NEXTAUTH_URL || "").trim();
+  const base = raw || "https://learnai.example";
   return {
     rules: [
       {

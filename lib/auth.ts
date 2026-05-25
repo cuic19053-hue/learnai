@@ -9,6 +9,9 @@
  * @license MIT
  */
 
+// MUST be first — clears empty-string NEXTAUTH_URL before next-auth's
+// module-init URL parser sees it. See lib/env-bootstrap.ts.
+import "./env-bootstrap";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { NextAuthOptions, User } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";

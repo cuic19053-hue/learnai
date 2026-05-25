@@ -1,3 +1,6 @@
+// MUST be first — clears empty-string NEXTAUTH_URL etc. before any
+// other module (next-auth, in particular) reads them at import time.
+import "@/lib/env-bootstrap";
 import "./globals.css";
 import type { ReactNode } from "react";
 import type { Metadata, Viewport } from "next";
@@ -7,6 +10,15 @@ import ProgressProvider from "@/components/progress/ProgressProvider";
 import { warnAboutMissingEnv } from "@/lib/env";
 
 warnAboutMissingEnv();
+
+// `||` (not `??`) so an empty-string env var also falls back —
+// without this, Next.js's metadata resolver can build `new URL("")`
+// during prerender of static pages (eg /licenses) and crash with
+// ERR_INVALID_URL. The fallback is a development hostname; production
+// deploys set NEXTAUTH_URL to the real origin.
+const SITE_BASE =
+  (process.env.NEXTAUTH_URL || process.env.NEXT_PUBLIC_SITE_URL || "").trim() ||
+  "http://localhost:3000";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -23,6 +35,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_BASE),
   title: {
     default: "LearnAI · One teacher. Every learner.",
     template: "%s · LearnAI",
