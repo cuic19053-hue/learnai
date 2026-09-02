@@ -59,10 +59,10 @@ export default function StickyHeader() {
           }}
         >
           {[
-            { href: "#journeys", label: "Journeys" },
-            { href: "#how", label: "How it works" },
-            { href: "/organizations", label: "For Organizations" },
-            { href: "/teachers", label: "Teachers" },
+            { href: "#journeys", label: "学习旅程" },
+            { href: "#how", label: "运作机制" },
+            { href: "/organizations", label: "合作与机构" },
+            { href: "/teachers", label: "名师团队" },
           ].map((l) => (
             <motion.div
               key={l.href}
@@ -89,17 +89,17 @@ export default function StickyHeader() {
             type="button"
             onClick={() => setSignInOpen(true)}
             className="rounded-lg px-3 py-2 text-[14px] font-semibold text-ink-soft hover:text-ink"
-            aria-label="Sign in (optional)"
+            aria-label="登录"
           >
-            Sign in
+            登录
           </button>
           <Link
             href="/onboarding"
             className="la-btn group"
             style={{ padding: "10px 18px" }}
-            aria-label="Start free"
+            aria-label="免费开始"
           >
-            Start free
+            免费开始
             <span className="inline-flex transition-transform group-hover:translate-x-1">
               <Arrow />
             </span>

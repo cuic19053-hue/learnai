@@ -111,7 +111,7 @@ export default function SignInModal({
     setNotice(null);
     if (!status?.signInEnabled || !status.google) {
       setNotice(
-        "Google sign-in isn't enabled on this site yet. You can still use everything as a guest below."
+        "当前部署尚未配置 Google 快捷登录，您可以直接作为游客免登录体验。"
       );
       return;
     }
@@ -125,7 +125,7 @@ export default function SignInModal({
 
     const value = email.trim();
     if (!value || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value)) {
-      setError("Enter a valid email address to continue.");
+      setError("请输入有效的电子邮箱地址。");
       return;
     }
     if (!status) return;
@@ -134,8 +134,8 @@ export default function SignInModal({
     if (!status.signInEnabled) {
       setNotice(
         mode === "signup"
-          ? "Account creation isn't enabled here yet — but everything works as a guest, no email needed."
-          : "Sign-in isn't enabled on this site yet. Continue as a guest — your progress lives on this device."
+          ? "当前尚未开启账号注册功能 — 但您可以作为游客使用所有功能，无需填写邮箱。"
+          : "当前尚未开启账号登录功能。您可以点击下方“以游客身份继续”，进度将保存在本设备上。"
       );
       return;
     }
@@ -146,10 +146,10 @@ export default function SignInModal({
       try {
         await signIn("email", { email: value, callbackUrl, redirect: false });
         setNotice(
-          `Check your inbox — we sent a sign-in link to ${value}. The link expires in 24 hours.`
+          `登录邮件已发送至 ${value}，请查收信箱。链接有效期为 24 小时。`
         );
       } catch {
-        setError("Couldn't send the sign-in email. Try again in a moment.");
+        setError("无法发送登录邮件，请稍后再试。");
       } finally {
         setSubmitting(false);
       }
@@ -170,7 +170,7 @@ export default function SignInModal({
     });
     setSubmitting(false);
     if (res?.error) {
-      setError("That email and password didn't match. Try again, or continue as a guest.");
+      setError("邮箱与密码不匹配，请重试或以游客身份继续。");
       return;
     }
     onClose();
@@ -178,19 +178,19 @@ export default function SignInModal({
   }
 
   const isSignup = mode === "signup";
-  const heroTitle = isSignup ? "Create your account" : "Welcome back";
+  const heroTitle = isSignup ? "创建您的账号" : "欢迎回来";
   const heroSub = isSignup
-    ? "Free to start. No card. Sync your progress when you sign in."
-    : "Sign in to continue your learning progress.";
+    ? "免费体验，无需信用卡。登录后可跨设备同步学习进度。"
+    : "登录您的账号以继续学习进程。";
   const primaryLabel = needsPassword
     ? submitting
-      ? "Signing in…"
-      : "Sign in"
+      ? "正在登录…"
+      : "登录"
     : submitting
-      ? "Sending…"
+      ? "正在发送…"
       : isSignup
-        ? "Continue with email"
-        : "Continue with email";
+        ? "使用邮箱继续"
+        : "使用邮箱继续";
 
   const modal = (
     <AnimatePresence>
@@ -268,7 +268,7 @@ export default function SignInModal({
                     className="mt-7 flex w-full items-center justify-center gap-3 rounded-xl border border-line bg-white px-4 py-3.5 text-[15px] font-semibold text-ink hover:bg-line-soft"
                   >
                     <GoogleGlyph />
-                    Continue with Google
+                    使用 Google 账号继续
                   </button>
 
                   {/* Divider */}
@@ -277,14 +277,14 @@ export default function SignInModal({
                       <div className="w-full border-t border-line-soft" />
                     </div>
                     <div className="relative flex justify-center">
-                      <span className="bg-white px-3 text-[12px] text-ink-mute">or</span>
+                      <span className="bg-white px-3 text-[12px] text-ink-mute">或</span>
                     </div>
                   </div>
 
                   {/* Email form */}
                   <form onSubmit={onEmailContinue} noValidate>
                     <label htmlFor="signin-email" className="text-[13px] font-bold text-ink-soft">
-                      Email address
+                      电子邮箱地址
                     </label>
                     <div className="relative mt-1.5">
                       <span
@@ -312,7 +312,7 @@ export default function SignInModal({
                           htmlFor="signin-password"
                           className="text-[13px] font-bold text-ink-soft"
                         >
-                          Password
+                          密码
                         </label>
                         <input
                           id="signin-password"
@@ -320,7 +320,7 @@ export default function SignInModal({
                           autoComplete={isSignup ? "new-password" : "current-password"}
                           required
                           autoFocus
-                          placeholder="Your password"
+                          placeholder="请输入密码"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           disabled={submitting}
@@ -360,7 +360,7 @@ export default function SignInModal({
 
                   {/* Toggle sign-in ↔ sign-up */}
                   <div className="mt-4 text-center text-[13px] text-ink-soft">
-                    {isSignup ? "Already have an account? " : "Don't have an account? "}
+                    {isSignup ? "已有账号？" : "还没有账号？"}
                     <button
                       type="button"
                       onClick={() => {
@@ -371,7 +371,7 @@ export default function SignInModal({
                       }}
                       className="font-bold text-brand-1 hover:underline"
                     >
-                      {isSignup ? "Sign in" : "Sign up"}
+                      {isSignup ? "直接登录" : "免费注册"}
                     </button>
                   </div>
 
@@ -384,20 +384,20 @@ export default function SignInModal({
                     onClick={continueAsGuest}
                     className="block w-full text-center text-[14px] font-semibold text-brand-1 hover:underline"
                   >
-                    Continue without an account
+                    以游客身份免登录继续
                   </button>
 
                   {/* Terms */}
                   <p className="mt-6 text-[12px] leading-relaxed text-ink-mute">
-                    By continuing, you agree to our{" "}
+                    继续操作即表示您同意我们的{" "}
                     <Link href="/legal/terms" className="underline hover:text-ink-soft">
-                      Terms
+                      服务条款
                     </Link>{" "}
-                    and{" "}
+                    与{" "}
                     <Link href="/legal/privacy" className="underline hover:text-ink-soft">
-                      Privacy Policy
+                      隐私政策
                     </Link>
-                    .
+                    。
                   </p>
                 </div>
 
@@ -409,7 +409,7 @@ export default function SignInModal({
                   <button
                     type="button"
                     onClick={onClose}
-                    aria-label="Close"
+                    aria-label="关闭"
                     className="absolute right-5 top-5 grid h-9 w-9 place-items-center rounded-full text-ink-mute hover:bg-white hover:text-ink"
                   >
                     ✕
@@ -418,27 +418,27 @@ export default function SignInModal({
                   <div className="mt-4 flex flex-col items-center">
                     <ShieldIcon />
                     <h3 className="mt-5 text-center text-[22px] font-extrabold leading-tight tracking-[-0.01em] text-ink">
-                      Learn your way
+                      以适合您的方式学习
                       <br />
-                      Securely and privately.
+                      安全、隐私且无忧。
                     </h3>
                   </div>
 
                   <ul className="mt-8 flex-1 space-y-5">
                     <Perk
                       icon={<MonitorIcon />}
-                      title="Sync across devices"
-                      body="Pick up where you left off on any device."
+                      title="多设备无缝同步"
+                      body="随时随地在任何设备上接续您的学习进度。"
                     />
                     <Perk
                       icon={<LockIcon />}
-                      title="Your data, your control"
-                      body="We respect your privacy and keep your data secure."
+                      title="数据由您自主掌控"
+                      body="尊重隐私，严格保护您的个人学习数据与记录。"
                     />
                     <Perk
                       icon={<BoltIcon />}
-                      title="Free to get started"
-                      body="No credit card required. Upgrade anytime."
+                      title="随时免费开启体验"
+                      body="无需信用卡，零门槛即刻享受智能辅导。"
                     />
                   </ul>
 

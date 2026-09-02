@@ -19,16 +19,16 @@ export default function MarketingHeader() {
 
             <div className="hidden items-center gap-8 md:flex">
               <Link href="/" className="text-gray-600 transition-colors hover:text-primary">
-                Home
+                首页
               </Link>
               <Link href="/explore" className="text-gray-600 transition-colors hover:text-primary">
-                Professors
+                名师团队
               </Link>
               <a href="#pricing" className="text-gray-600 transition-colors hover:text-primary">
-                Pricing
+                价格方案
               </a>
               <a href="#about" className="text-gray-600 transition-colors hover:text-primary">
-                About
+                关于我们
               </a>
             </div>
 
@@ -38,7 +38,7 @@ export default function MarketingHeader() {
                 href="/explore"
                 className="hidden rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 md:inline-flex"
               >
-                Explore
+                探索课程
               </Link>
 
               {/* Login optional: modal only on click */}
@@ -46,10 +46,10 @@ export default function MarketingHeader() {
                 onClick={() => setOpen(true)}
                 className="rounded-lg bg-primary px-6 py-2 text-white transition-colors hover:bg-secondary"
               >
-                Get Started
+                立即体验
               </button>
 
-              <button className="text-gray-600 md:hidden" aria-label="Open menu">
+              <button className="text-gray-600 md:hidden" aria-label="打开菜单">
                 ☰
               </button>
             </div>

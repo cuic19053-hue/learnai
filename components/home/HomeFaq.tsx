@@ -10,28 +10,28 @@ import Link from "next/link";
 
 const ITEMS = [
   {
-    q: "Is it free?",
-    a: "Yes. The full Little Learner, Explorer, and Scholar surfaces are free to try. We'll add paid tiers later for organizations and advanced features.",
+    q: "平台是免费的吗？",
+    a: "是的。幼龄启蒙、少儿探索和高中学者等核心功能均提供免费体验。后续我们将为机构和高级功能提供灵活的扩展服务。",
   },
   {
-    q: "Do I need a credit card?",
-    a: "No. Sign-in is optional too — you can go straight to the kids surface without an account.",
+    q: "需要绑定信用卡吗？",
+    a: "完全不需要。无需绑定信用卡，甚至无需注册登录即可直接体验儿童与启蒙模式。",
   },
   {
-    q: "Is it safe for children?",
-    a: "Built with age-aware learning and parent controls. The Little Learner surface has no ads, a hold-to-open parent lock, daily time limits, and quiet hours.",
+    q: "对儿童安全有保障吗？",
+    a: "我们深度融合了因龄施教与家长控制安全机制。儿童专属界面零广告，配备防误触长按家长锁、单日使用时长限制及夜间静音模式。",
   },
   {
-    q: "Can adults use it?",
-    a: "Yes. The Professional and Scholar journeys cover certifications (AWS · Azure · GCP · IBM), exam prep, coding, math, and more.",
+    q: "成年人或职场人士适用吗？",
+    a: "非常适用！职场进阶与专业板块涵盖主流云认证（AWS、Azure、GCP、IBM）、备考复习、AI应用、编程与高等数学等内容。",
   },
   {
-    q: "Can schools or companies use it?",
-    a: "Yes — LearnAI is open source (MIT). The community page covers self-hosting, contributing, and sponsoring the project. There are no enterprise contracts or sales calls.",
+    q: "学校或企业可以部署使用吗？",
+    a: "可以。LearnAI 基于开源协议发布，支持私有化部署、团队定制与机构协同，无需复杂的商务谈判定制。",
   },
   {
-    q: "Which languages are supported?",
-    a: "Twelve so far: English, Spanish, French, Italian, German, Portuguese, Arabic, Russian, Hindi, Japanese, Korean, and Chinese. The kids surface speaks letters and example words in the picked language.",
+    q: "支持哪些语言？",
+    a: "目前已支持 12 种主流语言（汉语、英语、西班牙语、法语、德语、日语、韩语等）。儿童模式提供发音与词汇随心切换。",
   },
 ];
 
@@ -40,14 +40,14 @@ export default function HomeFaq() {
     <section
       id="faq"
       className="mx-auto max-w-[860px] px-6 py-16 md:px-12"
-      aria-label="Frequently asked questions"
+      aria-label="常见问题解答"
     >
       <div className="mb-7 text-center">
         <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
-          FAQ
+          常见问题
         </span>
         <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-ink md:text-[36px]">
-          Questions we get a lot
+          大家关心的问题解答
         </h2>
       </div>
 
@@ -103,7 +103,7 @@ export default function HomeFaq() {
           className="text-sm font-bold"
           style={{ color: "var(--brand-1)" }}
         >
-          Need a custom plan for your school or team? →
+          需要为学校或团队定制方案？了解更多 →
         </Link>
       </div>
     </section>

@@ -8,32 +8,32 @@ import Link from "next/link";
 const AUDIENCES = [
   {
     emoji: "👨‍👩‍👧",
-    title: "Parents",
-    desc: "Safe, age-aware learning for kids 3–11.",
+    title: "家长与儿童",
+    desc: "面向 3–11 岁儿童的安全、因龄施教学习体验。",
     href: "/learn/kids",
     accent: "#ec4899",
     bg: "#fce0ec",
   },
   {
     emoji: "🎓",
-    title: "Students",
-    desc: "Homework, exam prep, and confidence-building feedback.",
+    title: "在校学生",
+    desc: "作业辅导、备考冲刺与建立自信的针对性反馈。",
     href: "/learn/scholar",
     accent: "#2e5bff",
     bg: "#e6ecff",
   },
   {
     emoji: "💼",
-    title: "Professionals",
-    desc: "AI, cloud, coding, and career skills with cited sources.",
+    title: "职场人士",
+    desc: "包含权威引用的人工智能、云计算、编程与职业技能提升。",
     href: "/learn/adult",
     accent: "#0ea5a4",
     bg: "#d6f1f0",
   },
   {
     emoji: "🏫",
-    title: "Organizations",
-    desc: "Dashboards, learning paths, and reports for teams.",
+    title: "学校与机构",
+    desc: "面向团队与班级的数据看板、定制学习路径与多维报告。",
     href: "/organizations",
     accent: "#7c3aed",
     bg: "#efe7ff",
@@ -52,10 +52,10 @@ export default function AudienceCards() {
             color: "var(--ink-soft)",
           }}
         >
-          Who it&apos;s for
+          适用人群
         </span>
         <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-ink md:text-[36px]">
-          One platform. Every kind of learner.
+          单一平台，赋能每一位学习者。
         </h2>
       </div>
 
@@ -90,7 +90,7 @@ export default function AudienceCards() {
               className="mt-3 inline-flex items-center gap-1 text-xs font-bold transition-transform group-hover:translate-x-0.5"
               style={{ color: a.accent }}
             >
-              Explore →
+              探索体验 →
             </span>
           </Link>
         ))}

@@ -15,18 +15,18 @@ import { LOOP } from "@/lib/learn/loop";
 const HOW_IT_WORKS = [
   {
     n: 1,
-    title: "Tell us who is learning",
-    desc: "A 5-step setup picks the right age, goal, and AI teacher.",
+    title: "设置学习者角色",
+    desc: "只需 5 步即可匹配最适合的年龄段、学习目标与专属 AI 导师。",
   },
   {
     n: 2,
-    title: "Land in your learning world",
-    desc: "Each stage has its own interface — playful, mission, exam, professional, or calm.",
+    title: "进入专属学习世界",
+    desc: "针对不同年龄定制沉浸式界面 — 趣味探索、闯关任务、考证冲刺与沉浸关怀。",
   },
   {
     n: 3,
-    title: "Practice with feedback",
-    desc: "Every session uses the same loop: hook, explain, practice, feedback, reflect, evolve.",
+    title: "高效闭环练习与辅导",
+    desc: "每个学习单元均融合科学闭环：兴趣引入、概念讲解、互动练习、即时反馈、反思总结与能力进阶。",
   },
 ];
 
@@ -42,34 +42,34 @@ const WORLDS: Array<{
 }> = [
   {
     id: "playful",
-    title: "Playful World",
-    desc: "Fun stories, games, and colorful lessons.",
-    best: "Little Learner",
+    title: "趣味萌芽世界",
+    desc: "生动的互动故事、趣味游戏与色彩丰富的启蒙课。",
+    best: "幼龄启蒙 (3–6岁)",
     href: "/learn/kids",
     tint: "linear-gradient(135deg,#fce0ec,#fff1d6)",
   },
   {
     id: "mission",
-    title: "Mission World",
-    desc: "Quests, challenges, and problem-solving.",
-    best: "Builder",
+    title: "探索任务世界",
+    desc: "项目闯关、挑战任务与逻辑思维训练。",
+    best: "少年创客 (12–15岁)",
     href: "/learn/builder",
     tint: "linear-gradient(135deg,#efe7ff,#e6ecff)",
     recommended: true,
   },
   {
     id: "career",
-    title: "Career World",
-    desc: "Real-world examples and practical skills.",
-    best: "Professional",
+    title: "职场实践世界",
+    desc: "真实项目案例、云计算认证与实操技能。",
+    best: "职场进阶 (18岁+)",
     href: "/learn/adult",
     tint: "linear-gradient(135deg,#d6f1f0,#e6ecff)",
   },
   {
     id: "calm",
-    title: "Calm World",
-    desc: "Clear steps, gentle pace, and larger text.",
-    best: "Senior Learner",
+    title: "沉浸关怀世界",
+    desc: "清晰步骤、舒缓节奏与大字号关怀模式。",
+    best: "长者关怀",
     href: "/learn/senior",
     tint: "linear-gradient(135deg,#e7f8ee,#f3fbf5)",
   },
@@ -98,13 +98,13 @@ export default function HomePage() {
               color: "var(--ink-soft)",
             }}
           >
-            Choose your learning journey
+            选择您的学习旅程
           </span>
           <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
-            Pick the stage that fits the learner
+            选择最契合学习者的阶段
           </h2>
           <p className="mt-2 text-base text-ink-soft">
-            We tune the language, length, and tone of every lesson to match.
+            我们将语言表达、课程时长与辅导语气精确匹配每位学员。
           </p>
         </div>
 
@@ -126,10 +126,10 @@ export default function HomePage() {
               color: "var(--ink-soft)",
             }}
           >
-            Learning Worlds
+            四大沉浸学习世界
           </span>
           <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-ink md:text-4xl">
-            Four worlds. One that fits you.
+            四大学习模式，总有一个适合您。
           </h2>
         </div>
 
@@ -146,7 +146,7 @@ export default function HomePage() {
                 border: w.recommended ? "1.5px solid var(--brand-1)" : "1px solid var(--line-soft)",
                 boxShadow: w.recommended ? "0 0 0 4px rgba(46,91,255,.08)" : "var(--shadow-1)",
               }}
-              aria-label={`${w.title}: ${w.desc}. Best for ${w.best}.`}
+              aria-label={`${w.title}: ${w.desc}. 推荐对象: ${w.best}.`}
             >
               <div className="relative overflow-hidden" style={{ height: 140 }}>
                 <Illustration
@@ -163,7 +163,7 @@ export default function HomePage() {
                       boxShadow: "var(--shadow-1)",
                     }}
                   >
-                    ★ Recommended
+                    ★ 热门推荐
                   </span>
                 ) : null}
               </div>
@@ -172,13 +172,13 @@ export default function HomePage() {
                 <p className="mt-1.5 text-sm text-ink-soft">{w.desc}</p>
                 <div className="mt-3 flex items-center justify-between text-xs text-ink-mute">
                   <span>
-                    Best for: <strong className="text-ink-soft">{w.best}</strong>
+                    推荐对象: <strong className="text-ink-soft">{w.best}</strong>
                   </span>
                   <span
                     className="inline-flex items-center gap-1 font-bold transition-transform group-hover:translate-x-0.5"
                     style={{ color: "var(--brand-1)" }}
                   >
-                    Open <Arrow color="var(--brand-1)" />
+                    前往体验 <Arrow color="var(--brand-1)" />
                   </span>
                 </div>
               </div>
@@ -199,13 +199,13 @@ export default function HomePage() {
               className="la-pill"
               style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}
             >
-              How it works
+              运作机制
             </span>
             <h2 className="mt-3 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
-              One loop. Endless lessons.
+              科学闭环，高效掌握无限知识
             </h2>
             <p className="mt-2 text-base text-ink-soft">
-              Every session — for every age — runs the same six steps.
+              每一个学习单元与练习均贯穿 6 步自适应闭环机制。
             </p>
           </div>
 
@@ -213,7 +213,7 @@ export default function HomePage() {
             {HOW_IT_WORKS.map((s) => (
               <div key={s.n} style={{ padding: 22 }}>
                 <div className="la-mono text-[13px] font-bold text-brand-1">
-                  STEP {String(s.n).padStart(2, "0")}
+                  步骤 {String(s.n).padStart(2, "0")}
                 </div>
                 <h3 className="mt-2 text-[22px] font-bold tracking-[-0.01em] text-ink">
                   {s.title}
@@ -265,10 +265,10 @@ export default function HomePage() {
       {/* ────────── Final CTA ────────── */}
       <section className="px-6 py-16 text-center md:px-12 md:py-20">
         <h2 className="m-0 text-4xl font-extrabold tracking-[-0.025em] text-ink md:text-[44px]">
-          Start the right journey today.
+          今天就开启适合您的智能学习之旅
         </h2>
         <p className="mt-3 text-base text-ink-soft">
-          Free to try · No credit card · No ads · Safe for kids
+          免费试用 · 无需信用卡 · 零广告 · 儿童安全保障
         </p>
         <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
           <Link
@@ -276,14 +276,14 @@ export default function HomePage() {
             className="la-btn inline-flex"
             style={{ padding: "16px 28px", fontSize: 16 }}
           >
-            Start learning free <Arrow />
+            免费开始学习 <Arrow />
           </Link>
           <Link
             href="/organizations"
             className="la-btn ghost inline-flex"
             style={{ padding: "16px 22px", fontSize: 15 }}
           >
-            For schools &amp; teams
+            学校与团队方案
           </Link>
         </div>
       </section>
@@ -294,24 +294,24 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <Mark size={28} fontSize={16} />
             <span className="text-xs text-ink-mute">
-              © LearnAI · Education for every stage of life
+              © LearnAI · 伴随人生的全阶段智能化教育平台
             </span>
           </div>
           <div className="flex flex-wrap gap-5">
             <Link href="/onboarding" className="hover:text-ink">
-              Get started
+              立即体验
             </Link>
             <Link href="/organizations" className="hover:text-ink">
-              For Organizations
+              合作与机构
             </Link>
             <Link href="/teachers" className="hover:text-ink">
-              Teachers
+              名师团队
             </Link>
             <Link href="/parent" className="hover:text-ink">
-              Parents
+              家长控制
             </Link>
             <Link href="#faq" className="hover:text-ink">
-              FAQ
+              常见问题
             </Link>
           </div>
         </div>

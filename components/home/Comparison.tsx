@@ -4,10 +4,10 @@
  */
 
 const ROWS = [
-  { trad: "Same lesson for everyone", us: "Personalized by age, pace, and goal" },
-  { trad: "Delayed feedback", us: "Instant feedback after every tap" },
-  { trad: "Fixed curriculum path", us: "Adaptive learning journey" },
-  { trad: "Hard to track progress", us: "Live progress dashboard for parents" },
+  { trad: "千人一面的传统统一教材", us: "根据年龄、节奏与目标量身定制" },
+  { trad: "反馈延迟，无法及时解惑", us: "每次交互即时精准智能反馈" },
+  { trad: "固定僵化的课程大纲路线", us: "动态调整的自适应学习旅程" },
+  { trad: "难以追踪具体学习效果", us: "家长与学员可实时查看多维看板" },
 ];
 
 export default function Comparison() {
@@ -15,10 +15,10 @@ export default function Comparison() {
     <section className="mx-auto max-w-[1100px] px-6 py-14 md:px-12">
       <div className="mb-7 text-center">
         <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
-          Why LearnAI
+          为什么选择 LearnAI
         </span>
         <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-ink md:text-[36px]">
-          A lesson that fits the learner — not the other way round.
+          让课程适应学习者 — 而非让学习者去适应课程。
         </h2>
       </div>
 
@@ -41,8 +41,8 @@ export default function Comparison() {
             letterSpacing: ".02em",
           }}
         >
-          <div>Traditional learning</div>
-          <div style={{ color: "var(--brand-1)" }}>LearnAI</div>
+          <div>传统学习方式</div>
+          <div style={{ color: "var(--brand-1)" }}>LearnAI 智能辅导</div>
         </div>
         {ROWS.map((r, i) => (
           <div

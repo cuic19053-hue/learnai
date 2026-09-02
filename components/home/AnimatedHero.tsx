@@ -48,99 +48,99 @@ type Scenario = {
 const SCENARIOS: Scenario[] = [
   {
     id: "explorer-volcano",
-    badge: "🚀 Explorer · Ages 7–11",
+    badge: "🚀 少儿探索 · 7–11 岁",
     badgeBg: "var(--j-explorer-bg)",
     badgeColor: "var(--j-explorer)",
     bubbleBg: "var(--j-explorer-soft)",
-    title: "Why does a volcano erupt? 🌋",
-    stepLabel: "Step 3 of 6 · Practice",
+    title: "火山为什么会喷发？ 🌋",
+    stepLabel: "第 3 步 (共 6 步) · 互动练习",
     illustrationId: "lessons/volcano-cross-section",
-    illustrationLabel: "Cross-section of a volcano showing magma chamber, vent, and ash cloud",
-    questionLabel: "Drag the labels to the right layer",
-    options: ["Magma chamber", "Vent", "Ash cloud"],
+    illustrationLabel: "火山剖面图：显示岩浆房、喷发口和火山灰云",
+    questionLabel: "拖拽标签匹配正确的图层",
+    options: ["岩浆房", "喷发口", "火山灰云"],
     correctIndex: 1,
     teacherEmoji: "🦊",
     teacherName: "Nora",
     teacherReply:
-      "Nice catch on the magma chamber! Want to see what happens when pressure builds up?",
-    xpLabel: "🏆 +20 XP earned",
+      "岩浆房找得非常准！想看看当内部压力积聚时会发生什么吗？",
+    xpLabel: "🏆 获得 +20 XP",
     progressFilled: 3,
   },
   {
     id: "little-apples",
-    badge: "🦁 Little Learner · Ages 3–6",
+    badge: "🦁 幼龄启蒙 · 3–6 岁",
     badgeBg: "var(--j-little-bg)",
     badgeColor: "var(--j-little)",
     bubbleBg: "var(--j-little-soft)",
-    title: "Count the apples 🍎",
-    stepLabel: "Step 2 of 4 · Tap to count",
+    title: "数一数苹果 🍎",
+    stepLabel: "第 2 步 (共 4 步) · 点击计数",
     illustrationId: "lessons/apples",
-    illustrationLabel: "Three red apples on a wooden table",
-    questionLabel: "How many apples do you see?",
-    options: ["1", "2", "3", "4"],
+    illustrationLabel: "木桌上的三个红苹果",
+    questionLabel: "你看到了几个苹果？",
+    options: ["1 个", "2 个", "3 个", "4 个"],
     correctIndex: 2,
     teacherEmoji: "🦉",
     teacherName: "Milo",
-    teacherReply: "Yes — three big red apples! Let's count something else next.",
-    xpLabel: "⭐ Sticker earned",
+    teacherReply: "真棒 — 是 3 个红彤彤的大苹果！接下来我们再数数别的吧。",
+    xpLabel: "⭐ 获得勋章奖励",
     progressFilled: 2,
   },
   {
     id: "builder-python",
-    badge: "🛠️ Builder · Ages 12–15",
+    badge: "🛠️ 少年创客 · 12–15 岁",
     badgeBg: "var(--j-builder-bg)",
     badgeColor: "var(--j-builder)",
     bubbleBg: "var(--j-builder-soft)",
-    title: "Handle divide-by-zero 🐍",
-    stepLabel: "Step 4 of 6 · Practice",
+    title: "处理除以零的异常 🐍",
+    stepLabel: "第 4 步 (共 6 步) · 编程实践",
     illustrationId: "lessons/python-snippet",
-    illustrationLabel: "Stylised Python code editor",
-    questionLabel: "What happens when you divide by zero in Python?",
-    options: ["Returns 0", "Returns None", "Raises ZeroDivisionError"],
+    illustrationLabel: "Python 代码编辑器示例",
+    questionLabel: "在 Python 中除以零会发生什么？",
+    options: ["返回 0", "返回 None", "抛出 ZeroDivisionError"],
     correctIndex: 2,
     teacherEmoji: "🦉",
     teacherName: "Nova",
-    teacherReply: "Exactly — Python raises ZeroDivisionError. Want to wrap it in try/except next?",
-    xpLabel: "🏆 +60 XP earned",
+    teacherReply: "完全正确 — Python 会抛出 ZeroDivisionError。接下来尝试用 try/except 捕获它？",
+    xpLabel: "🏆 获得 +60 XP",
     progressFilled: 4,
   },
   {
     id: "scholar-trig",
-    badge: "🎓 Scholar · Ages 16–18",
+    badge: "🎓 高中学者 · 16–18 岁",
     badgeBg: "var(--j-scholar-bg)",
     badgeColor: "var(--j-scholar)",
     bubbleBg: "var(--j-scholar-soft)",
-    title: "Trigonometry: sin(30°) 📐",
-    stepLabel: "Step 5 of 6 · Quick check",
+    title: "三角函数: sin(30°) 📐",
+    stepLabel: "第 5 步 (共 6 步) · 快速测验",
     illustrationId: "lessons/trig-angle",
-    illustrationLabel: "30-60-90 right triangle with the 30° angle highlighted",
-    questionLabel: "What is sin(30°)?",
+    illustrationLabel: "包含 30° 角的 30-60-90 直角三角形",
+    questionLabel: "sin(30°) 的值是多少？",
     options: ["½", "√3⁄2", "1", "0"],
     correctIndex: 0,
     teacherEmoji: "🎓",
-    teacherName: "Mentor Max",
-    teacherReply: "Nailed it. sin(30°) = ½ — the 30-60-90 triangle is your friend.",
-    xpLabel: "🏆 +90 XP earned",
+    teacherName: "Max 导师",
+    teacherReply: "太棒了！sin(30°) = ½，30-60-90 三角形可是解题好帮手。",
+    xpLabel: "🏆 获得 +90 XP",
     progressFilled: 5,
   },
   {
     id: "senior-scam",
-    badge: "🌿 Senior Learner · Older adults",
+    badge: "🌿 长者关怀 · 长者人群",
     badgeBg: "var(--j-senior-bg)",
     badgeColor: "var(--j-senior)",
     bubbleBg: "var(--j-senior-soft)",
-    title: "Is this message a scam? 🛡️",
-    stepLabel: "Step 3 of 5 · Real or scam?",
+    title: "这条信息是诈骗吗？ 🛡️",
+    stepLabel: "第 3 步 (共 5 步) · 防诈辨析",
     illustrationId: "lessons/scam-email",
-    illustrationLabel: "Suspicious email mock-up with an urgency banner and a red flag",
-    questionLabel: "What do you think?",
-    options: ["🚩 Scam", "✅ Real"],
+    illustrationLabel: "带紧急催促标识的可疑邮件示意图",
+    questionLabel: "您的判断是？",
+    options: ["🚩 诈骗信息", "✅ 正规通知"],
     correctIndex: 0,
     teacherEmoji: "🌿",
     teacherName: "Sage",
     teacherReply:
-      "Well spotted. Real banks never ask you to verify by clicking a link in 24 hours.",
-    xpLabel: "👏 Well done",
+      "眼光真锐利！正规银行绝不会要求您在 24 小时内点击陌生链接进行验证。",
+    xpLabel: "👏 答得太棒了",
     progressFilled: 3,
   },
 ];
@@ -211,7 +211,7 @@ export default function AnimatedHero() {
               show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
             }}
           >
-            <Spark color="var(--brand-1)" /> Adaptive learning, for every age
+            <Spark color="var(--brand-1)" /> 全年龄段自适应 AI 学习
           </motion.span>
 
           <h1
@@ -225,7 +225,7 @@ export default function AnimatedHero() {
                 show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
               }}
             >
-              One teacher.
+              专属 AI 导师，
             </motion.span>
             <motion.span
               className="block"
@@ -248,7 +248,7 @@ export default function AnimatedHero() {
                 },
               }}
             >
-              Every learner.
+              因材施教成就每位学习者。
             </motion.span>
           </h1>
 
@@ -259,8 +259,7 @@ export default function AnimatedHero() {
               show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
             }}
           >
-            LearnAI is a personal AI tutor that adapts lessons, practice, and feedback to each
-            learner&apos;s age, pace, and goals.
+            LearnAI 是您的个人 AI 智能导师，根据每位学习者的年龄、学习节奏与目标，动态适配课程、练习与实时反馈。
           </motion.p>
 
           <motion.div
@@ -275,7 +274,7 @@ export default function AnimatedHero() {
               className="la-btn group transition-transform hover:-translate-y-0.5"
               style={{ padding: "14px 22px", fontSize: 15 }}
             >
-              Start learning free
+              免费开始学习
               <span className="inline-flex transition-transform group-hover:translate-x-1">
                 <Arrow />
               </span>
@@ -285,7 +284,7 @@ export default function AnimatedHero() {
               className="la-btn ghost group transition-colors hover:border-brand-1 hover:text-ink"
               style={{ padding: "14px 22px", fontSize: 15 }}
             >
-              For schools &amp; teams →
+              学校与机构方案 →
             </Link>
           </motion.div>
 
@@ -298,7 +297,7 @@ export default function AnimatedHero() {
               show: { opacity: 1, transition: { duration: 0.4, delay: 0.1 } },
             }}
           >
-            Free to try · No credit card · No ads · Safe for kids
+            免费试用 · 无需信用卡 · 零广告 · 儿童安全保障
           </motion.p>
 
           {/* Scenario dots — show which of 5 mini-lessons is on screen */}
