@@ -129,3 +129,6 @@ mcp-context-forge/
 agents/*/node_modules/
 agents/*/dist/
 agents/*/package-lock.json
+
+# Mobile Agent Chat History
+scripts/mobile-history.json

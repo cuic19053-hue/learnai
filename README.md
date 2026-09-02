@@ -5,7 +5,8 @@
 <h1 align="center">LearnAI</h1>
 
 <p align="center">
-  <strong>An open-source AI teacher for every human, at every stage of life.</strong>
+  <strong>An open-source AI teacher for every human, at every stage of life.</strong><br/>
+  🌐 <a href="file:///d:/jiajiao/learnai/README_CN.md"><strong>中文文档 (Chinese README)</strong></a>
 </p>
 
 <p align="center">
