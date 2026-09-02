@@ -243,12 +243,7 @@
   },
   {
     "question": "Which AWS service continuously monitors AWS account activity for malicious or unauthorized behavior, using CloudTrail, VPC Flow Logs, and DNS logs?",
-    "options": [
-      "A. Amazon GuardDuty",
-      "B. AWS Trusted Advisor",
-      "C. AWS Artifact",
-      "D. AWS WAF"
-    ],
+    "options": ["A. Amazon GuardDuty", "B. AWS Trusted Advisor", "C. AWS Artifact", "D. AWS WAF"],
     "correct": "A. Amazon GuardDuty",
     "explanation": "GuardDuty is the managed threat-detection service that analyzes multiple AWS log sources with ML and threat intelligence."
   },

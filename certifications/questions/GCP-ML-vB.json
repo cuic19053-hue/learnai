@@ -177,12 +177,7 @@
   },
   {
     "question": "Which Google Cloud feature creates a security perimeter around services (e.g., BigQuery, Cloud Storage, Vertex AI) to prevent data exfiltration?",
-    "options": [
-      "A. VPC Service Controls",
-      "B. Cloud Logging",
-      "C. Cloud Run",
-      "D. Cloud DNS"
-    ],
+    "options": ["A. VPC Service Controls", "B. Cloud Logging", "C. Cloud Run", "D. Cloud DNS"],
     "correct": "A. VPC Service Controls",
     "explanation": "VPC Service Controls define service perimeters that prevent data movement across the boundary, even with valid IAM credentials."
   },

@@ -67,12 +67,7 @@
   },
   {
     "question": "You need to ingest millions of events per second from many publishers and fan them out to multiple subscribers. Which Google Cloud service fits?",
-    "options": [
-      "A. Pub/Sub",
-      "B. Cloud SQL",
-      "C. Cloud Storage",
-      "D. Cloud Functions"
-    ],
+    "options": ["A. Pub/Sub", "B. Cloud SQL", "C. Cloud Storage", "D. Cloud Functions"],
     "correct": "A. Pub/Sub",
     "explanation": "Pub/Sub is the global, low-latency pub/sub messaging service for event ingestion and fan-out across publishers/subscribers."
   },
@@ -254,12 +249,7 @@
   },
   {
     "question": "Which Google Cloud tool runs SQL queries directly against data stored in BigQuery and external sources (e.g., Cloud Storage), with serverless scaling?",
-    "options": [
-      "A. BigQuery",
-      "B. Cloud SQL",
-      "C. Cloud Run",
-      "D. Cloud Functions"
-    ],
+    "options": ["A. BigQuery", "B. Cloud SQL", "C. Cloud Run", "D. Cloud Functions"],
     "correct": "A. BigQuery",
     "explanation": "BigQuery is the serverless, petabyte-scale data warehouse; external tables let queries reach files in Cloud Storage, Bigtable, and others."
   },

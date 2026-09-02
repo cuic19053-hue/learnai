@@ -243,12 +243,7 @@
   },
   {
     "question": "A long-running orchestration must coordinate multiple Lambda functions with retries, branching, and error handling. Which service is built for this?",
-    "options": [
-      "A. AWS Step Functions",
-      "B. Amazon SQS",
-      "C. Amazon SNS",
-      "D. AWS Batch"
-    ],
+    "options": ["A. AWS Step Functions", "B. Amazon SQS", "C. Amazon SNS", "D. AWS Batch"],
     "correct": "A. AWS Step Functions",
     "explanation": "Step Functions expresses workflows as state machines (standard or express) with built-in retry/catch, parallel, choice, and wait states — ideal for multi-step orchestration."
   },

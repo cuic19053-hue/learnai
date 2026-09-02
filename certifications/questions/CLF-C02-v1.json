@@ -295,12 +295,7 @@
   },
   {
     "question": "A team wants the lowest-cost AWS Support plan that still gives them 24/7 access to AWS technical support engineers by phone, chat, and email for production-impacting issues. Which plan should they choose?",
-    "options": [
-      "A. Basic",
-      "B. Developer",
-      "C. Business",
-      "D. Enterprise On-Ramp"
-    ],
+    "options": ["A. Basic", "B. Developer", "C. Business", "D. Enterprise On-Ramp"],
     "correct": "C. Business",
     "explanation": "The Business Support plan is the entry-level plan that offers 24/7 contact with AWS Support engineers by phone, chat, and email, along with full access to all Trusted Advisor checks and the Support API. The Basic plan includes only account and billing assistance, the Developer plan provides business-hours email support to one contact, and Enterprise On-Ramp is a higher tier (with a Technical Account Manager pool) but is not the minimum that meets the phone-support requirement."
   },
@@ -563,12 +558,7 @@
   },
   {
     "question": "Which AWS service provides a managed Domain Name System (DNS) with health checking and traffic routing policies?",
-    "options": [
-      "A. Amazon Route 53",
-      "B. AWS Config",
-      "C. Amazon CloudFront",
-      "D. Amazon EMR"
-    ],
+    "options": ["A. Amazon Route 53", "B. AWS Config", "C. Amazon CloudFront", "D. Amazon EMR"],
     "correct": "A. Amazon Route 53",
     "explanation": "Amazon Route 53 is the managed authoritative DNS service. It resolves DNS queries for registered domains, performs health checks against endpoints, and supports routing policies such as simple, weighted, latency-based, failover, and geolocation. AWS Config tracks resource configuration history, CloudFront is a CDN, and Amazon EMR runs managed big-data frameworks such as Spark and Hadoop."
   },
@@ -743,12 +733,7 @@
   },
   {
     "question": "An infrastructure team wants to define their entire AWS environment — VPCs, subnets, EC2 Auto Scaling groups, RDS instances — in version-controlled templates that can be deployed repeatably. Which AWS service is designed for this Infrastructure as Code approach?",
-    "options": [
-      "A. AWS CloudFormation",
-      "B. AWS Config",
-      "C. Amazon SES",
-      "D. Amazon EMR"
-    ],
+    "options": ["A. AWS CloudFormation", "B. AWS Config", "C. Amazon SES", "D. Amazon EMR"],
     "correct": "A. AWS CloudFormation",
     "explanation": "AWS CloudFormation lets architects describe AWS resources in JSON or YAML templates and provision them as a single, repeatable 'stack', forming the foundation of infrastructure as code on AWS. AWS Config tracks configuration history but does not provision resources, Amazon SES is an email service, and Amazon EMR runs managed Spark/Hadoop clusters."
   },
@@ -765,12 +750,7 @@
   },
   {
     "question": "Customers report intermittent slow responses from a fleet of EC2 instances. Which AWS service provides the metrics, logs, and alarms needed to investigate the instances' CPU, memory, and network performance?",
-    "options": [
-      "A. AWS Lambda",
-      "B. AWS Config",
-      "C. Amazon CloudWatch",
-      "D. AWS CloudTrail"
-    ],
+    "options": ["A. AWS Lambda", "B. AWS Config", "C. Amazon CloudWatch", "D. AWS CloudTrail"],
     "correct": "C. Amazon CloudWatch",
     "explanation": "Amazon CloudWatch collects metrics (CPU, network, disk, and custom metrics from the CloudWatch agent for memory), aggregates logs, and triggers alarms — the primary observability service for AWS workloads. Lambda runs code, AWS Config tracks resource configuration history, and CloudTrail records API calls (who did what, not how the workload is performing)."
   },
@@ -991,12 +971,7 @@
   },
   {
     "question": "A social platform needs durable storage for billions of user-uploaded photos and videos, accessed by HTTPS from web and mobile clients. Which AWS service is the natural fit?",
-    "options": [
-      "A. Amazon S3",
-      "B. Amazon EBS",
-      "C. Amazon SQS",
-      "D. The EC2 instance store"
-    ],
+    "options": ["A. Amazon S3", "B. Amazon EBS", "C. Amazon SQS", "D. The EC2 instance store"],
     "correct": "A. Amazon S3",
     "explanation": "Amazon S3 is designed for durable, internet-scale object storage of static media such as images and videos, and provides 11 nines of durability with a simple HTTPS API. EBS is single-instance block storage, SQS is a message queue, and the instance store is ephemeral local disk on EC2 hosts that disappears when the instance stops."
   },
@@ -1024,12 +999,7 @@
   },
   {
     "question": "Which AWS service lets an enterprise centrally create and manage multiple AWS accounts under one management account?",
-    "options": [
-      "A. AWS WAF",
-      "B. AWS Trusted Advisor",
-      "C. AWS Organizations",
-      "D. AWS Config"
-    ],
+    "options": ["A. AWS WAF", "B. AWS Trusted Advisor", "C. AWS Organizations", "D. AWS Config"],
     "correct": "C. AWS Organizations",
     "explanation": "AWS Organizations is the multi-account management service. From a management (payer) account, administrators can create new accounts, organize them into organizational units (OUs), apply service control policies (SCPs), and consolidate billing. WAF is a web application firewall, Trusted Advisor provides best-practice checks, and Config tracks resource configuration history."
   },
@@ -1102,12 +1072,7 @@
   },
   {
     "question": "An organization needs to run large-scale data processing using frameworks such as Apache Spark, Apache Hive, and Presto on managed clusters. Which AWS service is purpose-built for this big-data analytics workload?",
-    "options": [
-      "A. Amazon EMR",
-      "B. Amazon MQ",
-      "C. Amazon SNS",
-      "D. Amazon SQS"
-    ],
+    "options": ["A. Amazon EMR", "B. Amazon MQ", "C. Amazon SNS", "D. Amazon SQS"],
     "correct": "A. Amazon EMR",
     "explanation": "Amazon EMR (Elastic MapReduce) provisions and manages clusters running Apache Spark, Hive, Presto, Trino, Flink, and Hadoop for large-scale data processing. Amazon MQ is a managed message broker, SNS is pub/sub messaging, and SQS is a managed queue — none of them perform data analytics."
   },
@@ -1125,12 +1090,7 @@
   },
   {
     "question": "Which AWS service gives you the most direct control over the underlying virtual server, including the guest OS and installed software?",
-    "options": [
-      "A. Amazon Redshift",
-      "B. Amazon DynamoDB",
-      "C. Amazon EC2",
-      "D. Amazon RDS"
-    ],
+    "options": ["A. Amazon Redshift", "B. Amazon DynamoDB", "C. Amazon EC2", "D. Amazon RDS"],
     "correct": "C. Amazon EC2",
     "explanation": "Amazon EC2 provides virtual machines on which the customer chooses the AMI, controls the guest OS, installs software, and configures networking. Redshift, DynamoDB, and RDS are managed services in which AWS hides and operates the underlying compute."
   },
@@ -1215,12 +1175,7 @@
   },
   {
     "question": "Which AWS feature acts as a stateful, instance-level firewall that filters incoming and outgoing traffic for an Amazon EC2 instance?",
-    "options": [
-      "A. Security groups",
-      "B. AWS X-Ray",
-      "C. Amazon Inspector",
-      "D. VPC Flow Logs"
-    ],
+    "options": ["A. Security groups", "B. AWS X-Ray", "C. Amazon Inspector", "D. VPC Flow Logs"],
     "correct": "A. Security groups",
     "explanation": "A security group is a stateful virtual firewall attached to an ENI (and therefore to instances). It allows inbound and outbound rules by protocol, port, and source/destination. X-Ray traces applications, Inspector finds vulnerabilities, and Flow Logs record traffic metadata but do not enforce rules."
   },
@@ -1261,12 +1216,7 @@
   },
   {
     "question": "Which AWS service lets you run code in response to events without provisioning or managing any servers?",
-    "options": [
-      "A. Amazon Lightsail",
-      "B. AWS Lambda",
-      "C. Amazon EC2",
-      "D. Amazon RDS"
-    ],
+    "options": ["A. Amazon Lightsail", "B. AWS Lambda", "C. Amazon EC2", "D. Amazon RDS"],
     "correct": "B. AWS Lambda",
     "explanation": "AWS Lambda is the canonical serverless compute service: you upload code, configure triggers, and AWS executes the function on demand, billing by request and compute time. Lightsail, EC2, and RDS all expose persistent server or instance resources you have to manage."
   },
@@ -1306,12 +1256,7 @@
   },
   {
     "question": "Which AWS purchase model offers a significant discount on EC2 in exchange for a one- or three-year commitment to a specific instance configuration?",
-    "options": [
-      "A. On-Demand",
-      "B. Spot",
-      "C. Reserved Instances",
-      "D. Dedicated Hosts"
-    ],
+    "options": ["A. On-Demand", "B. Spot", "C. Reserved Instances", "D. Dedicated Hosts"],
     "correct": "C. Reserved Instances",
     "explanation": "Reserved Instances (and Savings Plans) lower per-hour EC2 costs in return for a one- or three-year commitment. On-Demand has no commitment but no discount, Spot uses spare capacity at a discount but with possible interruption, and Dedicated Hosts are about physical-server allocation for licensing."
   },
@@ -1328,12 +1273,7 @@
   },
   {
     "question": "A team is debugging high latency in a new microservices application and needs to trace requests as they hop across services. Which AWS service is purpose-built for distributed tracing?",
-    "options": [
-      "A. AWS X-Ray",
-      "B. AWS CodePipeline",
-      "C. Amazon Inspector",
-      "D. AWS CloudTrail"
-    ],
+    "options": ["A. AWS X-Ray", "B. AWS CodePipeline", "C. Amazon Inspector", "D. AWS CloudTrail"],
     "correct": "A. AWS X-Ray",
     "explanation": "AWS X-Ray collects trace data as requests flow through services, producing service maps and latency breakdowns that help locate bottlenecks. CodePipeline is CI/CD orchestration, Inspector finds vulnerabilities, and CloudTrail records control-plane API calls."
   },
@@ -1499,12 +1439,7 @@
   },
   {
     "question": "Which AWS service is a fully managed data warehouse capable of running fast SQL queries against petabyte-scale datasets?",
-    "options": [
-      "A. Amazon Redshift",
-      "B. Amazon Kinesis",
-      "C. Amazon DynamoDB",
-      "D. Amazon RDS"
-    ],
+    "options": ["A. Amazon Redshift", "B. Amazon Kinesis", "C. Amazon DynamoDB", "D. Amazon RDS"],
     "correct": "A. Amazon Redshift",
     "explanation": "Amazon Redshift is AWS's columnar, MPP data warehouse purpose-built for high-performance analytical queries over very large datasets. Kinesis ingests streaming data, DynamoDB is NoSQL, and RDS is transactional relational."
   },
@@ -1611,12 +1546,7 @@
   },
   {
     "question": "Which AWS service can be used to register a new internet domain name (for example, example.com)?",
-    "options": [
-      "A. Amazon Route 53",
-      "B. Amazon Personalize",
-      "C. AWS KMS",
-      "D. AWS Config"
-    ],
+    "options": ["A. Amazon Route 53", "B. Amazon Personalize", "C. AWS KMS", "D. AWS Config"],
     "correct": "A. Amazon Route 53",
     "explanation": "Amazon Route 53 is both a managed authoritative DNS service and a domain name registrar — customers can buy and register new domains directly from it. Personalize is a recommendation service, KMS manages encryption keys, and Config tracks resource configuration."
   },
@@ -1928,12 +1858,7 @@
   },
   {
     "question": "Which AWS service executes code only in response to events, with no servers to provision or manage?",
-    "options": [
-      "A. AWS Lambda",
-      "B. Amazon CloudWatch",
-      "C. AWS Transit Gateway",
-      "D. Amazon EC2"
-    ],
+    "options": ["A. AWS Lambda", "B. Amazon CloudWatch", "C. AWS Transit Gateway", "D. Amazon EC2"],
     "correct": "A. AWS Lambda",
     "explanation": "Lambda is event-driven and serverless: code runs in response to triggers (HTTP, queue messages, schedules, S3 events, etc.) and you pay only for invocations and compute time. EC2 runs persistent VMs; CloudWatch is observability; Transit Gateway is networking."
   },
@@ -2144,12 +2069,7 @@
   },
   {
     "question": "Which AWS service applies tiered pricing — the more storage you use, the lower the per-GB rate?",
-    "options": [
-      "A. Amazon S3",
-      "B. Amazon VPC",
-      "C. Amazon Lightsail",
-      "D. AWS Cost Explorer"
-    ],
+    "options": ["A. Amazon S3", "B. Amazon VPC", "C. Amazon Lightsail", "D. AWS Cost Explorer"],
     "correct": "A. Amazon S3",
     "explanation": "Amazon S3 storage prices fall as monthly usage crosses tiered thresholds (e.g., first 50 TB, next 450 TB). VPC has no per-GB tiered storage charge, Lightsail uses simple bundled pricing, and Cost Explorer is a reporting tool — not storage."
   },
@@ -2221,12 +2141,7 @@
   },
   {
     "question": "A Business Support plan customer opens a case for a production system that is completely down. What is the AWS target response time?",
-    "options": [
-      "A. Less than 1 hour",
-      "B. 15 minutes",
-      "C. 12 hours",
-      "D. 24 hours"
-    ],
+    "options": ["A. Less than 1 hour", "B. 15 minutes", "C. 12 hours", "D. 24 hours"],
     "correct": "A. Less than 1 hour",
     "explanation": "On the Business plan, a 'production system down' case has a response-time target of less than one hour. Faster response (under 15 minutes for business- or mission-critical down systems) is available on Enterprise On-Ramp and Enterprise Support."
   },
@@ -2267,23 +2182,13 @@
   },
   {
     "question": "Which AWS service supports running Chef and Puppet configuration-management automation to keep EC2 instances in a defined state?",
-    "options": [
-      "A. AWS OpsWorks",
-      "B. AWS Config",
-      "C. EC2 Auto Scaling",
-      "D. AWS CloudFormation"
-    ],
+    "options": ["A. AWS OpsWorks", "B. AWS Config", "C. EC2 Auto Scaling", "D. AWS CloudFormation"],
     "correct": "A. AWS OpsWorks",
     "explanation": "AWS OpsWorks offers managed Chef Automate and Puppet Enterprise for fleet configuration. Config tracks resource state, Auto Scaling adjusts capacity, and CloudFormation provisions infrastructure declaratively (but does not provide Chef/Puppet servers)."
   },
   {
     "question": "Which AWS service inspects HTTP/HTTPS requests reaching Amazon CloudFront, Application Load Balancer, or API Gateway and blocks malicious traffic such as SQL injection or XSS?",
-    "options": [
-      "A. AWS WAF",
-      "B. Amazon CloudWatch",
-      "C. AWS CloudTrail",
-      "D. AWS Cloud9"
-    ],
+    "options": ["A. AWS WAF", "B. Amazon CloudWatch", "C. AWS CloudTrail", "D. AWS Cloud9"],
     "correct": "A. AWS WAF",
     "explanation": "WAF is a layer-7 firewall for web traffic — including in front of CloudFront — and is the right service for blocking malicious HTTP requests. CloudWatch is observability, CloudTrail logs API activity, and Cloud9 is an IDE."
   },
@@ -2368,12 +2273,7 @@
   },
   {
     "question": "A mobile app wants to let users sign in using Google, Apple, Facebook, or their own corporate identity provider. Which AWS service provides this user identity, federation, and token issuance?",
-    "options": [
-      "A. Amazon Cognito",
-      "B. Amazon GuardDuty",
-      "C. Amazon Personalize",
-      "D. AWS IAM"
-    ],
+    "options": ["A. Amazon Cognito", "B. Amazon GuardDuty", "C. Amazon Personalize", "D. AWS IAM"],
     "correct": "A. Amazon Cognito",
     "explanation": "Cognito provides user pools for sign-up and sign-in (including federation to social and SAML/OIDC IdPs) and identity pools for granting temporary AWS credentials to authenticated app users. GuardDuty is threat detection, Personalize is recommendations, and IAM governs human and workload access to AWS APIs, not end-user app identity."
   },
@@ -2717,12 +2617,7 @@
   },
   {
     "question": "Which AWS service is purpose-built to compile and unit-test source code on demand as part of a CI pipeline?",
-    "options": [
-      "A. AWS CodeBuild",
-      "B. AWS CodeCommit",
-      "C. AWS CodeDeploy",
-      "D. AWS CloudEndure"
-    ],
+    "options": ["A. AWS CodeBuild", "B. AWS CodeCommit", "C. AWS CodeDeploy", "D. AWS CloudEndure"],
     "correct": "A. AWS CodeBuild",
     "explanation": "CodeBuild is a managed continuous-integration build service that compiles source, runs tests, and produces deployable artifacts. CodeCommit hosts Git repositories, CodeDeploy delivers built artifacts, and CloudEndure is a legacy migration/DR brand (now AWS Application Migration Service / Elastic Disaster Recovery)."
   },
@@ -2783,12 +2678,7 @@
   },
   {
     "question": "Which of the following is NOT a database engine supported by Amazon RDS?",
-    "options": [
-      "A. Teradata",
-      "B. PostgreSQL",
-      "C. Microsoft SQL Server",
-      "D. Oracle"
-    ],
+    "options": ["A. Teradata", "B. PostgreSQL", "C. Microsoft SQL Server", "D. Oracle"],
     "correct": "A. Teradata",
     "explanation": "Amazon RDS supports MySQL, PostgreSQL, MariaDB, Oracle, Microsoft SQL Server, and Aurora (MySQL/PostgreSQL compatible). Teradata is not an RDS engine."
   },
@@ -2839,12 +2729,7 @@
   },
   {
     "question": "Which AWS service provides dedicated FIPS 140-2 Level 3-validated hardware security modules for generating and storing cryptographic keys you control?",
-    "options": [
-      "A. AWS CloudHSM",
-      "B. AWS Shield",
-      "C. AWS Certificate Manager",
-      "D. AWS WAF"
-    ],
+    "options": ["A. AWS CloudHSM", "B. AWS Shield", "C. AWS Certificate Manager", "D. AWS WAF"],
     "correct": "A. AWS CloudHSM",
     "explanation": "CloudHSM gives customers single-tenant HSMs in AWS for applications that require FIPS 140-2 Level 3 key storage and management. KMS is the more common service for key management but uses shared HSM infrastructure. Shield is DDoS protection, ACM issues TLS certs, and WAF is a layer-7 firewall."
   },
@@ -2918,12 +2803,7 @@
   },
   {
     "question": "Which AWS service hosts private Git repositories for storing and versioning application source code?",
-    "options": [
-      "A. AWS CodeCommit",
-      "B. AWS CodePipeline",
-      "C. AWS X-Ray",
-      "D. Amazon Inspector"
-    ],
+    "options": ["A. AWS CodeCommit", "B. AWS CodePipeline", "C. AWS X-Ray", "D. Amazon Inspector"],
     "correct": "A. AWS CodeCommit",
     "explanation": "CodeCommit is a fully managed Git source-control service. CodePipeline orchestrates CI/CD stages, X-Ray traces requests, and Inspector finds vulnerabilities."
   },
@@ -2974,12 +2854,7 @@
   },
   {
     "question": "Which AWS service automatically provisions infrastructure (load balancer, Auto Scaling group, instances) when you upload application code?",
-    "options": [
-      "A. AWS Elastic Beanstalk",
-      "B. AWS CodeCommit",
-      "C. Amazon S3",
-      "D. Amazon EFS"
-    ],
+    "options": ["A. AWS Elastic Beanstalk", "B. AWS CodeCommit", "C. Amazon S3", "D. Amazon EFS"],
     "correct": "A. AWS Elastic Beanstalk",
     "explanation": "Elastic Beanstalk is the AWS PaaS that takes uploaded code and creates the supporting infrastructure automatically."
   },
@@ -3182,12 +3057,7 @@
   },
   {
     "question": "What is the minimum number of Availability Zones an architecture should span to be considered highly available within a Region?",
-    "options": [
-      "A. Two",
-      "B. One",
-      "C. Three",
-      "D. Four"
-    ],
+    "options": ["A. Two", "B. One", "C. Three", "D. Four"],
     "correct": "A. Two",
     "explanation": "At least two AZs allow workloads to survive the loss of a single AZ. Three or more increase resilience further (and certain services like Aurora benefit from spreading across three)."
   },
@@ -3284,12 +3154,7 @@
   },
   {
     "question": "Which AWS security service automatically discovers, classifies, and protects sensitive data (such as PII) stored in Amazon S3?",
-    "options": [
-      "A. Amazon Macie",
-      "B. Amazon GuardDuty",
-      "C. Amazon Inspector",
-      "D. AWS Shield"
-    ],
+    "options": ["A. Amazon Macie", "B. Amazon GuardDuty", "C. Amazon Inspector", "D. AWS Shield"],
     "correct": "A. Amazon Macie",
     "explanation": "Macie uses ML to identify sensitive data in S3 and surface findings. GuardDuty detects threats, Inspector finds vulnerabilities, and Shield mitigates DDoS."
   },
@@ -3319,12 +3184,7 @@
   },
   {
     "question": "Which AWS service runs interactive SQL queries directly against data stored in Amazon S3, with no infrastructure to manage?",
-    "options": [
-      "A. Amazon Athena",
-      "B. AWS Glue",
-      "C. AWS Data Pipeline",
-      "D. Amazon CloudSearch"
-    ],
+    "options": ["A. Amazon Athena", "B. AWS Glue", "C. AWS Data Pipeline", "D. Amazon CloudSearch"],
     "correct": "A. Amazon Athena",
     "explanation": "Athena is a serverless interactive query engine that runs ANSI SQL on data in S3 (CSV, Parquet, ORC, JSON). Glue is for ETL and cataloging, Data Pipeline orchestrates ETL workflows, and CloudSearch is a search service."
   },
@@ -3445,12 +3305,7 @@
   },
   {
     "question": "Which AWS storage type is ephemeral and is lost when the instance is stopped or terminated?",
-    "options": [
-      "A. The EC2 Instance Store",
-      "B. Amazon EBS",
-      "C. Amazon EFS",
-      "D. Amazon S3"
-    ],
+    "options": ["A. The EC2 Instance Store", "B. Amazon EBS", "C. Amazon EFS", "D. Amazon S3"],
     "correct": "A. The EC2 Instance Store",
     "explanation": "Instance store volumes are local SSDs or HDDs attached to the host. Their contents do not persist across stop/terminate. EBS, EFS, and S3 all persist independently of an instance's lifecycle."
   },

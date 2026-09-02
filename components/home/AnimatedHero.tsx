@@ -61,8 +61,7 @@ const SCENARIOS: Scenario[] = [
     correctIndex: 1,
     teacherEmoji: "🦊",
     teacherName: "Nora",
-    teacherReply:
-      "岩浆房找得非常准！想看看当内部压力积聚时会发生什么吗？",
+    teacherReply: "岩浆房找得非常准！想看看当内部压力积聚时会发生什么吗？",
     xpLabel: "🏆 获得 +20 XP",
     progressFilled: 3,
   },
@@ -138,8 +137,7 @@ const SCENARIOS: Scenario[] = [
     correctIndex: 0,
     teacherEmoji: "🌿",
     teacherName: "Sage",
-    teacherReply:
-      "眼光真锐利！正规银行绝不会要求您在 24 小时内点击陌生链接进行验证。",
+    teacherReply: "眼光真锐利！正规银行绝不会要求您在 24 小时内点击陌生链接进行验证。",
     xpLabel: "👏 答得太棒了",
     progressFilled: 3,
   },
@@ -259,7 +257,8 @@ export default function AnimatedHero() {
               show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
             }}
           >
-            LearnAI 是您的个人 AI 智能导师，根据每位学习者的年龄、学习节奏与目标，动态适配课程、练习与实时反馈。
+            LearnAI 是您的个人 AI
+            智能导师，根据每位学习者的年龄、学习节奏与目标，动态适配课程、练习与实时反馈。
           </motion.p>
 
           <motion.div

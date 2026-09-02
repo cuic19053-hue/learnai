@@ -110,9 +110,7 @@ export default function SignInModal({
     setError(null);
     setNotice(null);
     if (!status?.signInEnabled || !status.google) {
-      setNotice(
-        "当前部署尚未配置 Google 快捷登录，您可以直接作为游客免登录体验。"
-      );
+      setNotice("当前部署尚未配置 Google 快捷登录，您可以直接作为游客免登录体验。");
       return;
     }
     void signIn("google", { callbackUrl });
@@ -145,9 +143,7 @@ export default function SignInModal({
       setSubmitting(true);
       try {
         await signIn("email", { email: value, callbackUrl, redirect: false });
-        setNotice(
-          `登录邮件已发送至 ${value}，请查收信箱。链接有效期为 24 小时。`
-        );
+        setNotice(`登录邮件已发送至 ${value}，请查收信箱。链接有效期为 24 小时。`);
       } catch {
         setError("无法发送登录邮件，请稍后再试。");
       } finally {
