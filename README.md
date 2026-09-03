@@ -86,12 +86,12 @@ Each lesson assembles a method plan — one method per Loop step, tuned to the l
 
 | World | Ages | Surface | Example lesson |
 |---|---|---|---|
-| 🦁 **Little Learner** | 3–6 | Stories, voice, color | Count jungle animals with Milo |
-| 🚀 **Explorer** | 7–11 | Quests, badges, curiosity | Why does a volcano erupt? |
-| 🛠️ **Builder** | 12–15 | Projects, code, missions | Build a calculator in Python |
-| 🎓 **Scholar** | 16–18 | Exam prep, weak-area focus | Trigonometry mastery sprint |
-| 💼 **Professional** | 18+ | Paths, certifications | AWS networking review |
-| 🌿 **Senior Learner** | 65+ | Calm, large text, voice | How to spot a scam message |
+| 🎒 **Grade 6 (Prep)** | 11–12 | Basics & stories | Shanghai Math G6 - Fractions |
+| 🔬 **Grade 7** | 12–13 | Science intro, tasks | Shanghai Science G7 - Microscope |
+| 🧲 **Grade 8** | 13–14 | Projects, logic | Shanghai Physics G8 - Light refraction |
+| 🧪 **Grade 9** | 14–15 | Exam prep, cross-subject | Shanghai Chemistry G9 - Acid/Base |
+| 🎓 **Professional** | 15+ | Paths, certifications | High School Math - Trigonometry sprint |
+| 👨‍🏫 **Senior/Parent** | Adult | Analysis, guidance | How to guide kids into High School |
 
 Onboarding routes the learner to the right world. They never see the others.
 
