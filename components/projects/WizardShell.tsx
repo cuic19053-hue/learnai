@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
@@ -18,7 +18,7 @@ type Props = {
   accentSoft: string;
   /** World pill background. */
   accentBg: string;
-  /** Header kicker, e.g. "NEW PROJECT · SCHOLAR WORLD · WITH MENTOR MAX". */
+  /** Header kicker, e.g. "NEW PROJECT · GRADE_9 WORLD · WITH MENTOR MAX". */
   kicker: string;
   /** Big modal title. */
   title: string;

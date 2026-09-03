@@ -1,11 +1,11 @@
-/**
- * Builder Academy mission resolver.
+﻿/**
+ * GRADE_8 Academy mission resolver.
  *
- * DB-first (Prisma `BuilderMission` / `BuilderStep` rows when the
+ * DB-first (Prisma `GRADE_8Mission` / `GRADE_8Step` rows when the
  * mission catalog has been seeded), static fallback otherwise.
  *
  * The static catalog below is the canonical seed: it ships with the
- * portal so /learn/builder renders cleanly out of the box, before any
+ * portal so /learn/GRADE_8 renders cleanly out of the box, before any
  * admin has populated the database. Once a mission with the same slug
  * exists in the DB, the resolver prefers the DB row (so admins can
  * tweak copy without a code release).
@@ -13,17 +13,17 @@
 
 import "server-only";
 import { prisma } from "@/lib/prisma";
-import type { BuilderProgressStatus, BuilderStepType } from "@prisma/client";
+import type { GRADE_8ProgressStatus, GRADE_8StepType } from "@prisma/client";
 
 export type LoopState = "Done" | "Current step" | "Locked" | "Upcoming";
 
 export type StepView = {
   id: string;
   order: number;
-  type: BuilderStepType;
+  type: GRADE_8StepType;
   title: string;
   xp: number;
-  status: BuilderProgressStatus;
+  status: GRADE_8ProgressStatus;
   /** Computed lock — true when a strictly-earlier step is not COMPLETED. */
   locked: boolean;
   /** UI label aligned with the design (Done / Current step / Locked / Upcoming). */
@@ -48,7 +48,7 @@ export type MissionView = {
 };
 
 /** Visual mapping for the 6-step loop (matches the design tiles). */
-export const STEP_ICONS: Record<BuilderStepType, string> = {
+export const STEP_ICONS: Record<GRADE_8StepType, string> = {
   HOOK: "🧲",
   EXPLAIN: "💡",
   PRACTICE: "✏️",
@@ -57,7 +57,7 @@ export const STEP_ICONS: Record<BuilderStepType, string> = {
   EVOLVE: "🌱",
 };
 
-export const STEP_LABELS: Record<BuilderStepType, string> = {
+export const STEP_LABELS: Record<GRADE_8StepType, string> = {
   HOOK: "Hook",
   EXPLAIN: "Explain",
   PRACTICE: "Practice",
@@ -70,7 +70,7 @@ export const STEP_LABELS: Record<BuilderStepType, string> = {
  * Static seed catalog. Used when the DB is empty or unreachable —
  * mirrors the design spec exactly so the portal shows the same data
  * a freshly seeded DB would. To customize, run a migration that
- * imports these into BuilderMission/BuilderStep rows.
+ * imports these into GRADE_8Mission/GRADE_8Step rows.
  */
 const SEED_MISSIONS: Array<{
   slug: string;
@@ -80,7 +80,7 @@ const SEED_MISSIONS: Array<{
   order: number;
   xpReward: number;
   estimatedMinutes: number;
-  steps: Array<{ order: number; type: BuilderStepType; title: string; xp: number }>;
+  steps: Array<{ order: number; type: GRADE_8StepType; title: string; xp: number }>;
 }> = [
   {
     slug: "python-calculator",
@@ -119,7 +119,7 @@ export const PRACTICE_TRACKS = [
 ];
 
 function deriveLoopState(
-  step: { status: BuilderProgressStatus; locked: boolean },
+  step: { status: GRADE_8ProgressStatus; locked: boolean },
   isCurrent: boolean
 ): LoopState {
   if (step.status === "COMPLETED") return "Done";
@@ -136,7 +136,7 @@ function deriveLoopState(
 export async function resolveActiveMission(userId: string | null): Promise<MissionView> {
   // 1) DB path — preferred when a published mission exists.
   try {
-    const dbMission = await prisma.builderMission.findFirst({
+    const dbMission = await prisma.GRADE_8Mission.findFirst({
       where: { isPublished: true },
       orderBy: { order: "asc" },
       include: {
@@ -154,29 +154,29 @@ export async function resolveActiveMission(userId: string | null): Promise<Missi
     }
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.warn("[builder.resolveActiveMission] db read failed, using seed", err);
+    console.warn("[GRADE_8.resolveActiveMission] db read failed, using seed", err);
   }
 
   // 2) Static seed fallback.
   return seedMissionView(SEED_MISSIONS[0]!, userId);
 }
 
-type DbMission = Awaited<ReturnType<typeof prisma.builderMission.findFirst>> & {
+type DbMission = Awaited<ReturnType<typeof prisma.GRADE_8Mission.findFirst>> & {
   steps: Array<{
     id: string;
     order: number;
-    type: BuilderStepType;
+    type: GRADE_8StepType;
     title: string;
     xp: number;
-    progress?: Array<{ status: BuilderProgressStatus }>;
+    progress?: Array<{ status: GRADE_8ProgressStatus }>;
   }>;
 };
 
 function shapeMissionView(mission: DbMission, _userId: string | null): MissionView {
   const steps: StepView[] = mission.steps.map((s, idx) => {
-    const status: BuilderProgressStatus = s.progress?.[0]?.status ?? "NOT_STARTED";
+    const status: GRADE_8ProgressStatus = s.progress?.[0]?.status ?? "NOT_STARTED";
     const prev = idx > 0 ? mission.steps[idx - 1] : null;
-    const prevStatus: BuilderProgressStatus = prev?.progress?.[0]?.status ?? "NOT_STARTED";
+    const prevStatus: GRADE_8ProgressStatus = prev?.progress?.[0]?.status ?? "NOT_STARTED";
     const locked = prev !== null && prevStatus !== "COMPLETED";
     return {
       id: s.id,
@@ -225,7 +225,7 @@ function seedMissionView(
   const completedThrough = 4;
   const steps: StepView[] = seed.steps.map((s, idx) => {
     const completed = idx < completedThrough;
-    const status: BuilderProgressStatus = completed ? "COMPLETED" : "NOT_STARTED";
+    const status: GRADE_8ProgressStatus = completed ? "COMPLETED" : "NOT_STARTED";
     const locked = !completed && idx > completedThrough;
     return {
       id: `seed-${seed.slug}-${s.order}`,
@@ -269,7 +269,7 @@ function seedMissionView(
  */
 export async function listMissions(userId: string | null): Promise<MissionView[]> {
   try {
-    const rows = await prisma.builderMission.findMany({
+    const rows = await prisma.GRADE_8Mission.findMany({
       where: { isPublished: true },
       orderBy: { order: "asc" },
       include: {
@@ -286,7 +286,7 @@ export async function listMissions(userId: string | null): Promise<MissionView[]
     }
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.warn("[builder.listMissions] db read failed, using seed", err);
+    console.warn("[GRADE_8.listMissions] db read failed, using seed", err);
   }
   return SEED_MISSIONS.map((m) => seedMissionView(m, userId));
 }
@@ -313,7 +313,7 @@ export async function completeStep(params: {
 }): Promise<CompleteStepResult> {
   const { userId, stepId } = params;
 
-  const step = await prisma.builderStep.findUnique({
+  const step = await prisma.GRADE_8Step.findUnique({
     where: { id: stepId },
     include: { mission: true },
   });
@@ -321,7 +321,7 @@ export async function completeStep(params: {
 
   // Sequential gate.
   if (step.order > 1) {
-    const prev = await prisma.builderStep.findFirst({
+    const prev = await prisma.GRADE_8Step.findFirst({
       where: { missionId: step.missionId, order: step.order - 1 },
       include: { progress: { where: { userId } } },
     });
@@ -330,7 +330,7 @@ export async function completeStep(params: {
     }
   }
 
-  await prisma.builderStepProgress.upsert({
+  await prisma.GRADE_8StepProgress.upsert({
     where: { userId_stepId: { userId, stepId } },
     create: { userId, stepId, status: "COMPLETED", completedAt: new Date() },
     update: { status: "COMPLETED", completedAt: new Date() },
@@ -344,8 +344,8 @@ export async function completeStep(params: {
   });
 
   // Mission-complete bonus.
-  const totalSteps = await prisma.builderStep.count({ where: { missionId: step.missionId } });
-  const doneSteps = await prisma.builderStepProgress.count({
+  const totalSteps = await prisma.GRADE_8Step.count({ where: { missionId: step.missionId } });
+  const doneSteps = await prisma.GRADE_8StepProgress.count({
     where: { userId, status: "COMPLETED", step: { missionId: step.missionId } },
   });
   let missionCompleted = false;

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Tutor reply — the AI surface behind every learner page's chat rail.
  *
  * Differs from jsonChat / generateLesson:
@@ -21,7 +21,7 @@ export type TutorRequestContext = {
   kind: PageContextKind;
   /** Optional concrete topic (lesson title, article name, project topic). */
   topic?: string;
-  /** Human-readable world label — "Scholar", "Professional", "Senior Learner". */
+  /** Human-readable world label — "GRADE_9", "Professional", "Senior Learner". */
   worldLabel?: string;
   /** World slug — drives the persona + safety profile. */
   worldSlug?: string;
@@ -31,11 +31,11 @@ export type TutorRequestContext = {
 
 const WORLD_SAFETY: Record<string, string> = {
   kids: "Audience: children ages 3-6. Use short sentences (≤ 8 words). No abstract jargon. No mention of anything outside numbers, letters, colors, animals, feelings, shapes, stories, or simple music. Always invite a small action.",
-  explorer:
+  GRADE_7:
     "Audience: children ages 7-11. Frame answers as discovery. Use one concrete example per concept. No internet links.",
-  builder:
+  GRADE_8:
     "Audience: pre-teens 12-15. Encourage shipping. One example, one twin problem, one stretch goal.",
-  scholar:
+  GRADE_9:
     "Audience: high-schoolers 16-18 prepping for exams. Be concrete, cite reasoning, and tag the named teaching method (Active recall · Worked example · Feynman · Spaced repetition · Interleaving).",
   adult:
     "Audience: working professional. Be precise and respectful of their time. Lead with the answer, then the reasoning, then a citation if you have one.",
@@ -75,13 +75,13 @@ const SAFETY_RAILS = [
 ].join("\n");
 
 function buildSystemMessage(ctx: TutorRequestContext): string {
-  const world = ctx.worldSlug ?? "scholar";
+  const world = ctx.worldSlug ?? "GRADE_9";
   const lines: string[] = [];
   lines.push(`You are ${ctx.teacherName ?? "the tutor"} — LearnAI's AI teacher.`);
   if (ctx.worldLabel) lines.push(`World: ${ctx.worldLabel}.`);
   if (ctx.topic) lines.push(`Current topic: ${ctx.topic}.`);
   lines.push("");
-  lines.push(WORLD_SAFETY[world] ?? WORLD_SAFETY.scholar);
+  lines.push(WORLD_SAFETY[world] ?? WORLD_SAFETY.GRADE_9);
   lines.push("");
   lines.push(PAGE_HINT[ctx.kind] ?? PAGE_HINT["world-home"]);
   lines.push("");

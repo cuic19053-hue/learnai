@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { Arrow } from "@/components/design/icons";
@@ -48,7 +48,7 @@ export default async function MissionsPage({
             // Resume routes per mission. The lesson route reads the
             // `mission` query param and looks up the practice payload
             // — so a Professional VPC mission no longer opens the
-            // Explorer volcano practice.
+            // GRADE_7 volcano practice.
             lessonHref={`/learn/lesson/${world.slug}?mission=${m.id}`}
           />
         ))}

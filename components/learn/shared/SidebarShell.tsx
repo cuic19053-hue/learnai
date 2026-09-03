@@ -1,4 +1,4 @@
-/**
+﻿/**
  * WikiTest shared chrome — port of `wikitest-shared.jsx` to typed
  * React. Five public exports:
  *
@@ -22,12 +22,12 @@ import { Icon } from "./wikitest-icons";
 
 // ─── World colors ──────────────────────────────────────────────────
 
-type WorldKey = "Scholar" | "Professional" | "Builder" | "Playful";
+type WorldKey = "GRADE_9" | "Professional" | "GRADE_8" | "Playful";
 
 export const WORLD_COLORS: Record<WorldKey, { bg: string; fg: string; ico: string }> = {
-  Scholar: { bg: "#fff1d6", fg: "#b45309", ico: "🎓" },
+  GRADE_9: { bg: "#fff1d6", fg: "#b45309", ico: "🎓" },
   Professional: { bg: "#d6f1f0", fg: "#0f766e", ico: "💼" },
-  Builder: { bg: "#efe7ff", fg: "#6d28d9", ico: "🛠️" },
+  GRADE_8: { bg: "#efe7ff", fg: "#6d28d9", ico: "🛠️" },
   Playful: { bg: "#fce0ec", fg: "#be185d", ico: "🎈" },
 };
 
@@ -116,13 +116,13 @@ export type LATopBarProps = {
 };
 
 export function LATopBar({
-  world = "Scholar",
+  world = "GRADE_9",
   streak = 1,
   xp = 0,
   initials = "J",
   avatarBg = "var(--brand-grad)",
 }: LATopBarProps) {
-  const w = WORLD_COLORS[world] ?? WORLD_COLORS.Scholar;
+  const w = WORLD_COLORS[world] ?? WORLD_COLORS.GRADE_9;
   return (
     <div className="wt-topbar">
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
@@ -414,9 +414,9 @@ export type SidebarShellProps = {
 };
 
 export function SidebarShell({
-  trail = ["Scholar", "WikiTest"],
+  trail = ["GRADE_9", "WikiTest"],
   children,
-  world = "Scholar",
+  world = "GRADE_9",
   initials = "J",
   avatarBg = "#7c3aed",
   streak = 1,

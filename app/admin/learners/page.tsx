@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Chip, Crumbs, PageHeader } from "@/components/admin/shared";
 
 export const metadata: Metadata = { title: "Admin · Learners" };
@@ -17,9 +17,9 @@ type Learner = {
 
 const WORLD_C = {
   "Little Learner": "#ec4899",
-  Explorer: "#4338ca",
-  Builder: "#7c3aed",
-  Scholar: "#c2410c",
+  GRADE_7: "#4338ca",
+  GRADE_8: "#7c3aed",
+  GRADE_9: "#c2410c",
   Professional: "#0f766e",
   "Senior Learner": "#16a34a",
 } as const;
@@ -27,7 +27,7 @@ const WORLD_C = {
 const LEARNERS: Learner[] = [
   {
     name: "Jess M.",
-    world: "Scholar",
+    world: "GRADE_9",
     age: 16,
     parent: "—",
     lastActive: "just now",
@@ -49,7 +49,7 @@ const LEARNERS: Learner[] = [
   },
   {
     name: "Maya R.",
-    world: "Builder",
+    world: "GRADE_8",
     age: 14,
     parent: "—",
     lastActive: "6 min",
@@ -71,7 +71,7 @@ const LEARNERS: Learner[] = [
   },
   {
     name: "Captain Aiden",
-    world: "Explorer",
+    world: "GRADE_7",
     age: 9,
     parent: "Tom W. (father)",
     lastActive: "1 h",
@@ -93,7 +93,7 @@ const LEARNERS: Learner[] = [
   },
   {
     name: "Diego F.",
-    world: "Scholar",
+    world: "GRADE_9",
     age: 17,
     parent: "—",
     lastActive: "2 days",
@@ -104,7 +104,7 @@ const LEARNERS: Learner[] = [
   },
   {
     name: "Hana K.",
-    world: "Builder",
+    world: "GRADE_8",
     age: 13,
     parent: "Aki K. (mother)",
     lastActive: "3 days",
@@ -162,9 +162,9 @@ export default function AdminLearners() {
         <div className="mt-5 flex flex-wrap items-center gap-2">
           <Chip on>All · 2,148</Chip>
           <Chip>🦁 Little (312)</Chip>
-          <Chip>🚀 Explorer (488)</Chip>
-          <Chip>🛠️ Builder (402)</Chip>
-          <Chip>🎓 Scholar (580)</Chip>
+          <Chip>🚀 GRADE_7 (488)</Chip>
+          <Chip>🛠️ GRADE_8 (402)</Chip>
+          <Chip>🎓 GRADE_9 (580)</Chip>
           <Chip>💼 Pro (286)</Chip>
           <Chip>🌿 Senior (80)</Chip>
           <span

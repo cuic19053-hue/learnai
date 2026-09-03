@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -9,24 +9,24 @@ import {
   PRACTICE_TRACKS,
   type MissionView,
   type StepView,
-} from "@/lib/builder/missions";
+} from "@/lib/GRADE_8/missions";
 import { prisma } from "@/lib/prisma";
-import { BuilderContinueButton } from "@/components/learn/builder/BuilderContinueButton";
+import { GRADE_8ContinueButton } from "@/components/learn/GRADE_8/GRADE_8ContinueButton";
 
 export const metadata: Metadata = {
-  title: "Builder Academy",
+  title: "GRADE_8 Academy",
   description:
-    "Enterprise-grade Builder portal · Hook → Explain → Practice → Feedback → Reflect → Evolve loops, project-first learning for ages 12-15.",
+    "Enterprise-grade GRADE_8 portal · Hook → Explain → Practice → Feedback → Reflect → Evolve loops, project-first learning for ages 12-15.",
 };
 
 export const dynamic = "force-dynamic";
 
 const NAV_ITEMS = [
-  { ic: "🏠", l: "Home", href: "/learn/builder", active: true },
-  { ic: "🎯", l: "My missions", href: "/learn/builder?tab=missions", active: false },
-  { ic: "🛠️", l: "Projects", href: "/learn/projects?world=builder", active: false },
-  { ic: "📚", l: "Library", href: "/learn/wiki?world=builder", active: false },
-  { ic: "🏅", l: "Achievements", href: "/learn/builder?tab=achievements", active: false },
+  { ic: "🏠", l: "Home", href: "/learn/GRADE_8", active: true },
+  { ic: "🎯", l: "My missions", href: "/learn/GRADE_8?tab=missions", active: false },
+  { ic: "🛠️", l: "Projects", href: "/learn/projects?world=GRADE_8", active: false },
+  { ic: "📚", l: "Library", href: "/learn/wiki?world=GRADE_8", active: false },
+  { ic: "🏅", l: "Achievements", href: "/learn/GRADE_8?tab=achievements", active: false },
   { ic: "🌍", l: "Switch world", href: "/learn/journeys", active: false },
 ] as const;
 
@@ -40,7 +40,7 @@ async function getUserXp(userId: string | null): Promise<number> {
   }
 }
 
-export default async function BuilderPage() {
+export default async function GRADE_8Page() {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id ?? null;
   const learnerName = await getLearnerDisplayName();
@@ -62,11 +62,11 @@ export default async function BuilderPage() {
         gridTemplateColumns: "280px 1fr",
       }}
     >
-      <BuilderSidebar />
+      <GRADE_8Sidebar />
       <section style={{ padding: "32px 40px" }}>
-        <BuilderHeader today={today} learnerName={learnerName} xp={xp} />
+        <GRADE_8Header today={today} learnerName={learnerName} xp={xp} />
         <div
-          className="builder-portal-grid"
+          className="GRADE_8-portal-grid"
           style={{ display: "grid", gridTemplateColumns: "1fr 360px", gap: 24 }}
         >
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
@@ -83,21 +83,21 @@ export default async function BuilderPage() {
           usable on a tablet without rebuilding the whole layout. */}
       <style>{`
         @media (max-width: 1100px) {
-          .builder-portal-grid { grid-template-columns: 1fr !important; }
+          .GRADE_8-portal-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 760px) {
-          [data-builder-shell] { grid-template-columns: 1fr !important; }
-          [data-builder-sidebar] { border-right: none; border-bottom: 1px solid #e2e8f0; }
+          [data-GRADE_8-shell] { grid-template-columns: 1fr !important; }
+          [data-GRADE_8-sidebar] { border-right: none; border-bottom: 1px solid #e2e8f0; }
         }
       `}</style>
     </div>
   );
 }
 
-function BuilderSidebar() {
+function GRADE_8Sidebar() {
   return (
     <aside
-      data-builder-sidebar
+      data-GRADE_8-sidebar
       style={{
         borderRight: "1px solid #e2e8f0",
         background: "#fff",
@@ -109,7 +109,7 @@ function BuilderSidebar() {
       }}
     >
       <Link
-        href="/learn/builder"
+        href="/learn/GRADE_8"
         style={{
           display: "flex",
           alignItems: "center",
@@ -136,7 +136,7 @@ function BuilderSidebar() {
         </div>
         <div>
           <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: "-0.01em" }}>
-            Builder Academy
+            GRADE_8 Academy
           </div>
           <div style={{ fontSize: 12, color: "#64748b" }}>Learning portal</div>
         </div>
@@ -222,7 +222,7 @@ function BuilderSidebar() {
   );
 }
 
-function BuilderHeader({
+function GRADE_8Header({
   today,
   learnerName,
   xp,
@@ -280,7 +280,7 @@ function BuilderHeader({
           >
             Level
           </div>
-          <div style={{ fontSize: 14, fontWeight: 800 }}>Builder · {xp.toLocaleString()} XP</div>
+          <div style={{ fontSize: 14, fontWeight: 800 }}>GRADE_8 · {xp.toLocaleString()} XP</div>
         </div>
         <div
           style={{
@@ -371,7 +371,7 @@ function TodaysMission({ mission }: { mission: MissionView }) {
               dangerouslySetInnerHTML={{ __html: linkifyCode(mission.description) }}
             />
           </div>
-          <BuilderContinueButton
+          <GRADE_8ContinueButton
             stepId={current?.id ?? null}
             stepLabel={ctaLabel}
             isSeed={isSeed}
@@ -496,7 +496,7 @@ function ContinuePracticing() {
       >
         <h2 style={{ margin: 0, fontSize: 18, fontWeight: 800 }}>Continue practicing</h2>
         <Link
-          href="/learn/builder?tab=missions"
+          href="/learn/GRADE_8?tab=missions"
           style={{
             fontSize: 13,
             fontWeight: 800,
@@ -511,7 +511,7 @@ function ContinuePracticing() {
         {PRACTICE_TRACKS.map((c) => (
           <Link
             key={c.slug}
-            href={`/learn/lesson/builder?mission=${c.slug}`}
+            href={`/learn/lesson/GRADE_8?mission=${c.slug}`}
             style={{
               padding: 20,
               borderRadius: 24,
@@ -607,7 +607,7 @@ function NovaRecommends() {
         10-minute warm-up sharpens both.
       </p>
       <Link
-        href="/learn/lesson/builder?mission=logic-gates"
+        href="/learn/lesson/GRADE_8?mission=logic-gates"
         style={{
           display: "block",
           textAlign: "center",

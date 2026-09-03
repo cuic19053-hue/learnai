@@ -1,13 +1,13 @@
-import { redirect } from "next/navigation";
+﻿import { redirect } from "next/navigation";
 import type { LearnerStage } from "@/lib/learn/stages";
 import { stageToPath } from "@/lib/learn/stages";
 import { readProfile } from "@/lib/learn/profile";
 
 const VALID: LearnerStage[] = [
-  "LITTLE_LEARNER",
-  "EXPLORER",
-  "BUILDER",
-  "SCHOLAR",
+  "GRADE_6",
+  "GRADE_7",
+  "GRADE_8",
+  "GRADE_9",
   "UNIVERSITY",
   "PROFESSIONAL",
   "SENIOR",

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import OnboardingWizard from "@/components/learn/OnboardingWizard";
 import type { LearnerStage } from "@/lib/learn/stages";
 
@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 };
 
 const VALID: LearnerStage[] = [
-  "LITTLE_LEARNER",
-  "EXPLORER",
-  "BUILDER",
-  "SCHOLAR",
+  "GRADE_6",
+  "GRADE_7",
+  "GRADE_8",
+  "GRADE_9",
   "UNIVERSITY",
   "PROFESSIONAL",
   "SENIOR",

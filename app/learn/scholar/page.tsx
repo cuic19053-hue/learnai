@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, WikiTestPromoCard } from "@/components/learn/SecondaryCards";
@@ -7,17 +7,17 @@ import { getLearnerDisplayName, isAuthenticated } from "@/lib/learn/learner-name
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
-  title: "Scholar",
+  title: "GRADE_9",
   description: "Exam preparation, weak-area focus, and study plans for ages 16–18.",
 };
 
 // getServerSession (via isAuthenticated) can't run during SSG.
 export const dynamic = "force-dynamic";
 
-export default async function ScholarPage() {
+export default async function GRADE_9Page() {
   const learnerName = await getLearnerDisplayName();
   const signedIn = await isAuthenticated();
-  const world = WORLDS.scholar;
+  const world = WORLDS.GRADE_9;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -62,7 +62,7 @@ export default async function ScholarPage() {
         description="Concept refresher, two worked examples, then 5 exam-style questions with feedback. Teach-until-learned loop on misses."
         currentStep={2}
         meta="~25 min · +90 XP"
-        ctaHref="/learn/lesson/scholar?mission=scholar-trig"
+        ctaHref="/learn/lesson/GRADE_9?mission=GRADE_9-trig"
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -78,18 +78,18 @@ export default async function ScholarPage() {
                 title: "Algebra: quadratic equations",
                 subtitle: "Math · 68% mastery",
                 progress: 68,
-                href: "/learn/lesson/scholar?mission=scholar-quadratics",
+                href: "/learn/lesson/GRADE_9?mission=GRADE_9-quadratics",
               },
               {
                 title: "Probability fundamentals",
                 subtitle: "Math · 75% mastery",
                 progress: 75,
-                href: "/learn/lesson/scholar?mission=scholar-probability",
+                href: "/learn/lesson/GRADE_9?mission=GRADE_9-probability",
               },
             ]}
           />
         ) : null}
-        <WikiTestPromoCard worldLabel="Scholar" teacherName="Mentor Max" />
+        <WikiTestPromoCard worldLabel="GRADE_9" teacherName="Mentor Max" />
       </div>
     </LearnerHomeShell>
   );

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 /**
  * Design Gallery — interactive index of every WikiTest screen.
@@ -18,7 +18,7 @@
 import { useEffect, useMemo, useState, type FC } from "react";
 import { GALLERY, GALLERY_FLAT, GALLERY_TOTAL } from "@/lib/learn/gallery-screens";
 import {
-  ScholarHome,
+  GRADE_9Home,
   WikiHub,
   WikiDetail,
   WikiTrain,
@@ -51,11 +51,11 @@ import {
   StoryForgeHome,
   QuestForgeHome,
   ProjectForgeHome,
-  ScholarExamForge,
+  GRADE_9ExamForge,
   CertForgeHome,
   SafetyForgeHome,
 } from "@/components/learn/wikitest/wikitest-forges";
-import { BuildersPortal } from "@/components/learn/wikitest/wikitest-builders-portal";
+import { GRADE_8sPortal } from "@/components/learn/wikitest/wikitest-GRADE_8s-portal";
 import {
   ForgePlan,
   ForgeGenerating,
@@ -76,11 +76,11 @@ import {
   DeepStudy,
   MockDefense,
   DefenseReport,
-  ProjectsHubScholar,
-  ScholarWizardStep1,
-  ScholarWizardStep2,
-  ScholarWizardStep3,
-  ScholarWizardStep4,
+  ProjectsHubGRADE_9,
+  GRADE_9WizardStep1,
+  GRADE_9WizardStep2,
+  GRADE_9WizardStep3,
+  GRADE_9WizardStep4,
   WorldComparisonGrid,
   LittleLearnerParentWizard,
   SeniorWizard,
@@ -101,7 +101,7 @@ import {
  */
 const REGISTRY: Record<string, FC> = {
   // Batch 2 — WikiTest core (8 screens)
-  ScholarHome,
+  GRADE_9Home,
   WikiHub,
   WikiDetail,
   WikiTrain,
@@ -121,8 +121,8 @@ const REGISTRY: Record<string, FC> = {
   StoryForgeHome,
   QuestForgeHome,
   ProjectForgeHome,
-  BuildersPortal,
-  ScholarExamForge,
+  GRADE_8sPortal,
+  GRADE_9ExamForge,
   CertForgeHome,
   SafetyForgeHome,
   // Batch 5 — Exam Forge wizard (4 screens)
@@ -146,11 +146,11 @@ const REGISTRY: Record<string, FC> = {
   MockDefense,
   DefenseReport,
   // Batch 8 — Project wizard variants (8 screens)
-  ProjectsHubScholar,
-  ScholarWizardStep1,
-  ScholarWizardStep2,
-  ScholarWizardStep3,
-  ScholarWizardStep4,
+  ProjectsHubGRADE_9,
+  GRADE_9WizardStep1,
+  GRADE_9WizardStep2,
+  GRADE_9WizardStep3,
+  GRADE_9WizardStep4,
   WorldComparisonGrid,
   LittleLearnerParentWizard,
   SeniorWizard,

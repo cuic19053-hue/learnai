@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Chip, Crumbs, PageHeader } from "@/components/admin/shared";
 
 export const metadata: Metadata = { title: "Admin · Audit log" };
@@ -37,7 +37,7 @@ const AUDIT: Array<{
     actor: "system",
     ic: "🛡️",
     action: "safety.block",
-    target: "Builder · profanity · Maya",
+    target: "GRADE_8 · profanity · Maya",
     ip: "—",
     sev: "med",
   },
@@ -91,7 +91,7 @@ const AUDIT: Array<{
     actor: "system",
     ic: "🛡️",
     action: "safety.block.high",
-    target: "Scholar · self-harm · auto-resolved",
+    target: "GRADE_9 · self-harm · auto-resolved",
     ip: "—",
     sev: "high",
   },
@@ -118,7 +118,7 @@ const AUDIT: Array<{
     actor: "admin@learnai",
     ic: "⚙",
     action: "routing.update",
-    target: "Scholar · grok-4-fast primary",
+    target: "GRADE_9 · grok-4-fast primary",
     ip: "88.143.x.x",
     sev: "info",
   },

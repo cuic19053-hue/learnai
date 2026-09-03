@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Exam Forge wizard gallery screens (Batch 5, 4 screens).
  *
  *   ForgePlan        — Step 1: Plan & sources
@@ -19,7 +19,7 @@ const FORGE_HEADER = "linear-gradient(135deg, #c2410c 0%, #9a3412 100%)";
 function ForgeShell({ trail, children }: { trail: string[]; children: React.ReactNode }) {
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={45} initials="J" avatarBg="#c2410c" />
+      <LATopBar world="GRADE_9" streak={1} xp={45} initials="J" avatarBg="#c2410c" />
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", minHeight: 836 }}>
         <LASidebar active="WikiTest" teacherName="Mentor Max" teacherIcon="🎓" />
         <main>
@@ -33,7 +33,7 @@ function ForgeShell({ trail, children }: { trail: string[]; children: React.Reac
 
 export function ForgePlan() {
   return (
-    <ForgeShell trail={["Scholar", "ExamForge", "New exam"]}>
+    <ForgeShell trail={["GRADE_9", "ExamForge", "New exam"]}>
       <section style={{ padding: "28px 32px", maxWidth: 1000, margin: "0 auto" }}>
         <div
           style={{
@@ -110,7 +110,7 @@ export function ForgePlan() {
             </Section>
             <Section label="Audience & pace">
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-                <input value="Scholar (16–18)" readOnly style={inputStyle} />
+                <input value="GRADE_9 (16–18)" readOnly style={inputStyle} />
                 <input value="~12 minutes" readOnly style={inputStyle} />
               </div>
             </Section>
@@ -158,7 +158,7 @@ export function ForgePlan() {
 
 export function ForgeGenerating() {
   return (
-    <ForgeShell trail={["Scholar", "ExamForge", "New exam", "Generating"]}>
+    <ForgeShell trail={["GRADE_9", "ExamForge", "New exam", "Generating"]}>
       <section style={{ padding: "28px 32px", maxWidth: 1000, margin: "0 auto" }}>
         <div
           style={{
@@ -262,7 +262,7 @@ export function ForgeGenerating() {
 
 export function ForgeReady() {
   return (
-    <ForgeShell trail={["Scholar", "ExamForge", "New exam", "Ready"]}>
+    <ForgeShell trail={["GRADE_9", "ExamForge", "New exam", "Ready"]}>
       <section style={{ padding: "28px 32px", maxWidth: 1000, margin: "0 auto" }}>
         <div
           style={{
@@ -409,7 +409,7 @@ export function ForgeQueue() {
     { t: "AP Lit · Romeo & Juliet", sub: "draft · saved · not generated", state: "Draft" },
   ];
   return (
-    <ForgeShell trail={["Scholar", "ExamForge", "Library"]}>
+    <ForgeShell trail={["GRADE_9", "ExamForge", "Library"]}>
       <section style={{ padding: "28px 32px", maxWidth: 1140, margin: "0 auto" }}>
         <div
           style={{

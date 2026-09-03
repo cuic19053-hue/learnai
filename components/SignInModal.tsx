@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -42,7 +42,7 @@ type ProviderStatus = {
 export default function SignInModal({
   open,
   onClose,
-  callbackUrl = "/learn/builder",
+  callbackUrl = "/learn/GRADE_8",
   defaultMode = "signin",
 }: SignInModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);

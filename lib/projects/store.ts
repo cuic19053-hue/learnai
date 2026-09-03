@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Process-local project store. Same shape as the WikiTest cache — swap
  * to Redis when multi-instance lands, no API changes needed.
  *
@@ -75,8 +75,8 @@ export const DEMO_PROJECTS: Array<
 > = [
   {
     id: "demo-calculus-derivatives",
-    worldSlug: "scholar",
-    audience: "scholar",
+    worldSlug: "GRADE_9",
+    audience: "GRADE_9",
     subject: "math",
     topic: "Calculus · derivatives mastery",
     outcome: "Score ≥ 80% on a 20-question derivatives mock test by next Sunday.",
@@ -109,8 +109,8 @@ export const DEMO_PROJECTS: Array<
   },
   {
     id: "demo-quantum-computing",
-    worldSlug: "scholar",
-    audience: "scholar",
+    worldSlug: "GRADE_9",
+    audience: "GRADE_9",
     subject: "cs",
     topic: "Quantum computing basics",
     outcome: "Understand single-qubit gates, the Bell state, and Grover's algorithm.",

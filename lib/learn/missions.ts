@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Mission catalog — replaces the previous `SAMPLE` hard-coded list in
  * `app/learn/missions/page.tsx` and makes "Resume" world-aware.
  *
@@ -417,9 +417,9 @@ export const MISSIONS: Record<string, Mission[]> = {
       progressPct: 0,
     },
   ],
-  explorer: [
+  GRADE_7: [
     {
-      id: "explorer-volcano",
+      id: "GRADE_7-volcano",
       title: "Why does a volcano erupt?",
       subject: "Science",
       status: "active",
@@ -428,7 +428,7 @@ export const MISSIONS: Record<string, Mission[]> = {
       // volcano payload, which IS this mission's content.
     },
     {
-      id: "explorer-clouds",
+      id: "GRADE_7-clouds",
       title: "How do clouds make rain?",
       subject: "Science",
       status: "completed",
@@ -436,7 +436,7 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: CLOUDS_RAIN_PRACTICE,
     },
     {
-      id: "explorer-reading",
+      id: "GRADE_7-reading",
       title: "Reading: tiger cubs",
       subject: "Reading",
       status: "active",
@@ -444,7 +444,7 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: READING_TIGER_PRACTICE,
     },
     {
-      id: "explorer-river",
+      id: "GRADE_7-river",
       title: "Solve the river puzzle",
       subject: "Logic",
       status: "active",
@@ -452,12 +452,12 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: RIVER_PUZZLE_PRACTICE,
     },
   ],
-  builder: [
+  GRADE_8: [
     {
-      // Slug matches the seeded BuilderMission in lib/builder/missions.ts
-      // so the portal's "Continue with Reflect" → /learn/lesson/builder
+      // Slug matches the seeded GRADE_8Mission in lib/GRADE_8/missions.ts
+      // so the portal's "Continue with Reflect" → /learn/lesson/GRADE_8
       // ?mission=python-calculator hand-off resolves to a real practice
-      // payload (instead of falling back to the Explorer volcano demo).
+      // payload (instead of falling back to the GRADE_7 volcano demo).
       id: "python-calculator",
       title: "Build a calculator in Python",
       subject: "Coding",
@@ -482,16 +482,16 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: ALGEBRA_PRACTICE,
     },
     {
-      id: "builder-ttt",
+      id: "GRADE_8-ttt",
       title: "Build a tic-tac-toe game",
       subject: "Coding",
       status: "locked",
       progressPct: 0,
     },
   ],
-  scholar: [
+  GRADE_9: [
     {
-      id: "scholar-trig",
+      id: "GRADE_9-trig",
       title: "Trigonometry: sine & cosine",
       subject: "Math",
       status: "active",
@@ -499,7 +499,7 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: TRIG_PRACTICE,
     },
     {
-      id: "scholar-quadratics",
+      id: "GRADE_9-quadratics",
       title: "Algebra: quadratic equations",
       subject: "Math",
       status: "active",
@@ -507,7 +507,7 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: QUADRATICS_PRACTICE,
     },
     {
-      id: "scholar-probability",
+      id: "GRADE_9-probability",
       title: "Probability fundamentals",
       subject: "Math",
       status: "active",
@@ -515,7 +515,7 @@ export const MISSIONS: Record<string, Mission[]> = {
       practice: PROBABILITY_PRACTICE,
     },
     {
-      id: "scholar-exam",
+      id: "GRADE_9-exam",
       title: "Practice exam: Set A",
       subject: "Exam",
       status: "locked",

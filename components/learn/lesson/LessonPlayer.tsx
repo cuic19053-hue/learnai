@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -13,7 +13,7 @@ import type { MissionPracticePayload } from "@/lib/learn/missions";
 
 type Token = { id: string; label: string; emoji: string };
 
-/** Default volcano payload — preserves the original Explorer demo so
+/** Default volcano payload — preserves the original GRADE_7 demo so
  *  callers that don't pass a `practice` prop see the same UI as before. */
 const DEFAULT_VOLCANO_PRACTICE: MissionPracticePayload = {
   prompt: "Drag each label to the correct part of the volcano",
@@ -49,7 +49,7 @@ type LessonPlayerProps = {
   title?: string;
   subject?: string;
   /** Mission-specific practice content. When omitted, falls back to
-   *  the original Explorer volcano practice so older entry points
+   *  the original GRADE_7 volcano practice so older entry points
    *  keep working. */
   practice?: MissionPracticePayload;
 };

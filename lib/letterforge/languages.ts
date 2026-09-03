@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Supported Milo Letters languages.
  *
  * Each entry carries everything the child-facing /learn/kids page
@@ -186,7 +186,7 @@ export const KIDS_MINI_GAMES = [
     accentBg: "#fce0ec",
   },
   {
-    id: "lego_letter_builder",
+    id: "lego_letter_GRADE_8",
     title: "Build with blocks",
     emoji: "🧱",
     accent: "#f59e0b",

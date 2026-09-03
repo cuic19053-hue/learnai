@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import MissionCard from "@/components/learn/MissionCard";
 import { ContinueCard, RecommendationCard } from "@/components/learn/SecondaryCards";
@@ -6,17 +6,17 @@ import { getLearnerDisplayName, isAuthenticated } from "@/lib/learn/learner-name
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
 
 export const metadata: Metadata = {
-  title: "Explorer",
+  title: "GRADE_7",
   description: "Quests, badges, and short curiosity lessons for ages 7–11.",
 };
 
 // getServerSession (via isAuthenticated) can't run during SSG.
 export const dynamic = "force-dynamic";
 
-export default async function ExplorerPage() {
+export default async function GRADE_7Page() {
   const learnerName = await getLearnerDisplayName();
   const signedIn = await isAuthenticated();
-  const world = WORLDS.explorer;
+  const world = WORLDS.GRADE_7;
   const journey = world.journey;
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -38,7 +38,7 @@ export default async function ExplorerPage() {
         Welcome back, {learnerName} 👋
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
-        Today&apos;s quest: discover how volcanoes work — and earn a Science Explorer badge.
+        Today&apos;s quest: discover how volcanoes work — and earn a Science GRADE_7 badge.
       </p>
 
       <MissionCard
@@ -48,8 +48,8 @@ export default async function ExplorerPage() {
         description="Watch a 2-minute explainer, drag the labels onto the diagram, then answer 3 quick questions."
         currentStep={3}
         ctaLabel="Resume quest"
-        meta="~8 min · 🏅 Science Explorer"
-        ctaHref="/learn/lesson/explorer?mission=explorer-volcano"
+        meta="~8 min · 🏅 Science GRADE_7"
+        ctaHref="/learn/lesson/GRADE_7?mission=GRADE_7-volcano"
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -61,13 +61,13 @@ export default async function ExplorerPage() {
                 title: "How clouds make rain",
                 subtitle: "Science · 4 mins left",
                 progress: 60,
-                href: "/learn/lesson/explorer?mission=explorer-clouds",
+                href: "/learn/lesson/GRADE_7?mission=GRADE_7-clouds",
               },
               {
                 title: "Reading: tiger cubs",
                 subtitle: "Reading · 9 mins left",
                 progress: 25,
-                href: "/learn/lesson/explorer?mission=explorer-reading",
+                href: "/learn/lesson/GRADE_7?mission=GRADE_7-reading",
               },
             ]}
           />

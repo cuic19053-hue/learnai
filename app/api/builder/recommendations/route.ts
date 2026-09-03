@@ -1,11 +1,11 @@
-/**
- * GET /api/builder/recommendations
+﻿/**
+ * GET /api/GRADE_8/recommendations
  *
  * Returns Nova's recommendation for the dashboard's right-rail card.
  * The default response is a static, design-aligned suggestion so the
  * page renders instantly without an LLM round-trip. When the user
  * appends `?live=1`, we call the multi-provider AI chain to synthesize
- * a personalized variant from the user's recent BuilderStepProgress.
+ * a personalized variant from the user's recent GRADE_8StepProgress.
  *
  * Personalized calls are rate-limited and never block rendering —
  * they're optional sparkle, not required for the page to load.
@@ -24,7 +24,7 @@ const STATIC_RECOMMENDATION = {
   title: "Try a logic puzzle before today's mission",
   body: "Yesterday's session showed you flew through patterns but slowed on edge cases. A 10-minute warm-up sharpens both.",
   ctaLabel: "Start warm-up",
-  ctaHref: "/learn/lesson/builder?mission=logic-gates",
+  ctaHref: "/learn/lesson/GRADE_8?mission=logic-gates",
   source: "static" as const,
 };
 
@@ -35,7 +35,7 @@ export const GET = handler(async (req: Request) => {
   if (!live) return ok({ recommendation: STATIC_RECOMMENDATION });
 
   // Live LLM-personalized path — gated tighter to bound spend.
-  const limit = rateLimit(`builder:recs:live:${clientIp(req)}`, { limit: 12, windowMs: 60_000 });
+  const limit = rateLimit(`GRADE_8:recs:live:${clientIp(req)}`, { limit: 12, windowMs: 60_000 });
   if (!limit.allowed) return fail(429, "Too many personalized requests, try again shortly.");
 
   const session = await getServerSession(authOptions);
@@ -44,7 +44,7 @@ export const GET = handler(async (req: Request) => {
 
   let recentTypes: string[] = [];
   try {
-    const recent = await prisma.builderStepProgress.findMany({
+    const recent = await prisma.GRADE_8StepProgress.findMany({
       where: { userId, status: "COMPLETED" },
       orderBy: { completedAt: "desc" },
       take: 10,
@@ -53,7 +53,7 @@ export const GET = handler(async (req: Request) => {
     recentTypes = recent.map((p) => p.step.type);
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.warn("[builder.recs] history lookup failed, using static", err);
+    console.warn("[GRADE_8.recs] history lookup failed, using static", err);
     return ok({ recommendation: STATIC_RECOMMENDATION });
   }
 
@@ -67,7 +67,7 @@ export const GET = handler(async (req: Request) => {
         {
           role: "system",
           content:
-            'You are Nova, a calm, friendly AI teacher for ages 12-15 in the Builder Academy. Output strict JSON with keys "title" (max 8 words) and "body" (max 32 words). No markdown, no code fences, no preamble. The recommendation is a 10-minute warm-up tied to the learner\'s recent loop activity.',
+            'You are Nova, a calm, friendly AI teacher for ages 12-15 in the GRADE_8 Academy. Output strict JSON with keys "title" (max 8 words) and "body" (max 32 words). No markdown, no code fences, no preamble. The recommendation is a 10-minute warm-up tied to the learner\'s recent loop activity.',
         },
         {
           role: "user",
@@ -83,7 +83,7 @@ export const GET = handler(async (req: Request) => {
         title: parsed.title,
         body: parsed.body,
         ctaLabel: "Start warm-up",
-        ctaHref: "/learn/lesson/builder?mission=logic-gates",
+        ctaHref: "/learn/lesson/GRADE_8?mission=logic-gates",
         source: "ai" as const,
       },
     });

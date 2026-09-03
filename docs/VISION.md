@@ -1,4 +1,4 @@
-# LearnAI Vision
+﻿# LearnAI Vision
 
 ## Mission
 
@@ -27,9 +27,9 @@ LearnAI
 ## Life Stages Supported
 
 1. Little Learner (ages 3–6)
-2. Explorer (ages 7–11)
-3. Builder (ages 12–15)
-4. Scholar (ages 16–18)
+2. GRADE_7 (ages 7–11)
+3. GRADE_8 (ages 12–15)
+4. GRADE_9 (ages 16–18)
 5. University (ages 18–25)
 6. Professional (adult upskilling)
 7. Senior Learner (older adults)

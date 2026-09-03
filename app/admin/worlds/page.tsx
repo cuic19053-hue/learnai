@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Crumbs, PageHeader } from "@/components/admin/shared";
 
 export const metadata: Metadata = { title: "Admin · Worlds" };
@@ -20,7 +20,7 @@ const WORLDS = [
     loop: 74,
   },
   {
-    n: "Explorer",
+    n: "GRADE_7",
     ic: "🚀",
     ages: "7–11",
     c: "#4338ca",
@@ -35,7 +35,7 @@ const WORLDS = [
     loop: 49,
   },
   {
-    n: "Builder",
+    n: "GRADE_8",
     ic: "🛠️",
     ages: "12–15",
     c: "#7c3aed",
@@ -50,7 +50,7 @@ const WORLDS = [
     loop: 42,
   },
   {
-    n: "Scholar",
+    n: "GRADE_9",
     ic: "🎓",
     ages: "16–18",
     c: "#c2410c",

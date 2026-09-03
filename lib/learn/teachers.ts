@@ -1,10 +1,10 @@
-import type { LearnerStage } from "./stages";
+﻿import type { LearnerStage } from "./stages";
 
 const ALL_STAGES: LearnerStage[] = [
-  "LITTLE_LEARNER",
-  "EXPLORER",
-  "BUILDER",
-  "SCHOLAR",
+  "GRADE_6",
+  "GRADE_7",
+  "GRADE_8",
+  "GRADE_9",
   "UNIVERSITY",
   "PROFESSIONAL",
   "SENIOR",
@@ -98,7 +98,7 @@ export const SPECIALIST_TEACHERS: Teacher[] = [
     style: "Playful stories, counting, and gentle voice.",
     tone: "Warm · Slow",
     voice: "Gentle, sing-song",
-    stages: ["LITTLE_LEARNER"],
+    stages: ["GRADE_6"],
     focus: "Ages 3–6",
   },
   {
@@ -109,7 +109,7 @@ export const SPECIALIST_TEACHERS: Teacher[] = [
     style: "Reading, imagination, and curiosity quests.",
     tone: "Bright · Curious",
     voice: "Lively",
-    stages: ["EXPLORER"],
+    stages: ["GRADE_7"],
     focus: "Ages 7–11",
   },
   {
@@ -120,7 +120,7 @@ export const SPECIALIST_TEACHERS: Teacher[] = [
     style: "Coding missions, logic, and project hints.",
     tone: "Direct · Hands-on",
     voice: "Crisp",
-    stages: ["BUILDER"],
+    stages: ["GRADE_8"],
     focus: "Ages 12–15",
   },
   {
@@ -131,7 +131,7 @@ export const SPECIALIST_TEACHERS: Teacher[] = [
     style: "Exam prep, weak-area focus, teach-until-learned.",
     tone: "Focused · Patient",
     voice: "Steady",
-    stages: ["SCHOLAR"],
+    stages: ["GRADE_9"],
     focus: "Ages 16–18",
   },
   {

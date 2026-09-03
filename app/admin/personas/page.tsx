@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Chip, Crumbs, PageHeader } from "@/components/admin/shared";
 
 export const metadata: Metadata = { title: "Admin · Personas" };
@@ -100,7 +100,7 @@ const TEACHERS: Teacher[] = [
     style: "Reading, imagination, and curiosity quests.",
     tone: "Bright · Curious",
     voice: "Lively",
-    stages: "EXPLORER",
+    stages: "GRADE_7",
     model: "qwen2.5:7b",
     status: "enabled",
     focus: "Ages 7–11",
@@ -114,7 +114,7 @@ const TEACHERS: Teacher[] = [
     style: "Coding missions, logic, and project hints.",
     tone: "Direct · Hands-on",
     voice: "Crisp",
-    stages: "BUILDER",
+    stages: "GRADE_8",
     model: "qwen2.5:14b",
     status: "enabled",
     focus: "Ages 12–15",
@@ -128,7 +128,7 @@ const TEACHERS: Teacher[] = [
     style: "Exam prep, weak-area focus, teach-until-learned.",
     tone: "Focused · Patient",
     voice: "Steady",
-    stages: "SCHOLAR",
+    stages: "GRADE_9",
     model: "grok-4-fast",
     status: "enabled",
     focus: "Ages 16–18",
@@ -170,7 +170,7 @@ const TEACHERS: Teacher[] = [
     style: '"Ship it. Polish later." Hackathon energy.',
     tone: "Direct · Forceful",
     voice: "Crisp",
-    stages: "BUILDER",
+    stages: "GRADE_8",
     model: "qwen2.5:14b",
     status: "draft",
     focus: "Ages 12–15",
@@ -230,9 +230,9 @@ export default function AdminPersonas() {
           <Chip on>All · {TEACHERS.length}</Chip>
           <Chip>🌐 Universal · {universals.length}</Chip>
           <Chip>🦁 Little · 1</Chip>
-          <Chip>🚀 Explorer · 1</Chip>
-          <Chip>🛠️ Builder · 2</Chip>
-          <Chip>🎓 Scholar · 1</Chip>
+          <Chip>🚀 GRADE_7 · 1</Chip>
+          <Chip>🛠️ GRADE_8 · 2</Chip>
+          <Chip>🎓 GRADE_9 · 1</Chip>
           <Chip>💼 Pro · 1</Chip>
           <Chip>🌿 Senior · 1</Chip>
           <span

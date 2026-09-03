@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Crumbs, PageHeader } from "@/components/admin/shared";
 
 export const metadata: Metadata = { title: "Admin · Loops" };
@@ -14,9 +14,9 @@ const FUNNEL = [
 
 const BY_WORLD = [
   { w: "Little Learner", c: "#ec4899", v: 74 },
-  { w: "Explorer", c: "#4338ca", v: 49 },
-  { w: "Builder", c: "#7c3aed", v: 42 },
-  { w: "Scholar", c: "#c2410c", v: 64 },
+  { w: "GRADE_7", c: "#4338ca", v: 49 },
+  { w: "GRADE_8", c: "#7c3aed", v: 42 },
+  { w: "GRADE_9", c: "#c2410c", v: 64 },
   { w: "Professional", c: "#0f766e", v: 58 },
   { w: "Senior Learner", c: "#16a34a", v: 81 },
 ];
@@ -113,7 +113,7 @@ export default function AdminLoops() {
             </div>
             <p className="mt-1 text-[13px] leading-relaxed text-ink">
               <b>Reflect</b> is your biggest drop (−16%). Move the Shatalov reference signal earlier
-              and reduce the reflection prompt to one sentence. Builder + Explorer worlds account
+              and reduce the reflection prompt to one sentence. GRADE_8 + GRADE_7 worlds account
               for 70% of the drop.
             </p>
           </div>

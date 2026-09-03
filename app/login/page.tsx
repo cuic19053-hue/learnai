@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { signIn, useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -9,11 +9,11 @@ import Mark from "@/components/design/Mark";
 /**
  * Where guests land after dismissing the login screen. /learn is
  * profile-aware: returning learners go to their stage home, brand-new
- * guests fall through to /onboarding. We pick /learn/builder for the
+ * guests fall through to /onboarding. We pick /learn/GRADE_8 for the
  * very first click so a brand-new visitor lands on a real, populated
  * dashboard immediately.
  */
-const GUEST_HOME = "/learn/builder";
+const GUEST_HOME = "/learn/GRADE_8";
 
 type ProviderStatus = {
   signInEnabled: boolean;

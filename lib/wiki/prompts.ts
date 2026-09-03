@@ -1,5 +1,5 @@
-/**
- * Prompt builders for WikiTest. Every prompt ends with a strict
+﻿/**
+ * Prompt GRADE_8s for WikiTest. Every prompt ends with a strict
  * "JSON only, schema below" instruction so the response is parseable
  * by the generator and validatable by Zod.
  */

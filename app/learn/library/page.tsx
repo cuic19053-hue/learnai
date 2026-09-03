@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
@@ -29,7 +29,7 @@ const SAMPLE: Record<string, LibraryGroup[]> = {
       ],
     },
   ],
-  explorer: [
+  GRADE_7: [
     {
       topic: "Science",
       items: [
@@ -46,7 +46,7 @@ const SAMPLE: Record<string, LibraryGroup[]> = {
       ],
     },
   ],
-  builder: [
+  GRADE_8: [
     {
       topic: "Coding",
       items: [
@@ -64,7 +64,7 @@ const SAMPLE: Record<string, LibraryGroup[]> = {
       ],
     },
   ],
-  scholar: [
+  GRADE_9: [
     {
       topic: "Math",
       items: [
@@ -142,7 +142,7 @@ export default async function LibraryPage({
         {groups.length === 1 ? "" : "s"} in the {world.journey.name} world.
       </p>
 
-      {(world.slug === "scholar" || world.slug === "adult") && (
+      {(world.slug === "GRADE_9" || world.slug === "adult") && (
         <Link
           href="/learn/wiki"
           className="la-card mb-6 flex flex-wrap items-center justify-between gap-4 p-5 transition hover:-translate-y-0.5"

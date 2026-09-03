@@ -1,4 +1,4 @@
-# Development guide
+﻿# Development guide
 
 The README is the project's public-facing pitch. This file is for
 contributors and self-hosters — architecture, layout, env vars, and
@@ -37,7 +37,7 @@ LearnAI
 /                                   homepage with stage cards
 /onboarding                         5-step wizard
 /learn                              stage-aware router → /learn/<world>
-/learn/{kids,explorer,builder,scholar,adult,senior}   six learning worlds
+/learn/{kids,GRADE_7,GRADE_8,GRADE_9,adult,senior}   six learning worlds
 /learn/lesson/[stage]               lesson player
 /learn/wiki                         WikiTest hub
 /learn/wiki/[testId]                test detail · train · quiz · report

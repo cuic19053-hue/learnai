@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import LearningStageCard from "@/components/learn/LearningStageCard";
 import Mark from "@/components/design/Mark";
 import Illustration from "@/components/design/Illustration";
@@ -53,7 +53,7 @@ const WORLDS: Array<{
     title: "探索任务世界",
     desc: "项目闯关、挑战任务与逻辑思维训练。",
     best: "少年创客 (12–15岁)",
-    href: "/learn/builder",
+    href: "/learn/GRADE_8",
     tint: "linear-gradient(135deg,#efe7ff,#e6ecff)",
     recommended: true,
   },

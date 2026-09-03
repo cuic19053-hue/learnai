@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Admin glyph management.
  *
  *   GET  /api/v1/glyphs                       list (filters: ?lang ?world ?status ?search)
@@ -45,7 +45,7 @@ const CreateSchema = z.object({
   slug: z.string().min(2).max(120).optional(),
   character: z.string().min(1).max(8),
   language: z.string().min(2).max(8).default("en"),
-  world: z.string().min(2).max(40).default("little_learner"),
+  world: z.string().min(2).max(40).default("GRADE_6"),
   displayName: z.string().max(200).optional(),
   audioUrl: z.string().url().optional(),
   rewardImageUrl: z.string().url().optional(),

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Curated Piper voice catalogue.
  *
  * Sourced from @mintplex-labs/piper-tts-web's PATH_MAP. Pruned to a
@@ -135,10 +135,10 @@ export const PERSONA_VOICE_DEFAULTS: Record<string, string> = {
   pixel: "en_US-ryan-medium", // crisp
   // Specialists
   milo: "en_US-lessac-medium", // gentle, sing-song for Little Learner
-  luna: "en_US-kristin-medium", // lively, Explorer
-  "ada-jr": "en_US-joe-medium", // direct, Builder
-  "mentor-max": "en_US-arctic-medium", // patient, Scholar
+  luna: "en_US-kristin-medium", // lively, GRADE_7
+  "ada-jr": "en_US-joe-medium", // direct, GRADE_8
+  "mentor-max": "en_US-arctic-medium", // patient, GRADE_9
   "professor-turing": "en_US-norman-medium", // authoritative, Professional
   sofia: "en_GB-cori-medium", // calm, Senior
-  forge: "en_US-bryce-medium", // direct, Builder
+  forge: "en_US-bryce-medium", // direct, GRADE_8
 };

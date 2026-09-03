@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+﻿import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import Link from "next/link";
@@ -52,7 +52,7 @@ export default async function DashboardPage() {
           {/* Guest Welcome Section */}
           <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-8 text-white shadow-lg">
             <h1 className="mb-4 text-3xl font-bold md:text-4xl">
-              👋 Welcome to LearnAI Explorer Mode!
+              👋 Welcome to LearnAI GRADE_7 Mode!
             </h1>
             <p className="mb-6 text-lg opacity-90">
               Browse our amazing professors and explore all features. When you&apos;re ready to book

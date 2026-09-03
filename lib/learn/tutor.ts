@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Persistent AI tutor — page-context type, memory derivation, and the
  * pedagogical prompt presets that the rail surfaces on every screen.
  *
@@ -40,7 +40,7 @@ export type PageContext = {
   kind: PageContextKind;
   /** Human-readable topic the learner is on, if known. */
   topic?: string;
-  /** Free-form world label for the memory ribbon, e.g. "Scholar". */
+  /** Free-form world label for the memory ribbon, e.g. "GRADE_9". */
   worldLabel?: string;
 };
 
@@ -315,17 +315,17 @@ export const DEMO_MEMORY_BY_WORLD: Record<string, TutorMemory> = {
     weakArea: "Letter sounds",
     lastTopic: "Counting to 5",
   },
-  explorer: {
+  GRADE_7: {
     goal: "Curious about the world",
     weakArea: "Fractions",
     lastTopic: "Why volcanoes erupt",
   },
-  builder: {
+  GRADE_8: {
     goal: "Build my first game",
     weakArea: "Logic gates",
     lastTopic: "Python: functions",
   },
-  scholar: {
+  GRADE_9: {
     goal: "Pass the calculus final by June",
     weakArea: "Trigonometry · 42% mastery",
     lastTopic: "Sine and cosine basics",

@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "question": "A new cloud engineer at a logistics company wants to provision and inspect AWS resources through a graphical interface in their web browser, without installing any tools locally. Which AWS interface should they use?",
     "options": [
@@ -93,13 +93,13 @@
   {
     "question": "A company finds that its fleet of Amazon EC2 instances often sits idle overnight but runs hot at lunchtime. They want capacity to grow and shrink automatically with demand to control costs. Which service should they use?",
     "options": [
-      "A. AWS Cost Explorer",
+      "A. AWS Cost GRADE_7",
       "B. AWS Budgets",
       "C. Elastic Load Balancing (ELB)",
       "D. AWS Auto Scaling"
     ],
     "correct": "D. AWS Auto Scaling",
-    "explanation": "AWS Auto Scaling adjusts the number of running EC2 instances (and capacity for other services such as Amazon ECS, DynamoDB, and Aurora) in response to demand signals or schedules. Pairing it with Elastic Load Balancing distributes traffic across the dynamic fleet. Cost Explorer and Budgets are billing visibility and alerting tools — they describe spend but do not change capacity — and Elastic Load Balancing distributes traffic but does not, by itself, add or remove instances."
+    "explanation": "AWS Auto Scaling adjusts the number of running EC2 instances (and capacity for other services such as Amazon ECS, DynamoDB, and Aurora) in response to demand signals or schedules. Pairing it with Elastic Load Balancing distributes traffic across the dynamic fleet. Cost GRADE_7 and Budgets are billing visibility and alerting tools — they describe spend but do not change capacity — and Elastic Load Balancing distributes traffic but does not, by itself, add or remove instances."
   },
   {
     "question": "Which AWS service lets you provision a logically isolated section of the AWS Cloud where you control IP addressing, subnets, route tables, and gateways?",
@@ -127,12 +127,12 @@
     "question": "A finance team wants to see charts of the company's AWS spending over the previous six months, broken down by service and linked account, to spot trends. Which tool should they use?",
     "options": [
       "A. AWS Pricing Calculator",
-      "B. AWS Cost Explorer",
+      "B. AWS Cost GRADE_7",
       "C. AWS Compute Optimizer",
       "D. AWS Budgets"
     ],
-    "correct": "B. AWS Cost Explorer",
-    "explanation": "AWS Cost Explorer is purpose-built for visualizing and analyzing historical AWS spend. It offers preconfigured and custom reports, with filters and group-by options for service, account, tag, Region, and usage type. The Pricing Calculator forecasts the cost of a planned workload but does not show actual usage. AWS Budgets sets thresholds and alerts on spend but presents only limited charts. Compute Optimizer recommends right-sizing for compute resources rather than analyzing overall spend."
+    "correct": "B. AWS Cost GRADE_7",
+    "explanation": "AWS Cost GRADE_7 is purpose-built for visualizing and analyzing historical AWS spend. It offers preconfigured and custom reports, with filters and group-by options for service, account, tag, Region, and usage type. The Pricing Calculator forecasts the cost of a planned workload but does not show actual usage. AWS Budgets sets thresholds and alerts on spend but presents only limited charts. Compute Optimizer recommends right-sizing for compute resources rather than analyzing overall spend."
   },
   {
     "question": "An application needs to store organizational hierarchies — such as a company's reporting chain and the same employees grouped by physical location — and traverse those hierarchies through multiple dimensions. Which AWS service is designed for this?",
@@ -229,13 +229,13 @@
   {
     "question": "A FinOps analyst needs the most granular line-item data available about an account's AWS charges — down to the hourly resource and tag level — for ingestion into a data warehouse. Which billing artifact should they enable?",
     "options": [
-      "A. AWS Cost Explorer",
+      "A. AWS Cost GRADE_7",
       "B. AWS Budgets",
       "C. AWS Cost and Usage Report (CUR)",
       "D. The Billing dashboard summary"
     ],
     "correct": "C. AWS Cost and Usage Report (CUR)",
-    "explanation": "The AWS Cost and Usage Report is the most detailed source of billing data AWS publishes. It delivers hourly (or daily/monthly) CSV or Parquet files to Amazon S3 with every line item, broken out by service, resource, usage type, and cost-allocation tags — exactly what a warehouse-based FinOps workflow needs. Cost Explorer is an interactive visualization tool with aggregated views, AWS Budgets is for thresholds and alerts, and the Billing dashboard offers a high-level summary only."
+    "explanation": "The AWS Cost and Usage Report is the most detailed source of billing data AWS publishes. It delivers hourly (or daily/monthly) CSV or Parquet files to Amazon S3 with every line item, broken out by service, resource, usage type, and cost-allocation tags — exactly what a warehouse-based FinOps workflow needs. Cost GRADE_7 is an interactive visualization tool with aggregated views, AWS Budgets is for thresholds and alerts, and the Billing dashboard offers a high-level summary only."
   },
   {
     "question": "AWS operates dozens of Regions and Availability Zones around the world that customers can deploy into. Which AWS value proposition does this directly illustrate?",
@@ -303,12 +303,12 @@
     "question": "A company is planning to migrate workloads from its own data center to AWS and wants to model the expected AWS bill so it can compare against current operational costs. Which tool should it use?",
     "options": [
       "A. AWS Pricing Calculator",
-      "B. AWS Cost Explorer",
+      "B. AWS Cost GRADE_7",
       "C. AWS Budgets",
       "D. AWS Migration Hub"
     ],
     "correct": "A. AWS Pricing Calculator",
-    "explanation": "AWS Pricing Calculator is the forward-looking estimator. It lets you specify services, configurations, Regions, and purchase options to produce a detailed projected monthly bill — useful for migration business cases and side-by-side comparisons with on-premises costs. Cost Explorer and Budgets work on actual usage that has already occurred, and Migration Hub tracks the progress of migration projects rather than estimating their cost."
+    "explanation": "AWS Pricing Calculator is the forward-looking estimator. It lets you specify services, configurations, Regions, and purchase options to produce a detailed projected monthly bill — useful for migration business cases and side-by-side comparisons with on-premises costs. Cost GRADE_7 and Budgets work on actual usage that has already occurred, and Migration Hub tracks the progress of migration projects rather than estimating their cost."
   },
   {
     "question": "Which AWS service sends proactive notifications about events that may affect the resources in a specific AWS account, such as planned EC2 maintenance or a degraded service?",
@@ -667,12 +667,12 @@
     "question": "A finance manager wants to break down AWS spend by service and linked account for the past quarter, using charts and filters in the AWS console. Which service should they use?",
     "options": [
       "A. The Amazon VPC console",
-      "B. AWS Cost Explorer",
+      "B. AWS Cost GRADE_7",
       "C. AWS Pricing Calculator",
       "D. AWS CloudFormation"
     ],
-    "correct": "B. AWS Cost Explorer",
-    "explanation": "AWS Cost Explorer offers interactive charts and pre-built reports that visualize spend over time, sliced by service, account, tag, Region, and more. The VPC console is for networking, the Pricing Calculator forecasts the cost of a planned workload, and CloudFormation deploys infrastructure as code."
+    "correct": "B. AWS Cost GRADE_7",
+    "explanation": "AWS Cost GRADE_7 offers interactive charts and pre-built reports that visualize spend over time, sliced by service, account, tag, Region, and more. The VPC console is for networking, the Pricing Calculator forecasts the cost of a planned workload, and CloudFormation deploys infrastructure as code."
   },
   {
     "question": "A company on the AWS Basic Support plan discovers that an EC2 instance has been hijacked and is being used to attack a third party. Which AWS team should they contact to report the abuse and obtain rapid help?",
@@ -1779,12 +1779,12 @@
     "question": "Which AWS service delivers the most granular line-item billing data (per resource, per hour)?",
     "options": [
       "A. The AWS Cost and Usage Report (CUR)",
-      "B. AWS Cost Explorer",
+      "B. AWS Cost GRADE_7",
       "C. AWS CloudTrail",
       "D. Amazon CloudWatch"
     ],
     "correct": "A. The AWS Cost and Usage Report (CUR)",
-    "explanation": "The Cost and Usage Report is the most detailed billing artifact, delivered as CSV or Parquet files to S3 with one line per resource per hour. Cost Explorer is an interactive aggregated view, CloudTrail records API calls, and CloudWatch handles metrics and logs."
+    "explanation": "The Cost and Usage Report is the most detailed billing artifact, delivered as CSV or Parquet files to S3 with one line per resource per hour. Cost GRADE_7 is an interactive aggregated view, CloudTrail records API calls, and CloudWatch handles metrics and logs."
   },
   {
     "question": "Which two factors should drive the choice of database technology for a new workload? (Choose TWO.)",
@@ -1877,12 +1877,12 @@
     "question": "A company planning a data-center migration to AWS wants to model what their AWS bill would look like and compare it with current on-premises costs. Which tool best supports that estimate?",
     "options": [
       "A. AWS Pricing Calculator",
-      "B. AWS Cost Explorer",
+      "B. AWS Cost GRADE_7",
       "C. AWS Budgets",
       "D. The AWS Billing console"
     ],
     "correct": "A. AWS Pricing Calculator",
-    "explanation": "Pricing Calculator builds forward-looking estimates from a planned architecture, supporting Region, purchase option, and configuration assumptions. Cost Explorer, Budgets, and the Billing console all operate on actual spend that has already been incurred."
+    "explanation": "Pricing Calculator builds forward-looking estimates from a planned architecture, supporting Region, purchase option, and configuration assumptions. Cost GRADE_7, Budgets, and the Billing console all operate on actual spend that has already been incurred."
   },
   {
     "question": "Which practice most directly supports the Operational Excellence pillar of the AWS Well-Architected Framework?",
@@ -2069,9 +2069,9 @@
   },
   {
     "question": "Which AWS service applies tiered pricing — the more storage you use, the lower the per-GB rate?",
-    "options": ["A. Amazon S3", "B. Amazon VPC", "C. Amazon Lightsail", "D. AWS Cost Explorer"],
+    "options": ["A. Amazon S3", "B. Amazon VPC", "C. Amazon Lightsail", "D. AWS Cost GRADE_7"],
     "correct": "A. Amazon S3",
-    "explanation": "Amazon S3 storage prices fall as monthly usage crosses tiered thresholds (e.g., first 50 TB, next 450 TB). VPC has no per-GB tiered storage charge, Lightsail uses simple bundled pricing, and Cost Explorer is a reporting tool — not storage."
+    "explanation": "Amazon S3 storage prices fall as monthly usage crosses tiered thresholds (e.g., first 50 TB, next 450 TB). VPC has no per-GB tiered storage charge, Lightsail uses simple bundled pricing, and Cost GRADE_7 is a reporting tool — not storage."
   },
   {
     "question": "A financial-services web app frequently reads the same data from a MySQL backend. Which AWS service is designed to cache that hot data in memory to reduce database load and latency?",
@@ -2380,7 +2380,7 @@
     "explanation": "Patching the guest OS and apps is a key customer responsibility under the Shared Responsibility Model. Instance store is ephemeral and unsuitable for sensitive secrets, single-AZ placement is an anti-pattern, and CloudTrail (not Athena) is the right tool for API-call auditing."
   },
   {
-    "question": "What does AWS Cost Explorer offer to help manage AWS spend?",
+    "question": "What does AWS Cost GRADE_7 offer to help manage AWS spend?",
     "options": [
       "A. Interactive charts of historical spend and short-term cost forecasts (typically up to 12 months)",
       "B. Real-time monitoring of EC2 CPU performance metrics",
@@ -2388,7 +2388,7 @@
       "D. A direct comparison of customer on-premises bills against AWS"
     ],
     "correct": "A. Interactive charts of historical spend and short-term cost forecasts (typically up to 12 months)",
-    "explanation": "Cost Explorer visualizes historical spend, groups it by service/tag/Region/etc., and produces forecasts based on usage patterns. CloudWatch handles performance metrics, consolidated billing is a feature of AWS Organizations itself, and AWS does not have a direct on-prem cost comparison tool."
+    "explanation": "Cost GRADE_7 visualizes historical spend, groups it by service/tag/Region/etc., and produces forecasts based on usage patterns. CloudWatch handles performance metrics, consolidated billing is a feature of AWS Organizations itself, and AWS does not have a direct on-prem cost comparison tool."
   },
   {
     "question": "A development team uses several On-Demand EC2 instances during business hours but does not need them at night. What is the most cost-effective action when the instances are not in use?",
@@ -2534,7 +2534,7 @@
       "D. Use AWS CloudFormation to make every change manual"
     ],
     "correct": "A. Apply a consistent tagging strategy (e.g., Project, Env, Owner) and enable cost-allocation tags",
-    "explanation": "Tagging, combined with activated cost-allocation tags in the billing console, is the canonical way to split costs across projects, teams, and environments in Cost Explorer and the Cost and Usage Report. Inspector finds vulnerabilities, multi-Region deployments are about resilience/latency, and CloudFormation is IaC."
+    "explanation": "Tagging, combined with activated cost-allocation tags in the billing console, is the canonical way to split costs across projects, teams, and environments in Cost GRADE_7 and the Cost and Usage Report. Inspector finds vulnerabilities, multi-Region deployments are about resilience/latency, and CloudFormation is IaC."
   },
   {
     "question": "A media company moves multi-terabyte data sets to and from AWS every day and needs a consistent, dedicated network link rather than going over the public internet. Which AWS service should they use?",

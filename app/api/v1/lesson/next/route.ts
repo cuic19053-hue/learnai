@@ -1,5 +1,5 @@
-/**
- * GET /api/v1/lesson/next?learnerId=…&lang=en&world=little_learner
+﻿/**
+ * GET /api/v1/lesson/next?learnerId=…&lang=en&world=GRADE_6
  *
  * Returns the next glyph due for a learner. Simple curated sequence:
  * walk in difficulty order, preferring glyphs without a sticker yet.
@@ -23,7 +23,7 @@ export const GET = handler(async (req: Request) => {
   const result = await nextLesson({
     learnerId,
     language: url.searchParams.get("lang") ?? "en",
-    world: url.searchParams.get("world") ?? "little_learner",
+    world: url.searchParams.get("world") ?? "GRADE_6",
   });
   if (!result) return fail(404, "No glyphs available for this language yet.");
   return ok(result);

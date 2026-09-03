@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Remaining gallery screens (Batches 6-10, 31 screens).
  *
  *   Batch 6 — Example domains (9 screens · QHO + QC + MoE)
@@ -22,7 +22,7 @@ import { Icon } from "@/components/learn/shared/wikitest-icons";
 
 function PageShell({
   trail,
-  world = "Scholar",
+  world = "GRADE_9",
   teacher = "Mentor Max",
   teacherIcon = "🎓",
   avatarBg = "#7c3aed",
@@ -30,7 +30,7 @@ function PageShell({
   children,
 }: {
   trail: string[];
-  world?: "Scholar" | "Professional" | "Builder" | "Playful";
+  world?: "GRADE_9" | "Professional" | "GRADE_8" | "Playful";
   teacher?: string;
   teacherIcon?: string;
   avatarBg?: string;
@@ -79,7 +79,7 @@ function DemoCard({
 
 export function QHODetail() {
   return (
-    <PageShell trail={["Scholar", "WikiTest", "Quantum harmonic oscillator"]}>
+    <PageShell trail={["GRADE_9", "WikiTest", "Quantum harmonic oscillator"]}>
       <section style={{ padding: "32px 28px", maxWidth: 920, margin: "0 auto" }}>
         <span
           className="la-pill"
@@ -132,7 +132,7 @@ export function QHODetail() {
 
 export function QHOTrain() {
   return (
-    <PageShell trail={["Scholar", "WikiTest", "QHO", "Train"]}>
+    <PageShell trail={["GRADE_9", "WikiTest", "QHO", "Train"]}>
       <section style={{ padding: "28px 36px", maxWidth: 980, margin: "0 auto" }}>
         <div
           className="la-mono"
@@ -210,7 +210,7 @@ export function QHOTrain() {
 
 export function QHOExam() {
   return (
-    <PageShell trail={["Scholar", "WikiTest", "QHO", "Exam"]}>
+    <PageShell trail={["GRADE_9", "WikiTest", "QHO", "Exam"]}>
       <section style={{ padding: "32px 36px", maxWidth: 880, margin: "0 auto" }}>
         <div
           className="la-mono"
@@ -252,8 +252,8 @@ export function QHOExam() {
 export function QCDetail() {
   return (
     <PageShell
-      trail={["Builder", "WikiTest", "Quantum computing"]}
-      world="Builder"
+      trail={["GRADE_8", "WikiTest", "Quantum computing"]}
+      world="GRADE_8"
       teacher="Nova"
       teacherIcon="⚡"
       avatarBg="#7c3aed"
@@ -292,8 +292,8 @@ export function QCDetail() {
 export function QCTrain() {
   return (
     <PageShell
-      trail={["Builder", "WikiTest", "QC", "Train"]}
-      world="Builder"
+      trail={["GRADE_8", "WikiTest", "QC", "Train"]}
+      world="GRADE_8"
       teacher="Nova"
       teacherIcon="⚡"
       avatarBg="#7c3aed"
@@ -341,8 +341,8 @@ q1 ─────⊕──
 export function QCExam() {
   return (
     <PageShell
-      trail={["Builder", "WikiTest", "QC", "Exam"]}
-      world="Builder"
+      trail={["GRADE_8", "WikiTest", "QC", "Exam"]}
+      world="GRADE_8"
       teacher="Nova"
       teacherIcon="⚡"
       avatarBg="#7c3aed"
@@ -917,7 +917,7 @@ function WizardShell({
         ? { background: "#fcedf3" }
         : {};
   return (
-    <PageShell trail={["Scholar", "Projects", "New project"]}>
+    <PageShell trail={["GRADE_9", "Projects", "New project"]}>
       <section style={{ padding: "32px 32px", maxWidth: 1000, margin: "0 auto", ...wrap }}>
         <div
           className="la-mono"
@@ -957,9 +957,9 @@ function WizardShell({
   );
 }
 
-export function ProjectsHubScholar() {
+export function ProjectsHubGRADE_9() {
   return (
-    <PageShell trail={["Scholar", "Projects"]}>
+    <PageShell trail={["GRADE_9", "Projects"]}>
       <section style={{ padding: "28px 32px", maxWidth: 1100, margin: "0 auto" }}>
         <div
           style={{
@@ -1014,7 +1014,7 @@ export function ProjectsHubScholar() {
   );
 }
 
-export function ScholarWizardStep1() {
+export function GRADE_9WizardStep1() {
   return (
     <WizardShell
       step={1}
@@ -1033,7 +1033,7 @@ export function ScholarWizardStep1() {
   );
 }
 
-export function ScholarWizardStep2() {
+export function GRADE_9WizardStep2() {
   return (
     <WizardShell
       step={2}
@@ -1079,7 +1079,7 @@ export function ScholarWizardStep2() {
   );
 }
 
-export function ScholarWizardStep3() {
+export function GRADE_9WizardStep3() {
   return (
     <WizardShell step={3} title="Pace + format" sub="How many days and how long each day?">
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
@@ -1100,7 +1100,7 @@ export function ScholarWizardStep3() {
   );
 }
 
-export function ScholarWizardStep4() {
+export function GRADE_9WizardStep4() {
   return (
     <WizardShell
       step={4}
@@ -1149,9 +1149,9 @@ export function ScholarWizardStep4() {
 export function WorldComparisonGrid() {
   const worlds = [
     { n: "Little Learner", q: "Pick a theme for your child", c: "#ec4899" },
-    { n: "Explorer", q: "What are you curious about?", c: "#4338ca" },
-    { n: "Builder", q: "What do you want to build?", c: "#7c3aed" },
-    { n: "Scholar", q: "What exam are you prepping for?", c: "#c2410c" },
+    { n: "GRADE_7", q: "What are you curious about?", c: "#4338ca" },
+    { n: "GRADE_8", q: "What do you want to build?", c: "#7c3aed" },
+    { n: "GRADE_9", q: "What exam are you prepping for?", c: "#c2410c" },
     { n: "Professional", q: "Which cert next?", c: "#0f766e" },
     { n: "Senior Learner", q: "What feels confusing online?", c: "#0ea5a4" },
   ];

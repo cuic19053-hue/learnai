@@ -1,14 +1,14 @@
-import { METHODS, planForStage } from "@/lib/learn/methods";
+﻿import { METHODS, planForStage } from "@/lib/learn/methods";
 import type { LearnerStage } from "@/lib/learn/stages";
 import { handler, ok } from "@/lib/api";
 
 export const dynamic = "force-dynamic";
 
 const VALID: LearnerStage[] = [
-  "LITTLE_LEARNER",
-  "EXPLORER",
-  "BUILDER",
-  "SCHOLAR",
+  "GRADE_6",
+  "GRADE_7",
+  "GRADE_8",
+  "GRADE_9",
   "UNIVERSITY",
   "PROFESSIONAL",
   "SENIOR",
@@ -18,7 +18,7 @@ const VALID: LearnerStage[] = [
  * GET /api/learn/methods
  *   → { methods: LearningMethod[] }
  *
- * GET /api/learn/methods?stage=BUILDER
+ * GET /api/learn/methods?stage=GRADE_8
  *   → { methods, plan: { hook: "...", explain: "...", ... } }
  *
  * Surfaces the learning-methods catalog and the recommended Loop plan

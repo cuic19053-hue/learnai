@@ -1,4 +1,4 @@
-import { getServerSession } from "next-auth";
+﻿import { getServerSession } from "next-auth";
 import { z } from "zod";
 import { authOptions } from "@/lib/auth";
 import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
@@ -13,7 +13,7 @@ import type { WorldSlug } from "@/lib/learn/worlds";
 
 export const dynamic = "force-dynamic";
 
-const WorldEnum = z.enum(["kids", "explorer", "builder", "scholar", "adult", "senior"]);
+const WorldEnum = z.enum(["kids", "GRADE_7", "GRADE_8", "GRADE_9", "adult", "senior"]);
 
 const BodySchema = z.object({
   worldSlug: WorldEnum,
@@ -33,7 +33,7 @@ const BodySchema = z.object({
 });
 
 /**
- * GET /api/projects[?world=builder]
+ * GET /api/projects[?world=GRADE_8]
  *
  * Lists the caller's drafts. Returns `[]` for guests and for signed-in
  * users with no drafts yet — never falls back to seed/demo data here,

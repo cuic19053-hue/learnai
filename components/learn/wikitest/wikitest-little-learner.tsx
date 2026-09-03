@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Design Gallery · Little-Learner screens (batch 11).
  *
  * Ports the five JSX prototypes from the design handoff:
@@ -1470,9 +1470,9 @@ export function OnboardingNew() {
           >
             {[
               { age: "3–6", sub: "Little Learner", on: true },
-              { age: "7–11", sub: "Explorer" },
-              { age: "12–15", sub: "Builder" },
-              { age: "16–18", sub: "Scholar" },
+              { age: "7–11", sub: "GRADE_7" },
+              { age: "12–15", sub: "GRADE_8" },
+              { age: "16–18", sub: "GRADE_9" },
             ].map((a) => (
               <button
                 type="button"
@@ -3302,4 +3302,4 @@ export function ParentAreaPreview() {
 }
 
 // Keep the unused style satisfied — Prettier needs this re-export anchor.
-export const __LITTLE_LEARNER_STYLE: CSSProperties = { display: "none" };
+export const __GRADE_6_STYLE: CSSProperties = { display: "none" };

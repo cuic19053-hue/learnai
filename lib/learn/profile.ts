@@ -1,13 +1,13 @@
-import { cookies } from "next/headers";
+﻿import { cookies } from "next/headers";
 import type { LearnerProfile, LearnerStage } from "./stages";
 
 export const PROFILE_COOKIE = "learnai_profile";
 
 const STAGE_ATTENTION: Record<LearnerStage, number> = {
-  LITTLE_LEARNER: 5,
-  EXPLORER: 10,
-  BUILDER: 20,
-  SCHOLAR: 25,
+  GRADE_6: 5,
+  GRADE_7: 10,
+  GRADE_8: 20,
+  GRADE_9: 25,
   UNIVERSITY: 30,
   PROFESSIONAL: 30,
   SENIOR: 15,

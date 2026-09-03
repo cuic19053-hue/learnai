@@ -43,18 +43,18 @@ import { worldSlugForStage } from "@/lib/learn/worlds";
 // ─── Step model ────────────────────────────────────────────────────
 
 type Audience = "child" | "self" | "older_relative" | "student_group";
-type AgeBand = "3-6" | "7-11" | "12-15" | "16-18";
+type AgeBand = "11-12" | "12-13" | "13-14" | "14-15";
 
 const STEP_LABELS = ["Who are we helping?", "What should they learn?", "Start"] as const;
 
 // First mission slug each world should open into from onboarding. Kept
 // in sync with the practice payloads in lib/learn/missions.ts — without
-// these slugs the lesson route falls back to the Explorer-volcano demo
+// these slugs the lesson route falls back to the GRADE_7-volcano demo
 // for every world.
 const DEFAULT_MISSION_BY_STAGE: Partial<Record<LearnerStage, string>> = {
-  EXPLORER: "explorer-volcano",
-  BUILDER: "python-calculator",
-  SCHOLAR: "scholar-trig",
+  GRADE_7: "GRADE_7-volcano",
+  GRADE_8: "python-calculator",
+  GRADE_9: "GRADE_9-trig",
   UNIVERSITY: "vpc-networking-subnets-routes",
   PROFESSIONAL: "vpc-networking-subnets-routes",
 };
@@ -87,10 +87,10 @@ const AUDIENCE_OPTIONS: { id: Audience; label: string; emoji: string; hint: stri
 ];
 
 const AGE_BANDS: { id: AgeBand; label: string; stage: LearnerStage }[] = [
-  { id: "3-6", label: "3–6", stage: "LITTLE_LEARNER" },
-  { id: "7-11", label: "7–11", stage: "EXPLORER" },
-  { id: "12-15", label: "12–15", stage: "BUILDER" },
-  { id: "16-18", label: "16–18", stage: "SCHOLAR" },
+  { id: "11-12", label: "11–12岁 (预备班)", stage: "GRADE_6" },
+  { id: "12-13", label: "12–13岁 (初一)", stage: "GRADE_7" },
+  { id: "13-14", label: "13–14岁 (初二)", stage: "GRADE_8" },
+  { id: "14-15", label: "14–15岁 (初三)", stage: "GRADE_9" },
 ];
 
 /**
@@ -113,88 +113,88 @@ const GOALS: Goal[] = [
     id: "letters",
     label: "Letters",
     audiences: ["child"],
-    ageBands: ["3-6"],
-    stage: "LITTLE_LEARNER",
+    ageBands: ["11-12"],
+    stage: "GRADE_6",
   },
   {
     id: "numbers",
     label: "Numbers",
     audiences: ["child"],
-    ageBands: ["3-6"],
-    stage: "LITTLE_LEARNER",
+    ageBands: ["11-12"],
+    stage: "GRADE_6",
   },
   {
     id: "stories",
     label: "Stories",
     audiences: ["child"],
-    ageBands: ["3-6"],
-    stage: "LITTLE_LEARNER",
+    ageBands: ["11-12"],
+    stage: "GRADE_6",
   },
   {
     id: "emotions",
     label: "Emotions",
     audiences: ["child"],
-    ageBands: ["3-6"],
-    stage: "LITTLE_LEARNER",
+    ageBands: ["11-12"],
+    stage: "GRADE_6",
   },
-  // Explorer (child, 7-11)
-  { id: "reading", label: "Reading", audiences: ["child"], ageBands: ["7-11"], stage: "EXPLORER" },
-  { id: "science", label: "Science", audiences: ["child"], ageBands: ["7-11"], stage: "EXPLORER" },
+  // GRADE_7 (child, 7-11)
+  { id: "reading", label: "Reading", audiences: ["child"], ageBands: ["7-11"], stage: "GRADE_7" },
+  { id: "science", label: "Science", audiences: ["child"], ageBands: ["7-11"], stage: "GRADE_7" },
   {
     id: "math-games",
     label: "Math games",
     audiences: ["child"],
-    ageBands: ["7-11"],
-    stage: "EXPLORER",
+    ageBands: ["12-13"],
+    stage: "GRADE_7",
   },
   {
     id: "curiosity",
     label: "Curiosity quests",
     audiences: ["child"],
-    ageBands: ["7-11"],
-    stage: "EXPLORER",
+    ageBands: ["12-13"],
+    stage: "GRADE_7",
   },
-  // Builder (child, 12-15)
+  // GRADE_8 (child, 12-15)
   {
     id: "coding-kid",
     label: "Coding",
     audiences: ["child"],
-    ageBands: ["12-15"],
-    stage: "BUILDER",
+    ageBands: ["13-14"],
+    stage: "GRADE_8",
   },
   {
     id: "projects",
     label: "Projects",
     audiences: ["child"],
-    ageBands: ["12-15"],
-    stage: "BUILDER",
+    ageBands: ["13-14"],
+    stage: "GRADE_8",
   },
-  { id: "logic", label: "Logic", audiences: ["child"], ageBands: ["12-15"], stage: "BUILDER" },
-  { id: "math-12", label: "Math", audiences: ["child"], ageBands: ["12-15"], stage: "BUILDER" },
-  // Scholar (child, 16-18)
+  { id: "logic", label: "Logic", audiences: ["child"], ageBands: ["12-15"], stage: "GRADE_8" },
+  { id: "math-12", label: "Math", audiences: ["child"], ageBands: ["12-15"], stage: "GRADE_8" },
+  // GRADE_9 (child, 16-18)
   {
     id: "exam-kid",
     label: "Exam prep",
     audiences: ["child"],
-    ageBands: ["16-18"],
-    stage: "SCHOLAR",
+    ageBands: ["14-15"],
+    stage: "GRADE_9",
   },
   {
     id: "subject",
     label: "Subject mastery",
     audiences: ["child"],
-    ageBands: ["16-18"],
-    stage: "SCHOLAR",
+    ageBands: ["14-15"],
+    stage: "GRADE_9",
   },
   {
     id: "career-kid",
     label: "Career discovery",
     audiences: ["child"],
-    ageBands: ["16-18"],
-    stage: "SCHOLAR",
+    ageBands: ["14-15"],
+    stage: "GRADE_9",
   },
-  // Me — default Professional; Scholar offered for exam prep.
-  { id: "exam-me", label: "Exam preparation", audiences: ["self"], stage: "SCHOLAR" },
+  // Me — default Professional; GRADE_9 offered for exam prep.
+  { id: "exam-me", label: "Exam preparation", audiences: ["self"], stage: "GRADE_9" },
   { id: "cert-me", label: "Cloud certification", audiences: ["self"], stage: "PROFESSIONAL" },
   { id: "coding-me", label: "Coding & AI", audiences: ["self"], stage: "PROFESSIONAL" },
   { id: "language", label: "Language", audiences: ["self"], stage: "PROFESSIONAL" },
@@ -204,18 +204,18 @@ const GOALS: Goal[] = [
   { id: "digital", label: "Digital basics", audiences: ["older_relative"], stage: "SENIOR" },
   { id: "memory", label: "Memory practice", audiences: ["older_relative"], stage: "SENIOR" },
   { id: "health", label: "Health & wellbeing", audiences: ["older_relative"], stage: "SENIOR" },
-  // Student group — Scholar (teacher/class use).
-  { id: "class-quiz", label: "Class quizzes", audiences: ["student_group"], stage: "SCHOLAR" },
-  { id: "lesson-plan", label: "Lesson plans", audiences: ["student_group"], stage: "SCHOLAR" },
-  { id: "grading", label: "Grading help", audiences: ["student_group"], stage: "SCHOLAR" },
+  // Student group — GRADE_9 (teacher/class use).
+  { id: "class-quiz", label: "Class quizzes", audiences: ["student_group"], stage: "GRADE_9" },
+  { id: "lesson-plan", label: "Lesson plans", audiences: ["student_group"], stage: "GRADE_9" },
+  { id: "grading", label: "Grading help", audiences: ["student_group"], stage: "GRADE_9" },
 ];
 
 function defaultStageFor(audience: Audience, age?: AgeBand): LearnerStage {
   if (audience === "child") {
-    return AGE_BANDS.find((b) => b.id === age)?.stage ?? "EXPLORER";
+    return AGE_BANDS.find((b) => b.id === age)?.stage ?? "GRADE_7";
   }
   if (audience === "older_relative") return "SENIOR";
-  if (audience === "student_group") return "SCHOLAR";
+  if (audience === "student_group") return "GRADE_9";
   return "PROFESSIONAL";
 }
 
@@ -227,14 +227,14 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
   const seed = useMemo<{ audience: Audience | null; age: AgeBand | null }>(() => {
     if (!initialStage) return { audience: null, age: null };
     switch (initialStage) {
-      case "LITTLE_LEARNER":
-        return { audience: "child", age: "3-6" };
-      case "EXPLORER":
-        return { audience: "child", age: "7-11" };
-      case "BUILDER":
-        return { audience: "child", age: "12-15" };
-      case "SCHOLAR":
-        return { audience: "child", age: "16-18" };
+      case "GRADE_6":
+        return { audience: "child", age: "11-12" };
+      case "GRADE_7":
+        return { audience: "child", age: "12-13" };
+      case "GRADE_8":
+        return { audience: "child", age: "13-14" };
+      case "GRADE_9":
+        return { audience: "child", age: "14-15" };
       case "SENIOR":
         return { audience: "older_relative", age: null };
       case "PROFESSIONAL":
@@ -328,7 +328,7 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
       /* non-fatal — the lesson route doesn't require the profile cookie */
     }
     // Land each stage on its first real mission so the practice surface
-    // shows real content (and not the Explorer-volcano fallback that the
+    // shows real content (and not the GRADE_7-volcano fallback that the
     // lesson route uses when ?mission= is missing).
     router.push(`/learn/lesson/${worldSlugForStage(stage)}${defaultMissionQuery(stage)}`);
   }
@@ -597,7 +597,7 @@ function Sidebar({
       >
         <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 4 }}>Why ask this?</div>A
         3-year-old, a teenager, and an adult need different lessons. We use these answers to pick
-        the world (Little Learner, Scholar, Senior…) and the right pace.
+        the world (Little Learner, GRADE_9, Senior…) and the right pace.
       </div>
     </aside>
   );

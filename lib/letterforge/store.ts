@@ -1,4 +1,4 @@
-/**
+﻿/**
  * LetterForge persistence — glyph reads, attempt logging, progress.
  *
  * Two read paths exist:
@@ -46,7 +46,7 @@ export async function getGlyphByCharacter(args: {
     where: {
       character: args.character,
       language: args.language ?? "en",
-      world: args.world ?? "little_learner",
+      world: args.world ?? "GRADE_6",
       status: "LIVE",
     },
   });
@@ -117,7 +117,7 @@ export async function nextLesson(args: {
   world?: string;
 }): Promise<{ glyph: Glyph; already_known: boolean } | null> {
   const language = args.language ?? "en";
-  const world = args.world ?? "little_learner";
+  const world = args.world ?? "GRADE_6";
 
   // Already-mastered glyph ids for this learner.
   const mastered = await prisma.letterforgeProgress.findMany({
@@ -168,7 +168,7 @@ function slugFor(input: { character: string; language: string; world: string }):
 }
 
 export async function createGlyph(input: UpsertGlyphInput): Promise<Glyph> {
-  const world = input.world ?? "little_learner";
+  const world = input.world ?? "GRADE_6";
   const slug =
     input.slug ?? slugFor({ character: input.character, language: input.language, world });
   const row = await prisma.letterforgeGlyph.create({

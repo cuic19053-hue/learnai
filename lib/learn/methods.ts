@@ -1,4 +1,4 @@
-import type { LearnerStage } from "./stages";
+﻿import type { LearnerStage } from "./stages";
 
 /**
  * The ten learning methods LearnAI implements — drawn from the historical
@@ -65,7 +65,7 @@ export const METHODS: LearningMethod[] = [
     oneLiner: "Anchor abstract items to a familiar spatial route.",
     why: "Human memory is spatial. Placing facts along a remembered path turns brittle recall into a vivid, sequenced walk — still used by world memory champions today.",
     loopSteps: ["explain", "evolve"],
-    stages: ["EXPLORER", "BUILDER", "SCHOLAR", "UNIVERSITY", "PROFESSIONAL", "SENIOR"],
+    stages: ["GRADE_7", "GRADE_8", "GRADE_9", "UNIVERSITY", "PROFESSIONAL", "SENIOR"],
     emoji: "🏛️",
   },
   {
@@ -199,23 +199,23 @@ export const DEFAULT_PLAN: Record<LoopStepId, LearningMethodId> = {
 
 const STAGE_PLANS: Partial<Record<LearnerStage, Partial<Record<LoopStepId, LearningMethodId>>>> = {
   // Tiny ones learn by showing, doing, and recalling — not by Socratic chains.
-  LITTLE_LEARNER: {
+  GRADE_6: {
     hook: "active_recall",
     explain: "worked_example",
     practice: "kumon_ladder",
     feedback: "active_recall",
     reflect: "memory_palace",
   },
-  EXPLORER: {
+  GRADE_7: {
     hook: "socratic",
     explain: "memory_palace",
     practice: "interleaving",
   },
-  BUILDER: {
+  GRADE_8: {
     explain: "worked_example",
     practice: "zpd_adaptive",
   },
-  SCHOLAR: {
+  GRADE_9: {
     practice: "interleaving",
     reflect: "shatalov_signal",
   },

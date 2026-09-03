@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import LegalShell from "@/components/legal/LegalShell";
 
@@ -44,7 +44,7 @@ const FAQ: Array<{ q: string; a: React.ReactNode }> = [
     q: "Is it safe for kids?",
     a: (
       <>
-        Yes. The Little Learner world (ages 3–6) and Explorer world (7–11) run with the strictest
+        Yes. The Little Learner world (ages 3–6) and GRADE_7 world (7–11) run with the strictest
         safety profile: subject allow-list, approved-content-only mode, blocked external links, and
         PII pseudonymisation. Parents manage everything from <Link href="/parent">/parent</Link> —
         multi-child profiles, session limits, quiet hours, daily summary emails.

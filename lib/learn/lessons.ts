@@ -1,4 +1,4 @@
-import type { LearnerStage } from "./stages";
+﻿import type { LearnerStage } from "./stages";
 import { type LearningMethodId, type LoopStepId, planForStage } from "./methods";
 import { type Exercise, generateForMethod } from "./quizzes";
 
@@ -29,10 +29,10 @@ const STAGE_DEFAULTS: Record<
   LearnerStage,
   { attentionMinutes: number; tasks: number; reward: string }
 > = {
-  LITTLE_LEARNER: { attentionMinutes: 5, tasks: 1, reward: "⭐ Great job!" },
-  EXPLORER: { attentionMinutes: 10, tasks: 3, reward: "🏅 Quest badge earned" },
-  BUILDER: { attentionMinutes: 20, tasks: 4, reward: "🛠️ Mission step complete" },
-  SCHOLAR: { attentionMinutes: 25, tasks: 5, reward: "📈 Mastery +1" },
+  GRADE_6: { attentionMinutes: 5, tasks: 1, reward: "⭐ Great job!" },
+  GRADE_7: { attentionMinutes: 10, tasks: 3, reward: "🏅 Quest badge earned" },
+  GRADE_8: { attentionMinutes: 20, tasks: 4, reward: "🛠️ Mission step complete" },
+  GRADE_9: { attentionMinutes: 25, tasks: 5, reward: "📈 Mastery +1" },
   UNIVERSITY: { attentionMinutes: 30, tasks: 6, reward: "✅ Module checkpoint" },
   PROFESSIONAL: { attentionMinutes: 30, tasks: 6, reward: "✅ Module checkpoint" },
   SENIOR: { attentionMinutes: 15, tasks: 2, reward: "👏 Well done — take your time" },
@@ -40,13 +40,13 @@ const STAGE_DEFAULTS: Record<
 
 function hookFor(stage: LearnerStage, goal: string, teacherName: string): string {
   switch (stage) {
-    case "LITTLE_LEARNER":
+    case "GRADE_6":
       return `${teacherName} says: let's play with ${goal.toLowerCase()}!`;
-    case "EXPLORER":
+    case "GRADE_7":
       return `Today's quest: discover ${goal.toLowerCase()}.`;
-    case "BUILDER":
+    case "GRADE_8":
       return `Mission: build something with ${goal.toLowerCase()}.`;
-    case "SCHOLAR":
+    case "GRADE_9":
       return `Focused session: ${goal}. We'll target your weak spots.`;
     case "UNIVERSITY":
     case "PROFESSIONAL":
@@ -58,13 +58,13 @@ function hookFor(stage: LearnerStage, goal: string, teacherName: string): string
 
 function explainFor(stage: LearnerStage, goal: string): string {
   switch (stage) {
-    case "LITTLE_LEARNER":
+    case "GRADE_6":
       return `Look and listen. We will do one thing at a time.`;
-    case "EXPLORER":
+    case "GRADE_7":
       return `Here is the big idea behind ${goal.toLowerCase()}, in two sentences.`;
-    case "BUILDER":
+    case "GRADE_8":
       return `Concept → tiny example → your turn to build. Hints first, answers later.`;
-    case "SCHOLAR":
+    case "GRADE_9":
       return `Concept, common pitfalls, and a worked example. Then practice with feedback.`;
     case "UNIVERSITY":
     case "PROFESSIONAL":
@@ -77,21 +77,21 @@ function explainFor(stage: LearnerStage, goal: string): string {
 function tasksFor(stage: LearnerStage, goal: string, count: number): LessonTask[] {
   const base: LessonTask[] = [];
   switch (stage) {
-    case "LITTLE_LEARNER":
+    case "GRADE_6":
       base.push({
         prompt: "Can you count the apples? 🍎🍎🍎",
         choices: ["1", "2", "3", "4"],
         expected: "3",
       });
       break;
-    case "EXPLORER":
+    case "GRADE_7":
       base.push(
         { prompt: `What is one fact you know about ${goal.toLowerCase()}?` },
         { prompt: "Pick the best answer in the mini quiz." },
         { prompt: "Tell me one new thing you learned." }
       );
       break;
-    case "BUILDER":
+    case "GRADE_8":
       base.push(
         { prompt: `Plan the steps to solve: ${goal}.` },
         {
@@ -102,7 +102,7 @@ function tasksFor(stage: LearnerStage, goal: string, count: number): LessonTask[
         { prompt: "Explain in one sentence what you changed." }
       );
       break;
-    case "SCHOLAR":
+    case "GRADE_9":
       base.push(
         { prompt: `Define the key concept of ${goal} in your own words.` },
         { prompt: "Solve a typical exam-style question." },

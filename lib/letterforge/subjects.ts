@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Little Learner subject catalog.
  *
  * Seven subjects, each shaped the same way: today's item (a letter,
@@ -102,7 +102,7 @@ export const SUBJECTS: Record<SubjectSlug, Subject> = {
         prompt: "Drive on the letter A",
       },
       {
-        id: "lego_builder",
+        id: "lego_GRADE_8",
         type: "build",
         title: "Build A with blocks",
         emoji: "🧱",

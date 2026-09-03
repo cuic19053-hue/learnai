@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import ImgSlot from "@/components/design/ImgSlot";
 import type { Journey } from "@/lib/learn/journeys";
 
@@ -96,7 +96,7 @@ export function RecommendationCard({
 }
 
 /**
- * WikiTest entry card for Scholar / Professional homes. Sits next to
+ * WikiTest entry card for GRADE_9 / Professional homes. Sits next to
  * "Continue practicing" — surfaces the paste-a-URL flow without going
  * heavy on copy. Pedagogy first.
  */

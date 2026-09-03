@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "question": "A team uses AWS CodePipeline to deploy a Node.js application to AWS Elastic Beanstalk. They want each push to the main branch of an AWS CodeCommit repository to automatically trigger the pipeline. What is the simplest way to trigger the pipeline on every commit?",
     "options": [
@@ -25,7 +25,7 @@
     "question": "A pipeline must build container images, run unit tests, and push the image to Amazon ECR. Which AWS service is the standard managed build environment?",
     "options": [
       "A. AWS CodeBuild (with a buildspec.yml that builds, tests, and pushes to ECR)",
-      "B. Amazon EC2 Image Builder",
+      "B. Amazon EC2 Image GRADE_8",
       "C. AWS Elastic Beanstalk",
       "D. AWS Batch"
     ],

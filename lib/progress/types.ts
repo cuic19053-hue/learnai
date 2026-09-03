@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Single source of truth for learner progress (XP, streak, per-world
  * stats, unlocked achievements).
  *
@@ -13,7 +13,7 @@
 export const PROGRESS_VERSION = 1;
 export const PROGRESS_COOKIE = "learnai_progress_v1";
 
-/** Per-world counters. Keyed by world slug (kids|explorer|...). */
+/** Per-world counters. Keyed by world slug (kids|GRADE_7|...). */
 export type WorldProgress = {
   xp: number;
   lessonsCompleted: number;

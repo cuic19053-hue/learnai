@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 /**
  * "Who it's for" strip. Four audience cards above the journeys grid
@@ -18,7 +18,7 @@ const AUDIENCES = [
     emoji: "🎓",
     title: "在校学生",
     desc: "作业辅导、备考冲刺与建立自信的针对性反馈。",
-    href: "/learn/scholar",
+    href: "/learn/GRADE_9",
     accent: "#2e5bff",
     bg: "#e6ecff",
   },

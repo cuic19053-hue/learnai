@@ -1,10 +1,10 @@
-/**
+﻿/**
  * World-specific Forge home gallery screens (Batch 4, 6 screens).
  *
  *   StoryForgeHome   — Little Learner (3-6)   · parent-led
- *   QuestForgeHome   — Explorer (7-11)        · curiosity quests
- *   ProjectForgeHome — Builder (12-15)        · build something
- *   ScholarExamForge — Scholar (16-18)        · exam prep (flagship)
+ *   QuestForgeHome   — GRADE_7 (7-11)        · curiosity quests
+ *   ProjectForgeHome — GRADE_8 (12-15)        · build something
+ *   GRADE_9ExamForge — GRADE_9 (16-18)        · exam prep (flagship)
  *   CertForgeHome    — Professional           · cert prep
  *   SafetyForgeHome  — Senior                 · digital safety
  *
@@ -18,7 +18,7 @@ import type { ReactNode } from "react";
 import { LATopBar, LASidebar, WTBreadcrumb } from "@/components/learn/shared/SidebarShell";
 import { Icon } from "@/components/learn/shared/wikitest-icons";
 
-type World = "Scholar" | "Professional" | "Builder" | "Playful";
+type World = "GRADE_9" | "Professional" | "GRADE_8" | "Playful";
 
 type ForgeData = {
   world: World;
@@ -81,8 +81,8 @@ const STORY: ForgeData = {
 };
 
 const QUEST: ForgeData = {
-  world: "Builder",
-  name: "Explorer",
+  world: "GRADE_8",
+  name: "GRADE_7",
   ages: "7–11",
   emoji: "🚀",
   forge: "QuestForge",
@@ -116,13 +116,13 @@ const QUEST: ForgeData = {
   ],
   focus: {
     label: "Badges to earn",
-    items: ["🌌 Sky Detective", "🦈 Ocean Diver", "🌋 Earth Explorer", "🪐 Space Voyager"],
+    items: ["🌌 Sky Detective", "🦈 Ocean Diver", "🌋 Earth GRADE_7", "🪐 Space Voyager"],
   },
 };
 
 const PROJECT: ForgeData = {
-  world: "Builder",
-  name: "Builder",
+  world: "GRADE_8",
+  name: "GRADE_8",
   ages: "12–15",
   emoji: "🛠️",
   forge: "ProjectForge",
@@ -162,8 +162,8 @@ const PROJECT: ForgeData = {
 };
 
 const EXAM: ForgeData = {
-  world: "Scholar",
-  name: "Scholar",
+  world: "GRADE_9",
+  name: "GRADE_9",
   ages: "16–18",
   emoji: "🎓",
   forge: "ExamForge",
@@ -248,7 +248,7 @@ const CERT: ForgeData = {
 };
 
 const SAFETY: ForgeData = {
-  world: "Scholar",
+  world: "GRADE_9",
   name: "Senior Learner",
   ages: "65+",
   emoji: "🌿",
@@ -544,7 +544,7 @@ export function QuestForgeHome() {
 export function ProjectForgeHome() {
   return <ForgeHome d={PROJECT} />;
 }
-export function ScholarExamForge() {
+export function GRADE_9ExamForge() {
   return <ForgeHome d={EXAM} />;
 }
 export function CertForgeHome() {

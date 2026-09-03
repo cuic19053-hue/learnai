@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
@@ -41,7 +41,7 @@ const SAMPLE: Record<string, Project[]> = {
       tags: ["stories"],
     },
   ],
-  explorer: [
+  GRADE_7: [
     {
       title: "Volcano lab notebook",
       brief: "Record your three volcano experiments.",
@@ -55,7 +55,7 @@ const SAMPLE: Record<string, Project[]> = {
       tags: ["science"],
     },
   ],
-  builder: [
+  GRADE_8: [
     {
       title: "Python calculator",
       brief: "Build add, subtract, divide-by-zero handling.",
@@ -75,7 +75,7 @@ const SAMPLE: Record<string, Project[]> = {
       tags: ["html", "js"],
     },
   ],
-  scholar: [
+  GRADE_9: [
     {
       title: "Trigonometry study notes",
       brief: "One-page reference signal for sine/cosine.",

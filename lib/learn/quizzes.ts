@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Quiz / exercise generators — one per learning method. Each generator
  * accepts (topic, stage) and returns a typed Exercise. The exercises
  * here are deterministic stubs that the future AI layer can swap with
@@ -210,7 +210,7 @@ export function generateForMethod(
         title: "Explain it back — in plain words",
         prompt: `In your own words, explain ${ctx.topic} to ${audienceFor(ctx.stage)}.`,
         audience: audienceFor(ctx.stage),
-        minWords: ctx.stage === "LITTLE_LEARNER" ? 5 : 25,
+        minWords: ctx.stage === "GRADE_6" ? 5 : 25,
       };
 
     case "shatalov_signal":
@@ -252,13 +252,13 @@ export function generateForMethod(
 
 function audienceFor(stage: LearnerStage): string {
   switch (stage) {
-    case "LITTLE_LEARNER":
+    case "GRADE_6":
       return "your favourite toy";
-    case "EXPLORER":
+    case "GRADE_7":
       return "your best friend";
-    case "BUILDER":
+    case "GRADE_8":
       return "a younger sibling";
-    case "SCHOLAR":
+    case "GRADE_9":
       return "a curious 10-year-old";
     case "UNIVERSITY":
     case "PROFESSIONAL":

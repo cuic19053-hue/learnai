@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState, useTransition, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
@@ -57,7 +57,7 @@ export default function ProjectWizard({ config, journey, closeHref, learnerName,
 }
 
 /* ──────────────────────────────────────────────────────────────────────
-   Standard 4-step wizard — Explorer / Builder / Scholar / Adult
+   Standard 4-step wizard — GRADE_7 / GRADE_8 / GRADE_9 / Adult
    ────────────────────────────────────────────────────────────────────── */
 function StandardWizard({ config, journey, closeHref, learnerName, prefill }: Props) {
   const router = useRouter();

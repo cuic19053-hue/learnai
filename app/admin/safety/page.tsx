@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Crumbs, KpiBig, PageHeader, Toggle2 } from "@/components/admin/shared";
 
 export const metadata: Metadata = { title: "Admin · Safety" };
@@ -22,7 +22,7 @@ const INCIDENTS: Array<{
 }> = [
   {
     sev: "low",
-    t: "Profanity · Builder",
+    t: "Profanity · GRADE_8",
     sub: "Maya R. · auto-blocked · friendly redirect",
     when: "6m",
   },
@@ -34,13 +34,13 @@ const INCIDENTS: Array<{
   },
   {
     sev: "low",
-    t: "External link · Explorer",
+    t: "External link · GRADE_7",
     sub: "link to YouTube · stripped · learner notified",
     when: "2h",
   },
   {
     sev: "high",
-    t: "Self-harm reference · Scholar",
+    t: "Self-harm reference · GRADE_9",
     sub: "auto-blocked · safety team paged · resolved by Anna in 4m",
     when: "yest.",
   },

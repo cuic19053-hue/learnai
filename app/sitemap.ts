@@ -1,13 +1,13 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 
 const PUBLIC_PATHS = [
   "/",
   "/onboarding",
   "/teachers",
   "/learn/kids",
-  "/learn/explorer",
-  "/learn/builder",
-  "/learn/scholar",
+  "/learn/GRADE_7",
+  "/learn/GRADE_8",
+  "/learn/GRADE_9",
   "/learn/adult",
   "/learn/senior",
 ];

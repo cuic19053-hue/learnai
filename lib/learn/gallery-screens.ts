@@ -1,4 +1,4 @@
-/**
+﻿/**
  * The Design Gallery's full catalogue — 52 screens across 11 sections,
  * mirroring the handoff bundle's `WikiTest Gallery.html`.
  *
@@ -36,8 +36,8 @@ export const GALLERY: GallerySection[] = [
     screens: [
       {
         slug: "home",
-        label: "0 · Scholar Home (where WikiTest lives)",
-        comp: "ScholarHome",
+        label: "0 · GRADE_9 Home (where WikiTest lives)",
+        comp: "GRADE_9Home",
         batch: 2,
       },
     ],
@@ -120,23 +120,23 @@ export const GALLERY: GallerySection[] = [
         comp: "StoryForgeHome",
         batch: 4,
       },
-      { slug: "forge-quest", label: "Explorer · QuestForge", comp: "QuestForgeHome", batch: 4 },
+      { slug: "forge-quest", label: "GRADE_7 · QuestForge", comp: "QuestForgeHome", batch: 4 },
       {
         slug: "forge-project",
-        label: "Builder · ProjectForge",
+        label: "GRADE_8 · ProjectForge",
         comp: "ProjectForgeHome",
         batch: 4,
       },
       {
-        slug: "builders-portal",
-        label: "Builder · Portal (enterprise · DataCamp-lite)",
-        comp: "BuildersPortal",
+        slug: "GRADE_8s-portal",
+        label: "GRADE_8 · Portal (enterprise · DataCamp-lite)",
+        comp: "GRADE_8sPortal",
         batch: 4,
       },
       {
         slug: "forge-exam",
-        label: "Scholar · ExamForge (flagship)",
-        comp: "ScholarExamForge",
+        label: "GRADE_9 · ExamForge (flagship)",
+        comp: "GRADE_9ExamForge",
         batch: 4,
       },
       { slug: "forge-cert", label: "Professional · CertForge", comp: "CertForgeHome", batch: 4 },
@@ -300,26 +300,26 @@ export const GALLERY: GallerySection[] = [
       {
         slug: "wiz-trigger",
         label: "Trigger · Projects page",
-        comp: "ProjectsHubScholar",
+        comp: "ProjectsHubGRADE_9",
         batch: 8,
       },
       {
         slug: "wiz-s1",
-        label: "Scholar · Step 1 · Topic + Outcome",
-        comp: "ScholarWizardStep1",
+        label: "GRADE_9 · Step 1 · Topic + Outcome",
+        comp: "GRADE_9WizardStep1",
         batch: 8,
       },
-      { slug: "wiz-s2", label: "Scholar · Step 2 · Sources", comp: "ScholarWizardStep2", batch: 8 },
+      { slug: "wiz-s2", label: "GRADE_9 · Step 2 · Sources", comp: "GRADE_9WizardStep2", batch: 8 },
       {
         slug: "wiz-s3",
-        label: "Scholar · Step 3 · Pace + Format",
-        comp: "ScholarWizardStep3",
+        label: "GRADE_9 · Step 3 · Pace + Format",
+        comp: "GRADE_9WizardStep3",
         batch: 8,
       },
       {
         slug: "wiz-s4",
-        label: "Scholar · Step 4 · AI plan preview",
-        comp: "ScholarWizardStep4",
+        label: "GRADE_9 · Step 4 · AI plan preview",
+        comp: "GRADE_9WizardStep4",
         batch: 8,
       },
       {

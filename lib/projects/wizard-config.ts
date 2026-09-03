@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Project wizard data model. Same spine across every world; the
  * presentational details vary by audience.
  */
@@ -143,10 +143,10 @@ export const WIZARD_CONFIG: Record<WorldSlug, WizardConfig> = {
       ],
     },
   },
-  explorer: {
-    slug: "explorer",
+  GRADE_7: {
+    slug: "GRADE_7",
     variant: "standard",
-    operator: "You · Captain Explorer",
+    operator: "You · Captain GRADE_7",
     question: "What does your brain want to discover today?",
     subhead: "Pick a topic — we'll build a 3-experiment quest with worked steps and a notebook.",
     placeholder: "e.g. volcanoes · sharks · how to draw cartoons",
@@ -163,7 +163,7 @@ export const WIZARD_CONFIG: Record<WorldSlug, WizardConfig> = {
     tutorWhisper:
       "Great pick! We'll make a 3-experiment quest with worked-out steps and a notebook page each day.",
     whyPrompt:
-      "Explorer projects are framed as quests — kids retain more when the topic is wrapped in a narrative.",
+      "GRADE_7 projects are framed as quests — kids retain more when the topic is wrapped in a narrative.",
     defaultDaysPerWeek: 3,
     defaultMinutesPerDay: 15,
     defaultPrefs: ["practice", "video"],
@@ -205,10 +205,10 @@ export const WIZARD_CONFIG: Record<WorldSlug, WizardConfig> = {
       ],
     },
   },
-  builder: {
-    slug: "builder",
+  GRADE_8: {
+    slug: "GRADE_8",
     variant: "standard",
-    operator: "You · the builder",
+    operator: "You · the GRADE_8",
     question: "What are you building?",
     subhead: "Pick a build. We'll plan it in two-week sprints with real GitHub commits.",
     placeholder: "e.g. Build a calculator in Python · my first Discord bot",
@@ -230,7 +230,7 @@ export const WIZARD_CONFIG: Record<WorldSlug, WizardConfig> = {
     tutorWhisper:
       "Solid. Stretch goal: pretty up the UI at the end. Doable in 2 weeks with 4 commits.",
     whyPrompt:
-      "Builder projects always have a 'ship' definition — making something real is the strongest retention driver at this age.",
+      "GRADE_8 projects always have a 'ship' definition — making something real is the strongest retention driver at this age.",
     defaultDaysPerWeek: 4,
     defaultMinutesPerDay: 40,
     defaultPrefs: ["practice", "worked"],
@@ -258,10 +258,10 @@ export const WIZARD_CONFIG: Record<WorldSlug, WizardConfig> = {
       methods: SHARED_METHODS.slice(0, 3),
     },
   },
-  scholar: {
-    slug: "scholar",
+  GRADE_9: {
+    slug: "GRADE_9",
     variant: "standard",
-    operator: "You · the scholar",
+    operator: "You · the GRADE_9",
     question: "What do you want to crush?",
     subhead:
       "One project, one outcome. Mentor Max turns it into a week-by-week plan back-planned from your exam date.",
@@ -284,7 +284,7 @@ export const WIZARD_CONFIG: Record<WorldSlug, WizardConfig> = {
     tutorWhisper:
       "Trig for SAT · 24 days. I'll back-plan from your June 14 test date and hit identities hard — that's the weak spot in your diagnostic.",
     whyPrompt:
-      "Scholar projects always pair a topic with a measurable outcome — the second-best predictor of mastery (after time-on-task) is goal specificity.",
+      "GRADE_9 projects always pair a topic with a measurable outcome — the second-best predictor of mastery (after time-on-task) is goal specificity.",
     defaultDaysPerWeek: 5,
     defaultMinutesPerDay: 30,
     defaultPrefs: ["practice", "worked", "summary"],

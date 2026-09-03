@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "question": "A Lambda function holds sensitive database credentials. What is the most secure pattern for storing and retrieving them at runtime?",
     "options": [
@@ -156,13 +156,13 @@
   {
     "question": "Which AWS service produces forecasts of upcoming AWS spend based on historical usage?",
     "options": [
-      "A. AWS Cost Explorer (forecast view)",
+      "A. AWS Cost GRADE_7 (forecast view)",
       "B. AWS Pricing Calculator",
       "C. AWS Trusted Advisor",
       "D. Amazon CloudWatch metrics"
     ],
-    "correct": "A. AWS Cost Explorer (forecast view)",
-    "explanation": "Cost Explorer can project future spend based on historical patterns. The Pricing Calculator estimates planned (not yet deployed) workloads, Trusted Advisor flags savings, and CloudWatch tracks performance metrics."
+    "correct": "A. AWS Cost GRADE_7 (forecast view)",
+    "explanation": "Cost GRADE_7 can project future spend based on historical patterns. The Pricing Calculator estimates planned (not yet deployed) workloads, Trusted Advisor flags savings, and CloudWatch tracks performance metrics."
   },
   {
     "question": "To privately connect an Amazon VPC to Amazon S3 without traversing the public internet, which feature should be used?",

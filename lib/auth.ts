@@ -1,4 +1,4 @@
-/**
+﻿/**
  * NextAuth Authentication Configuration
  *
  * This module configures NextAuth.js with Google OAuth and Credentials providers,
@@ -268,7 +268,7 @@ export const authOptions: NextAuthOptions = {
      * (learnskillsai.com) and NEXTAUTH_URL drifted apart.
      *
      * Our rules:
-     *   - Bare paths ("/learn/builder") resolve against the base URL.
+     *   - Bare paths ("/learn/GRADE_8") resolve against the base URL.
      *   - Absolute URLs that share the request's origin pass through
      *     unchanged so multi-domain deployments work.
      *   - Anything else collapses to the base URL.

@@ -1,4 +1,4 @@
-import { z } from "zod";
+﻿import { z } from "zod";
 import { generateLesson } from "@/lib/learn/lessons";
 import { defaultTeacherForStage } from "@/lib/learn/teachers";
 import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
@@ -6,10 +6,10 @@ import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
 export const dynamic = "force-dynamic";
 
 const StageEnum = z.enum([
-  "LITTLE_LEARNER",
-  "EXPLORER",
-  "BUILDER",
-  "SCHOLAR",
+  "GRADE_6",
+  "GRADE_7",
+  "GRADE_8",
+  "GRADE_9",
   "UNIVERSITY",
   "PROFESSIONAL",
   "SENIOR",

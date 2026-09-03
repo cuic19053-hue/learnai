@@ -1,7 +1,7 @@
-/**
+﻿/**
  * Prompt templates for the AI Interview Trainer.
  *
- * Each builder returns an array of ChatMessage. The system message sets the
+ * Each GRADE_8 returns an array of ChatMessage. The system message sets the
  * persona; the user message carries the structured request and asks for
  * JSON-only output, matching the expected schemas in lib/interview/types.ts.
  */

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Lesson-content illustrations. Authored in-house, CC0.
  */
 
@@ -150,7 +150,7 @@ export function Apples({ className = "", title = "Three red apples on a wooden t
 }
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  Stylised Python code snippet for Builder                               */
+/*  Stylised Python code snippet for GRADE_8                               */
 /* ────────────────────────────────────────────────────────────────────── */
 
 export function PythonSnippet({
@@ -231,7 +231,7 @@ export function PythonSnippet({
 }
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  30-60-90 right triangle for Scholar trigonometry                       */
+/*  30-60-90 right triangle for GRADE_9 trigonometry                       */
 /* ────────────────────────────────────────────────────────────────────── */
 
 export function TrigAngle({

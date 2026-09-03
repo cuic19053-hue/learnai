@@ -1,4 +1,4 @@
-# Image sourcing — vetted, commercial-OK shopping list
+﻿# Image sourcing — vetted, commercial-OK shopping list
 
 > Complements the in-house SVG illustrations under `components/illustrations/`.
 > Use these when you want a richer, photographic feel on the homepage hero
@@ -62,7 +62,7 @@ SVG entirely. Suggested searches:
 | World | Visual brief | Where to look |
 |---|---|---|
 | 🦁 **Playful** (Little Learner) | Crayons, watercolour splash, soft daylight, *no faces* (model-release safe) | [Pexels · "crayons children flat lay"](https://www.pexels.com/search/crayons%20flat%20lay/) · [Pixabay · "watercolor pastel"](https://pixabay.com/images/search/watercolor%20pastel/) |
-| 🚀 **Mission** (Builder) | Mechanical keyboard, neon-violet glow, small electronics | [Unsplash · "neon keyboard purple"](https://unsplash.com/s/photos/neon-keyboard-purple) · [Pexels · "electronics gradient"](https://www.pexels.com/search/electronics%20gradient/) |
+| 🚀 **Mission** (GRADE_8) | Mechanical keyboard, neon-violet glow, small electronics | [Unsplash · "neon keyboard purple"](https://unsplash.com/s/photos/neon-keyboard-purple) · [Pexels · "electronics gradient"](https://www.pexels.com/search/electronics%20gradient/) |
 | 💼 **Career** (Professional) | Modern office, abstract glass, no recognisable logos | [Unsplash · "abstract office glass"](https://unsplash.com/s/photos/abstract-office-glass) · [Pexels · "minimal workspace"](https://www.pexels.com/search/minimal%20workspace/) |
 | 🌿 **Calm** (Senior) | Soft botanical, morning light, herbs, leaves | [Unsplash · "calm botanical morning"](https://unsplash.com/s/photos/calm-botanical-morning) · [Pexels · "soft green leaves"](https://www.pexels.com/search/soft%20green%20leaves/) |
 

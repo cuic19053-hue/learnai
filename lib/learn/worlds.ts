@@ -1,4 +1,4 @@
-/**
+﻿/**
  * URL-slug-aware mapping from "world" query param → journey + canonical
  * home path. Used by the shared nav (Missions / Projects / Library /
  * Achievements / Switch) so every tab knows which stage it's scoped to.
@@ -8,7 +8,7 @@ import type { Journey } from "./journeys";
 import { JOURNEYS, journeyForStage } from "./journeys";
 import type { LearnerStage } from "./stages";
 
-export type WorldSlug = "kids" | "explorer" | "builder" | "scholar" | "adult" | "senior";
+export type WorldSlug = "kids" | "GRADE_7" | "GRADE_8" | "GRADE_9" | "adult" | "senior";
 
 export type World = {
   slug: WorldSlug;
@@ -26,7 +26,7 @@ export type World = {
 export const WORLDS: Record<WorldSlug, World> = {
   kids: {
     slug: "kids",
-    journey: journeyForStage("LITTLE_LEARNER"),
+    journey: journeyForStage("GRADE_6"),
     homePath: "/learn/kids",
     teacherName: "Milo",
     teacherEmoji: "🦉",
@@ -34,30 +34,30 @@ export const WORLDS: Record<WorldSlug, World> = {
     streakDays: 4,
     xp: 120,
   },
-  explorer: {
-    slug: "explorer",
-    journey: journeyForStage("EXPLORER"),
-    homePath: "/learn/explorer",
+  GRADE_7: {
+    slug: "GRADE_7",
+    journey: journeyForStage("GRADE_7"),
+    homePath: "/learn/GRADE_7",
     teacherName: "Luna",
     teacherEmoji: "📚",
     learnerInitial: "A",
     streakDays: 5,
     xp: 620,
   },
-  builder: {
-    slug: "builder",
-    journey: journeyForStage("BUILDER"),
-    homePath: "/learn/builder",
+  GRADE_8: {
+    slug: "GRADE_8",
+    journey: journeyForStage("GRADE_8"),
+    homePath: "/learn/GRADE_8",
     teacherName: "Nova",
     teacherEmoji: "🦉",
     learnerInitial: "S",
     streakDays: 12,
     xp: 1840,
   },
-  scholar: {
-    slug: "scholar",
-    journey: journeyForStage("SCHOLAR"),
-    homePath: "/learn/scholar",
+  GRADE_9: {
+    slug: "GRADE_9",
+    journey: journeyForStage("GRADE_9"),
+    homePath: "/learn/GRADE_9",
     teacherName: "Mentor Max",
     teacherEmoji: "🎓",
     learnerInitial: "J",
@@ -89,23 +89,23 @@ export const WORLDS: Record<WorldSlug, World> = {
 const VALID_SLUGS = new Set(Object.keys(WORLDS) as WorldSlug[]);
 
 export function worldFromParam(raw: string | undefined): World {
-  const candidate = (raw ?? "builder").toLowerCase();
+  const candidate = (raw ?? "GRADE_8").toLowerCase();
   if (VALID_SLUGS.has(candidate as WorldSlug)) {
     return WORLDS[candidate as WorldSlug];
   }
-  return WORLDS.builder;
+  return WORLDS.GRADE_8;
 }
 
 export function worldSlugForStage(stage: LearnerStage): WorldSlug {
   switch (stage) {
-    case "LITTLE_LEARNER":
+    case "GRADE_6":
       return "kids";
-    case "EXPLORER":
-      return "explorer";
-    case "BUILDER":
-      return "builder";
-    case "SCHOLAR":
-      return "scholar";
+    case "GRADE_7":
+      return "GRADE_7";
+    case "GRADE_8":
+      return "GRADE_8";
+    case "GRADE_9":
+      return "GRADE_9";
     case "UNIVERSITY":
     case "PROFESSIONAL":
       return "adult";
@@ -137,7 +137,7 @@ export type NavItem = {
 };
 
 /** Worlds that have WikiTest enabled (academic/professional audiences). */
-const WIKITEST_WORLDS: ReadonlySet<WorldSlug> = new Set(["scholar", "adult"]);
+const WIKITEST_WORLDS: ReadonlySet<WorldSlug> = new Set(["GRADE_9", "adult"]);
 
 /** Build the standard left-rail nav for a world with one tab marked active. */
 export function buildLearnerNav(opts: { world: World; active: NavTab }): NavItem[] {

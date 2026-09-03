@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -26,7 +26,7 @@ import { Arrow, Spark } from "@/components/design/icons";
 
 type Scenario = {
   id: string;
-  badge: string; // "🚀 Explorer · Ages 7–11"
+  badge: string; // "🚀 GRADE_7 · Ages 7–11"
   badgeBg: string; // CSS var
   badgeColor: string; // CSS var
   bubbleBg: string; // CSS var — teacher message background
@@ -47,11 +47,11 @@ type Scenario = {
 
 const SCENARIOS: Scenario[] = [
   {
-    id: "explorer-volcano",
+    id: "GRADE_7-volcano",
     badge: "🚀 少儿探索 · 7–11 岁",
-    badgeBg: "var(--j-explorer-bg)",
-    badgeColor: "var(--j-explorer)",
-    bubbleBg: "var(--j-explorer-soft)",
+    badgeBg: "var(--j-GRADE_7-bg)",
+    badgeColor: "var(--j-GRADE_7)",
+    bubbleBg: "var(--j-GRADE_7-soft)",
     title: "火山为什么会喷发？ 🌋",
     stepLabel: "第 3 步 (共 6 步) · 互动练习",
     illustrationId: "lessons/volcano-cross-section",
@@ -85,11 +85,11 @@ const SCENARIOS: Scenario[] = [
     progressFilled: 2,
   },
   {
-    id: "builder-python",
+    id: "GRADE_8-python",
     badge: "🛠️ 少年创客 · 12–15 岁",
-    badgeBg: "var(--j-builder-bg)",
-    badgeColor: "var(--j-builder)",
-    bubbleBg: "var(--j-builder-soft)",
+    badgeBg: "var(--j-GRADE_8-bg)",
+    badgeColor: "var(--j-GRADE_8)",
+    bubbleBg: "var(--j-GRADE_8-soft)",
     title: "处理除以零的异常 🐍",
     stepLabel: "第 4 步 (共 6 步) · 编程实践",
     illustrationId: "lessons/python-snippet",
@@ -104,11 +104,11 @@ const SCENARIOS: Scenario[] = [
     progressFilled: 4,
   },
   {
-    id: "scholar-trig",
+    id: "GRADE_9-trig",
     badge: "🎓 高中学者 · 16–18 岁",
-    badgeBg: "var(--j-scholar-bg)",
-    badgeColor: "var(--j-scholar)",
-    bubbleBg: "var(--j-scholar-soft)",
+    badgeBg: "var(--j-GRADE_9-bg)",
+    badgeColor: "var(--j-GRADE_9)",
+    bubbleBg: "var(--j-GRADE_9-soft)",
     title: "三角函数: sin(30°) 📐",
     stepLabel: "第 5 步 (共 6 步) · 快速测验",
     illustrationId: "lessons/trig-angle",

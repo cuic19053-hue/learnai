@@ -1,12 +1,12 @@
-/**
- * Builders Portal · enterprise-grade Builder home (DataCamp-lite).
+﻿/**
+ * GRADE_8s Portal · enterprise-grade GRADE_8 home (DataCamp-lite).
  *
- * Gallery-only static preview. The live route at /learn/builder
+ * Gallery-only static preview. The live route at /learn/GRADE_8
  * renders the same layout but driven by the Prisma-backed
- * BuilderMission / BuilderStep models.
+ * GRADE_8Mission / GRADE_8Step models.
  *
  * Visual spec (calm enterprise polish):
- *   - 280 px left sidebar with Builder Academy mark + 6 nav items
+ *   - 280 px left sidebar with GRADE_8 Academy mark + 6 nav items
  *   - Top header card · date · welcome line · Level/XP chip
  *   - Today's mission card with Loop progress (6 steps · 3-col tiles)
  *   - Continue practicing row · 2 soft-gradient placeholder cards
@@ -39,7 +39,7 @@ const BUILD_LOOP = [
   { ic: "🌱", l: "Evolve", state: "Locked" },
 ] as const;
 
-export function BuildersPortal() {
+export function GRADE_8sPortal() {
   return (
     <div
       style={{
@@ -72,7 +72,7 @@ export function BuildersPortal() {
           </div>
           <div>
             <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: "-0.01em" }}>
-              Builder Academy
+              GRADE_8 Academy
             </div>
             <div style={{ fontSize: 12, color: "#64748b" }}>Learning portal</div>
           </div>
@@ -215,7 +215,7 @@ export function BuildersPortal() {
               >
                 Level
               </div>
-              <div style={{ fontSize: 14, fontWeight: 800 }}>Builder · 1,240 XP</div>
+              <div style={{ fontSize: 14, fontWeight: 800 }}>GRADE_8 · 1,240 XP</div>
             </div>
             <div
               style={{

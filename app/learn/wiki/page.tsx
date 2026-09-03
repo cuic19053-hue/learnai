@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import WikiUrlInput from "@/components/wiki/WikiUrlInput";
 import { buildLearnerNav, WORLDS } from "@/lib/learn/worlds";
@@ -46,7 +46,7 @@ const TRUST: Array<{ title: string; body: string }> = [
 ];
 
 export default function WikiTestHub() {
-  const world = WORLDS.scholar;
+  const world = WORLDS.GRADE_9;
   return (
     <LearnerHomeShell
       journey={world.journey}

@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";
 
 /**
- * Client-side "Continue with Reflect" button for the Builder portal.
+ * Client-side "Continue with Reflect" button for the GRADE_8 portal.
  *
- * Optimistically POSTs to /api/builder/steps/[id]/complete and reloads
+ * Optimistically POSTs to /api/GRADE_8/steps/[id]/complete and reloads
  * the page on success so the server-rendered mission state refreshes.
  * Disabled for the seeded mission ids (which carry a "seed-" prefix)
  * because there's no row in the DB to mark complete.
@@ -19,7 +19,7 @@ type Props = {
   isSeed: boolean;
 };
 
-export function BuilderContinueButton({ stepId, stepLabel, isSeed }: Props) {
+export function GRADE_8ContinueButton({ stepId, stepLabel, isSeed }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
@@ -29,13 +29,13 @@ export function BuilderContinueButton({ stepId, stepLabel, isSeed }: Props) {
       // Seed mode has no DB row to mark complete — drop the learner
       // straight into the Python-calculator practice (matches the
       // mission shown on the portal). Without the ?mission= param the
-      // lesson route falls back to the Explorer volcano demo.
-      router.push("/learn/lesson/builder?mission=python-calculator");
+      // lesson route falls back to the GRADE_7 volcano demo.
+      router.push("/learn/lesson/GRADE_8?mission=python-calculator");
       return;
     }
     setError(null);
     try {
-      const res = await fetch(`/api/builder/steps/${encodeURIComponent(stepId)}/complete`, {
+      const res = await fetch(`/api/GRADE_8/steps/${encodeURIComponent(stepId)}/complete`, {
         method: "POST",
       });
       const body = (await res.json()) as { ok: boolean; error?: string };

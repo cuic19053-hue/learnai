@@ -1,8 +1,8 @@
-/**
+﻿/**
  * WikiTest core gallery screens (Batch 2, 8 screens).
  *
  * Faithful TSX ports of the design handoff prototypes:
- *   ScholarHome   — Scholar World home, with WikiTest entry card
+ *   GRADE_9Home   — GRADE_9 World home, with WikiTest entry card
  *   WikiHub       — "Understand any Wikipedia article" landing
  *   WikiDetail    — Test-ready (Differential equation)
  *   WikiTrain     — Loop · tutor chat training surface
@@ -27,7 +27,7 @@ import {
 } from "@/components/learn/shared/SidebarShell";
 import { Icon } from "@/components/learn/shared/wikitest-icons";
 
-// ─── 0 · Scholar Home ─────────────────────────────────────────────
+// ─── 0 · GRADE_9 Home ─────────────────────────────────────────────
 
 const LOOP_STEPS = [
   { label: "Hook", state: "done", emoji: "❓" },
@@ -38,10 +38,10 @@ const LOOP_STEPS = [
   { label: "Evolve", state: "locked", emoji: "🌱" },
 ] as const;
 
-export function ScholarHome() {
+export function GRADE_9Home() {
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={0} initials="J" avatarBg="#7c3aed" />
+      <LATopBar world="GRADE_9" streak={1} xp={0} initials="J" avatarBg="#7c3aed" />
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr 320px", minHeight: 836 }}>
         <LASidebar active="Home" teacherName="Mentor Max" teacherIcon="🎓" />
 
@@ -59,7 +59,7 @@ export function ScholarHome() {
             Trigonometry is your weakest area. 25-minute focused session today moves you up a band.
           </p>
 
-          {/* Today's session — Scholar warm gradient */}
+          {/* Today's session — GRADE_9 warm gradient */}
           <div
             style={{
               borderRadius: 22,
@@ -277,7 +277,7 @@ export function ScholarHome() {
                     className="la-mono"
                     style={{ fontSize: 10, color: "var(--brand-1)", letterSpacing: ".08em" }}
                   >
-                    NEW IN SCHOLAR · WIKITEST
+                    NEW IN GRADE_9 · WIKITEST
                   </span>
                   <span
                     className="la-pill"
@@ -496,11 +496,11 @@ export function WikiHub() {
 
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
+      <LATopBar world="GRADE_9" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", minHeight: 836 }}>
         <LASidebar active="WikiTest" teacherName="Mentor Max" teacherIcon="🎓" />
         <main style={{ position: "relative" }}>
-          <WTBreadcrumb trail={["Scholar", "WikiTest"]} />
+          <WTBreadcrumb trail={["GRADE_9", "WikiTest"]} />
 
           <section
             style={{
@@ -903,11 +903,11 @@ function SegRow({ opts, activeIdx }: { opts: string[]; activeIdx: number }) {
 export function WikiDetail() {
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
+      <LATopBar world="GRADE_9" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", minHeight: 836 }}>
         <LASidebar active="WikiTest" teacherName="Mentor Max" teacherIcon="🎓" />
         <main>
-          <WTBreadcrumb trail={["Scholar", "WikiTest", "Differential equation"]} />
+          <WTBreadcrumb trail={["GRADE_9", "WikiTest", "Differential equation"]} />
 
           <section style={{ padding: "36px 32px", maxWidth: 920, margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
@@ -1097,8 +1097,8 @@ const TRAIN_LOOP = [
 export function WikiTrain() {
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
-      <WTBreadcrumb trail={["Scholar", "WikiTest", "Differential equation", "Train"]} />
+      <LATopBar world="GRADE_9" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
+      <WTBreadcrumb trail={["GRADE_9", "WikiTest", "Differential equation", "Train"]} />
 
       <div style={{ display: "grid", gridTemplateColumns: "260px 1fr 320px", minHeight: 836 }}>
         <aside
@@ -1862,11 +1862,11 @@ function FocusOpt({ k, t, selected = false }: { k: string; t: string; selected?:
 export function WikiResults() {
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
+      <LATopBar world="GRADE_9" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", minHeight: 836 }}>
         <LASidebar active="WikiTest" teacherName="Mentor Max" teacherIcon="🎓" />
         <main>
-          <WTBreadcrumb trail={["Scholar", "WikiTest", "Differential equation", "Results"]} />
+          <WTBreadcrumb trail={["GRADE_9", "WikiTest", "Differential equation", "Results"]} />
 
           <section style={{ padding: "28px 32px", maxWidth: 980, margin: "0 auto" }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
@@ -2290,11 +2290,11 @@ const TONE_FG: Record<string, string> = {
 export function WikiLibrary() {
   return (
     <div className="wt-shell" style={{ width: 1280, minHeight: 900 }}>
-      <LATopBar world="Scholar" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
+      <LATopBar world="GRADE_9" streak={1} xp={45} initials="J" avatarBg="#7c3aed" />
       <div style={{ display: "grid", gridTemplateColumns: "240px 1fr", minHeight: 836 }}>
         <LASidebar active="WikiTest" teacherName="Mentor Max" teacherIcon="🎓" />
         <main>
-          <WTBreadcrumb trail={["Scholar", "WikiTest", "Library"]} />
+          <WTBreadcrumb trail={["GRADE_9", "WikiTest", "Library"]} />
 
           <section style={{ padding: "28px 32px 0", maxWidth: 1140, margin: "0 auto" }}>
             <div

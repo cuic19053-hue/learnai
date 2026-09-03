@@ -1,9 +1,9 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 
 export default function PricingSection() {
   const tiers = [
     {
-      name: "Free Explorer",
+      name: "Free GRADE_7",
       price: "€0",
       subtitle: "Browse and discover",
       features: [
@@ -101,7 +101,7 @@ export default function PricingSection() {
               </Link>
 
               <p className="mt-3 text-center text-xs text-gray-500">
-                {t.name === "Free Explorer"
+                {t.name === "Free GRADE_7"
                   ? "No account required."
                   : "Login only needed for booking & saving."}
               </p>

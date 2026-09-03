@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Brand SVG illustrations for the four Worlds cards on the homepage.
  *
  * Authored in-house. Original work — CC0. No third-party assets.
@@ -89,7 +89,7 @@ export function PlayfulWorld({
 }
 
 /* ────────────────────────────────────────────────────────────────────── */
-/*  Mission World — Builder (violet + blue)                                */
+/*  Mission World — GRADE_8 (violet + blue)                                */
 /* ────────────────────────────────────────────────────────────────────── */
 
 export function MissionWorld({

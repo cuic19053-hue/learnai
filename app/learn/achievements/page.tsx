@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
@@ -21,19 +21,19 @@ const SAMPLE: Record<string, Badge[]> = {
     { emoji: "🦁", name: "Animal counter", desc: "Counted the jungle animals.", earned: true },
     { emoji: "🎨", name: "Colour master", desc: "Match every colour.", earned: false },
   ],
-  explorer: [
-    { emoji: "🌋", name: "Science explorer", desc: "Solved the volcano quest.", earned: true },
+  GRADE_7: [
+    { emoji: "🌋", name: "Science GRADE_7", desc: "Solved the volcano quest.", earned: true },
     { emoji: "🦊", name: "Quick fox", desc: "5-day streak.", earned: true },
     { emoji: "🧩", name: "Logic puzzler", desc: "Finish 10 logic puzzles.", earned: false },
   ],
-  builder: [
+  GRADE_8: [
     { emoji: "🛠️", name: "First commit", desc: "Wrote your first function.", earned: true },
     { emoji: "🔥", name: "Streak: 12 days", desc: "Train every day for 12 days.", earned: true },
     { emoji: "⚡", name: "Speed run", desc: "Finish a mission in under 10 min.", earned: true },
-    { emoji: "🐍", name: "Calculator builder", desc: "Ship the Python calculator.", earned: false },
+    { emoji: "🐍", name: "Calculator GRADE_8", desc: "Ship the Python calculator.", earned: false },
     { emoji: "🧠", name: "Logic master", desc: "100% on the AND/OR/NOT mission.", earned: false },
   ],
-  scholar: [
+  GRADE_9: [
     { emoji: "🎓", name: "Exam ready", desc: "Pass a mock exam.", earned: false },
     { emoji: "📈", name: "Mastery +10", desc: "Lift any weak area by 10 points.", earned: true },
     { emoji: "📝", name: "30-day plan", desc: "Stick to a 30-day study plan.", earned: false },

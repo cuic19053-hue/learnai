@@ -1,10 +1,10 @@
-/**
+﻿/**
  * AI-driven project plan preview.
  *
  * Generates a short structured study plan from the wizard inputs
  * (topic, outcome, sources, pace, prefs) BEFORE the learner commits
  * to creating the project. The output is shown on Step 4 of the
- * Scholar wizard ("AI plan preview") and never persisted on the
+ * GRADE_9 wizard ("AI plan preview") and never persisted on the
  * preview path — once the learner clicks Save the regular
  * POST /api/projects flow takes over.
  *

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Chip, Crumbs, KpiBig, PageHeader } from "@/components/admin/shared";
 import { aiSummary } from "@/lib/ai/provider";
 
@@ -290,9 +290,9 @@ function MiniStat({ label, v, detail }: { label: string; v: string; detail?: str
 function ActiveByWorldCard() {
   const rows = [
     { w: "Little Learner", n: 312, pct: 14, c: "#ec4899" },
-    { w: "Explorer", n: 488, pct: 23, c: "#4338ca" },
-    { w: "Builder", n: 402, pct: 19, c: "#7c3aed" },
-    { w: "Scholar", n: 580, pct: 27, c: "#c2410c" },
+    { w: "GRADE_7", n: 488, pct: 23, c: "#4338ca" },
+    { w: "GRADE_8", n: 402, pct: 19, c: "#7c3aed" },
+    { w: "GRADE_9", n: 580, pct: 27, c: "#c2410c" },
     { w: "Professional", n: 286, pct: 13, c: "#0f766e" },
     { w: "Senior Learner", n: 80, pct: 4, c: "#16a34a" },
   ];
@@ -330,13 +330,13 @@ function RecentActivityCard() {
     {
       ic: "🛡️",
       t: "Safety block · profanity",
-      sub: "Builder · auto-resolved",
+      sub: "GRADE_8 · auto-resolved",
       when: "6m",
       tone: "warn" as const,
     },
     { ic: "🎓", t: "Mock defense rehearsal", sub: "Transformer · 78% readiness", when: "14m" },
     { ic: "💳", t: "OpenAI usage · $1.20", sub: "below cap", when: "20m", tone: "muted" as const },
-    { ic: "✨", t: "New persona added", sub: "Forge (Builder) · admin@", when: "1h" },
+    { ic: "✨", t: "New persona added", sub: "Forge (GRADE_8) · admin@", when: "1h" },
   ];
   return (
     <section className="la-card p-5" style={{ borderRadius: 18 }}>

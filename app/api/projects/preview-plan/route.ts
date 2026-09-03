@@ -1,4 +1,4 @@
-/**
+﻿/**
  * POST /api/projects/preview-plan
  *
  * Step 4 of the project wizard: generate the AI study plan from the
@@ -18,7 +18,7 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 const BodySchema = z.object({
-  worldSlug: z.enum(["kids", "explorer", "builder", "scholar", "adult", "senior"]),
+  worldSlug: z.enum(["kids", "GRADE_7", "GRADE_8", "GRADE_9", "adult", "senior"]),
   topic: z.string().min(2).max(200),
   outcome: z.string().max(800).optional(),
   sources: z.array(z.string().min(1).max(400)).max(10).optional(),

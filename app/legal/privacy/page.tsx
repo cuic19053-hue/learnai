@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import LegalShell from "@/components/legal/LegalShell";
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function PrivacyPage() {
       <ul>
         <li>your email address</li>
         <li>your name (only if you provide it)</li>
-        <li>your learner stage (Kids / Explorer / Builder / Scholar / Professional / Senior)</li>
+        <li>your learner stage (Kids / GRADE_7 / GRADE_8 / GRADE_9 / Professional / Senior)</li>
         <li>your lesson progress, XP, streaks, and completed projects</li>
         <li>session tokens so you stay signed in</li>
       </ul>
@@ -65,7 +65,7 @@ export default function PrivacyPage() {
 
       <h2>2. Children&apos;s privacy (COPPA &amp; equivalents)</h2>
       <p>
-        The Little Learner world (ages 3–6) and Explorer world (ages 7–11) are governed by stricter
+        The Little Learner world (ages 3–6) and GRADE_7 world (ages 7–11) are governed by stricter
         rules:
       </p>
       <ul>

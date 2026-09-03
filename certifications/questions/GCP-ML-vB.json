@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "question": "You want to deploy a model behind a low-latency HTTPS endpoint that autoscales to zero when idle. Which Vertex AI option is best?",
     "options": [
@@ -112,13 +112,13 @@
   {
     "question": "For a generative AI use case requiring grounding LLM responses on private corporate documents, which Vertex AI feature should you investigate first?",
     "options": [
-      "A. Vertex AI Search and Conversation (Agent Builder) for retrieval-augmented generation grounding",
+      "A. Vertex AI Search and Conversation (Agent GRADE_8) for retrieval-augmented generation grounding",
       "B. Cloud SQL",
       "C. Cloud DNS",
       "D. BigQuery DTS"
     ],
-    "correct": "A. Vertex AI Search and Conversation (Agent Builder) for retrieval-augmented generation grounding",
-    "explanation": "Vertex AI Search/Agent Builder provides managed retrieval and grounding over enterprise corpora for RAG patterns with Gemini and other foundation models."
+    "correct": "A. Vertex AI Search and Conversation (Agent GRADE_8) for retrieval-augmented generation grounding",
+    "explanation": "Vertex AI Search/Agent GRADE_8 provides managed retrieval and grounding over enterprise corpora for RAG patterns with Gemini and other foundation models."
   },
   {
     "question": "To control LLM hallucinations, the most generally effective combination is:",
