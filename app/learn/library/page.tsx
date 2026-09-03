@@ -29,51 +29,77 @@ const SAMPLE: Record<string, LibraryGroup[]> = {
       ],
     },
   ],
-  GRADE_7: [
+  GRADE_6: [
     {
-      topic: "生命科学",
+      topic: "数与运算 (沪教版六年级上)",
       items: [
-        { title: "沪教版七年级生命科学 - 显微镜的使用", durationMin: 8, mastery: 50 },
-        { title: "自然地理：水循环与降雨的形成", durationMin: 7, mastery: 100 },
-        { title: "地球自转与昼夜交替的成因", durationMin: 6 },
+        { title: "分数的意义、性质与约分通分", durationMin: 12, mastery: 85 },
+        { title: "分数的四则混合运算与应用题", durationMin: 15, mastery: 60 },
+        { title: "分数与小数的互化及大小比较", durationMin: 10 },
       ],
     },
     {
-      topic: "数学",
+      topic: "有理数与方程 (沪教版六年级下)",
       items: [
-        { title: "沪教版六年级数学：分数的四则运算", durationMin: 6 },
-        { title: "有理数的加减乘除与数轴", durationMin: 7 },
+        { title: "有理数概念、数轴与绝对值", durationMin: 12 },
+        { title: "有理数的加减乘除与乘方运算", durationMin: 15 },
+        { title: "一元一次方程求解与实际应用", durationMin: 18 },
+      ],
+    },
+  ],
+  GRADE_7: [
+    {
+      topic: "几何初步与平行线 (沪教版七年级上)",
+      items: [
+        { title: "线段、射线、直线与角的度量", durationMin: 10, mastery: 90 },
+        { title: "相交线与平行线的性质与判定", durationMin: 15, mastery: 50 },
+        { title: "余角、补角与尺规作图画法", durationMin: 12 },
+      ],
+    },
+    {
+      topic: "代数式与实数 (沪教版七年级下)",
+      items: [
+        { title: "整式的加减、乘除与因式分解", durationMin: 18, mastery: 70 },
+        { title: "实数、平方根与立方根概念", durationMin: 12 },
+        { title: "二次根式的乘除与加减化简", durationMin: 16 },
       ],
     },
   ],
   GRADE_8: [
     {
-      topic: "信息技术",
+      topic: "函数与方程 (沪教版八年级上)",
       items: [
-        { title: "Python 编程：变量与数据类型", durationMin: 8, mastery: 80 },
-        { title: "Python 编程：函数定义与参数传递", durationMin: 10, mastery: 60 },
-        { title: "逻辑电路：与门、或门与非门原理", durationMin: 6, mastery: 30 },
-        { title: "综合实践：制作井字棋小游戏", durationMin: 25 },
+        { title: "一元二次方程配方法与求根公式", durationMin: 20, mastery: 67 },
+        { title: "正比例函数与一次函数的图象性质", durationMin: 18, mastery: 80 },
+        { title: "一次函数的实际应用与方程组结合", durationMin: 22 },
       ],
     },
     {
-      topic: "数学与物理",
+      topic: "全等三角形与定理 (沪教版八年级下)",
       items: [
-        { title: "沪教版八年级数学：一元一次方程求解", durationMin: 12, mastery: 100 },
-        { title: "沪科版八年级物理：光的折射与反射", durationMin: 10 },
+        { title: "全等三角形判定 (SAS/ASA/AAS/SSS)", durationMin: 25, mastery: 60 },
+        { title: "勾股定理及其逆定理在几何中的应用", durationMin: 20 },
+        { title: "命题与证明的规范逻辑表述", durationMin: 15 },
       ],
     },
   ],
   GRADE_9: [
     {
-      topic: "数学",
+      topic: "相似与三角函数 (沪教版九年级上)",
       items: [
-        { title: "沪教版九年级数学：锐角三角函数 (sin, cos, tan)", durationMin: 25, mastery: 42 },
-        { title: "沪教版九年级数学：一元二次方程求根公式", durationMin: 22, mastery: 68 },
-        { title: "九年级数学中考复习：概率初步与树状图", durationMin: 20, mastery: 75 },
+        { title: "相似三角形判定定理与比例线段", durationMin: 22, mastery: 68 },
+        { title: "锐角三角函数 (sin, cos, tan) 定义", durationMin: 25, mastery: 42 },
+        { title: "解直角三角形及其测量应用题", durationMin: 20, mastery: 75 },
       ],
     },
-    { topic: "中考模拟套卷", items: [{ title: "上海中考全科模拟套卷 A", durationMin: 60 }] },
+    {
+      topic: "二次函数与圆 (沪教版九年级下/中考总复习)",
+      items: [
+        { title: "二次函数的图象、顶点式与最值", durationMin: 25 },
+        { title: "圆的性质、切线判定与弧长计算", durationMin: 25 },
+        { title: "上海中考数学第24、25题几何与函数压轴综合", durationMin: 45 },
+      ],
+    },
   ],
   adult: [
     {

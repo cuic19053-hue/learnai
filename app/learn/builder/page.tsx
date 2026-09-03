@@ -255,7 +255,7 @@ function GRADE_8Header({
           欢迎回来，{learnerName} 👋
         </h1>
         <p style={{ fontSize: 14, color: "#64748b", margin: 0, maxWidth: 540 }}>
-          距离完成你的八年级信息技术实验仅剩 30 分钟。
+          距离完成你的八年级数学一元二次方程求根专题仅剩 30 分钟。
         </p>
       </div>
       <div
@@ -598,12 +598,12 @@ function NovaRecommends() {
             诺瓦导师推荐
           </div>
           <h2 style={{ margin: "2px 0 0", fontSize: 15, fontWeight: 900, lineHeight: 1.3 }}>
-            课前挑战：探索逻辑电路与条件判断
+            课前挑战：二次根式化简与勾股定理巧用
           </h2>
         </div>
       </div>
       <p style={{ margin: 0, fontSize: 13, color: "#475569", lineHeight: 1.6 }}>
-        昨天的学习记录显示你对基础概念掌握迅速。10 分钟的课前温习能帮你打下更扎实的基础。
+        昨天的学习记录显示你对因式分解法解一元二次方程掌握迅速。10 分钟的课前温习能帮你更好地理解配方法与公式法。
       </p>
       <Link
         href="/learn/lesson/GRADE_8?mission=logic-gates"

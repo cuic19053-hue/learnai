@@ -38,18 +38,18 @@ export default async function GRADE_7Page() {
         欢迎回来，{learnerName} 👋
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
-        今天的学习任务：探究沪教版七年级生命科学 - 显微镜的使用。
+        今天的学习任务：探究沪教版七年级数学 - 相交线与平行线的性质与判定。
       </p>
 
       <MissionCard
         journey={journey}
         kicker="今日学习任务"
-        title="沪教版七年级生命科学 - 显微镜的使用 🔬"
-        description="观看 2 分钟动画讲解，拖拽部件标签至显微镜结构图对应位置，完成 3 道随堂即时测验。"
+        title="沪教版七年级数学 - 相交线与平行线 📐"
+        description="拖拽角的位置名称标签到平行线截角图形对应位置，精准辨析同位角、内错角与同旁内角。"
         currentStep={3}
         ctaLabel="继续学习"
-        meta="约 8 分钟 · 🏅 七年级生命科学勋章"
-        ctaHref="/learn/lesson/GRADE_7?mission=GRADE_7-volcano"
+        meta="约 8 分钟 · 🏅 七年级几何几何勋章"
+        ctaHref="/learn/lesson/GRADE_7?mission=GRADE_7-parallel"
       />
 
       <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -58,16 +58,16 @@ export default async function GRADE_7Page() {
             journey={journey}
             items={[
               {
-                title: "自然地理：水循环与降水",
-                subtitle: "地理 · 剩余 4 分钟",
+                title: "沪教版七年级数学：实数与二次根式化简",
+                subtitle: "数学 · 剩余 4 分钟",
                 progress: 60,
-                href: "/learn/lesson/GRADE_7?mission=GRADE_7-clouds",
+                href: "/learn/lesson/GRADE_7?mission=GRADE_7-radicals",
               },
               {
-                title: "语文阅读：动物观察与心理推断",
-                subtitle: "语文 · 剩余 9 分钟",
+                title: "沪教版七年级数学：整式的乘除与因式分解",
+                subtitle: "数学 · 剩余 9 分钟",
                 progress: 25,
-                href: "/learn/lesson/GRADE_7?mission=GRADE_7-reading",
+                href: "/learn/lesson/GRADE_7?mission=GRADE_7-polynomials",
               },
             ]}
           />
@@ -75,9 +75,9 @@ export default async function GRADE_7Page() {
         <RecommendationCard
           journey={journey}
           teacherName="露娜导师"
-          emoji="📖"
-          title="课前 5 分钟趣味导入"
-          body="课前热身故事有助于集中注意力。今天的内容将带领你一起探索微观世界的奥秘。"
+          emoji="📐"
+          title="课前 5 分钟线段与角复习"
+          body="温故知新：复习角平分线与对顶角性质，为平行线性质定理打下坚实基础。"
           ctaLabel="开启热身导入"
         />
       </div>

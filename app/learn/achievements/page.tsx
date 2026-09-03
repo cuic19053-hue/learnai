@@ -16,27 +16,26 @@ type Badge = {
 };
 
 const SAMPLE: Record<string, Badge[]> = {
-  kids: [
-    { emoji: "🌟", name: "First star", desc: "Finished your first activity.", earned: true },
-    { emoji: "🦁", name: "Animal counter", desc: "Counted the jungle animals.", earned: true },
-    { emoji: "🎨", name: "Colour master", desc: "Match every colour.", earned: false },
+  GRADE_6: [
+    { emoji: "🔢", name: "分数运算达人", desc: "完成了分数的通分与四则运算任务。", earned: true },
+    { emoji: "📏", name: "长方体小能手", desc: "成功测算长方体表面积与容积。", earned: true },
+    { emoji: "📐", name: "数轴探索者", desc: "掌握有理数加减法与数轴对应关系。", earned: false },
   ],
   GRADE_7: [
-    { emoji: "🔬", name: "七年级生命科学勋章", desc: "完成了显微镜结构探究任务。", earned: true },
-    { emoji: "🦊", name: "持之以恒", desc: "连续打卡学习 5 天。", earned: true },
-    { emoji: "🧩", name: "逻辑小达人", desc: "完成 10 道逻辑思维推理题。", earned: false },
+    { emoji: "📐", name: "平行线性质勋章", desc: "完成了平行线截角性质探究任务。", earned: true },
+    { emoji: "✂️", name: "因式分解大师", desc: "掌握十字相乘法与平方差公式。", earned: true },
+    { emoji: "🧩", name: "二次根式化简能手", desc: "完成 10 道二次根式最简形式化简题。", earned: false },
   ],
   GRADE_8: [
-    { emoji: "🛠️", name: "初次尝试", desc: "编写并运行了你的第一个 Python 函数。", earned: true },
-    { emoji: "🔥", name: "连续打卡 12 天", desc: "坚持每天完成一项学科练习。", earned: true },
-    { emoji: "⚡", name: "神速达人", desc: "在 10 分钟内高效完成一项任务。", earned: true },
-    { emoji: "🐍", name: "计算器专家", desc: "成功发布 Python 计算器防错程序。", earned: false },
-    { emoji: "🧠", name: "逻辑电路宗师", desc: "在与门/或门/非门任务中斩获满分。", earned: false },
+    { emoji: "📊", name: "一次函数分析师", desc: "掌握一次函数图象与 k、b 符号规律。", earned: true },
+    { emoji: "🔥", name: "求根公式专家", desc: "熟练运用 b²-4ac 解一元二次方程。", earned: true },
+    { emoji: "📐", name: "全等三角形几何神童", desc: "熟练运用 SAS/ASA 进行几何证明。", earned: true },
+    { emoji: "📐", name: "勾股定理巧用", desc: "解决几何图形折叠与最短路径问题。", earned: false },
   ],
   GRADE_9: [
-    { emoji: "🎓", name: "中考备战完备", desc: "通过一次全真中考模拟考试。", earned: false },
-    { emoji: "📈", name: "突破自我", desc: "提升任意薄弱学科掌握度 10 分。", earned: true },
-    { emoji: "📝", name: "30 天冲刺打卡", desc: "按计划坚持 30 天冲刺学习。", earned: false },
+    { emoji: "🎓", name: "中考三角函数全胜", desc: "在锐角三角函数测量应用中获得满分。", earned: true },
+    { emoji: "📈", name: "相似三角形与圆", desc: "攻克近 5 年上海中考第 24 题切线证明。", earned: true },
+    { emoji: "📝", name: "上海中考数学压轴突破", desc: "成功解答二次函数顶点式与动点综合题。", earned: false },
   ],
   adult: [
     { emoji: "☁️", name: "Networking sprint", desc: "Finish the VPC sprint.", earned: true },

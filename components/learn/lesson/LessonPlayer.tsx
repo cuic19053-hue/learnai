@@ -13,32 +13,32 @@ import type { MissionPracticePayload } from "@/lib/learn/missions";
 
 type Token = { id: string; label: string; emoji: string };
 
-/** 默认七年级生命科学 - 显微镜结构练习数据 */
-const DEFAULT_MICROSCOPE_PRACTICE: MissionPracticePayload = {
-  prompt: "拖拽各个部件标签到显微镜对应的正确位置",
-  subject: "生命科学",
-  teacherName: "雷克斯导师",
-  teacherEmoji: "🔬",
-  diagramLabel: "🔬 沪教版七年级生命科学 - 显微镜结构图",
+/** 默认七年级数学 - 相交线与平行线性质练习数据 */
+const DEFAULT_MATH_PRACTICE: MissionPracticePayload = {
+  prompt: "拖拽角的位置名称标签到几何图形对应的正确位置",
+  subject: "数学",
+  teacherName: "诺瓦导师",
+  teacherEmoji: "📐",
+  diagramLabel: "📐 沪教版七年级数学 - 两直线被第三条直线所截角的关系图",
   diagramGradient: "linear-gradient(180deg, #f0fdf4 0%, #e0f2fe 60%, #bae6fd 100%)",
   targets: [
-    { id: "eyepiece", label: "目镜", x: "50%", y: "20%" },
-    { id: "objective", label: "物镜", x: "50%", y: "45%" },
-    { id: "stage", label: "载物台", x: "50%", y: "65%" },
+    { id: "corresponding", label: "同位角 (∠1与∠5)", x: "50%", y: "25%" },
+    { id: "alternate", label: "内错角 (∠3与∠5)", x: "50%", y: "50%" },
+    { id: "consecutive", label: "同旁内角 (∠4与∠5)", x: "50%", y: "75%" },
   ],
   tokens: [
-    { id: "eyepiece", emoji: "👁️", label: "目镜" },
-    { id: "objective", emoji: "🔬", label: "物镜" },
-    { id: "stage", emoji: "🔲", label: "载物台" },
-    { id: "mirror", emoji: "🪞", label: "反光镜" },
+    { id: "corresponding", emoji: "📐", label: "同位角" },
+    { id: "alternate", emoji: "🔀", label: "内错角" },
+    { id: "consecutive", emoji: "↔️", label: "同旁内角" },
+    { id: "opposite", emoji: "✖️", label: "对顶角" },
   ],
-  initialPlaced: { eyepiece: "eyepiece", objective: null, stage: null },
+  initialPlaced: { corresponding: "corresponding", alternate: null, consecutive: null },
   initialFeedback:
-    "太棒了！目镜位置正确。目镜用于放大标本影像。下一步：试着找出物镜的位置吧！",
+    "太棒了！同位角位置正确。两条直线被第三条直线所截，在截线的同旁且在被截两直线的同一侧的角叫同位角。下一步：试着找出内错角的位置吧！",
   hintLadder: [
-    { emoji: "💡", text: "靠近观察者眼睛的上方镜头是目镜。" },
-    { emoji: "🔬", text: "靠近被观察切片标本的下镜头是物镜。" },
-    { emoji: "🪞", text: "用于放置切片玻片的平台是载物台。" },
+    { emoji: "💡", text: "在截线同侧且在两条被截直线同一位置的角是同位角。" },
+    { emoji: "🔀", text: "在截线两侧且在两条被截直线之间的角是内错角 (呈现 Z 字形)。" },
+    { emoji: "↔️", text: "在截线同侧且在两条被截直线之间的角是同旁内角 (呈现 U 字形)。" },
   ],
 };
 
@@ -63,7 +63,7 @@ export default function LessonPlayer({
   subject,
   practice,
 }: LessonPlayerProps) {
-  const payload = practice ?? DEFAULT_MICROSCOPE_PRACTICE;
+  const payload = practice ?? DEFAULT_MATH_PRACTICE;
   const TARGETS = payload.targets;
   const TOKENS = payload.tokens;
   const HINT_LADDER = payload.hintLadder;
