@@ -1,16 +1,16 @@
-const http = require('http');
-const https = require('https');
-const { exec } = require('child_process');
-const fs = require('fs');
-const path = require('path');
-const crypto = require('crypto');
+const http = require("http");
+const https = require("https");
+const { exec } = require("child_process");
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
 
 const PORT = 3888;
 const WORK_DIR = process.cwd();
-const CONVERSATION_ID = 'fc80e2b5-7c7f-400e-854f-7d82dbf20c97';
+const CONVERSATION_ID = "fc80e2b5-7c7f-400e-854f-7d82dbf20c97";
 const BRAIN_MESSAGES_DIR = `C:\\Users\\ch666\\.gemini\\antigravity-ide\\brain\\${CONVERSATION_ID}\\.system_generated\\messages`;
-const HISTORY_FILE = path.join(__dirname, 'mobile-history.json');
-const DASHSCOPE_API_KEY = process.env.DASHSCOPE_API_KEY || 'sk-d3a23ff80981440e875bb22f9611e9dd';
+const HISTORY_FILE = path.join(__dirname, "mobile-history.json");
+const DASHSCOPE_API_KEY = process.env.DASHSCOPE_API_KEY || "sk-d3a23ff80981440e875bb22f9611e9dd";
 
 let sseClients = [];
 let lastProcessedCount = 0;
@@ -18,7 +18,7 @@ let lastProcessedCount = 0;
 function loadHistory() {
   try {
     if (fs.existsSync(HISTORY_FILE)) {
-      const data = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8'));
+      const data = JSON.parse(fs.readFileSync(HISTORY_FILE, "utf8"));
       return Array.isArray(data) ? data : [];
     }
   } catch (e) {}
@@ -27,7 +27,7 @@ function loadHistory() {
 
 function saveHistory(list) {
   try {
-    fs.writeFileSync(HISTORY_FILE, JSON.stringify(list, null, 2), 'utf8');
+    fs.writeFileSync(HISTORY_FILE, JSON.stringify(list, null, 2), "utf8");
   } catch (e) {}
 }
 
@@ -36,8 +36,10 @@ lastProcessedCount = chatHistory.length;
 
 function broadcastSSE(data) {
   const payload = `data: ${JSON.stringify(data)}\n\n`;
-  sseClients.forEach(client => {
-    try { client.write(payload); } catch(e){}
+  sseClients.forEach((client) => {
+    try {
+      client.write(payload);
+    } catch (e) {}
   });
 }
 
@@ -48,16 +50,25 @@ fs.watchFile(HISTORY_FILE, { interval: 200 }, () => {
     const newItems = latest.slice(lastProcessedCount);
     chatHistory = latest;
     lastProcessedCount = latest.length;
-    newItems.forEach(item => {
-      broadcastSSE({ type: 'ai_end', id: item.id, fullText: item.text, time: item.time, sender: item.sender, device: item.device });
+    newItems.forEach((item) => {
+      broadcastSSE({
+        type: "ai_end",
+        id: item.id,
+        fullText: item.text,
+        time: item.time,
+        sender: item.sender,
+        device: item.device,
+      });
     });
   }
 });
 
 // Periodic heartbeat ping to keep iOS Safari EventSource alive
 setInterval(() => {
-  sseClients.forEach(client => {
-    try { client.write(':ping\n\n'); } catch(e){}
+  sseClients.forEach((client) => {
+    try {
+      client.write(":ping\n\n");
+    } catch (e) {}
   });
 }, 3000);
 
@@ -76,14 +87,14 @@ function injectMessageToAntigravityIDE(promptText, deviceName) {
       priority: "MESSAGE_PRIORITY_HIGH",
       timestamp: new Date().toISOString(),
       renderDetails: {
-        messageTitle: `📱 iPhone 发来实时指令 (${deviceName})`
+        messageTitle: `📱 iPhone 发来实时指令 (${deviceName})`,
       },
-      content: `[来自 iPhone 移动端的实时指令]: ${promptText}`
+      content: `[来自 iPhone 移动端的实时指令]: ${promptText}`,
     };
-    fs.writeFileSync(filePath, JSON.stringify(messagePayload, null, 2), 'utf8');
+    fs.writeFileSync(filePath, JSON.stringify(messagePayload, null, 2), "utf8");
     console.log(`[IDE Bridge]: Injected prompt into Antigravity IDE: ${promptText}`);
   } catch (e) {
-    console.error('[IDE Bridge Error]:', e);
+    console.error("[IDE Bridge Error]:", e);
   }
 }
 
@@ -467,105 +478,130 @@ const HTML_CONTENT = `<!DOCTYPE html>
 </html>`;
 
 const server = http.createServer((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === 'OPTIONS') {
+  if (req.method === "OPTIONS") {
     res.writeHead(204);
     res.end();
     return;
   }
 
-  if (req.method === 'GET' && req.url === '/api/events') {
+  if (req.method === "GET" && req.url === "/api/events") {
     res.writeHead(200, {
-      'Content-Type': 'text/event-stream',
-      'Cache-Control': 'no-cache',
-      'Connection': 'keep-alive'
+      "Content-Type": "text/event-stream",
+      "Cache-Control": "no-cache",
+      Connection: "keep-alive",
     });
 
     sseClients.push(res);
-    res.write(`data: ${JSON.stringify({ type: 'history', list: chatHistory })}\n\n`);
+    res.write(`data: ${JSON.stringify({ type: "history", list: chatHistory })}\n\n`);
 
-    req.on('close', () => {
-      sseClients = sseClients.filter(c => c !== res);
+    req.on("close", () => {
+      sseClients = sseClients.filter((c) => c !== res);
     });
     return;
   }
 
-  if (req.method === 'GET' && (req.url === '/' || req.url === '/index.html')) {
-    res.writeHead(200, { 
-      'Content-Type': 'text/html; charset=utf-8',
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0'
+  if (req.method === "GET" && (req.url === "/" || req.url === "/index.html")) {
+    res.writeHead(200, {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      Pragma: "no-cache",
+      Expires: "0",
     });
     res.end(HTML_CONTENT);
     return;
   }
 
-  if (req.method === 'GET' && req.url === '/api/history') {
-    res.writeHead(200, { 
-      'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-      'Pragma': 'no-cache',
-      'Expires': '0'
+  if (req.method === "GET" && req.url === "/api/history") {
+    res.writeHead(200, {
+      "Content-Type": "application/json; charset=utf-8",
+      "Cache-Control": "no-cache, no-store, must-revalidate",
+      Pragma: "no-cache",
+      Expires: "0",
     });
     res.end(JSON.stringify(chatHistory));
     return;
   }
 
-  if (req.method === 'POST' && req.url === '/api/chat') {
-    let body = '';
-    req.on('data', chunk => body += chunk);
-    req.on('end', async () => {
+  if (req.method === "POST" && req.url === "/api/chat") {
+    let body = "";
+    req.on("data", (chunk) => (body += chunk));
+    req.on("end", async () => {
       try {
         const { prompt, device, id } = JSON.parse(body);
-        const devName = device || 'iPhone';
+        const devName = device || "iPhone";
         const userMsgId = id || Date.now();
-        const userTime = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-        
-        const userMsgObj = { id: userMsgId, sender: 'user', device: devName, text: prompt, time: userTime };
+        const userTime = new Date().toLocaleTimeString("zh-CN", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const userMsgObj = {
+          id: userMsgId,
+          sender: "user",
+          device: devName,
+          text: prompt,
+          time: userTime,
+        };
         chatHistory.push(userMsgObj);
         lastProcessedCount = chatHistory.length; // PREVENT fs.watchFile loop!
         saveHistory(chatHistory);
 
-        broadcastSSE({ type: 'user_msg', ...userMsgObj });
+        broadcastSSE({ type: "user_msg", ...userMsgObj });
 
         // Inject to Antigravity IDE queue
         injectMessageToAntigravityIDE(prompt, devName);
 
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
         res.end(JSON.stringify({ ok: true }));
-      } catch(e) {
-        console.error('[Error processing chat]:', e);
-        res.writeHead(500, { 'Content-Type': 'application/json' });
+      } catch (e) {
+        console.error("[Error processing chat]:", e);
+        res.writeHead(500, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ error: e.message }));
       }
     });
     return;
   }
 
-  if (req.method === 'POST' && req.url === '/api/ai_reply') {
-    let body = '';
-    req.on('data', chunk => body += chunk);
-    req.on('end', async () => {
+  if (req.method === "POST" && req.url === "/api/ai_reply") {
+    let body = "";
+    req.on("data", (chunk) => (body += chunk));
+    req.on("end", async () => {
       try {
         const { text } = JSON.parse(body);
-        const aiMsgId = 'ai_' + Date.now();
-        const aiTime = new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
-        
-        const aiMsgObj = { id: aiMsgId, sender: 'ai', device: 'Antigravity AI', text: text, time: aiTime };
+        const aiMsgId = "ai_" + Date.now();
+        const aiTime = new Date().toLocaleTimeString("zh-CN", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        const aiMsgObj = {
+          id: aiMsgId,
+          sender: "ai",
+          device: "Antigravity AI",
+          text: text,
+          time: aiTime,
+        };
         chatHistory.push(aiMsgObj);
         lastProcessedCount = chatHistory.length;
         saveHistory(chatHistory);
 
-        broadcastSSE({ type: 'ai_end', fullText: text, id: aiMsgId, time: aiTime, sender: 'ai', device: 'Antigravity AI' });
+        broadcastSSE({
+          type: "ai_end",
+          fullText: text,
+          id: aiMsgId,
+          time: aiTime,
+          sender: "ai",
+          device: "Antigravity AI",
+        });
 
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
         res.end(JSON.stringify({ ok: true }));
-      } catch(e) {
-        res.writeHead(500, { 'Content-Type': 'application/json' });
+      } catch (e) {
+        res.writeHead(500, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ error: e.message }));
       }
     });
@@ -573,10 +609,10 @@ const server = http.createServer((req, res) => {
   }
 
   res.writeHead(404);
-  res.end('Not Found');
+  res.end("Not Found");
 });
 
-server.listen(PORT, '0.0.0.0', () => {
+server.listen(PORT, "0.0.0.0", () => {
   console.log(`====================================================`);
   console.log(`💻 Antigravity IDE ↔ 📱 iPhone 双重零延迟同步服务已启动！`);
   console.log(`- 局域网访问地址: http://172.20.10.4:${PORT}`);

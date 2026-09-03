@@ -113,8 +113,8 @@ export default function AdminLoops() {
             </div>
             <p className="mt-1 text-[13px] leading-relaxed text-ink">
               <b>Reflect</b> is your biggest drop (−16%). Move the Shatalov reference signal earlier
-              and reduce the reflection prompt to one sentence. GRADE_8 + GRADE_7 worlds account
-              for 70% of the drop.
+              and reduce the reflection prompt to one sentence. GRADE_8 + GRADE_7 worlds account for
+              70% of the drop.
             </p>
           </div>
         </section>
