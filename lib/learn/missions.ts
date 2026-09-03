@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Mission catalog — replaces the previous `SAMPLE` hard-coded list in
  * `app/learn/missions/page.tsx` and makes "Resume" world-aware.
  *
@@ -60,84 +60,84 @@ export type Mission = {
 // ── Per-mission practice payloads ───────────────────────────────────
 
 const PYTHON_CALCULATOR_PRACTICE: MissionPracticePayload = {
-  prompt: "Drop each snippet into the right slot of divide(a, b)",
-  subject: "Coding",
-  diagramLabel: "🐍 divide(a, b) — Python function template",
+  prompt: "将代码代码块放入 divide(a, b) 函数的正确位置",
+  subject: "信息技术",
+  diagramLabel: "🐍 divide(a, b) — Python 除法函数模板",
   diagramGradient: "linear-gradient(180deg, #f5f3ff 0%, #e0e7ff 60%, #c7d2fe 100%)",
   targets: [
-    { id: "guard", label: "1 · Guard against b == 0", x: "20%", y: "30%" },
-    { id: "raise", label: "2 · Raise a clear error", x: "50%", y: "55%" },
-    { id: "return", label: "3 · Otherwise return a / b", x: "82%", y: "80%" },
+    { id: "guard", label: "1 · 检查除数 b 是否为 0", x: "20%", y: "30%" },
+    { id: "raise", label: "2 · 抛出明确的除零错误", x: "50%", y: "55%" },
+    { id: "return", label: "3 · 否则返回 a / b 的计算结果", x: "82%", y: "80%" },
   ],
   tokens: [
     { id: "guard", emoji: "🛡️", label: "if b == 0:" },
-    { id: "raise", emoji: "🚨", label: "raise ZeroDivisionError('b must be non-zero')" },
+    { id: "raise", emoji: "🚨", label: "raise ZeroDivisionError('除数不能为0')" },
     { id: "return", emoji: "✅", label: "return a / b" },
-    { id: "noop", emoji: "🪤", label: "return None  # silently swallow" },
+    { id: "noop", emoji: "🪤", label: "return None  # 盲目吞掉错误" },
   ],
   initialPlaced: { guard: "guard", raise: null, return: null },
   initialFeedback:
-    "Good — the guard goes first. Now: what should happen when b is 0? Silent return None hides bugs; a raised error makes the contract obvious.",
+    "很好！防御性判断放在第一步。当 b 为 0 时，应当主动抛出异常，而不是静默返回 None。",
   hintLadder: [
-    { emoji: "💡", text: "Catch the bad input early — check b before dividing." },
-    { emoji: "🚨", text: "Python's built-in ZeroDivisionError is the conventional signal." },
-    { emoji: "✅", text: "Return None on bad input hides the problem from the caller." },
+    { emoji: "💡", text: "在计算前先检查输入参数，防止程序崩溃。" },
+    { emoji: "🚨", text: "Python 中常用 ZeroDivisionError 表示除零异常。" },
+    { emoji: "✅", text: "遇到非法参数直接 return None 会隐瞒潜在的 Bug。" },
   ],
-  teacherName: "Nova",
+  teacherName: "诺瓦导师",
   teacherEmoji: "🦉",
 };
 
 const LOGIC_GATES_PRACTICE: MissionPracticePayload = {
-  prompt: "Match each truth-table row to the gate that produces it",
-  subject: "Coding",
-  diagramLabel: "🔌 Gate truth tables (A, B → out)",
+  prompt: "将真值表与对应的逻辑门匹配",
+  subject: "信息技术",
+  diagramLabel: "🔌 逻辑门真值表 (A, B → 输出)",
   diagramGradient: "linear-gradient(180deg, #ecfeff 0%, #cffafe 60%, #a5f3fc 100%)",
   targets: [
-    { id: "and", label: "1·1=1 · others=0", x: "18%", y: "40%" },
-    { id: "or", label: "0·0=0 · others=1", x: "50%", y: "40%" },
-    { id: "not", label: "0→1 · 1→0", x: "82%", y: "40%" },
+    { id: "and", label: "全1为1 · 其他为0", x: "18%", y: "40%" },
+    { id: "or", label: "全0为0 · 其他为1", x: "50%", y: "40%" },
+    { id: "not", label: "取反：0→1 · 1→0", x: "82%", y: "40%" },
   ],
   tokens: [
-    { id: "and", emoji: "∧", label: "AND" },
-    { id: "or", emoji: "∨", label: "OR" },
-    { id: "not", emoji: "¬", label: "NOT" },
-    { id: "xor", emoji: "⊕", label: "XOR" },
+    { id: "and", emoji: "∧", label: "与门 (AND)" },
+    { id: "or", emoji: "∨", label: "或门 (OR)" },
+    { id: "not", emoji: "¬", label: "非门 (NOT)" },
+    { id: "xor", emoji: "⊕", label: "异或门 (XOR)" },
   ],
   initialFeedback:
-    "Read the table, then drop the gate label that produces it. AND is the strict one — it only fires when both inputs are true.",
+    "观察真值表，然后拖拽对应的逻辑门。与门是严格的 — 只有当两个输入均为 1 时输出才是 1。",
   hintLadder: [
-    { emoji: "💡", text: "AND outputs 1 only when both inputs are 1." },
-    { emoji: "🔌", text: "OR outputs 0 only when both inputs are 0." },
-    { emoji: "🔁", text: "NOT takes one input and flips it." },
+    { emoji: "💡", text: "与门只有在两个输入均为 1 时输出 1。" },
+    { emoji: "🔌", text: "或门只有在两个输入均为 0 时输出 0。" },
+    { emoji: "🔁", text: "非门接收一个输入并对其进行反转。" },
   ],
-  teacherName: "Nova",
+  teacherName: "诺瓦导师",
   teacherEmoji: "🦉",
 };
 
 const ALGEBRA_PRACTICE: MissionPracticePayload = {
-  prompt: "Order the steps to solve  3x + 5 = 20  for x",
-  subject: "Math",
-  diagramLabel: "📐 Solving for x — step-by-step grid",
+  prompt: "按照正确的步骤求解方程 3x + 5 = 20 中的未知数 x",
+  subject: "数学",
+  diagramLabel: "📐 求解未知数 x — 步骤演示",
   diagramGradient: "linear-gradient(180deg, #fdf4ff 0%, #fae8ff 60%, #f5d0fe 100%)",
   targets: [
-    { id: "subtract", label: "1 · Isolate the x term", x: "18%", y: "30%" },
-    { id: "divide", label: "2 · Solve for x", x: "50%", y: "50%" },
-    { id: "check", label: "3 · Verify in the original", x: "82%", y: "75%" },
+    { id: "subtract", label: "1 · 移项化简含 x 的项", x: "18%", y: "30%" },
+    { id: "divide", label: "2 · 求解未知数 x", x: "50%", y: "50%" },
+    { id: "check", label: "3 · 代入原方程检验", x: "82%", y: "75%" },
   ],
   tokens: [
-    { id: "subtract", emoji: "➖", label: "Subtract 5 from both sides → 3x = 15" },
-    { id: "divide", emoji: "➗", label: "Divide both sides by 3 → x = 5" },
-    { id: "check", emoji: "✅", label: "Substitute x = 5 → 3(5)+5 = 20 ✓" },
-    { id: "expand", emoji: "🪤", label: "Multiply both sides by 3 (wrong move)" },
+    { id: "subtract", emoji: "➖", label: "等式两边同时减去 5 → 3x = 15" },
+    { id: "divide", emoji: "➗", label: "等式两边同时除以 3 → x = 5" },
+    { id: "check", emoji: "✅", label: "代入 x = 5 检验 → 3(5)+5 = 20 ✓" },
+    { id: "expand", emoji: "🪤", label: "等式两边乘以 3 (错误步骤)" },
   ],
   initialFeedback:
-    "Always isolate the variable first, then solve, then double-check by substituting. The trap option does the opposite of what you need.",
+    "解方程时优先隔离变量，再求解未知数，最后代入原方程化简检验。",
   hintLadder: [
-    { emoji: "💡", text: "Undo the +5 first, before touching the 3 in front of x." },
-    { emoji: "➗", text: "Once you have 3x = 15, divide both sides by 3." },
-    { emoji: "✅", text: "Verification is non-optional — it catches arithmetic slips." },
+    { emoji: "💡", text: "先处理常数项 +5，两边同减 5。" },
+    { emoji: "➗", text: "得到 3x = 15 后，两边同除以 3。" },
+    { emoji: "✅", text: "代入检验是必不可少的步骤，能及时发现计算错误。" },
   ],
-  teacherName: "Nova",
+  teacherName: "诺瓦导师",
   teacherEmoji: "🦉",
 };
 
@@ -227,56 +227,56 @@ const RIVER_PUZZLE_PRACTICE: MissionPracticePayload = {
 };
 
 const TRIG_PRACTICE: MissionPracticePayload = {
-  prompt: "Match each ratio to its name on the right triangle (SOH · CAH · TOA)",
-  subject: "Math",
-  diagramLabel: "📐 Right triangle · opposite · adjacent · hypotenuse",
+  prompt: "将三角函数公式匹配到直角三角形对应边长比例",
+  subject: "数学",
+  diagramLabel: "📐 直角三角形 (对边 · 邻边 · 斜边)",
   diagramGradient: "linear-gradient(180deg, #fff7ed 0%, #fed7aa 60%, #fdba74 100%)",
   targets: [
-    { id: "sin", label: "1 · sin θ", x: "20%", y: "30%" },
-    { id: "cos", label: "2 · cos θ", x: "50%", y: "55%" },
-    { id: "tan", label: "3 · tan θ", x: "82%", y: "80%" },
+    { id: "sin", label: "1 · 正弦 sin θ", x: "20%", y: "30%" },
+    { id: "cos", label: "2 · 余弦 cos θ", x: "50%", y: "55%" },
+    { id: "tan", label: "3 · 正切 tan θ", x: "82%", y: "80%" },
   ],
   tokens: [
-    { id: "sin", emoji: "📏", label: "Opposite / Hypotenuse" },
-    { id: "cos", emoji: "📐", label: "Adjacent / Hypotenuse" },
-    { id: "tan", emoji: "🧭", label: "Opposite / Adjacent" },
-    { id: "csc", emoji: "🪤", label: "Hypotenuse / Adjacent (that's secant, not what we asked)" },
+    { id: "sin", emoji: "📏", label: "对边 / 斜边" },
+    { id: "cos", emoji: "📐", label: "邻边 / 斜边" },
+    { id: "tan", emoji: "🧭", label: "对边 / 邻边" },
+    { id: "csc", emoji: "🪤", label: "斜边 / 邻边 (余割/正割错误项)" },
   ],
   initialFeedback:
-    "SOH-CAH-TOA. Sine is Opposite-over-Hypotenuse, Cosine is Adjacent-over-Hypotenuse, Tangent is Opposite-over-Adjacent.",
+    "牢记三角函数定义：正弦(sin)是对边比斜边，余弦(cos)是邻边比斜边，正切(tan)是对边比邻边。",
   hintLadder: [
-    { emoji: "💡", text: "The hypotenuse is always the longest side — opposite the right angle." },
-    { emoji: "📐", text: "'Opposite' is the side facing the angle θ you're working with." },
-    { emoji: "🧭", text: "Tangent is the only ratio that doesn't involve the hypotenuse." },
+    { emoji: "💡", text: "斜边总是直角三角形中最长的边 — 位于直角的对立面。" },
+    { emoji: "📐", text: "“对边”是面向你正在研究的夹角 θ 的那条边。" },
+    { emoji: "🧭", text: "正切是唯一不涉及斜边的比值。" },
   ],
-  teacherName: "Mentor Max",
+  teacherName: "导师 Max",
   teacherEmoji: "🎓",
 };
 
 const QUADRATICS_PRACTICE: MissionPracticePayload = {
-  prompt: "Place each part of the quadratic formula into the correct slot",
-  subject: "Math",
-  diagramLabel: "📊 Quadratic formula · x = (-b ± √(b²-4ac)) / 2a",
+  prompt: "将一元二次方程求根公式的各部分放入对应位置",
+  subject: "数学",
+  diagramLabel: "📊 求根公式 x = (-b ± √(b²-4ac)) / 2a",
   diagramGradient: "linear-gradient(180deg, #ede9fe 0%, #c4b5fd 60%, #a78bfa 100%)",
   targets: [
-    { id: "negB", label: "1 · numerator starts with…", x: "18%", y: "40%" },
-    { id: "discrim", label: "2 · what's inside the √?", x: "50%", y: "50%" },
-    { id: "denom", label: "3 · the denominator is…", x: "82%", y: "60%" },
+    { id: "negB", label: "1 · 分子开头的符号与项", x: "18%", y: "40%" },
+    { id: "discrim", label: "2 · 根号内的判别式 Δ", x: "50%", y: "50%" },
+    { id: "denom", label: "3 · 分母项", x: "82%", y: "60%" },
   ],
   tokens: [
     { id: "negB", emoji: "➖", label: "-b" },
     { id: "discrim", emoji: "🔍", label: "b² - 4ac" },
     { id: "denom", emoji: "✂️", label: "2a" },
-    { id: "wrong", emoji: "🪤", label: "b² + 4ac (sign flipped — common slip)" },
+    { id: "wrong", emoji: "🪤", label: "b² + 4ac (符号混淆项)" },
   ],
   initialFeedback:
-    "The quadratic formula has three pieces: the numerator's leading term, the discriminant inside the square root, and the denominator.",
+    "一元二次方程求根公式由三部分组成：分子首项 -b，根号内的判别式 Δ=b²-4ac，以及分母 2a。",
   hintLadder: [
-    { emoji: "💡", text: "The sign in front of b in the numerator is negative." },
-    { emoji: "🔍", text: "The discriminant b² − 4ac tells you if the roots are real." },
-    { emoji: "✂️", text: "The denominator is 2a, not just a." },
+    { emoji: "💡", text: "分子中 b 前面的符号固定为负号。" },
+    { emoji: "🔍", text: "判别式 b² − 4ac 决定方程是否有实数根。" },
+    { emoji: "✂️", text: "分母是 2a，而不是仅仅为 a。" },
   ],
-  teacherName: "Mentor Max",
+  teacherName: "导师 Max",
   teacherEmoji: "🎓",
 };
 
@@ -420,33 +420,31 @@ export const MISSIONS: Record<string, Mission[]> = {
   GRADE_7: [
     {
       id: "GRADE_7-volcano",
-      title: "Why does a volcano erupt?",
-      subject: "Science",
+      title: "沪教版七年级生命科学 - 显微镜的使用",
+      subject: "生命科学",
       status: "active",
       progressPct: 50,
-      // No `practice` here — falls back to LessonPlayer's default
-      // volcano payload, which IS this mission's content.
     },
     {
       id: "GRADE_7-clouds",
-      title: "How do clouds make rain?",
-      subject: "Science",
+      title: "自然地理：水循环与降水的形成",
+      subject: "地理",
       status: "completed",
       progressPct: 100,
       practice: CLOUDS_RAIN_PRACTICE,
     },
     {
       id: "GRADE_7-reading",
-      title: "Reading: tiger cubs",
-      subject: "Reading",
+      title: "语文阅读：动物观察与心理推断",
+      subject: "语文",
       status: "active",
       progressPct: 25,
       practice: READING_TIGER_PRACTICE,
     },
     {
       id: "GRADE_7-river",
-      title: "Solve the river puzzle",
-      subject: "Logic",
+      title: "逻辑思维：逻辑推理与过河问题",
+      subject: "逻辑",
       status: "active",
       progressPct: 20,
       practice: RIVER_PUZZLE_PRACTICE,
@@ -454,37 +452,33 @@ export const MISSIONS: Record<string, Mission[]> = {
   ],
   GRADE_8: [
     {
-      // Slug matches the seeded GRADE_8Mission in lib/GRADE_8/missions.ts
-      // so the portal's "Continue with Reflect" → /learn/lesson/GRADE_8
-      // ?mission=python-calculator hand-off resolves to a real practice
-      // payload (instead of falling back to the GRADE_7 volcano demo).
       id: "python-calculator",
-      title: "Build a calculator in Python",
-      subject: "Coding",
+      title: "沪科版八年级物理/信息：Python 计算器与逻辑判断",
+      subject: "信息技术",
       status: "active",
       progressPct: 67,
       practice: PYTHON_CALCULATOR_PRACTICE,
     },
     {
       id: "logic-gates",
-      title: "Logic gates: AND, OR, NOT",
-      subject: "Coding",
+      title: "逻辑电路：与门、或门与非门原理",
+      subject: "信息技术",
       status: "active",
       progressPct: 30,
       practice: LOGIC_GATES_PRACTICE,
     },
     {
       id: "algebra-x",
-      title: "Algebra: solving for x",
-      subject: "Math",
+      title: "沪教版八年级数学：一元一次方程求解",
+      subject: "数学",
       status: "completed",
       progressPct: 100,
       practice: ALGEBRA_PRACTICE,
     },
     {
       id: "GRADE_8-ttt",
-      title: "Build a tic-tac-toe game",
-      subject: "Coding",
+      title: "综合实践：制作井字棋小游戏",
+      subject: "编程",
       status: "locked",
       progressPct: 0,
     },
@@ -492,32 +486,32 @@ export const MISSIONS: Record<string, Mission[]> = {
   GRADE_9: [
     {
       id: "GRADE_9-trig",
-      title: "Trigonometry: sine & cosine",
-      subject: "Math",
+      title: "沪教版九年级数学：锐角三角函数 (sin, cos, tan)",
+      subject: "数学",
       status: "active",
       progressPct: 40,
       practice: TRIG_PRACTICE,
     },
     {
       id: "GRADE_9-quadratics",
-      title: "Algebra: quadratic equations",
-      subject: "Math",
+      title: "沪教版九年级数学：一元二次方程求根公式",
+      subject: "数学",
       status: "active",
       progressPct: 68,
       practice: QUADRATICS_PRACTICE,
     },
     {
       id: "GRADE_9-probability",
-      title: "Probability fundamentals",
-      subject: "Math",
+      title: "九年级数学中考复习：概率初步与树状图",
+      subject: "数学",
       status: "active",
       progressPct: 75,
       practice: PROBABILITY_PRACTICE,
     },
     {
       id: "GRADE_9-exam",
-      title: "Practice exam: Set A",
-      subject: "Exam",
+      title: "上海中考全科模拟套卷 A",
+      subject: "中考",
       status: "locked",
       progressPct: 0,
     },

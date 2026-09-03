@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
@@ -13,31 +13,32 @@ import type { MissionPracticePayload } from "@/lib/learn/missions";
 
 type Token = { id: string; label: string; emoji: string };
 
-/** Default volcano payload — preserves the original GRADE_7 demo so
- *  callers that don't pass a `practice` prop see the same UI as before. */
-const DEFAULT_VOLCANO_PRACTICE: MissionPracticePayload = {
-  prompt: "Drag each label to the correct part of the volcano",
-  subject: "Science",
-  diagramLabel: "🌋 Cross-section diagram (volcano)",
-  diagramGradient: "linear-gradient(180deg, #fef9e7 0%, #fde2c8 60%, #f8b78a 100%)",
+/** 默认七年级生命科学 - 显微镜结构练习数据 */
+const DEFAULT_MICROSCOPE_PRACTICE: MissionPracticePayload = {
+  prompt: "拖拽各个部件标签到显微镜对应的正确位置",
+  subject: "生命科学",
+  teacherName: "雷克斯导师",
+  teacherEmoji: "🔬",
+  diagramLabel: "🔬 沪教版七年级生命科学 - 显微镜结构图",
+  diagramGradient: "linear-gradient(180deg, #f0fdf4 0%, #e0f2fe 60%, #bae6fd 100%)",
   targets: [
-    { id: "magma", label: "Magma chamber", x: "18%", y: "55%" },
-    { id: "vent", label: "Vent", x: "50%", y: "40%" },
-    { id: "ash", label: "Ash cloud", x: "78%", y: "15%" },
+    { id: "eyepiece", label: "目镜", x: "50%", y: "20%" },
+    { id: "objective", label: "物镜", x: "50%", y: "45%" },
+    { id: "stage", label: "载物台", x: "50%", y: "65%" },
   ],
   tokens: [
-    { id: "magma", emoji: "🟠", label: "Magma chamber" },
-    { id: "ash", emoji: "☁️", label: "Ash cloud" },
-    { id: "crust", emoji: "🪨", label: "Crust" },
-    { id: "lava", emoji: "🔥", label: "Lava flow" },
+    { id: "eyepiece", emoji: "👁️", label: "目镜" },
+    { id: "objective", emoji: "🔬", label: "物镜" },
+    { id: "stage", emoji: "🔲", label: "载物台" },
+    { id: "mirror", emoji: "🪞", label: "反光镜" },
   ],
-  initialPlaced: { magma: null, vent: "vent", ash: null },
+  initialPlaced: { eyepiece: "eyepiece", objective: null, stage: null },
   initialFeedback:
-    "Nice — that vent is right! Magma comes up through the vent. Now: where does the magma start?",
+    "太棒了！目镜位置正确。目镜用于放大标本影像。下一步：试着找出物镜的位置吧！",
   hintLadder: [
-    { emoji: "💡", text: "It’s deep underground." },
-    { emoji: "🌋", text: "It’s where the magma collects." },
-    { emoji: "🔬", text: "Look at the bottom layer of the diagram." },
+    { emoji: "💡", text: "靠近观察者眼睛的上方镜头是目镜。" },
+    { emoji: "🔬", text: "靠近被观察切片标本的下镜头是物镜。" },
+    { emoji: "🪞", text: "用于放置切片玻片的平台是载物台。" },
   ],
 };
 
@@ -62,7 +63,7 @@ export default function LessonPlayer({
   subject,
   practice,
 }: LessonPlayerProps) {
-  const payload = practice ?? DEFAULT_VOLCANO_PRACTICE;
+  const payload = practice ?? DEFAULT_MICROSCOPE_PRACTICE;
   const TARGETS = payload.targets;
   const TOKENS = payload.tokens;
   const HINT_LADDER = payload.hintLadder;
@@ -76,7 +77,7 @@ export default function LessonPlayer({
   const [placed, setPlaced] = useState<Record<string, string | null>>(initialPlaced);
   const [picked, setPicked] = useState<Token | null>(null);
   const [feedback, setFeedback] = useState<string | null>(
-    payload.initialFeedback ?? "Pick a label, then tap the diagram to drop it."
+    payload.initialFeedback ?? "请选择下方一个标签，然后点击图表对应位置进行标记。"
   );
   // Reveal half the ladder up-front so the first hint is visible.
   const [hintsRevealed, setHintsRevealed] = useState(Math.min(2, HINT_LADDER.length));
@@ -94,10 +95,10 @@ export default function LessonPlayer({
   const stagePill = LOOP[PRACTICE_STEP];
 
   // Resolved header bits. Mission-supplied subject/teacher wins; then
-  // explicit prop; then the volcano-era default (Rex / Science).
+  // explicit prop; then the default.
   const headerSubject = subject ?? payload.subject;
   const headerTitle = title ?? payload.prompt;
-  const tName = teacherName ?? payload.teacherName ?? "Rex";
+  const tName = teacherName ?? payload.teacherName ?? "雷克斯导师";
   const tEmoji = teacherEmoji ?? payload.teacherEmoji ?? "🦊";
 
   function labelFor(id: string): string {
@@ -108,10 +109,10 @@ export default function LessonPlayer({
     if (targetId === tokenId) {
       setPlaced((p) => ({ ...p, [targetId]: tokenId }));
       setPicked(null);
-      setFeedback(`Yes — ${labelFor(tokenId)} is right where it goes.`);
+      setFeedback(`太棒了！${labelFor(tokenId)} 的位置完全正确。`);
     } else {
       setFeedback(
-        `Not quite. Try a different spot for "${labelFor(tokenId)}". You can keep going.`
+        `位置不太对哦。再试着为“${labelFor(tokenId)}”找一个更合适的位置吧！`
       );
     }
   }
@@ -130,7 +131,7 @@ export default function LessonPlayer({
         <div className="flex items-center gap-4">
           <Link
             href={stageToPath(journey.stage)}
-            aria-label="Back to home"
+            aria-label="返回首页"
             className="text-lg text-ink-mute hover:text-ink"
           >
             ←
@@ -146,7 +147,7 @@ export default function LessonPlayer({
           </div>
         </div>
         <div className="flex items-center gap-4">
-          <span className="hidden text-[13px] text-ink-soft sm:inline">⏱ 4:21 elapsed</span>
+          <span className="hidden text-[13px] text-ink-soft sm:inline">⏱ 已用时 4:21</span>
           <span className="la-pill" style={{ background: "#fff7e6", color: "#b15c00" }}>
             +30 XP
           </span>
@@ -163,13 +164,13 @@ export default function LessonPlayer({
             className="la-pill"
             style={{ background: `${stagePill.color}18`, color: stagePill.color }}
           >
-            {stagePill.icon} Step {PRACTICE_STEP + 1} · {stagePill.label}
+            {stagePill.icon} 步骤 {PRACTICE_STEP + 1} · {stagePill.label}
           </span>
           <h1 className="mt-2.5 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[30px]">
             {payload.prompt}
           </h1>
           <p className="mb-6 mt-1.5 text-sm text-ink-soft">
-            You&apos;ll get instant feedback after each drop. {TARGETS.length - placedCount} left.
+            每次放置放置标签后均可获得即时反馈。还剩 {TARGETS.length - placedCount} 个待标记。
           </p>
 
           {/* Diagram */}
@@ -208,7 +209,7 @@ export default function LessonPlayer({
                     if (tokenId) tryPlace(t.id, tokenId);
                   }}
                   aria-label={
-                    correctTokenId ? `Correctly placed: ${t.label}` : `Drop target for ${t.label}`
+                    correctTokenId ? `正确标记：${t.label}` : `放置目标：${t.label}`
                   }
                   className="absolute -translate-x-1/2 -translate-y-1/2"
                   style={{
@@ -224,7 +225,7 @@ export default function LessonPlayer({
                     cursor: "pointer",
                   }}
                 >
-                  {correctTokenId ? `✓ ${t.label}` : "? Drop here"}
+                  {correctTokenId ? `✓ ${t.label}` : "? 放置此处"}
                 </button>
               );
             })}
@@ -233,11 +234,11 @@ export default function LessonPlayer({
           {/* Drag tray */}
           <div className="mt-5">
             <div className="la-mono mb-2 text-[12px] font-bold tracking-[0.06em] text-ink-mute">
-              DRAG OR TAP A LABEL
+              拖拽或点击下方标签
             </div>
             <div className="flex flex-wrap gap-2.5">
               {remainingTokens.length === 0 ? (
-                <p className="text-sm text-ink-soft">All labels placed. Great work.</p>
+                <p className="text-sm text-ink-soft">所有标签标记完成，太棒了！</p>
               ) : (
                 remainingTokens.map((c) => {
                   const selected = picked?.id === c.id;
@@ -267,7 +268,7 @@ export default function LessonPlayer({
             </div>
             {picked ? (
               <p className="mt-3 text-xs text-ink-soft">
-                Now tap the spot on the diagram to drop “{picked.label}”.
+                现在点击图表上的相应位置放置“{picked.label}”。
               </p>
             ) : null}
           </div>
@@ -282,12 +283,12 @@ export default function LessonPlayer({
             <PersonaAvatar emoji={tEmoji} color={journey.color} bg={journey.bg} size={40} />
             <div>
               <div className="text-sm font-bold text-ink">{tName}</div>
-              <div className="text-[11px] text-ink-soft">Your AI teacher</div>
+              <div className="text-[11px] text-ink-soft">您的 AI 导师</div>
             </div>
             <button
               type="button"
               className="ml-auto text-base text-ink-mute hover:text-ink"
-              aria-label="Read aloud"
+              aria-label="朗读"
             >
               🔊
             </button>
@@ -303,13 +304,13 @@ export default function LessonPlayer({
             }}
           >
             <strong style={{ color: journey.color }}>
-              {allCorrect ? "All placed — beautiful!" : "Live feedback"}
+              {allCorrect ? "全部标记正确 — 太棒了！" : "实时导师反馈"}
             </strong>
             <br />
-            {feedback ?? "Pick a label, then tap the diagram to drop it."}
+            {feedback ?? "请选择下方一个标签，然后点击图表对应位置进行标记。"}
           </div>
 
-          <div className="la-mono text-[11px] font-bold tracking-[0.06em] text-ink-mute">HINTS</div>
+          <div className="la-mono text-[11px] font-bold tracking-[0.06em] text-ink-mute">提示说明</div>
           <div className="flex flex-col gap-2">
             {HINT_LADDER.map((h, i) => {
               const unlocked = i < hintsRevealed;
@@ -332,7 +333,7 @@ export default function LessonPlayer({
                       onClick={unlockNextHint}
                       className="font-semibold text-ink"
                     >
-                      🔓 Unlock next hint (-2 XP)
+                      🔓 解锁下一条提示 (-2 XP)
                     </button>
                   ) : null}
                 </div>
@@ -355,26 +356,26 @@ export default function LessonPlayer({
             className="la-btn ghost"
             style={{ padding: "10px 14px", fontSize: 13 }}
           >
-            Pause
+            暂停
           </button>
           <button
             type="button"
             className="la-btn ghost hidden sm:inline-flex"
             style={{ padding: "10px 14px", fontSize: 13 }}
           >
-            Skip step
+            跳过此步
           </button>
           <button
             type="button"
             className="la-btn ghost hidden md:inline-flex"
             style={{ padding: "10px 14px", fontSize: 13 }}
           >
-            Make it easier
+            降低难度
           </button>
         </div>
         <div className="flex items-center gap-3">
           <span className="hidden text-xs text-ink-mute sm:inline">
-            {placedCount} / {TARGETS.length} labels placed
+            已完成 {placedCount} / {TARGETS.length} 个标记
           </span>
           <button
             type="button"
@@ -382,7 +383,7 @@ export default function LessonPlayer({
             className="la-btn"
             style={{ padding: "12px 18px", opacity: allCorrect ? 1 : 0.6 }}
           >
-            Continue to feedback <Arrow />
+            继续查看反馈 <Arrow />
           </button>
         </div>
       </footer>
@@ -394,10 +395,10 @@ function AdaptiveTuning() {
   return (
     <div className="mt-auto">
       <div className="la-mono text-[10px] font-bold tracking-[0.06em] text-ink-mute">
-        ADAPTIVE TUNING
+        自适应学情调节
       </div>
       <div className="mt-1.5 flex flex-wrap gap-1.5">
-        {["📖 Reading: grade 4", "⏱ Pace: medium", "🎯 Goal: curiosity"].map((p) => (
+        {["📖 阅读难度：初一适中", "⏱ 讲课节奏：中等", "🎯 学习目标：学科探索"].map((p) => (
           <span
             key={p}
             className="la-pill text-[11px]"
