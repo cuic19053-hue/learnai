@@ -146,11 +146,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           </div>
 
           <div className="mt-8 border-t border-gray-700 pt-8 text-center text-xs text-gray-400">
-            <p>© 2026 AI智能学习助手. 保留所有权利。</p>
-              >
-                Star on GitHub ⭐
-              </a>
-            </p>
+            <p>© 2026 LearnAI 智能学习助手. 保留所有权利。</p>
           </div>
         </div>
       </footer>

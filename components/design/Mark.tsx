@@ -9,7 +9,10 @@ type MarkProps = {
  */
 export default function Mark({ size = 32, fontSize = 22 }: MarkProps) {
   return (
-    <div className="la-mark" style={{ fontSize, display: "inline-flex", alignItems: "center", gap: 8 }}>
+    <div
+      className="la-mark"
+      style={{ fontSize, display: "inline-flex", alignItems: "center", gap: 8 }}
+    >
       <div className="badge" style={{ width: size, height: size }}>
         智
       </div>

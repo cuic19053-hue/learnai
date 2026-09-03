@@ -121,7 +121,7 @@ export default async function LessonPage({
   // at /learn/kids and we redirect any old /learn/lesson/kids link to
   // it so the same audience never sees two competing UIs. Senior keeps
   // its own calmer surface.
-  if (stage === "LITTLE_LEARNER") redirect("/learn/kids");
+  if (stage === "GRADE_6") redirect("/learn/kids");
   if (stage === "SENIOR") return <SeniorLesson journey={journey} />;
 
   // Resolve the mission (if any) so Resume from a specific mission

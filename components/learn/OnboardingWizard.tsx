@@ -43,7 +43,19 @@ import { worldSlugForStage } from "@/lib/learn/worlds";
 // ─── Step model ────────────────────────────────────────────────────
 
 type Audience = "child" | "self" | "older_relative" | "student_group";
-type AgeBand = "11-12" | "12-13" | "13-14" | "14-15";
+type AgeBand =
+  | "11-12"
+  | "12-13"
+  | "13-14"
+  | "14-15"
+  | "15+"
+  | "adult"
+  | "3-6"
+  | "7-11"
+  | "12-15"
+  | "16-18"
+  | "18+"
+  | "65+";
 
 const STEP_LABELS = ["学习对象是谁？", "要学习什么目标？", "开启学习"] as const;
 
@@ -65,7 +77,12 @@ function defaultMissionQuery(stage: LearnerStage): string {
 }
 
 const AUDIENCE_OPTIONS: { id: Audience; label: string; emoji: string; hint: string }[] = [
-  { id: "child", label: "我的孩子", emoji: "🧒", hint: "我们将根据年级选定匹配的初中/小学学习世界。" },
+  {
+    id: "child",
+    label: "我的孩子",
+    emoji: "🧒",
+    hint: "我们将根据年级选定匹配的初中/小学学习世界。",
+  },
   {
     id: "self",
     label: "我自己",
@@ -138,8 +155,20 @@ const GOALS: Goal[] = [
     stage: "GRADE_6",
   },
   // 七年级 (初一)
-  { id: "reading", label: "现代文阅读理解", audiences: ["child"], ageBands: ["12-13"], stage: "GRADE_7" },
-  { id: "science", label: "沪教版生命科学", audiences: ["child"], ageBands: ["12-13"], stage: "GRADE_7" },
+  {
+    id: "reading",
+    label: "现代文阅读理解",
+    audiences: ["child"],
+    ageBands: ["12-13"],
+    stage: "GRADE_7",
+  },
+  {
+    id: "science",
+    label: "沪教版生命科学",
+    audiences: ["child"],
+    ageBands: ["12-13"],
+    stage: "GRADE_7",
+  },
   {
     id: "math-games",
     label: "代数式与有理数特训",
@@ -169,8 +198,20 @@ const GOALS: Goal[] = [
     ageBands: ["13-14"],
     stage: "GRADE_8",
   },
-  { id: "logic", label: "逻辑思维与压轴题", audiences: ["child"], ageBands: ["13-14"], stage: "GRADE_8" },
-  { id: "math-12", label: "英语语法与完形填空", audiences: ["child"], ageBands: ["13-14"], stage: "GRADE_8" },
+  {
+    id: "logic",
+    label: "逻辑思维与压轴题",
+    audiences: ["child"],
+    ageBands: ["13-14"],
+    stage: "GRADE_8",
+  },
+  {
+    id: "math-12",
+    label: "英语语法与完形填空",
+    audiences: ["child"],
+    ageBands: ["13-14"],
+    stage: "GRADE_8",
+  },
   // 九年级 (初三)
   {
     id: "exam-kid",
@@ -572,16 +613,8 @@ function Sidebar({
         配置进度
       </div>
 
-      <SidebarRow
-        label="学员"
-        value={name.trim() || "未填写 (可选)"}
-        accent={!!name.trim()}
-      />
-      <SidebarRow
-        label="学习世界"
-        value={journey?.name ?? "根据目标自动匹配"}
-        accent={!!journey}
-      />
+      <SidebarRow label="学员" value={name.trim() || "未填写 (可选)"} accent={!!name.trim()} />
+      <SidebarRow label="学习世界" value={journey?.name ?? "根据目标自动匹配"} accent={!!journey} />
       <SidebarRow label="AI 导师" value={teacher?.name ?? "自动匹配"} accent={!!teacher} />
 
       <div
@@ -595,7 +628,9 @@ function Sidebar({
           lineHeight: 1.55,
         }}
       >
-        <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 4 }}>为什么要问这个？</div>
+        <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 4 }}>
+          为什么要问这个？
+        </div>
         不同年级和年龄段的学习者需要不同的教学方式。我们通过这些选项配置最适合的学习世界与引导风格。
       </div>
     </aside>
