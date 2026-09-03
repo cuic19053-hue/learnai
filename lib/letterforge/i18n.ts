@@ -1124,7 +1124,7 @@ const KO: LanguagePack = {
 
 const ZH: LanguagePack = {
   ui: {
-    appName: "小学童",
+    appName: "AI智能学习助手",
     helloReady: "你好！👋 准备好和米洛一起玩了吗？",
     todaysLesson: "今天的课",
     todaysItem: (s) => `今天 · ${s}`,
@@ -1284,6 +1284,15 @@ export function startLabelFor(langCode: string, slug: SubjectSlug): string {
       animals: "▶ Começar o Jogo dos Animais",
       feelings: "▶ Começar as Emoções",
       stories: "▶ Começar a História",
+    },
+    zh: {
+      letters: "▶ 开始汉字/字母练习",
+      numbers: "▶ 开始数字与数感练习",
+      colors: "▶ 开始颜色认知",
+      shapes: "▶ 开始形状认知",
+      animals: "▶ 开始动物认识",
+      feelings: "▶ 开始情绪表达",
+      stories: "▶ 开始故事时间",
     },
   };
   const langMap = map[lower];
