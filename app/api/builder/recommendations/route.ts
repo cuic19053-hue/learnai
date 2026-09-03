@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/GRADE_8/recommendations
  *
  * Returns Nova's recommendation for the dashboard's right-rail card.
@@ -44,7 +44,7 @@ export const GET = handler(async (req: Request) => {
 
   let recentTypes: string[] = [];
   try {
-    const recent = await prisma.GRADE_8StepProgress.findMany({
+    const recent = await prisma.builderStepProgress.findMany({
       where: { userId, status: "COMPLETED" },
       orderBy: { completedAt: "desc" },
       take: 10,

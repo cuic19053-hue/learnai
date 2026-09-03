@@ -45,7 +45,7 @@ import { worldSlugForStage } from "@/lib/learn/worlds";
 type Audience = "child" | "self" | "older_relative" | "student_group";
 type AgeBand = "11-12" | "12-13" | "13-14" | "14-15";
 
-const STEP_LABELS = ["Who are we helping?", "What should they learn?", "Start"] as const;
+const STEP_LABELS = ["学习对象是谁？", "要学习什么目标？", "开启学习"] as const;
 
 // First mission slug each world should open into from onboarding. Kept
 // in sync with the practice payloads in lib/learn/missions.ts — without
@@ -65,24 +65,24 @@ function defaultMissionQuery(stage: LearnerStage): string {
 }
 
 const AUDIENCE_OPTIONS: { id: Audience; label: string; emoji: string; hint: string }[] = [
-  { id: "child", label: "My child", emoji: "🧒", hint: "We'll pick a kid-safe world by age." },
+  { id: "child", label: "我的孩子", emoji: "🧒", hint: "我们将根据年级选定匹配的初中/小学学习世界。" },
   {
     id: "self",
-    label: "Me",
+    label: "我自己",
     emoji: "🙋",
-    hint: "Exam prep, certifications, or a topic to master.",
+    hint: "备考冲刺、学科突破或掌握特定技能。",
   },
   {
     id: "older_relative",
-    label: "My parent or older relative",
+    label: "我的长辈或家人",
     emoji: "🌿",
-    hint: "Calm, large-text, scam-aware Senior world.",
+    hint: "护眼大字版、防诈骗与温和陪伴引导。",
   },
   {
     id: "student_group",
-    label: "My students",
+    label: "我的学生/班级",
     emoji: "👥",
-    hint: "Lesson planning + class quizzes (teacher use).",
+    hint: "备课大纲、班级测验与教学助手。",
   },
 ];
 
@@ -108,106 +108,106 @@ type Goal = {
 };
 
 const GOALS: Goal[] = [
-  // Little Learner (child, 3-6)
+  // 六年级 (预备班)
   {
     id: "letters",
-    label: "Letters",
+    label: "基础认知与表达",
     audiences: ["child"],
     ageBands: ["11-12"],
     stage: "GRADE_6",
   },
   {
     id: "numbers",
-    label: "Numbers",
+    label: "沪教数学分数的运算",
     audiences: ["child"],
     ageBands: ["11-12"],
     stage: "GRADE_6",
   },
   {
     id: "stories",
-    label: "Stories",
+    label: "课外阅读与古诗词",
     audiences: ["child"],
     ageBands: ["11-12"],
     stage: "GRADE_6",
   },
   {
     id: "emotions",
-    label: "Emotions",
+    label: "心理健康与学习习惯",
     audiences: ["child"],
     ageBands: ["11-12"],
     stage: "GRADE_6",
   },
-  // GRADE_7 (child, 7-11)
-  { id: "reading", label: "Reading", audiences: ["child"], ageBands: ["7-11"], stage: "GRADE_7" },
-  { id: "science", label: "Science", audiences: ["child"], ageBands: ["7-11"], stage: "GRADE_7" },
+  // 七年级 (初一)
+  { id: "reading", label: "现代文阅读理解", audiences: ["child"], ageBands: ["12-13"], stage: "GRADE_7" },
+  { id: "science", label: "沪教版生命科学", audiences: ["child"], ageBands: ["12-13"], stage: "GRADE_7" },
   {
     id: "math-games",
-    label: "Math games",
+    label: "代数式与有理数特训",
     audiences: ["child"],
     ageBands: ["12-13"],
     stage: "GRADE_7",
   },
   {
     id: "curiosity",
-    label: "Curiosity quests",
+    label: "地理与自然常识",
     audiences: ["child"],
     ageBands: ["12-13"],
     stage: "GRADE_7",
   },
-  // GRADE_8 (child, 12-15)
+  // 八年级 (初二)
   {
     id: "coding-kid",
-    label: "Coding",
+    label: "沪科版八年级物理",
     audiences: ["child"],
     ageBands: ["13-14"],
     stage: "GRADE_8",
   },
   {
     id: "projects",
-    label: "Projects",
+    label: "一次函数与几何证明",
     audiences: ["child"],
     ageBands: ["13-14"],
     stage: "GRADE_8",
   },
-  { id: "logic", label: "Logic", audiences: ["child"], ageBands: ["12-15"], stage: "GRADE_8" },
-  { id: "math-12", label: "Math", audiences: ["child"], ageBands: ["12-15"], stage: "GRADE_8" },
-  // GRADE_9 (child, 16-18)
+  { id: "logic", label: "逻辑思维与压轴题", audiences: ["child"], ageBands: ["13-14"], stage: "GRADE_8" },
+  { id: "math-12", label: "英语语法与完形填空", audiences: ["child"], ageBands: ["13-14"], stage: "GRADE_8" },
+  // 九年级 (初三)
   {
     id: "exam-kid",
-    label: "Exam prep",
+    label: "上海中考全科冲刺",
     audiences: ["child"],
     ageBands: ["14-15"],
     stage: "GRADE_9",
   },
   {
     id: "subject",
-    label: "Subject mastery",
+    label: "沪教版九年级化学",
     audiences: ["child"],
     ageBands: ["14-15"],
     stage: "GRADE_9",
   },
   {
     id: "career-kid",
-    label: "Career discovery",
+    label: "物理电学与压轴大题",
     audiences: ["child"],
     ageBands: ["14-15"],
     stage: "GRADE_9",
   },
-  // Me — default Professional; GRADE_9 offered for exam prep.
-  { id: "exam-me", label: "Exam preparation", audiences: ["self"], stage: "GRADE_9" },
-  { id: "cert-me", label: "Cloud certification", audiences: ["self"], stage: "PROFESSIONAL" },
-  { id: "coding-me", label: "Coding & AI", audiences: ["self"], stage: "PROFESSIONAL" },
-  { id: "language", label: "Language", audiences: ["self"], stage: "PROFESSIONAL" },
-  { id: "career", label: "Career change", audiences: ["self"], stage: "PROFESSIONAL" },
-  // Older relative — Senior world.
-  { id: "safety", label: "Online safety", audiences: ["older_relative"], stage: "SENIOR" },
-  { id: "digital", label: "Digital basics", audiences: ["older_relative"], stage: "SENIOR" },
-  { id: "memory", label: "Memory practice", audiences: ["older_relative"], stage: "SENIOR" },
-  { id: "health", label: "Health & wellbeing", audiences: ["older_relative"], stage: "SENIOR" },
-  // Student group — GRADE_9 (teacher/class use).
-  { id: "class-quiz", label: "Class quizzes", audiences: ["student_group"], stage: "GRADE_9" },
-  { id: "lesson-plan", label: "Lesson plans", audiences: ["student_group"], stage: "GRADE_9" },
-  { id: "grading", label: "Grading help", audiences: ["student_group"], stage: "GRADE_9" },
+  // 自己学习
+  { id: "exam-me", label: "中考/高考备考特训", audiences: ["self"], stage: "GRADE_9" },
+  { id: "cert-me", label: "AI 与云计算认证", audiences: ["self"], stage: "PROFESSIONAL" },
+  { id: "coding-me", label: "编程与前沿技术", audiences: ["self"], stage: "PROFESSIONAL" },
+  { id: "language", label: "外语能力提升", audiences: ["self"], stage: "PROFESSIONAL" },
+  { id: "career", label: "职业进阶与转行", audiences: ["self"], stage: "PROFESSIONAL" },
+  // 长辈家人
+  { id: "safety", label: "网络安全与防诈骗", audiences: ["older_relative"], stage: "SENIOR" },
+  { id: "digital", label: "智能手机与数字素养", audiences: ["older_relative"], stage: "SENIOR" },
+  { id: "memory", label: "防衰老记忆训练", audiences: ["older_relative"], stage: "SENIOR" },
+  { id: "health", label: "健康养生与生活常识", audiences: ["older_relative"], stage: "SENIOR" },
+  // 教师/学生群体
+  { id: "class-quiz", label: "随堂测验与自动出题", audiences: ["student_group"], stage: "GRADE_9" },
+  { id: "lesson-plan", label: "上海教材教案设计", audiences: ["student_group"], stage: "GRADE_9" },
+  { id: "grading", label: "作业批改与学情分析", audiences: ["student_group"], stage: "GRADE_9" },
 ];
 
 function defaultStageFor(audience: Audience, age?: AgeBand): LearnerStage {
@@ -301,14 +301,14 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
 
   const missingHint = useMemo(() => {
     if (step !== 0) return null;
-    if (!audience) return "Pick who is learning to continue.";
-    if (audience === "child" && !age) return "Pick a child age band to continue.";
+    if (!audience) return "请选择学习对象以继续。";
+    if (audience === "child" && !age) return "请选择孩子的年级以继续。";
     return null;
   }, [step, audience, age]);
 
   async function start() {
     if (!stage || !teacher) {
-      setError("Pick who is learning and a goal before starting.");
+      setError("请在开始前选择学习对象与目标。");
       return;
     }
     setSubmitting(true);
@@ -320,7 +320,7 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
         body: JSON.stringify({
           name: name.trim() || undefined,
           stage,
-          language: "en",
+          language: "zh",
           interests: goalId ? [goalId] : [],
         }),
       });
@@ -350,17 +350,17 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
 
         <main className="px-6 py-9 md:px-12">
           <div className="la-mono text-xs font-bold tracking-[0.06em] text-brand-1">
-            STEP {String(step + 1).padStart(2, "0")} / {String(STEP_LABELS.length).padStart(2, "0")}
+            步骤 {String(step + 1).padStart(2, "0")} / {String(STEP_LABELS.length).padStart(2, "0")}
           </div>
           <h1 className="mt-1.5 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[38px]">
             {STEP_LABELS[step]}
           </h1>
           <p className="mt-2 max-w-[560px] text-[15px] leading-relaxed text-ink-soft">
             {step === 0
-              ? "We tune the world, voice, and pace to the learner. You can change anything later."
+              ? "我们会根据学习者的年龄与学情精准适配教学界面、音色与节奏。稍后可随时调整。"
               : step === 1
-                ? "Pick the closest match. Goals shape the first lesson; you can switch any time."
-                : "We picked your world and AI teacher based on what you told us. One click to start."}
+                ? "选择最接近的目标。目标将决定第一堂课的教学设计，您随时可以切换。"
+                : "我们已根据您的选择配置好最合适的 AI 导师与学习世界，点击即可开始。"}
           </p>
 
           {step === 0 ? (
@@ -392,7 +392,7 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
           <div className="mt-9 flex max-w-[880px] items-center justify-between gap-3">
             {step === 0 ? (
               <Link href="/" className="la-btn ghost" style={{ padding: "12px 18px" }}>
-                ← Back to LearnAI
+                ← 返回首页
               </Link>
             ) : (
               <button
@@ -401,7 +401,7 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
                 className="la-btn ghost"
                 style={{ padding: "12px 18px" }}
               >
-                ← Back
+                ← 上一步
               </button>
             )}
 
@@ -414,7 +414,7 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
                 style={{ padding: "14px 22px", opacity: canContinue[step] ? 1 : 0.5 }}
                 title={missingHint ?? undefined}
               >
-                Continue <Arrow />
+                继续 <Arrow />
               </button>
             ) : (
               <button
@@ -424,7 +424,7 @@ export default function OnboardingWizard({ initialStage }: { initialStage?: Lear
                 className="la-btn"
                 style={{ padding: "14px 22px", opacity: submitting ? 0.6 : 1 }}
               >
-                {submitting ? "Starting…" : "Start the first lesson"}
+                {submitting ? "正在启动…" : "开启第一堂课"}
               </button>
             )}
           </div>
@@ -569,20 +569,20 @@ function Sidebar({
         className="la-mono"
         style={{ fontSize: 10, fontWeight: 700, color: "var(--ink-mute)", letterSpacing: ".08em" }}
       >
-        SETUP PROGRESS
+        配置进度
       </div>
 
       <SidebarRow
-        label="Learner"
-        value={name.trim() || "No name yet (optional)"}
+        label="学员"
+        value={name.trim() || "未填写 (可选)"}
         accent={!!name.trim()}
       />
       <SidebarRow
-        label="Journey"
-        value={journey?.name ?? "Auto-pick from goal"}
+        label="学习世界"
+        value={journey?.name ?? "根据目标自动匹配"}
         accent={!!journey}
       />
-      <SidebarRow label="AI teacher" value={teacher?.name ?? "Auto-picked"} accent={!!teacher} />
+      <SidebarRow label="AI 导师" value={teacher?.name ?? "自动匹配"} accent={!!teacher} />
 
       <div
         style={{
@@ -595,9 +595,8 @@ function Sidebar({
           lineHeight: 1.55,
         }}
       >
-        <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 4 }}>Why ask this?</div>A
-        3-year-old, a teenager, and an adult need different lessons. We use these answers to pick
-        the world (Little Learner, GRADE_9, Senior…) and the right pace.
+        <div style={{ fontWeight: 800, color: "var(--ink)", marginBottom: 4 }}>为什么要问这个？</div>
+        不同年级和年龄段的学习者需要不同的教学方式。我们通过这些选项配置最适合的学习世界与引导风格。
       </div>
     </aside>
   );
@@ -701,12 +700,12 @@ function StepWho({
 
       {isChild ? <ChildAgePicker selected={age} onPick={setAge} /> : null}
 
-      <Field label="Learner's name" optional>
+      <Field label="学员姓名" optional>
         <input
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          placeholder={isChild ? "e.g. Sofia" : "e.g. Alex"}
+          placeholder={isChild ? "例如：小明" : "例如：李华"}
           maxLength={60}
           autoComplete="off"
           spellCheck={false}
@@ -745,7 +744,7 @@ function ChildAgePicker({
         className="la-mono"
         style={{ fontSize: 11, fontWeight: 700, color: "var(--ink-mute)", letterSpacing: ".08em" }}
       >
-        HOW OLD IS YOUR CHILD?
+        请选择孩子的年级 / 学龄：
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 10 }}>
         {AGE_BANDS.map((b) => {
@@ -812,7 +811,7 @@ function Field({
               textTransform: "uppercase",
             }}
           >
-            Optional
+            可选
           </span>
         ) : null}
       </span>
@@ -839,7 +838,7 @@ function StepGoal({
   if (goals.length === 0) {
     return (
       <p style={{ marginTop: 24, fontSize: 14, color: "var(--ink-mute)" }}>
-        No goals for this audience yet — pick a different audience on Step 1.
+        暂无该类型对象的独立目标，请返回第一步选择其他学习对象。
       </p>
     );
   }
@@ -890,14 +889,14 @@ function StepGoal({
               letterSpacing: ".08em",
             }}
           >
-            BEST WORLD FOR THIS GOAL
+            最契合的学习世界
           </div>
           <div style={{ marginTop: 6 }}>
             <div style={{ fontWeight: 800, fontSize: 17 }}>{journey.name}</div>
             <div style={{ fontSize: 13, color: "var(--ink-mute)", marginTop: 2 }}>
               {audience === "child"
-                ? "Kid-safe pace, friendly voice."
-                : "We'll tune pace, voice, and lesson style."}
+                ? "适合学龄节奏，亲和耐心的语调。"
+                : "我们将动态匹配节奏、音色与授课风格。"}
             </div>
           </div>
         </div>
@@ -917,7 +916,7 @@ function StepReady({
   journey: Journey | null;
   teacher: Teacher | null;
 }) {
-  const displayName = name.trim() || "you";
+  const displayName = name.trim() || "您";
   return (
     <div className="mt-8 max-w-[640px]">
       <div
@@ -937,21 +936,20 @@ function StepReady({
             letterSpacing: ".08em",
           }}
         >
-          READY
+          已准备就绪
         </div>
         <div style={{ marginTop: 6, fontSize: 22, fontWeight: 800, color: "var(--ink)" }}>
-          Today's plan for {displayName}
+          {displayName} 的专属学习计划
         </div>
         <ul style={{ marginTop: 14, listStyle: "none", padding: 0, display: "grid", gap: 8 }}>
-          <Bullet label="World" value={journey?.name ?? "—"} />
-          <Bullet label="AI teacher" value={teacher?.name ?? "—"} />
-          <Bullet label="What's next" value="A short, focused first lesson tuned to your goal." />
+          <Bullet label="学习世界" value={journey?.name ?? "—"} />
+          <Bullet label="AI 导师" value={teacher?.name ?? "—"} />
+          <Bullet label="后续步骤" value="开启为您专属定制的高效第一堂课。" />
         </ul>
       </div>
 
       <p style={{ marginTop: 20, fontSize: 13.5, color: "var(--ink-mute)" }}>
-        We picked an AI teacher we think fits best. You can change worlds, teachers, and goals any
-        time from your dashboard.
+        我们已为您匹配了最适合的 AI 导师。您可以随时在控制面板中切换学习世界、导师与学习目标。
       </p>
     </div>
   );

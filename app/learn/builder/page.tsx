@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
@@ -9,9 +9,9 @@ import {
   PRACTICE_TRACKS,
   type MissionView,
   type StepView,
-} from "@/lib/GRADE_8/missions";
+} from "@/lib/builder/missions";
 import { prisma } from "@/lib/prisma";
-import { GRADE_8ContinueButton } from "@/components/learn/GRADE_8/GRADE_8ContinueButton";
+import { BuilderContinueButton } from "@/components/learn/builder/BuilderContinueButton";
 
 export const metadata: Metadata = {
   title: "GRADE_8 Academy",
@@ -371,7 +371,7 @@ function TodaysMission({ mission }: { mission: MissionView }) {
               dangerouslySetInnerHTML={{ __html: linkifyCode(mission.description) }}
             />
           </div>
-          <GRADE_8ContinueButton
+          <BuilderContinueButton
             stepId={current?.id ?? null}
             stepLabel={ctaLabel}
             isSeed={isSeed}

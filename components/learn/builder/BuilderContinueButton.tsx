@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 /**
  * Client-side "Continue with Reflect" button for the GRADE_8 portal.
@@ -19,7 +19,7 @@ type Props = {
   isSeed: boolean;
 };
 
-export function GRADE_8ContinueButton({ stepId, stepLabel, isSeed }: Props) {
+export function BuilderContinueButton({ stepId, stepLabel, isSeed }: Props) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);

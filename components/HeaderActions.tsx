@@ -28,7 +28,7 @@ export function HeaderActions() {
         href="/dashboard"
         className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-secondary"
       >
-        Dashboard
+        控制台
       </Link>
     );
   }
@@ -37,12 +37,12 @@ export function HeaderActions() {
   if (isGuest) {
     return (
       <div className="flex items-center space-x-3">
-        <span className="text-sm text-gray-600">🎭 Guest Mode</span>
+        <span className="text-sm text-gray-600">🎭 游客模式</span>
         <Link
           href="/register"
           className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-secondary"
         >
-          Sign Up Free
+          免费注册
         </Link>
       </div>
     );
@@ -54,7 +54,7 @@ export function HeaderActions() {
       href="/login"
       className="rounded-lg bg-primary px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-secondary"
     >
-      Get Started
+      立即开始
     </Link>
   );
 }

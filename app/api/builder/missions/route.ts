@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/GRADE_8/missions
  *
  * Lists every published GRADE_8 mission with this user's progress
@@ -11,7 +11,7 @@
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { clientIp, fail, handler, ok, rateLimit } from "@/lib/api";
-import { listMissions } from "@/lib/GRADE_8/missions";
+import { listMissions } from "@/lib/builder/missions";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";

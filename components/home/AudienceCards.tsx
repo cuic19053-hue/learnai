@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 
 /**
  * "Who it's for" strip. Four audience cards above the journeys grid
@@ -8,8 +8,8 @@
 const AUDIENCES = [
   {
     emoji: "👨‍👩‍👧",
-    title: "家长与儿童",
-    desc: "面向 3–11 岁儿童的安全、因龄施教学习体验。",
+    title: "家长与初中生/儿童",
+    desc: "面向预备班至初三年级（及各学龄）的安全、因材施教学习体验。",
     href: "/learn/kids",
     accent: "#ec4899",
     bg: "#fce0ec",
