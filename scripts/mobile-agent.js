@@ -101,10 +101,15 @@ const HTML_CONTENT = `<!DOCTYPE html>
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background-color: #0f172a;
       color: #f8fafc;
-      height: 100vh;
+      height: 100dvh;
+      width: 100vw;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      position: fixed;
+      top: 0;
+      left: 0;
+      touch-action: none;
     }
     header {
       background: rgba(30, 41, 59, 0.85);
@@ -135,11 +140,14 @@ const HTML_CONTENT = `<!DOCTYPE html>
     #chat-container {
       flex: 1;
       overflow-y: auto;
+      overflow-x: hidden;
       padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      touch-action: pan-y;
     }
     .msg-group { display: flex; flex-direction: column; max-width: 88%; }
     .msg-group.user { align-self: flex-end; align-items: flex-end; }
@@ -214,7 +222,7 @@ const HTML_CONTENT = `<!DOCTYPE html>
       border-radius: 24px;
       padding: 12px 16px;
       color: #fff;
-      font-size: 0.95rem;
+      font-size: 16px;
       outline: none;
     }
     #prompt-input:focus { border-color: #6366f1; }
