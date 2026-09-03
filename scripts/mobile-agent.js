@@ -334,14 +334,21 @@ const HTML_CONTENT = `<!DOCTYPE html>
     }
 
     function renderBubble(id, sender, text, time, device) {
+      if (msgBubbles[id] && msgBubbles[id].__rawText === text) {
+        return msgBubbles[id];
+      }
+
       const isTyping = text === 'TYPING_INDICATOR';
       const displayText = isTyping 
         ? '<div class="typing-indicator"><span></span><span></span><span></span></div><div style="font-size:0.75rem; color:#94a3b8; margin-top:4px;">Antigravity 正在思考与执行...</div>'
         : marked.parse(text);
 
+      const isAtBottom = chatBox.scrollHeight - chatBox.scrollTop - chatBox.clientHeight < 60;
+
       if (msgBubbles[id]) {
         msgBubbles[id].innerHTML = displayText;
-        chatBox.scrollTop = chatBox.scrollHeight;
+        msgBubbles[id].__rawText = text;
+        if (isAtBottom) chatBox.scrollTop = chatBox.scrollHeight;
         return msgBubbles[id];
       }
       const t = time || new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
@@ -351,9 +358,15 @@ const HTML_CONTENT = `<!DOCTYPE html>
       group.className = 'msg-group ' + sender;
       group.innerHTML = \`<div class="device-badge">\${escapeHtml(devTag)}</div><div class="bubble">\${displayText}</div><div class="time">\${t}</div>\`;
       chatBox.appendChild(group);
-      chatBox.scrollTop = chatBox.scrollHeight;
+      
       const b = group.querySelector('.bubble');
+      b.__rawText = text;
       msgBubbles[id] = b;
+
+      if (isAtBottom || sender === 'user') {
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+      
       return b;
     }
 
