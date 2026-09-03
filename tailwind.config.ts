@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+﻿import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
@@ -35,9 +35,9 @@ const config: Config = {
         },
         // Journey accents
         little: { DEFAULT: "#2dbb6c", bg: "#e7f8ee", soft: "#f3fbf5" },
-        explorer: { DEFAULT: "#2e5bff", bg: "#e6ecff", soft: "#f3f6ff" },
-        builder: { DEFAULT: "#7c3aed", bg: "#efe7ff", soft: "#f7f3ff" },
-        scholar: { DEFAULT: "#f59e0b", bg: "#fff1d6", soft: "#fff8e9" },
+        GRADE_7: { DEFAULT: "#2e5bff", bg: "#e6ecff", soft: "#f3f6ff" },
+        GRADE_8: { DEFAULT: "#7c3aed", bg: "#efe7ff", soft: "#f7f3ff" },
+        GRADE_9: { DEFAULT: "#f59e0b", bg: "#fff1d6", soft: "#fff8e9" },
         pro: { DEFAULT: "#0ea5a4", bg: "#d6f1f0", soft: "#e9f8f7" },
         senior: { DEFAULT: "#ec4899", bg: "#fce0ec", soft: "#fcedf3" },
       },
