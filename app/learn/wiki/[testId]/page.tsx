@@ -37,7 +37,7 @@ export default async function WikiTestDetail({ params }: { params: Promise<{ tes
   const test = getStoredTest(testId);
   if (!test) notFound();
 
-  const world = WORLDS.scholar;
+  const world = WORLDS.GRADE_9;
 
   // Per-section breakdown — which sections the questions cite.
   const bySection = new Map<string, number>();

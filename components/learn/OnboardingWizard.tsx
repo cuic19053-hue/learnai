@@ -448,7 +448,7 @@ function TopBar({ step }: { step: number }) {
       }}
     >
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-6 py-3 md:px-12">
-        <Link href="/" style={{ textDecoration: "none" }} aria-label="LearnAI home">
+        <Link href="/" style={{ textDecoration: "none" }} aria-label="返回首页">
           <span style={{ display: "inline-flex", alignItems: "center", gap: 10 }}>
             <span
               style={{
@@ -464,10 +464,10 @@ function TopBar({ step }: { step: number }) {
                 boxShadow: "0 4px 12px rgba(46,91,255,.25)",
               }}
             >
-              L
+              智
             </span>
             <span style={{ fontWeight: 800, color: "var(--ink)", letterSpacing: "-0.01em" }}>
-              Learn
+              AI
               <span
                 style={{
                   background: "var(--brand-grad)",
@@ -476,7 +476,7 @@ function TopBar({ step }: { step: number }) {
                   color: "transparent",
                 }}
               >
-                AI
+                智能学习助手
               </span>
             </span>
           </span>

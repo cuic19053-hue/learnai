@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WikiTest shared chrome — port of `wikitest-shared.jsx` to typed
  * React. Five public exports:
  *
@@ -38,7 +38,7 @@ export function LearnAIMark({ size = 36 }: { size?: number }) {
     <div
       className="la-mark"
       style={{
-        fontSize: 22,
+        fontSize: 20,
         display: "inline-flex",
         alignItems: "center",
         gap: 10,
@@ -60,10 +60,10 @@ export function LearnAIMark({ size = 36 }: { size?: number }) {
           boxShadow: "0 6px 16px rgba(46,91,255,.25)",
         }}
       >
-        L
+        智
       </span>
       <span style={{ letterSpacing: "-0.02em" }}>
-        Learn
+        AI
         <span
           style={{
             background: "var(--brand-grad)",
@@ -72,7 +72,7 @@ export function LearnAIMark({ size = 36 }: { size?: number }) {
             color: "transparent",
           }}
         >
-          AI
+          智能学习助手
         </span>
       </span>
     </div>

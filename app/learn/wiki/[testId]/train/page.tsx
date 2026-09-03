@@ -27,7 +27,7 @@ export default async function WikiTrainPage({ params }: { params: Promise<{ test
   if (!stored) notFound();
 
   const { sections, ...test } = stored;
-  const world = WORLDS.scholar;
+  const world = WORLDS.GRADE_9;
 
   return (
     <LearnerHomeShell

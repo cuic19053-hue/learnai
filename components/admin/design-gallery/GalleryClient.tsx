@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 /**
  * Design Gallery — interactive index of every WikiTest screen.
@@ -51,11 +51,11 @@ import {
   StoryForgeHome,
   QuestForgeHome,
   ProjectForgeHome,
-  GRADE_9ExamForge,
+  ScholarExamForge,
   CertForgeHome,
   SafetyForgeHome,
 } from "@/components/learn/wikitest/wikitest-forges";
-import { GRADE_8sPortal } from "@/components/learn/wikitest/wikitest-GRADE_8s-portal";
+import { BuildersPortal } from "@/components/learn/wikitest/wikitest-builders-portal";
 import {
   ForgePlan,
   ForgeGenerating,
@@ -121,8 +121,8 @@ const REGISTRY: Record<string, FC> = {
   StoryForgeHome,
   QuestForgeHome,
   ProjectForgeHome,
-  GRADE_8sPortal,
-  GRADE_9ExamForge,
+  BuildersPortal,
+  ScholarExamForge,
   CertForgeHome,
   SafetyForgeHome,
   // Batch 5 — Exam Forge wizard (4 screens)

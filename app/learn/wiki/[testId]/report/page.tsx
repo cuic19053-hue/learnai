@@ -27,7 +27,7 @@ export default async function WikiReportPage({ params }: { params: Promise<{ tes
   if (!stored) notFound();
 
   const { sections: _sections, ...test } = stored;
-  const world = WORLDS.scholar;
+  const world = WORLDS.GRADE_9;
 
   return (
     <LearnerHomeShell

@@ -14,7 +14,7 @@ export default function MarketingHeader() {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-primary" />
-              <span className="text-xl font-bold text-dark">LearnAI</span>
+              <span className="text-xl font-bold text-dark">AI智能学习助手</span>
             </Link>
 
             <div className="hidden items-center gap-8 md:flex">

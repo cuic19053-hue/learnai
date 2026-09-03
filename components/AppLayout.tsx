@@ -11,21 +11,21 @@ export function AppLayout({ children }: { children: ReactNode }) {
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-2">
               <div className="h-8 w-8 rounded-lg bg-primary" />
-              <span className="text-xl font-bold text-dark">LearnAI</span>
+              <span className="text-xl font-bold text-dark">AI智能学习助手</span>
             </Link>
 
             <div className="hidden space-x-8 text-sm md:flex">
               <Link href="/" className="text-gray-600 transition-colors hover:text-primary">
-                Home
+                首页
               </Link>
               <Link href="/explore" className="text-gray-600 transition-colors hover:text-primary">
-                Professors
+                名师团队
               </Link>
               <Link href="/pricing" className="text-gray-600 transition-colors hover:text-primary">
-                Pricing
+                价格方案
               </Link>
               <Link href="/about" className="text-gray-600 transition-colors hover:text-primary">
-                About
+                关于我们
               </Link>
             </div>
 
@@ -146,23 +146,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           </div>
 
           <div className="mt-8 border-t border-gray-700 pt-8 text-center text-xs text-gray-400">
-            <p>© 2024 LearnAI. All rights reserved. Platform fee: 10%</p>
-            <p className="mt-2">
-              Open source project by{" "}
-              <a
-                href="https://ruslanmv.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
-              >
-                Ruslan Magana
-              </a>
-              {" • "}
-              <a
-                href="https://github.com/ruslanmv/learnai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary hover:underline"
+            <p>© 2026 AI智能学习助手. 保留所有权利。</p>
               >
                 Star on GitHub ⭐
               </a>

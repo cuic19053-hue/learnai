@@ -15,7 +15,7 @@ export default function Comparison() {
     <section className="mx-auto max-w-[1100px] px-6 py-14 md:px-12">
       <div className="mb-7 text-center">
         <span className="la-pill" style={{ background: "var(--bg-2)", color: "var(--ink-soft)" }}>
-          为什么选择 LearnAI
+          为什么选择 AI智能学习助手
         </span>
         <h2 className="mt-3 text-3xl font-extrabold tracking-[-0.025em] text-ink md:text-[36px]">
           让课程适应学习者 — 而非让学习者去适应课程。
@@ -42,7 +42,7 @@ export default function Comparison() {
           }}
         >
           <div>传统学习方式</div>
-          <div style={{ color: "var(--brand-1)" }}>LearnAI 智能辅导</div>
+          <div style={{ color: "var(--brand-1)" }}>AI 智能辅导助手</div>
         </div>
         {ROWS.map((r, i) => (
           <div

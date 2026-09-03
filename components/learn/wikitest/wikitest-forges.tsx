@@ -1,4 +1,4 @@
-﻿/**
+/**
  * World-specific Forge home gallery screens (Batch 4, 6 screens).
  *
  *   StoryForgeHome   — Little Learner (3-6)   · parent-led
@@ -544,7 +544,7 @@ export function QuestForgeHome() {
 export function ProjectForgeHome() {
   return <ForgeHome d={PROJECT} />;
 }
-export function GRADE_9ExamForge() {
+export function ScholarExamForge() {
   return <ForgeHome d={EXAM} />;
 }
 export function CertForgeHome() {

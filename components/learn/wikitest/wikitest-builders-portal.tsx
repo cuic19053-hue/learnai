@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GRADE_8s Portal · enterprise-grade GRADE_8 home (DataCamp-lite).
  *
  * Gallery-only static preview. The live route at /learn/GRADE_8
@@ -39,7 +39,7 @@ const BUILD_LOOP = [
   { ic: "🌱", l: "Evolve", state: "Locked" },
 ] as const;
 
-export function GRADE_8sPortal() {
+export function BuildersPortal() {
   return (
     <div
       style={{
