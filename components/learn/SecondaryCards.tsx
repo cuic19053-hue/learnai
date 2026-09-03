@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import ImgSlot from "@/components/design/ImgSlot";
 import type { Journey } from "@/lib/learn/journeys";
 
@@ -15,7 +15,7 @@ export function ContinueCard({ items, journey }: { items: ContinueItem[]; journe
   return (
     <div className="la-card" style={{ padding: 18, borderRadius: 18 }}>
       <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-ink-mute">
-        Continue practicing
+        继续练习与强化
       </div>
       {items.map((c, idx) => (
         <Link
@@ -67,7 +67,7 @@ export function RecommendationCard({
   return (
     <div className="la-card" style={{ padding: 18, borderRadius: 18 }}>
       <div className="text-[11px] font-bold uppercase tracking-[0.06em] text-ink-mute">
-        {teacherName} recommends
+        {teacherName} 的学习推荐
       </div>
       <div
         className="mt-3 rounded-2xl p-3.5"
@@ -127,7 +127,7 @@ export function WikiTestPromoCard({
             className="la-mono text-[10px] font-extrabold tracking-[0.08em]"
             style={{ color: "var(--brand-1)" }}
           >
-            NEW IN {worldLabel.toUpperCase()} · WIKITEST
+            {worldLabel} 新功能 · 维基智慧测验
           </span>
           <span
             className="la-pill text-[10px]"
@@ -137,11 +137,10 @@ export function WikiTestPromoCard({
           </span>
         </div>
         <h3 className="mt-1 text-[20px] font-extrabold tracking-[-0.01em] text-ink">
-          Build a test from any Wikipedia article
+          输入任意百科文章链接，一键生成专属测验
         </h3>
         <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
-          Paste a link. {teacherName} walks you through the article, then grades you on it. Same
-          Loop — taught from a source you choose.
+          粘贴链接，{teacherName} 导师将带你通读文章并针对重点进行出题讲解。
         </p>
         <div className="mt-3.5 flex flex-wrap gap-2">
           <Link
@@ -149,14 +148,14 @@ export function WikiTestPromoCard({
             className="la-btn"
             style={{ padding: "10px 16px", fontSize: 13 }}
           >
-            ✨ Try WikiTest
+            ✨ 体验维基测验
           </Link>
           <Link
             href="/learn/wiki"
             className="la-btn ghost"
             style={{ padding: "10px 14px", fontSize: 13 }}
           >
-            How it works
+            了解工作原理
           </Link>
         </div>
       </div>

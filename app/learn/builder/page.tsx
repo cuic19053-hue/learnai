@@ -22,12 +22,12 @@ export const metadata: Metadata = {
 export const dynamic = "force-dynamic";
 
 const NAV_ITEMS = [
-  { ic: "🏠", l: "Home", href: "/learn/GRADE_8", active: true },
-  { ic: "🎯", l: "My missions", href: "/learn/GRADE_8?tab=missions", active: false },
-  { ic: "🛠️", l: "Projects", href: "/learn/projects?world=GRADE_8", active: false },
-  { ic: "📚", l: "Library", href: "/learn/wiki?world=GRADE_8", active: false },
-  { ic: "🏅", l: "Achievements", href: "/learn/GRADE_8?tab=achievements", active: false },
-  { ic: "🌍", l: "Switch world", href: "/learn/journeys", active: false },
+  { ic: "🏠", l: "首页", href: "/learn/GRADE_8", active: true },
+  { ic: "🎯", l: "我的任务", href: "/learn/GRADE_8?tab=missions", active: false },
+  { ic: "🛠️", l: "实战项目", href: "/learn/projects?world=GRADE_8", active: false },
+  { ic: "📚", l: "知识库", href: "/learn/wiki?world=GRADE_8", active: false },
+  { ic: "🏅", l: "成就与勋章", href: "/learn/GRADE_8?tab=achievements", active: false },
+  { ic: "🌍", l: "切换年级", href: "/learn/journeys", active: false },
 ] as const;
 
 async function getUserXp(userId: string | null): Promise<number> {
@@ -136,9 +136,9 @@ function GRADE_8Sidebar() {
         </div>
         <div>
           <div style={{ fontSize: 14, fontWeight: 800, letterSpacing: "-0.01em" }}>
-            GRADE_8 Academy
+            初二 (八年级) 学习世界
           </div>
-          <div style={{ fontSize: 12, color: "#64748b" }}>Learning portal</div>
+          <div style={{ fontSize: 12, color: "#64748b" }}>沪科版/沪教版学习中心</div>
         </div>
       </Link>
 
@@ -184,7 +184,7 @@ function GRADE_8Sidebar() {
             marginBottom: 12,
           }}
         >
-          YOUR TEACHER
+          专属 AI 导师
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
           <div
@@ -202,7 +202,7 @@ function GRADE_8Sidebar() {
             🦉
           </div>
           <div>
-            <div style={{ fontWeight: 800 }}>Nova</div>
+            <div style={{ fontWeight: 800 }}>诺瓦导师</div>
             <div
               style={{
                 display: "flex",
@@ -213,7 +213,7 @@ function GRADE_8Sidebar() {
               }}
             >
               <span style={{ width: 8, height: 8, borderRadius: 99, background: "#10b981" }} />
-              Online
+              在线
             </div>
           </div>
         </div>
@@ -252,10 +252,10 @@ function GRADE_8Header({
         <h1
           style={{ fontSize: 28, fontWeight: 800, letterSpacing: "-0.02em", margin: "4px 0 6px" }}
         >
-          Welcome back, {learnerName} 👋
+          欢迎回来，{learnerName} 👋
         </h1>
         <p style={{ fontSize: 14, color: "#64748b", margin: 0, maxWidth: 540 }}>
-          You&apos;re 30 minutes from finishing your Python calculator project.
+          距离完成你的八年级信息技术实验仅剩 30 分钟。
         </p>
       </div>
       <div
@@ -278,9 +278,9 @@ function GRADE_8Header({
               color: "#94a3b8",
             }}
           >
-            Level
+            当前等级
           </div>
-          <div style={{ fontSize: 14, fontWeight: 800 }}>GRADE_8 · {xp.toLocaleString()} XP</div>
+          <div style={{ fontSize: 14, fontWeight: 800 }}>初二 (八年级) · {xp.toLocaleString()} XP</div>
         </div>
         <div
           style={{
@@ -338,10 +338,10 @@ function TodaysMission({ mission }: { mission: MissionView }) {
               textTransform: "uppercase",
             }}
           >
-            Today&apos;s mission · {mission.completedSteps} of {mission.totalSteps} completed
+            今日核心任务 · 已完成 {mission.completedSteps} / {mission.totalSteps} 步
           </span>
           <span style={{ fontSize: 13, fontWeight: 600, color: "#64748b" }}>
-            ~{mission.estimatedMinutes} min · +{mission.xpReward} XP
+            约 {mission.estimatedMinutes} 分钟 · +{mission.xpReward} XP
           </span>
         </div>
         <div
@@ -405,7 +405,7 @@ function LoopProgressCard({ mission }: { mission: MissionView }) {
           marginBottom: 12,
         }}
       >
-        <span style={{ fontSize: 13, fontWeight: 800 }}>Loop progress</span>
+        <span style={{ fontSize: 13, fontWeight: 800 }}>教学环进度</span>
         <span style={{ fontSize: 13, fontWeight: 800, color: "#4338ca" }}>
           {mission.progressPercent}%
         </span>
@@ -429,7 +429,7 @@ function LoopProgressCard({ mission }: { mission: MissionView }) {
         />
       </div>
       <div style={{ fontSize: 11.5, fontWeight: 700, color: "#64748b", marginTop: 12 }}>
-        {mission.completedSteps}/{mission.totalSteps} steps complete
+        已完成 {mission.completedSteps} / {mission.totalSteps} 步
       </div>
     </div>
   );
@@ -469,7 +469,7 @@ function LoopTileGrid({ steps }: { steps: StepView[] }) {
             >
               <span style={{ fontSize: 22 }}>{s.icon}</span>
               <span style={{ fontSize: 11, fontWeight: 800, color: "#64748b" }}>
-                {done ? "✓" : cur ? "Now" : locked ? "🔒" : ""}
+                {done ? "✓" : cur ? "当前" : locked ? "🔒" : ""}
               </span>
             </div>
             <div style={{ fontWeight: 800, fontSize: 14 }}>{STEP_LABELS[s.type]}</div>
@@ -494,7 +494,7 @@ function ContinuePracticing() {
           marginBottom: 12,
         }}
       >
-        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 800 }}>Continue practicing</h2>
+        <h2 style={{ margin: 0, fontSize: 18, fontWeight: 800 }}>继续练习与强化</h2>
         <Link
           href="/learn/GRADE_8?tab=missions"
           style={{
@@ -504,7 +504,7 @@ function ContinuePracticing() {
             textDecoration: "none",
           }}
         >
-          View all
+          查看全部
         </Link>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
@@ -595,16 +595,15 @@ function NovaRecommends() {
               color: "#94a3b8",
             }}
           >
-            NOVA RECOMMENDS
+            诺瓦导师推荐
           </div>
           <h2 style={{ margin: "2px 0 0", fontSize: 15, fontWeight: 900, lineHeight: 1.3 }}>
-            Try a logic puzzle before today&apos;s mission
+            课前挑战：探索逻辑电路与条件判断
           </h2>
         </div>
       </div>
       <p style={{ margin: 0, fontSize: 13, color: "#475569", lineHeight: 1.6 }}>
-        Yesterday&apos;s session showed you flew through patterns but slowed on edge cases. A
-        10-minute warm-up sharpens both.
+        昨天的学习记录显示你对基础概念掌握迅速。10 分钟的课前温习能帮你打下更扎实的基础。
       </p>
       <Link
         href="/learn/lesson/GRADE_8?mission=logic-gates"
@@ -622,7 +621,7 @@ function NovaRecommends() {
           boxShadow: "0 4px 14px rgba(79,70,229,.3)",
         }}
       >
-        Start warm-up
+        开启课前热身
       </Link>
     </section>
   );
@@ -640,11 +639,11 @@ function EnterpriseEssentials({ mission }: { mission: MissionView }) {
         boxShadow: "0 1px 2px rgba(0,0,0,.04)",
       }}
     >
-      <h2 style={{ margin: "0 0 16px", fontSize: 15, fontWeight: 900 }}>Enterprise essentials</h2>
+      <h2 style={{ margin: "0 0 16px", fontSize: 15, fontWeight: 900 }}>核心能力要点</h2>
       <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        <EntRow label="Current mission" value={onTrack ? "On track" : "Catch up"} tone="ok" />
-        <EntRow label="Skill evidence" value={`${mission.completedSteps} artifacts`} />
-        <EntRow label="Next review" value="Friday" />
+        <EntRow label="当前任务进度" value={onTrack ? "进展顺利" : "跟上进度"} tone="ok" />
+        <EntRow label="已掌握技能成果" value={`${mission.completedSteps} 项产出`} />
+        <EntRow label="下一次复习安排" value="周五" />
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ import "server-only";
 import { prisma } from "@/lib/prisma";
 import type { BuilderProgressStatus, BuilderStepType } from "@prisma/client";
 
-export type LoopState = "Done" | "Current step" | "Locked" | "Upcoming";
+export type LoopState = "已完成" | "当前步骤" | "已锁定" | "后续步骤";
 
 export type StepView = {
   id: string;
@@ -58,12 +58,12 @@ export const STEP_ICONS: Record<BuilderStepType, string> = {
 };
 
 export const STEP_LABELS: Record<BuilderStepType, string> = {
-  HOOK: "Hook",
-  EXPLAIN: "Explain",
-  PRACTICE: "Practice",
-  FEEDBACK: "Feedback",
-  REFLECT: "Reflect",
-  EVOLVE: "Evolve",
+  HOOK: "兴趣引入",
+  EXPLAIN: "概念讲解",
+  PRACTICE: "互动练习",
+  FEEDBACK: "即时反馈",
+  REFLECT: "反思总结",
+  EVOLVE: "能力进阶",
 };
 
 /**
@@ -84,20 +84,20 @@ const SEED_MISSIONS: Array<{
 }> = [
   {
     slug: "python-calculator",
-    title: "Build a calculator in Python",
+    title: "沪科版八年级物理/信息：Python 计算器与逻辑判断",
     description:
-      "Last time you wrote the add() function. Today: handle division by zero — and make Nova proud.",
-    category: "Python",
+      "上次你编写了基础运算函数。今天：处理除数为零的异常处理 — 让诺瓦导师为你感到骄傲。",
+    category: "信息技术",
     order: 1,
     xpReward: 60,
     estimatedMinutes: 12,
     steps: [
-      { order: 1, type: "HOOK", title: "Why calculators break", xp: 10 },
-      { order: 2, type: "EXPLAIN", title: "Division by zero in Python", xp: 10 },
-      { order: 3, type: "PRACTICE", title: "Guard divide() with a check", xp: 10 },
-      { order: 4, type: "FEEDBACK", title: "Nova reviews your divide()", xp: 10 },
-      { order: 5, type: "REFLECT", title: "What did this teach you?", xp: 10 },
-      { order: 6, type: "EVOLVE", title: "Extend to handle modulo by zero", xp: 10 },
+      { order: 1, type: "HOOK", title: "为什么计算器会报错崩溃", xp: 10 },
+      { order: 2, type: "EXPLAIN", title: "Python 中的除零异常原理", xp: 10 },
+      { order: 3, type: "PRACTICE", title: "为 divide() 添加条件判断与防错", xp: 10 },
+      { order: 4, type: "FEEDBACK", title: "诺瓦导师点评你的代码实现", xp: 10 },
+      { order: 5, type: "REFLECT", title: "本次练习的反思与总结", xp: 10 },
+      { order: 6, type: "EVOLVE", title: "拓展训练：处理取余运算中的零异常", xp: 10 },
     ],
   },
 ];
@@ -106,14 +106,14 @@ const SEED_MISSIONS: Array<{
 export const PRACTICE_TRACKS = [
   {
     slug: "logic-gates",
-    title: "Logic gates: AND, OR, NOT",
-    subtitle: "Coding · 6 mins left",
+    title: "逻辑电路：与门、或门与非门原理",
+    subtitle: "信息技术 · 剩余 6 分钟",
     gradient: "linear-gradient(135deg,#f1f5f9,#e0e7ff)",
   },
   {
     slug: "algebra-x",
-    title: "Algebra: solving for x",
-    subtitle: "Math · 12 mins left",
+    title: "沪教版八年级数学：一元一次方程求解",
+    subtitle: "数学 · 剩余 12 分钟",
     gradient: "linear-gradient(135deg,#fef3c7,#fce7f3)",
   },
 ];
@@ -122,10 +122,10 @@ function deriveLoopState(
   step: { status: BuilderProgressStatus; locked: boolean },
   isCurrent: boolean
 ): LoopState {
-  if (step.status === "COMPLETED") return "Done";
-  if (isCurrent) return "Current step";
-  if (step.locked) return "Locked";
-  return "Upcoming";
+  if (step.status === "COMPLETED") return "已完成";
+  if (isCurrent) return "当前步骤";
+  if (step.locked) return "已锁定";
+  return "后续步骤";
 }
 
 /**

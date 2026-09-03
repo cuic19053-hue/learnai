@@ -137,7 +137,7 @@ export function LATopBar({
             fontWeight: 700,
           }}
         >
-          <span>{w.ico}</span> {world} World
+          <span>{w.ico}</span> {world} 学习阶段
         </span>
       </div>
       <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
@@ -145,7 +145,7 @@ export function LATopBar({
           className="la-pill"
           style={{ background: "#fff", boxShadow: "0 0 0 1px var(--line)", padding: "6px 12px" }}
         >
-          <Icon.flame color="#f59e0b" /> <b style={{ color: "var(--ink)" }}>{streak}-day streak</b>
+          <Icon.flame color="#f59e0b" /> <b style={{ color: "var(--ink)" }}>连续学习 {streak} 天</b>
         </span>
         <span
           className="la-pill"
@@ -176,11 +176,11 @@ export function LATopBar({
 // ─── Left sidebar ──────────────────────────────────────────────────
 
 const SIDEBAR_ITEMS = [
-  { key: "Home", icon: "🏠", href: "/learn" },
-  { key: "My missions", icon: "🎯", href: "/learn/missions" },
-  { key: "Projects", icon: "🔨", href: "/learn/projects" },
-  { key: "Library", icon: "📚", href: "/learn/library" },
-  { key: "Achievements", icon: "🏅", href: "/learn/achievements" },
+  { key: "首页", icon: "🏠", href: "/learn" },
+  { key: "我的任务", icon: "🎯", href: "/learn/missions" },
+  { key: "实战项目", icon: "🔨", href: "/learn/projects" },
+  { key: "知识库", icon: "📚", href: "/learn/library" },
+  { key: "成就与勋章", icon: "🏅", href: "/learn/achievements" },
 ] as const;
 
 export type LASidebarProps = {
@@ -251,7 +251,7 @@ export function LASidebar({
           }}
         >
           <span style={{ fontSize: 18 }}>🧪</span>
-          <span style={{ flex: 1 }}>WikiTest</span>
+          <span style={{ flex: 1 }}>维基智考</span>
           <span
             className="la-mono"
             style={{
@@ -263,7 +263,7 @@ export function LASidebar({
               letterSpacing: ".04em",
             }}
           >
-            NEW
+            新功能
           </span>
         </Link>
       ) : null}
@@ -271,7 +271,7 @@ export function LASidebar({
       <div style={{ borderTop: "1px solid var(--line-soft)", margin: "12px 0" }} />
 
       <Link href="/learn/switch" className="wt-tab" style={itemStyle(false)}>
-        <span style={{ fontSize: 18 }}>🌐</span> Switch world
+        <span style={{ fontSize: 18 }}>🌐</span> 切换年级
       </Link>
 
       <div style={{ marginTop: "auto" }}>
@@ -285,7 +285,7 @@ export function LASidebar({
               marginBottom: 8,
             }}
           >
-            YOUR TEACHER
+            专属 AI 导师
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
             <div
@@ -320,7 +320,7 @@ export function LASidebar({
                     background: "var(--ok)",
                   }}
                 />{" "}
-                Online
+                在线
               </div>
             </div>
           </div>

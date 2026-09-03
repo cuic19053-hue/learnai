@@ -1,4 +1,4 @@
-﻿/**
+/**
  * URL-slug-aware mapping from "world" query param → journey + canonical
  * home path. Used by the shared nav (Missions / Projects / Library /
  * Achievements / Switch) so every tab knows which stage it's scoped to.
@@ -150,14 +150,14 @@ export function buildLearnerNav(opts: { world: World; active: NavTab }): NavItem
     out.push({ ...rest, active: id === opts.active });
   };
 
-  push({ id: "home", icon: "🏠", label: "Home", href: opts.world.homePath });
-  push({ id: "missions", icon: "🎯", label: "My missions", href: `/learn/missions?world=${slug}` });
-  push({ id: "projects", icon: "🛠️", label: "Projects", href: `/learn/projects?world=${slug}` });
-  push({ id: "library", icon: "📚", label: "Library", href: `/learn/library?world=${slug}` });
+  push({ id: "home", icon: "🏠", label: "首页", href: opts.world.homePath });
+  push({ id: "missions", icon: "🎯", label: "我的任务", href: `/learn/missions?world=${slug}` });
+  push({ id: "projects", icon: "🛠️", label: "实战项目", href: `/learn/projects?world=${slug}` });
+  push({ id: "library", icon: "📚", label: "知识库", href: `/learn/library?world=${slug}` });
   push({
     id: "achievements",
     icon: "🏅",
-    label: "Achievements",
+    label: "成就与勋章",
     href: `/learn/achievements?world=${slug}`,
   });
 
@@ -165,9 +165,9 @@ export function buildLearnerNav(opts: { world: World; active: NavTab }): NavItem
     push({
       id: "wikitest",
       icon: "🧪",
-      label: "WikiTest",
+      label: "维基智考",
       href: "/learn/wiki",
-      badge: "NEW",
+      badge: "新功能",
       highlight: true,
     });
   }
@@ -175,7 +175,7 @@ export function buildLearnerNav(opts: { world: World; active: NavTab }): NavItem
   push({
     id: "switch",
     icon: "🌍",
-    label: "Switch world",
+    label: "切换年级",
     href: "/learn/switch",
     divider: true,
   });

@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
@@ -31,49 +31,49 @@ const SAMPLE: Record<string, LibraryGroup[]> = {
   ],
   GRADE_7: [
     {
-      topic: "Science",
+      topic: "生命科学",
       items: [
-        { title: "Why does a volcano erupt?", durationMin: 8, mastery: 50 },
-        { title: "How do clouds make rain?", durationMin: 7, mastery: 100 },
-        { title: "Where does the sun go at night?", durationMin: 6 },
+        { title: "沪教版七年级生命科学 - 显微镜的使用", durationMin: 8, mastery: 50 },
+        { title: "自然地理：水循环与降雨的形成", durationMin: 7, mastery: 100 },
+        { title: "地球自转与昼夜交替的成因", durationMin: 6 },
       ],
     },
     {
-      topic: "Math",
+      topic: "数学",
       items: [
-        { title: "Times tables: 2 and 5", durationMin: 6 },
-        { title: "Fractions with a pizza", durationMin: 7 },
+        { title: "沪教版六年级数学：分数的四则运算", durationMin: 6 },
+        { title: "有理数的加减乘除与数轴", durationMin: 7 },
       ],
     },
   ],
   GRADE_8: [
     {
-      topic: "Coding",
+      topic: "信息技术",
       items: [
-        { title: "Python: variables", durationMin: 8, mastery: 80 },
-        { title: "Python: functions", durationMin: 10, mastery: 60 },
-        { title: "Logic gates: AND, OR, NOT", durationMin: 6, mastery: 30 },
-        { title: "Build a tic-tac-toe game", durationMin: 25 },
+        { title: "Python 编程：变量与数据类型", durationMin: 8, mastery: 80 },
+        { title: "Python 编程：函数定义与参数传递", durationMin: 10, mastery: 60 },
+        { title: "逻辑电路：与门、或门与非门原理", durationMin: 6, mastery: 30 },
+        { title: "综合实践：制作井字棋小游戏", durationMin: 25 },
       ],
     },
     {
-      topic: "Math",
+      topic: "数学与物理",
       items: [
-        { title: "Algebra: solving for x", durationMin: 12, mastery: 100 },
-        { title: "Probability: dice", durationMin: 10 },
+        { title: "沪教版八年级数学：一元一次方程求解", durationMin: 12, mastery: 100 },
+        { title: "沪科版八年级物理：光的折射与反射", durationMin: 10 },
       ],
     },
   ],
   GRADE_9: [
     {
-      topic: "Math",
+      topic: "数学",
       items: [
-        { title: "Trigonometry: sine & cosine", durationMin: 25, mastery: 42 },
-        { title: "Algebra: quadratic equations", durationMin: 22, mastery: 68 },
-        { title: "Probability fundamentals", durationMin: 20, mastery: 75 },
+        { title: "沪教版九年级数学：锐角三角函数 (sin, cos, tan)", durationMin: 25, mastery: 42 },
+        { title: "沪教版九年级数学：一元二次方程求根公式", durationMin: 22, mastery: 68 },
+        { title: "九年级数学中考复习：概率初步与树状图", durationMin: 20, mastery: 75 },
       ],
     },
-    { topic: "Practice exams", items: [{ title: "Mock exam: Set A", durationMin: 60 }] },
+    { topic: "中考模拟套卷", items: [{ title: "上海中考全科模拟套卷 A", durationMin: 60 }] },
   ],
   adult: [
     {
@@ -132,14 +132,13 @@ export default async function LibraryPage({
       navItems={buildLearnerNav({ world, active: "library" })}
     >
       <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
-        ← Back to {world.journey.name} home
+        ← 返回{world.journey.name}首页
       </Link>
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        Library
+        知识库
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
-        {total} lesson{total === 1 ? "" : "s"} across {groups.length} topic
-        {groups.length === 1 ? "" : "s"} in the {world.journey.name} world.
+        {world.journey.name}阶段共包含 {groups.length} 个学科主题、{total} 门知识课程。
       </p>
 
       {(world.slug === "GRADE_9" || world.slug === "adult") && (
@@ -154,22 +153,21 @@ export default async function LibraryPage({
                 className="la-pill text-[11px] font-extrabold"
                 style={{ background: "var(--brand-grad)", color: "#fff" }}
               >
-                NEW
+                新功能
               </span>
               <span className="text-[11px] font-extrabold uppercase tracking-wider text-ink-mute">
-                WikiTest
+                维基智考
               </span>
             </div>
             <h3 className="mt-1 text-[18px] font-extrabold tracking-tight text-ink">
-              Turn any Wikipedia article into a graded test
+              输入任意百科文章链接，一键生成专属试题
             </h3>
             <p className="mt-1 max-w-[560px] text-[13px] leading-relaxed text-ink-soft">
-              Paste a link — get a cited study session with train mode, practice drills, and a timed
-              exam. Perfect for prep on any topic your library doesn&apos;t cover yet.
+              粘贴链接，生成包含针对性练习与定时模拟测验的专属学习会话。
             </p>
           </div>
           <span className="la-btn" style={{ background: "var(--brand-grad)" }}>
-            Try WikiTest →
+            体验维基智考 →
           </span>
         </Link>
       )}
@@ -179,7 +177,7 @@ export default async function LibraryPage({
           <section key={g.topic}>
             <div className="flex items-baseline justify-between border-b border-line-soft pb-2">
               <h2 className="text-lg font-extrabold tracking-tight text-ink">{g.topic}</h2>
-              <span className="text-[11px] text-ink-mute">{g.items.length} lessons</span>
+              <span className="text-[11px] text-ink-mute">{g.items.length} 门课程</span>
             </div>
             <ul className="mt-2 grid gap-2 md:grid-cols-2">
               {g.items.map((it, i) => (
@@ -191,12 +189,12 @@ export default async function LibraryPage({
                   <div className="min-w-0">
                     <div className="truncate text-[14px] font-bold text-ink">{it.title}</div>
                     <div className="text-[11px] text-ink-mute">
-                      {it.durationMin} min
-                      {typeof it.mastery === "number" ? ` · mastery ${it.mastery}%` : ""}
+                      {it.durationMin} 分钟
+                      {typeof it.mastery === "number" ? ` · 掌握度 ${it.mastery}%` : ""}
                     </div>
                   </div>
                   <span className="text-[12px] font-bold" style={{ color: world.journey.color }}>
-                    Open →
+                    开启课程 →
                   </span>
                 </li>
               ))}

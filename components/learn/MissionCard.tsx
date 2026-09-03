@@ -58,10 +58,10 @@ export default function MissionCard({
   const resolvedCta =
     ctaLabel ??
     (safeStep === 0
-      ? "Start session"
+      ? "开始学习"
       : nextStep
-        ? `Continue with ${nextStep.label}`
-        : "Review session");
+        ? `继续：${nextStep.label}`
+        : "复习本课");
 
   const ctaClasses =
     "inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-sm font-bold shadow-sm transition-transform hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-white";
@@ -77,7 +77,7 @@ export default function MissionCard({
       <div className="grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
         <div>
           <div className="text-[12px] font-bold uppercase tracking-[0.08em] opacity-80">
-            {kicker} · {safeStep} of {totalSteps} completed
+            {kicker} · 已完成 {safeStep} / {totalSteps} 步
           </div>
           <h2 className="mt-3 text-[28px] font-extrabold leading-tight tracking-[-0.01em]">
             {title}
@@ -89,7 +89,7 @@ export default function MissionCard({
             >
               <span aria-hidden>→</span>
               <span>
-                Next: Step {safeStep + 1} · {nextStep.label}
+                下一环节：步骤 {safeStep + 1} · {nextStep.label}
               </span>
             </div>
           ) : (
@@ -98,7 +98,7 @@ export default function MissionCard({
               style={{ background: "rgba(255,255,255,.18)" }}
             >
               <span aria-hidden>✓</span>
-              <span>All steps complete</span>
+              <span>全环节学习完成</span>
             </div>
           )}
           <p className="mt-3 max-w-[460px] text-[14px] leading-relaxed opacity-85">{description}</p>
@@ -120,7 +120,7 @@ export default function MissionCard({
             labels so it doesn't read as overlapping the title. */}
         <div className="flex flex-col items-center md:items-end" aria-hidden>
           <div className="mb-2 text-[10px] font-bold uppercase tracking-[0.08em] opacity-75">
-            Loop progress
+            教学环进度
           </div>
           <div
             className="grid place-items-center rounded-full"
@@ -208,12 +208,12 @@ export default function MissionCard({
                 }}
               >
                 {done ? (
-                  <span>✓ Done</span>
+                  <span>✓ 已完成</span>
                 ) : current ? (
-                  <span className="uppercase tracking-wide">Current step</span>
+                  <span className="uppercase tracking-wide">当前步骤</span>
                 ) : (
                   <span className="inline-flex items-center gap-0.5">
-                    <span aria-hidden>🔒</span> Locked
+                    <span aria-hidden>🔒</span> 未解锁
                   </span>
                 )}
               </div>

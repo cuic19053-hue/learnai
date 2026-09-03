@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { buildLearnerNav, worldFromParam } from "@/lib/learn/worlds";
@@ -22,21 +22,21 @@ const SAMPLE: Record<string, Badge[]> = {
     { emoji: "🎨", name: "Colour master", desc: "Match every colour.", earned: false },
   ],
   GRADE_7: [
-    { emoji: "🌋", name: "Science GRADE_7", desc: "Solved the volcano quest.", earned: true },
-    { emoji: "🦊", name: "Quick fox", desc: "5-day streak.", earned: true },
-    { emoji: "🧩", name: "Logic puzzler", desc: "Finish 10 logic puzzles.", earned: false },
+    { emoji: "🔬", name: "七年级生命科学勋章", desc: "完成了显微镜结构探究任务。", earned: true },
+    { emoji: "🦊", name: "持之以恒", desc: "连续打卡学习 5 天。", earned: true },
+    { emoji: "🧩", name: "逻辑小达人", desc: "完成 10 道逻辑思维推理题。", earned: false },
   ],
   GRADE_8: [
-    { emoji: "🛠️", name: "First commit", desc: "Wrote your first function.", earned: true },
-    { emoji: "🔥", name: "Streak: 12 days", desc: "Train every day for 12 days.", earned: true },
-    { emoji: "⚡", name: "Speed run", desc: "Finish a mission in under 10 min.", earned: true },
-    { emoji: "🐍", name: "Calculator GRADE_8", desc: "Ship the Python calculator.", earned: false },
-    { emoji: "🧠", name: "Logic master", desc: "100% on the AND/OR/NOT mission.", earned: false },
+    { emoji: "🛠️", name: "初次尝试", desc: "编写并运行了你的第一个 Python 函数。", earned: true },
+    { emoji: "🔥", name: "连续打卡 12 天", desc: "坚持每天完成一项学科练习。", earned: true },
+    { emoji: "⚡", name: "神速达人", desc: "在 10 分钟内高效完成一项任务。", earned: true },
+    { emoji: "🐍", name: "计算器专家", desc: "成功发布 Python 计算器防错程序。", earned: false },
+    { emoji: "🧠", name: "逻辑电路宗师", desc: "在与门/或门/非门任务中斩获满分。", earned: false },
   ],
   GRADE_9: [
-    { emoji: "🎓", name: "Exam ready", desc: "Pass a mock exam.", earned: false },
-    { emoji: "📈", name: "Mastery +10", desc: "Lift any weak area by 10 points.", earned: true },
-    { emoji: "📝", name: "30-day plan", desc: "Stick to a 30-day study plan.", earned: false },
+    { emoji: "🎓", name: "中考备战完备", desc: "通过一次全真中考模拟考试。", earned: false },
+    { emoji: "📈", name: "突破自我", desc: "提升任意薄弱学科掌握度 10 分。", earned: true },
+    { emoji: "📝", name: "30 天冲刺打卡", desc: "按计划坚持 30 天冲刺学习。", earned: false },
   ],
   adult: [
     { emoji: "☁️", name: "Networking sprint", desc: "Finish the VPC sprint.", earned: true },
@@ -70,25 +70,25 @@ export default async function AchievementsPage({
       navItems={buildLearnerNav({ world, active: "achievements" })}
     >
       <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
-        ← Back to {world.journey.name} home
+        ← 返回{world.journey.name}首页
       </Link>
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        Achievements
+        成就与勋章
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
-        {earned} of {badges.length} badges earned in the {world.journey.name} world.
+        在{world.journey.name}阶段已获得 {earned} / {badges.length} 枚成就勋章。
       </p>
 
       {/* Headline stats */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
-        <Stat label="Current streak" value={`${world.streakDays} days`} accent="#b15c00" />
-        <Stat label="XP" value={world.xp.toLocaleString()} accent={world.journey.color} />
+        <Stat label="当前连续打卡" value={`${world.streakDays} 天`} accent="#b15c00" />
+        <Stat label="累计积分" value={world.xp.toLocaleString()} accent={world.journey.color} />
         <Stat
-          label="Badges earned"
+          label="已解锁勋章"
           value={`${earned} / ${badges.length}`}
           accent="var(--brand-1)"
         />
-        <Stat label="Lessons completed" value="—" accent="var(--ink-mute)" />
+        <Stat label="已完成课程" value="—" accent="var(--ink-mute)" />
       </div>
 
       {/* Badge grid */}
@@ -113,7 +113,7 @@ export default async function AchievementsPage({
             <div className="mt-1 text-[11px] leading-snug text-ink-soft">{b.desc}</div>
             {!b.earned ? (
               <div className="mt-2 text-[10px] font-bold uppercase tracking-wider text-ink-mute">
-                Locked
+                未解锁
               </div>
             ) : null}
           </div>

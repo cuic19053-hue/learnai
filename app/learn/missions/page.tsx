@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
 import { Arrow } from "@/components/design/icons";
@@ -29,14 +29,13 @@ export default async function MissionsPage({
       navItems={buildLearnerNav({ world, active: "missions" })}
     >
       <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
-        ← Back to {world.journey.name} home
+        ← 返回{world.journey.name}首页
       </Link>
       <h1 className="mt-2 text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-        My missions
+        我的任务
       </h1>
       <p className="mb-6 mt-1 text-[15px] text-ink-soft">
-        {missions.length} mission{missions.length === 1 ? "" : "s"} in the {world.journey.name}{" "}
-        world.
+        {world.journey.name}阶段共包含 {missions.length} 项核心学习任务。
       </p>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -68,7 +67,7 @@ function MissionRow({
 }) {
   const isLocked = mission.status === "locked";
   const isDone = mission.status === "completed";
-  const badge = isDone ? "Completed" : isLocked ? "Locked" : `${mission.progressPct}%`;
+  const badge = isDone ? "已完成" : isLocked ? "未解锁" : `${mission.progressPct}%`;
   const badgeColor = isDone ? "var(--j-little)" : isLocked ? "var(--ink-mute)" : accent;
   return (
     <div
@@ -110,7 +109,7 @@ function MissionRow({
           className="rounded-xl px-3 py-2 text-[13px] font-bold text-white"
           style={{ background: accent }}
         >
-          {isDone ? "Review" : "Resume"} <Arrow color="#fff" />
+          {isDone ? "复习" : "继续学习"} <Arrow color="#fff" />
         </Link>
       ) : null}
     </div>

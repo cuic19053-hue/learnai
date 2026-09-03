@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import LearnerHomeShell from "@/components/learn/shared/LearnerHomeShell";
@@ -43,50 +43,50 @@ const SAMPLE: Record<string, Project[]> = {
   ],
   GRADE_7: [
     {
-      title: "Volcano lab notebook",
-      brief: "Record your three volcano experiments.",
+      title: "沪教版七年级生命科学 - 显微镜观察实验笔记",
+      brief: "记录 3 组显微镜观察洋葱表皮细胞与洋葱根尖的实验步骤与心得。",
       status: "in_progress",
-      tags: ["science", "notebook"],
+      tags: ["生命科学", "实验笔记"],
     },
     {
-      title: "Mini weather diary",
-      brief: "Track temperature and clouds for one week.",
+      title: "自然地理：一周气温与云量观察日志",
+      brief: "连续一周记录本地气温、湿度与云量变化。",
       status: "idea",
-      tags: ["science"],
+      tags: ["地理", "实践观察"],
     },
   ],
   GRADE_8: [
     {
-      title: "Python calculator",
-      brief: "Build add, subtract, divide-by-zero handling.",
+      title: "沪科版八年级物理/信息：Python 计算器与防错逻辑",
+      brief: "实现基础加减乘除及除零异常捕获处理。",
       status: "in_progress",
-      tags: ["python", "logic"],
+      tags: ["信息技术", "逻辑防错"],
     },
     {
-      title: "Number-guessing game",
-      brief: "Random number, 5 attempts, helpful hints.",
+      title: "Python 猜数字小游戏",
+      brief: "随机生成数字，限制 5 次尝试机会，带高低提示。",
       status: "completed",
-      tags: ["python", "loops"],
+      tags: ["信息技术", "循环逻辑"],
     },
     {
-      title: "Tic-tac-toe in HTML",
-      brief: "Two-player game, no framework.",
+      title: "HTML/JS 网页井字棋游戏",
+      brief: "双人对战网页游戏，纯手写无框架。",
       status: "idea",
-      tags: ["html", "js"],
+      tags: ["前端", "网页制作"],
     },
   ],
   GRADE_9: [
     {
-      title: "Trigonometry study notes",
-      brief: "One-page reference signal for sine/cosine.",
+      title: "沪教版九年级数学：锐角三角函数思维导图",
+      brief: "一页纸梳理正弦、余弦、正切公式与特殊角三角函数值。",
       status: "in_progress",
-      tags: ["math", "exam"],
+      tags: ["数学", "中考复习"],
     },
     {
-      title: "Probability flashcard set",
-      brief: "Build 25 spaced-repetition cards.",
+      title: "九年级中考数学：概率初步记忆卡片",
+      brief: "制作 25 张概率求法与树状图法错题复习卡。",
       status: "idea",
-      tags: ["math"],
+      tags: ["数学", "错题集"],
     },
   ],
   adult: [
@@ -187,7 +187,7 @@ export default async function ProjectsPage({
       pageContext={{ kind: "missions", worldLabel: world.journey.name }}
     >
       <Link href={world.homePath} className="text-[13px] font-bold text-ink-soft hover:text-ink">
-        ← Back to {world.journey.name} home
+        ← 返回{world.journey.name}首页
       </Link>
 
       {justCreatedId ? (
@@ -195,18 +195,17 @@ export default async function ProjectsPage({
           role="status"
           className="mt-3 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-2.5 text-[13px] font-semibold text-emerald-700"
         >
-          ✓ Project draft saved. Find it at the top of the list.
+          ✓ 项目草稿已保存。在列表顶部查看。
         </div>
       ) : null}
 
       <div className="mt-2 flex flex-wrap items-baseline justify-between gap-3">
         <div>
           <h1 className="text-3xl font-extrabold tracking-[-0.02em] text-ink md:text-[32px]">
-            Projects
+            实战项目
           </h1>
           <p className="mt-1 text-[15px] text-ink-soft">
-            Build something real. {projects.length} project{projects.length === 1 ? "" : "s"} in the{" "}
-            {world.journey.name} world.
+            学以致用。{world.journey.name}阶段共包含 {projects.length} 个项目案例与练习。
           </p>
         </div>
         <Link
@@ -219,7 +218,7 @@ export default async function ProjectsPage({
             boxShadow: "none",
           }}
         >
-          + New project
+          + 新建实战项目
         </Link>
       </div>
 
@@ -247,13 +246,10 @@ export default async function ProjectsPage({
         </div>
         <div className="min-w-0 flex-1">
           <h3 className="text-[17px] font-extrabold tracking-tight text-ink">
-            Stuck for an idea? {world.teacherName} can build one with you in{" "}
-            {config.variant === "calm" ? "2" : config.variant === "parent" ? "1" : "4"} step
-            {config.variant === "standard" ? "s" : ""}.
+            没有灵感？{world.teacherName} 导师可以与你一起在线构建专属学习项目。
           </h3>
           <p className="mt-1 text-[13px] leading-relaxed text-ink-soft">
-            Tell us the topic and the goal — we'll generate a {config.defaultPaceCopy} plan grounded
-            in your weak areas and your real sources.
+            告知你想学习的知识点与目标，我们将为你定制专属于你的复习与实践计划。
           </p>
         </div>
         <Link
@@ -261,7 +257,7 @@ export default async function ProjectsPage({
           className="la-btn"
           style={{ background: world.journey.color, padding: "12px 18px" }}
         >
-          Start the wizard →
+          开启向导 →
         </Link>
       </div>
 
@@ -339,9 +335,9 @@ export default async function ProjectsPage({
 
 function ProjectCard({ project, accent }: { project: Project; accent: string }) {
   const STATUS_META: Record<Project["status"], { label: string; color: string }> = {
-    in_progress: { label: "In progress", color: accent },
-    completed: { label: "Completed", color: "var(--j-little)" },
-    idea: { label: "Idea", color: "var(--ink-mute)" },
+    in_progress: { label: "进行中", color: accent },
+    completed: { label: "已完成", color: "var(--j-little)" },
+    idea: { label: "创意草稿", color: "var(--ink-mute)" },
   };
   const meta = STATUS_META[project.status];
   return (
